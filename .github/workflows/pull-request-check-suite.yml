@@ -35,7 +35,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.directory }}
-    if: ${{ needs.changes.outputs[env.directory] == 'true' }}
+    if: needs.changes.outputs[env.directory] == 'true'
 
     steps:
       - uses: actions/checkout@v2
@@ -49,7 +49,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-npm-${{ env.directory }}-${{ hashFiles(format('{0}/package-lock.json', env.directory) }}
+          key: ${{ runner.os }}-npm-${{ env.directory }}-${{ hashFiles(format('{0}/package-lock.json', env.directory)) }}
           restore-keys: |
             ${{ runner.os }}-npm-${{ env.directory }}-
 
