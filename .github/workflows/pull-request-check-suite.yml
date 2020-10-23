@@ -18,7 +18,8 @@ jobs:
       functions: ${{ steps.filter.outputs.functions }}
       markdown: ${{ steps.filter.outputs.markdown }}
     steps:
-      # For pull requests it's not necessary to checkout the code
+      # Checkout to use filters from file
+      - uses: actions/checkout@v2
       - uses: dorny/paths-filter@v2
         id: filter
         with:
