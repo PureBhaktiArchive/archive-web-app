@@ -39,8 +39,8 @@ jobs:
     # if: needs.changes.outputs[github.job] == 'true'
 
     steps:
-      - run: echo ${{ github.job }}
-      - run: echo ${{ needs.changes.outputs[github.job] }}
+      - run: echo "${{ github.job }}"
+      - run: echo "${{ needs.changes.outputs[github.job] }}"
       - uses: actions/checkout@v2
 
       - uses: actions/setup-node@v1
