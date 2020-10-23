@@ -16,7 +16,6 @@ jobs:
     outputs:
       frontend: ${{ steps.filter.outputs.frontend }}
       functions: ${{ steps.filter.outputs.functions }}
-      markdown: ${{ steps.filter.outputs.markdown }}
     steps:
       # Checkout to use filters from file
       - uses: actions/checkout@v2
