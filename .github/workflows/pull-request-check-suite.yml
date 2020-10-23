@@ -31,11 +31,9 @@ jobs:
     name: Lint, build and test frontend
     runs-on: ubuntu-latest
     needs: changes
-    env:
-      directory: ${{ github.job }}
     defaults:
       run:
-        working-directory: ${{ env.directory }}
+        working-directory: ${{ github.job }}
     # It is not possible to use `github.job` inside `if` expression
     if: needs.changes.outputs.frontend
 
@@ -51,9 +49,9 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-npm-${{ env.directory }}-${{ hashFiles(format('{0}/package-lock.json', env.directory)) }}
+          key: ${{ runner.os }}-npm-${{ github.job }}-${{ hashFiles(format('{0}/package-lock.json', github.job)) }}
           restore-keys: |
-            ${{ runner.os }}-npm-${{ env.directory }}-
+            ${{ runner.os }}-npm-${{ github.job }}-
 
       - run: npm ci
       - run: npm run build
