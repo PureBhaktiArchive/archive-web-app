@@ -47,4 +47,4 @@ _sri sri guru gaurangau jayatah_
 
 CI/CD runs using GitHub Actions. The workflows are in [`.github/workflows`](.github/workflows) folder.
 
-- The `pull-request-check-suite` workflow lints, builds and tests all the touched sub-projects in a pull request.
+- The `pull-request-check-suite` workflow tests all the touched sub-projects in a pull request.
