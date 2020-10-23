@@ -1,6 +1,6 @@
 {
   "name": "functions",
-  "description": "Cloud Functions for Firebase Haribol",
+  "description": "Cloud Functions for Firebase",
   "scripts": {
     "lint": "eslint .",
     "serve": "firebase emulators:start --only functions",
