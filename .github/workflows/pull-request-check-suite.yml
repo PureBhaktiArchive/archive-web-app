@@ -34,7 +34,8 @@ jobs:
       run:
         working-directory: ${{ github.job }}
     # It is not possible to use `github.job` inside `if` expression
-    if: needs.changes.outputs.frontend
+    # Comparing to string, because the job output is a strings, not boolean
+    if: needs.changes.outputs.frontend == 'true'
 
     steps:
       - uses: actions/checkout@v2
