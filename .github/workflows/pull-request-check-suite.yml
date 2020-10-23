@@ -1,0 +1,59 @@
+#
+# sri sri guru gaurangau jayatah
+#
+
+name: CI
+on:
+  # Replace this with `pull_request_target` before merging PR !!!!!!!!!!!!!
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  changes:
+    name: Detect changes in sub-projects
+    runs-on: ubuntu-latest
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+      functions: ${{ steps.filter.outputs.functions }}
+      markdown: ${{ steps.filter.outputs.markdown }}
+    steps:
+      # For pull requests it's not necessary to checkout the code
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: .github/path-filters.yml
+
+  # Job id should match the folder name
+  # because it's used in the expressions
+  frontend:
+    name: Lint, build and test frontend
+    runs-on: ubuntu-latest
+    needs: changes
+    env:
+      directory: ${{ github.job }}
+    defaults:
+      run:
+        working-directory: ${{ env.directory }}
+    if: ${{ needs.changes.outputs[env.directory] == 'true' }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Cache NPM modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-npm-${{ env.directory }}-${{ hashFiles(format('{0}/package-lock.json', env.directory) }}
+          restore-keys: |
+            ${{ runner.os }}-npm-${{ env.directory }}-
+
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm run build --if-present
+      - run: npm run test --if-present -- --ci
