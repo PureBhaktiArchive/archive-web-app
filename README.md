@@ -1,3 +1,5 @@
+_sri sri guru gaurangau jayatah_
+
 # Pure Bhakti Archive Web App
 
 ## Technology stack
@@ -35,8 +37,14 @@
 
    - Name the pull request according to the Trello card and put the card link into the description of the pull request.
    - Pull request will be attached to the card automatically.
-   - A series of automatic checks will run: build, lint, test. You can see the results in the `Checks` tab of the pull request. All the found issues should be fixed.
+   - A series of automatic checks will run: build, lint, test. You can see the results in the `Checks` tab of the pull request. Please fix all the found issues.
    - Add commits to the branch if needed. Try to avoid force-pushing.
 
 1. [Mark your pull-request as ready for review](https://help.github.com/en/articles/changing-the-stage-of-a-pull-request) when you believe you’ve finished with the task. The card will be moved into the `In Review` list automatically.
 1. After review, the card will be automatically moved either back to `In Development` if some changes are required, or moved further to `Deployment` if the pull request is merged.
+
+## Continuous Integration
+
+CI/CD runs using GitHub Actions. The workflows are in [`.github/workflows`](.github/workflows) folder.
+
+- The `pull-request-check-suite` workflow tests all the touched sub-projects in a pull request.
