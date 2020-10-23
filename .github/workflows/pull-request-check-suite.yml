@@ -36,6 +36,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.directory }}
+    # It is not possible to use `github.job` inside `if` expression
     if: needs.changes.outputs.frontend
 
     steps:
@@ -44,10 +45,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-
-      - run: echo ${{ github.job }}
-      - run: echo ${{ needs.changes.outputs[github.job] }}
-      - run: echo ${{ needs.changes.outputs[github.job] == 'true' }}
 
       - name: Cache NPM modules
         id: cache
