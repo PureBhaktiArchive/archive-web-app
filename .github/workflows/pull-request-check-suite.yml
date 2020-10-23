@@ -43,8 +43,7 @@ jobs:
         with:
           node-version: 10
 
-      - &cache
-        name: Cache NPM modules
+      - name: Cache NPM modules
         id: cache
         uses: actions/cache@v2
         with:
@@ -75,7 +74,14 @@ jobs:
         with:
           node-version: 10
 
-      - <<: *cache
+      - name: Cache NPM modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
+          key: ${{ runner.os }}-npm-${{ github.job }}-${{ hashFiles(format('{0}/package-lock.json', github.job)) }}
+          restore-keys: |
+            ${{ runner.os }}-npm-${{ github.job }}-
 
       - run: npm ci
       - run: npm run lint
