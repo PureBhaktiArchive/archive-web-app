@@ -4,7 +4,6 @@
 
 name: CI
 on:
-  # Replace this with `pull_request_target` before merging PR !!!!!!!!!!!!!
   pull_request:
     branches:
       - main
