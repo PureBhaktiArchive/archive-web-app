@@ -23,10 +23,9 @@ jobs:
         with:
           filters: .github/path-filters.yml
 
-  # Job id should match the folder name
-  # because it's used in the expressions
+  # Job id should match the folder name because it's used in the expressions
   frontend:
-    name: Lint, build and test frontend
+    name: Build and test frontend
     runs-on: ubuntu-latest
     needs: changes
     defaults:
@@ -56,8 +55,9 @@ jobs:
       - run: npm run build
       - run: npm test
 
+  # Job id should match the folder name because it's used in the expressions
   functions:
-    name: Lint, build and test functions
+    name: Lint and test functions
     runs-on: ubuntu-latest
     needs: changes
     defaults:
