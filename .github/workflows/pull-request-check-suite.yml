@@ -35,7 +35,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.directory }}
-    if: needs.changes.outputs[env.directory] == 'true'
+    if: needs.changes.outputs[github.job] == 'true'
 
     steps:
       - uses: actions/checkout@v2
