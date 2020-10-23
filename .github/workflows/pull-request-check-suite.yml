@@ -36,7 +36,7 @@ jobs:
     defaults:
       run:
         working-directory: ${{ env.directory }}
-    if: needs.changes.outputs['frontend'] == 'true'
+    if: needs.changes.outputs.frontend
 
     steps:
       - uses: actions/checkout@v2
