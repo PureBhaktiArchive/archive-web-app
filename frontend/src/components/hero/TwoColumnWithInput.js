@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import React from 'react';
 import styled from "styled-components";
 import tw from "twin.macro";
@@ -51,8 +52,8 @@ export default ({ roundedHeaderButton }) => {
               Pure Bhakti Archive presents searcable database of Srila Gurudeva's audio files.
             </Paragraph>
             <Actions>
-              <input type="text" placeholder="Your E-mail Address" />
-              <button>Get Started</button>
+              <input type="text" placeholder="Search audio files..." />
+              <button>Search</button>
             </Actions>
 
           </LeftColumn>
@@ -64,7 +65,7 @@ export default ({ roundedHeaderButton }) => {
         </TwoColumn>
         <DecoratorBlob1 />
       </Container>
-      
+
     </>
   );
 };

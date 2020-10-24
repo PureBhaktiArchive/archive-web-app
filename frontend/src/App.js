@@ -1,24 +1,38 @@
-import MiniCenteredFooter from "components/footers/MiniCenteredFooter";
-import TwoColumnWithInput from "components/hero/TwoColumnWithInput";
-import React from "react";
+import React, { Component } from "react";
+
+import 'styles/App.css';
 import "styles/fontstyles.css";
-import "styles/index.css";
+import 'styles/index.css';
 import "tailwindcss/dist/base.css";
 
 
+import Agolia from "components/algolia/algoliaInstantSearch";
+import MiniCenteredFooter from "components/footers/MiniCenteredFooter";
+import TwoColumnWithInput from "components/hero/TwoColumnWithInput";
 
 
 
-function App() {
-  return (
-    <>
-      <TwoColumnWithInput />
-      <MiniCenteredFooter />
-    </>
 
-  )
+
+
+
+
+class App extends Component {
+  state = {}
+  render() {
+    return (
+
+      <React.Fragment>
+        <TwoColumnWithInput />
+        <Agolia />
+        <MiniCenteredFooter />
+      </React.Fragment>
+
+    );
+  }
 }
 
-export default App
+export default App;
+
 
 

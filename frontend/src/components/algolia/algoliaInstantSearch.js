@@ -1,7 +1,19 @@
-import algoliasearch from 'algoliasearch/lite';
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Highlight, Hits, InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
+import algoliasearch from 'algoliasearch/lite';
+import {
+  Highlight, Hits, InstantSearch,
+
+
+  Pagination, SearchBox
+} from 'react-instantsearch-dom';
+import PropTypes from 'prop-types';
+import '../../styles/App.css';
+import styled from "styled-components";
+import { css } from "styled-components/macro"; //eslint-disable-line
+
+
+
+
 
 const searchClient = algoliasearch(
   'A0IP7ZFQR8',
@@ -10,36 +22,52 @@ const searchClient = algoliasearch(
 
 const indexName = 'archive_app_dev';
 
-class Algolia extends Component {
+class Agolia extends Component {
   render() {
     return (
+      <div>
+        <header className="header">
+          <h1 className="header-title">
+            <a href="/">Search Srila Gurudeva's audio files. algolia-instant-search-demo</a>
+          </h1>
+          <p className="header-subtitle">
+            using{' '}
+            <a href="https://github.com/algolia/react-instantsearch">
+              React InstantSearch. 
+            </a>
+          </p>
+        </header>
 
-      <InstantSearch
-        searchClient={searchClient}
-        indexName={indexName}
-      >
+        <div className="container">
+          <InstantSearch searchClient={searchClient} indexName={indexName}>
+            <div className="search-panel">
+              <div className="search-panel__results">
+                <SearchBox
+                  className="searchbox"
+                  translations={{
+                    placeholder: '',
+                  }}
+                />
+                <Hits hitComponent={Hit} />
 
-        <SearchBox
-          className="searchbox"
-          translations={{
-            placeholder: '',
-          }}
-        />
-
-        <Hits hitComponent={Hit} />
-
-        <Pagination />
-
-      </InstantSearch>
-
+                <div className="pagination">
+                  <Pagination />
+                </div>
+              </div>
+            </div>
+          </InstantSearch>
+        </div>
+      </div>
     );
   }
 }
 
+
+
 function Hit(props) {
   return (
     <article>
-      <h1>
+      <h1 >
         <Highlight attribute="firstname" hit={props.hit} />
       </h1>
       <p>
@@ -56,4 +84,4 @@ Hit.propTypes = {
   hit: PropTypes.object.isRequired,
 };
 
-export default Algolia;
+export default Agolia;

@@ -7,11 +7,13 @@ https://nerdcave.com/tailwind-cheat-sheet
 
 */
 
-/* purgecss start ignore */
-@tailwind base;
-@tailwind components;
-/* purgecss end ignore */
-@tailwind utilities;
+/* https://tailwindcss.com/docs/installation */
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
 
 body {
   margin: 0;

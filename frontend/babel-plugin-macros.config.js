@@ -10,7 +10,15 @@ module.exports = {
     styled: "styled-components",
     config: "./tailwind.config.js",
     format: "auto"
-  }
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style?insertAt=top', 'css'],
+      },
+    ],
+  },
 };
 
 

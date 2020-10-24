@@ -1,5 +1,9 @@
 module.exports = {
   plugins: [
+    
+    require('tailwindcss')('./tailwindcss-config.js'),
+    require('autoprefixer'),
+
     'tailwindcss',
     'postcss-flexbugs-fixes',
     [
