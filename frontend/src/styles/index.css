@@ -1,3 +1,18 @@
+/* automatically generate color shades for tailwindcss
+
+https://javisperez.github.io/tailwindcolorshades/#/?Hibiscus=c43876&tv=1
+
+cheatsheet for tailwind
+https://nerdcave.com/tailwind-cheat-sheet
+
+*/
+
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MiniCenteredFooter from "components/footers/MiniCenteredFooter";
+import TwoColumnWithInput from "components/hero/TwoColumnWithInput";
+import React from "react";
+import "styles/fontstyles.css";
+import "styles/index.css";
+import "tailwindcss/dist/base.css";
+
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <TwoColumnWithInput />
+      <MiniCenteredFooter />
+    </>
+
+  )
 }
 
-export default App;
+export default App
+
+
