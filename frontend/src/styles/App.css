@@ -58,12 +58,3 @@ em {
   margin: 2rem auto;
   text-align: center;
 }
-
-.card-list{
-  display: flex;
- background-image: linear-gradient(to right, #8e43e7, #00aeff);
-}
-
-.card-list-item{
-
-}

@@ -22,5 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# my additions
 notes.md
-
+../.DS_Store
+./.DS_Store
+/build
+/public/build

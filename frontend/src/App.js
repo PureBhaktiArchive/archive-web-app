@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 
 import 'styles/App.css';
-import "styles/fontstyles.css";
-import 'styles/index.css';
+import 'styles/tailwind.css';
 import "tailwindcss/dist/base.css";
 
 
