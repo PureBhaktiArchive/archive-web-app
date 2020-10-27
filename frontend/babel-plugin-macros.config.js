@@ -14,11 +14,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.css$/,
-        loaders: ['style?insertAt=top', 'css'],
+        test: /\.css$/i,
+        loaders: ['style?insertAt=top', 'style-loader', 'css-loader'],
       },
     ],
   },
 };
-
-

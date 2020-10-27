@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch/lite';
-import {
-  Highlight, Hits, InstantSearch,
-
-
-  Pagination, SearchBox
-} from 'react-instantsearch-dom';
+import { Highlight, Hits, InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import '../../styles/App.css';
 import styled from "styled-components";
@@ -16,8 +11,8 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 
 
 const searchClient = algoliasearch(
-  'A0IP7ZFQR8',
-  '7d853e1791e8f7668cb942eeb76888ac'
+  process.env.REACT_APP_APPLICATION_ID,
+  process.env.REACT_APP_API_KEY
 );
 
 const indexName = 'archive_app_dev';
@@ -33,7 +28,7 @@ class Agolia extends Component {
           <p className="header-subtitle">
             using{' '}
             <a href="https://github.com/algolia/react-instantsearch">
-              React InstantSearch. 
+              React InstantSearch.
             </a>
           </p>
         </header>

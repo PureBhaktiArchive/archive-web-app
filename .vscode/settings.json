@@ -8,7 +8,7 @@
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.organizeImports": true
+    
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.lintTask.enable": true,
@@ -43,5 +43,14 @@
     "**/lib": true,
     "**/dist": true
   },
-  "formatFiles.excludePattern": "**/*.min.js"
+  "formatFiles.excludePattern": "**/*.min.js",
+  "prettier.eslintIntegration": true,
+  "eslint.codeAction.showDocumentation": {
+
+    "enable": true
+  },
+  "eslint.nodeEnv": "",
+  "eslint.options": {
+  
+  }
 }
