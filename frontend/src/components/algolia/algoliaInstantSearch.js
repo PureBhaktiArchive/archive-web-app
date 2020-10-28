@@ -3,7 +3,6 @@ import algoliasearch from 'algoliasearch/lite';
 import { Highlight, Hits, InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import '../../styles/App.css';
-import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
 
