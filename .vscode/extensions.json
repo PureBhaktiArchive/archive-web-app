@@ -5,7 +5,9 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "doi.fileheadercomment"
+    "doi.fileheadercomment",
+    "editorconfig.editorconfig",
+    "mikestead.dotenv"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
