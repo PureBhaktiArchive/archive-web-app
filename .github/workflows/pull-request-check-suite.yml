@@ -35,6 +35,11 @@ jobs:
     # Comparing to string, because the job output is a strings, not boolean
     if: needs.changes.outputs.frontend == 'true'
 
+    env:
+      REACT_APP_ALGOLIA_APPLICATION_ID: ${{ secrets.DEV_ALGOLIA_APPLICATION_ID }}
+      REACT_APP_ALGOLIA_API_KEY: ${{ secrets.DEV_ALGOLIA_API_KEY }}
+      REACT_APP_ALGOLIA_INDEX: ${{ secrets.DEV_ALGOLIA_INDEX }}
+
     steps:
       - uses: actions/checkout@v2
 

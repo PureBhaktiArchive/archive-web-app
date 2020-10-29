@@ -1,10 +1,10 @@
-## NOTE on environment variables 
-* all environment variables must have ```REACT_APP_``` prefix
-* REACT_APP_API_KEY corresponds to Algolia ```api-key```
-* REACT_APP_APPLICATION_ID corresponds to Algolia ```application-id```
-* both of which are found in Algolia API settings. 
+## NOTE on environment variables
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+All environment variables must have `REACT_APP_` prefix.
+
+- `REACT_APP_ALGOLIA_API_KEY` - Algolia API key
+- `REACT_APP_ALGOLIA_APPLICATION_ID` - Algolia application ID
+- `REACT_APP_ALGOLIA_INDEX` - Algolia index name
 
 ## Available Scripts
 

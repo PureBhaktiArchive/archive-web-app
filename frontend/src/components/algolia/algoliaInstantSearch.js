@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch/lite';
-import { Highlight, Hits, InstantSearch, Pagination, SearchBox } from 'react-instantsearch-dom';
+import {
+  Highlight,
+  Hits,
+  InstantSearch,
+  Pagination,
+  SearchBox,
+} from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import '../../styles/App.css';
-import { css } from "styled-components/macro"; //eslint-disable-line
-
-
-
-
+import { css } from 'styled-components/macro'; //eslint-disable-line
 
 const searchClient = algoliasearch(
-  process.env.REACT_APP_APPLICATION_ID,
-  process.env.REACT_APP_API_KEY
+  process.env.REACT_APP_ALGOLIA_APPLICATION_ID,
+  process.env.REACT_APP_ALGOLIA_API_KEY
 );
 
-const indexName = 'archive_app_dev';
+const indexName = process.env.REACT_APP_ALGOLIA_INDEX;
 
 class Agolia extends Component {
   render() {
@@ -22,7 +24,9 @@ class Agolia extends Component {
       <div>
         <header className="header">
           <h1 className="header-title">
-            <a href="/">Search Srila Gurudeva's audio files. algolia-instant-search-demo</a>
+            <a href="/">
+              Search Srila Gurudeva's audio files. algolia-instant-search-demo
+            </a>
           </h1>
           <p className="header-subtitle">
             using{' '}
@@ -56,12 +60,10 @@ class Agolia extends Component {
   }
 }
 
-
-
 function Hit(props) {
   return (
     <article>
-      <h1 >
+      <h1>
         <Highlight attribute="firstname" hit={props.hit} />
       </h1>
       <p>
