@@ -1,15 +1,14 @@
-import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch/lite';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import {
   Highlight,
   Hits,
   InstantSearch,
   Pagination,
-  SearchBox,
+  SearchBox
 } from 'react-instantsearch-dom';
-import PropTypes from 'prop-types';
 import '../../styles/App.css';
-import { css } from 'styled-components/macro'; //eslint-disable-line
 
 const searchClient = algoliasearch(
   process.env.REACT_APP_ALGOLIA_APPLICATION_ID,
