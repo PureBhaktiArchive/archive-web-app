@@ -7,7 +7,8 @@
     "strings": true
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": false
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.lintTask.enable": true,
@@ -41,11 +42,5 @@
     "**/node_modules": true,
     "**/lib": true,
     "**/dist": true
-  },
-
-  "eslint.codeAction.showDocumentation": {
-    "enable": true
-  },
-  "eslint.nodeEnv": "",
-  "eslint.options": {}
+  }
 }
