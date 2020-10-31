@@ -42,6 +42,5 @@
     "**/node_modules": true,
     "**/lib": true,
     "**/dist": true
-  },
-  "formatFiles.excludePattern": "**/*.min.js"
+  }
 }

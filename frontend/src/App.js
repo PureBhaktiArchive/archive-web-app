@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Agolia from 'components/algolia/algoliaInstantSearch.js';
+import MiniCenteredFooter from 'components/footers/MiniCenteredFooter';
+import TwoColumnWithInput from 'components/hero/TwoColumnWithInput';
+import 'instantsearch.css/themes/algolia.css';
+import React, { Component } from 'react';
+import 'styles/App.css';
+import 'styles/tailwind.css';
+import 'tailwindcss/dist/base.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <React.Fragment>
+        <TwoColumnWithInput />
+        <Agolia />
+        <MiniCenteredFooter />
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;

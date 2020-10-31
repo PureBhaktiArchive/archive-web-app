@@ -1,0 +1,13 @@
+/* automatically generate color shades for tailwindcss
+https://javisperez.github.io/tailwindcolorshades/#/?Hibiscus=c43876&tv=1
+
+cheatsheet for tailwind
+https://nerdcave.com/tailwind-cheat-sheet
+*/
+
+/* https://tailwindcss.com/docs/installation */
+@import 'tailwindcss/base';
+
+@import 'tailwindcss/components';
+
+@import 'tailwindcss/utilities';

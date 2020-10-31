@@ -35,6 +35,11 @@ jobs:
     # Comparing to string, because the job output is a strings, not boolean
     if: needs.changes.outputs.frontend == 'true'
 
+    env:
+      REACT_APP_ALGOLIA_APPLICATION_ID: ${{ secrets.DEV_ALGOLIA_APPLICATION_ID }}
+      REACT_APP_ALGOLIA_API_KEY: ${{ secrets.DEV_ALGOLIA_API_KEY }}
+      REACT_APP_ALGOLIA_INDEX: ${{ secrets.DEV_ALGOLIA_INDEX }}
+
     steps:
       - uses: actions/checkout@v2
 
@@ -54,6 +59,7 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+      - run: npx prettier --check .
 
   # Job id should match the folder name because it's used in the expressions
   functions:
