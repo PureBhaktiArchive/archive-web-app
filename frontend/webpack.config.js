@@ -2,9 +2,9 @@
 
 module.exports = {
   twin: {
-    styled: "styled-components",
-    config: "./tailwind.config.js",
-    format: "auto"
+    styled: 'styled-components',
+    config: './tailwind.config.js',
+    format: 'auto',
   },
   module: {
     rules: [
@@ -14,6 +14,4 @@ module.exports = {
       },
     ],
   },
-
 };
-

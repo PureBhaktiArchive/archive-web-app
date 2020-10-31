@@ -3,13 +3,12 @@
 
 // https://github.com/agility/agilitycms-nextjs-starter-2020
 
-
 // babel-plugin-macros.config.js
 module.exports = {
   twin: {
-    styled: "styled-components",
-    config: "./tailwind.config.js",
-    format: "auto"
+    styled: 'styled-components',
+    config: './tailwind.config.js',
+    format: 'auto',
   },
   module: {
     loaders: [

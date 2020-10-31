@@ -1,14 +1,14 @@
-import React from "react";
-import { motion } from "framer-motion";
-import tw from "twin.macro";
-import styled from "styled-components";
-import { css } from "styled-components/macro"; //eslint-disable-line
+import React from 'react';
+import { motion } from 'framer-motion';
+import tw from 'twin.macro';
+import styled from 'styled-components';
+import { css } from 'styled-components/macro'; //eslint-disable-line
 
-import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
+import useAnimatedNavToggler from '../../helpers/useAnimatedNavToggler.js';
 
-import logo from "../../images/logo.svg";
-import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
-import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
+import logo from '../../images/logo.svg';
+import { ReactComponent as MenuIcon } from 'feather-icons/dist/icons/menu.svg';
+import { ReactComponent as CloseIcon } from 'feather-icons/dist/icons/x.svg';
 
 const Header = tw.header`
   flex justify-between items-center
@@ -56,7 +56,13 @@ export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
 
-const Light = ({ roundedHeaderButton = false, logoLink, links, className, collapseBreakpointClass = "lg" }) => {
+const Light = ({
+  roundedHeaderButton = false,
+  logoLink,
+  links,
+  className,
+  collapseBreakpointClass = 'lg',
+}) => {
   /*
    * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
    * This links props should be an array of "NavLinks" components which is exported from this file.
@@ -80,11 +86,12 @@ const Light = ({ roundedHeaderButton = false, logoLink, links, className, collap
         Login
       </NavLink>
       <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} href="/#">Sign Up</PrimaryLink> */}
-    </NavLinks>
+    </NavLinks>,
   ];
 
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
-  const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];
+  const collapseBreakpointCss =
+    collapseBreakPointCssMap[collapseBreakpointClass];
 
   const defaultLogoLink = (
     <LogoLink href="/">
@@ -97,25 +104,37 @@ const Light = ({ roundedHeaderButton = false, logoLink, links, className, collap
   links = links || defaultLinks;
 
   return (
-    <Header className={className || "header-light"}>
+    <Header className={className || 'header-light'}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
         {logoLink}
         {links}
       </DesktopNavLinks>
 
-      <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
+      <MobileNavLinksContainer
+        css={collapseBreakpointCss.mobileNavLinksContainer}
+      >
         {logoLink}
-        <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
+        <MobileNavLinks
+          initial={{ x: '150%', display: 'none' }}
+          animate={animation}
+          css={collapseBreakpointCss.mobileNavLinks}
+        >
           {links}
         </MobileNavLinks>
-        <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
-          {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}
+        <NavToggle
+          onClick={toggleNavbar}
+          className={showNavLinks ? 'open' : 'closed'}
+        >
+          {showNavLinks ? (
+            <CloseIcon tw="w-6 h-6" />
+          ) : (
+            <MenuIcon tw="w-6 h-6" />
+          )}
         </NavToggle>
       </MobileNavLinksContainer>
     </Header>
   );
 };
-
 
 /* The below code is for generating dynamic break points for navbar.
  * Using this you can specify if you want to switch
@@ -127,24 +146,23 @@ const collapseBreakPointCssMap = {
   sm: {
     mobileNavLinks: tw`sm:hidden`,
     desktopNavLinks: tw`sm:flex`,
-    mobileNavLinksContainer: tw`sm:hidden`
+    mobileNavLinksContainer: tw`sm:hidden`,
   },
   md: {
     mobileNavLinks: tw`md:hidden`,
     desktopNavLinks: tw`md:flex`,
-    mobileNavLinksContainer: tw`md:hidden`
+    mobileNavLinksContainer: tw`md:hidden`,
   },
   lg: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden`
+    mobileNavLinksContainer: tw`lg:hidden`,
   },
   xl: {
     mobileNavLinks: tw`lg:hidden`,
     desktopNavLinks: tw`lg:flex`,
-    mobileNavLinksContainer: tw`lg:hidden`
-  }
+    mobileNavLinksContainer: tw`lg:hidden`,
+  },
 };
-
 
 export default Light;
