@@ -18,21 +18,6 @@
   "html.format.maxPreserveNewLines": 0,
   "html.format.wrapAttributes": "aligned-multiple",
 
-  "fileHeaderComment.parameter": {
-    "*": {
-      "commentbegin": "/*!",
-      "commentprefix": " *",
-      "commentend": " */"
-    }
-  },
-  "fileHeaderComment.template": {
-    "*": [
-      "${commentbegin}",
-      "${commentprefix} sri sri guru gaurangau jayatah",
-      "${commentend}",
-      ""
-    ]
-  },
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,

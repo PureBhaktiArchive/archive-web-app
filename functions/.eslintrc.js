@@ -1,3 +1,7 @@
+/*!
+ * sri sri guru gaurangau jayatah
+ */
+
 module.exports = {
   root: true,
   env: {
@@ -10,7 +14,7 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 2018,
   },
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'header'],
   extends: [
     'eslint:recommended',
     'plugin:import/errors',
@@ -19,5 +23,12 @@ module.exports = {
     'prettier',
     'prettier/@typescript-eslint',
   ],
-  rules: {},
+  rules: {
+    'header/header': [
+      'error',
+      'block',
+      ['!', ' * sri sri guru gaurangau jayatah', ' '],
+      2,
+    ],
+  },
 };
