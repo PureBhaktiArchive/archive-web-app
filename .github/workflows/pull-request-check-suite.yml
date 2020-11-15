@@ -91,3 +91,6 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
+      - run: npm run build -- --noEmit
+      - run: npm test
+      - run: npx prettier --check .
