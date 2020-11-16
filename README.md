@@ -7,10 +7,10 @@
 ## Technology stack
 
 - JavaScript
-- Frontend
+- Frontend (see [README](frontend/README.md))
   - React
   - Create React App
-- Backend
+- Backend (see [README](functions/README.md))
   - [Firebase](https://firebase.google.com/docs/)
   - [Algolia](https://www.algolia.com/doc/)
 
