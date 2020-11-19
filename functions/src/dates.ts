@@ -4,7 +4,7 @@
 
 import { DateTime } from 'luxon';
 
-type Precision = 'day' | 'month' | 'year';
+export type Precision = 'day' | 'month' | 'year';
 
 /**
  * Structure that represents “reduced precision calendar date”
