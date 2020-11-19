@@ -21,6 +21,7 @@
     "firebase-admin": "9.4.1",
     "firebase-functions": "3.11.0",
     "glob": "7.1.6",
+    "googleapis": "65.0.0",
     "luxon": "1.25.0"
   },
   "devDependencies": {
