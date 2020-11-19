@@ -14,7 +14,8 @@ type Precision = 'day' | 'month' | 'year';
  * Luxon does not support reduced precision dates out of the box:
  * // https://github.com/moment/luxon/issues/179
  */
-export interface IReducedPrecisionDate {
+export interface ISODate {
+  iso: string;
   /**
    * Base date. Only those units are significant which are covered by the `precision` member.
    * As stated in https://moment.github.io/luxon/docs/manual/parsing.html#iso-8601,
@@ -30,10 +31,11 @@ export interface IReducedPrecisionDate {
 }
 
 /**
- * Parses reduced precision date in ISO 8601 format.
- * @param source ISO 8601 date as string
+ * Parses reduced precision date in pseudo ISO 8601 format `YYYYMMDD`,
+ * where unknown segments (month, day) are represented as `00`.
+ * @param source date as string
  */
-export function parseISODate(source: string): IReducedPrecisionDate | null {
+export function parsePseudoISODate(source: string): ISODate | null {
   const match = /^(\d{4})(\d{2})(\d{2})$/.exec(source);
   if (match === null) return null;
 
@@ -49,6 +51,7 @@ export function parseISODate(source: string): IReducedPrecisionDate | null {
   if (!date.isValid) return null;
 
   return {
+    iso,
     date,
     precision: month === '00' ? 'year' : day === '00' ? 'month' : 'day',
   };
