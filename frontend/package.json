@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html --port 3000",
+    "start": "parcel src/index.html --port 3000 --out-dir .serve",
     "build": "parcel build src/index.html --experimental-scope-hoisting",
     "lint": "eslint ."
   },

@@ -40,33 +40,33 @@
       <div id="pagination"></div>
     </div>
 
-    <script type="text/html" id="item-template">
+    <script type="text/template" id="item-template">
       <div>
         <h2>
           {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
         </h2>
         <p>{{#helpers.snippet}}{ "attribute": "topics" }{{/helpers.snippet}}</p>
-        <!--  -->
+
         {{#_highlightResult.languages}}
         <span class="tag">{{{value}}}</span>
         {{/_highlightResult.languages}}
-        <!--  -->
+
         {{#_highlightResult.category}}
         <span class="tag">{{{value}}}</span>
         {{/_highlightResult.category}}
-        <!--  -->
+
         {{#_highlightResult.location}}
         <span class="tag">{{{value}}}</span>
         {{/_highlightResult.location}}
-        <!--  -->
+
         {{#_highlightResult.dateForHumans}}
         <span class="tag">{{{value}}}</span>
         {{/_highlightResult.dateForHumans}}
-        <!--  -->
+
         {{#percentage}}
         <span class="tag">{{percentage}}%</span>
         {{/percentage}}
-        <!--  -->
+
         {{#soundQualityRating}}
         <span class="tag">Quality: {{soundQualityRating}}</span>
         {{/soundQualityRating}}
