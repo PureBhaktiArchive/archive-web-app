@@ -35,3 +35,7 @@
 .ais-Hits-item {
   width: 100%;
 }
+
+.tag {
+  border: 1px solid black;
+}

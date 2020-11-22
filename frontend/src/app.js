@@ -74,8 +74,13 @@ search.addWidgets([
   hits({
     container: '#hits',
     templates: {
-      item: document.getElementById('item-template').textContent,
+      item: document.getElementById('item-template').innerHTML,
     },
+    transformItems: (items) =>
+      items.map((item) => ({
+        ...item,
+        percentage: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+      })),
   }),
   pagination({
     container: '#pagination',
