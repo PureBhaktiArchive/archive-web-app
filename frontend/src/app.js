@@ -34,6 +34,8 @@ const languageCategories = {
   O: { label: 'English with translation to other languages', order: 8 },
 };
 
+const soundQualityOrder = ['Low', 'Average', 'Good'];
+
 search.addWidgets([
   searchBox({
     container: '#searchbox',
@@ -64,7 +66,12 @@ search.addWidgets([
   refinementList({
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
-    sortBy: ['name:asc'],
+    sortBy: (a, b) => {
+      console.log(a, b);
+      return (
+        soundQualityOrder.indexOf(a.name) - soundQualityOrder.indexOf(b.name)
+      );
+    },
   }),
   refinementList({
     container: '#category-list',
