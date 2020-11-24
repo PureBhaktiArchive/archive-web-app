@@ -41,6 +41,8 @@ search.addWidgets([
   refinementList({
     container: '#location-list',
     attribute: 'location',
+    searchable: true,
+    searchableIsAlwaysActive: false,
     sortBy: ['name:asc'],
   }),
   refinementList({
