@@ -23,6 +23,17 @@ const search = instantsearch({
   searchClient,
 });
 
+const languageCategories = {
+  E: { label: 'English only', order: 1 },
+  H: { label: 'Hindi only', order: 2 },
+  B: { label: 'Bengali only', order: 3 },
+  EH: { label: 'English and Hindi', order: 4 },
+  EB: { label: 'English and Bengali', order: 5 },
+  HB: { label: 'Hindi and Bengali', order: 6 },
+  EHB: { label: 'English, Hindi, Bengali', order: 7 },
+  O: { label: 'English with translation to other languages', order: 8 },
+};
+
 search.addWidgets([
   searchBox({
     container: '#searchbox',
@@ -34,8 +45,19 @@ search.addWidgets([
   }),
   refinementList({
     container: '#language-list',
-    attribute: 'languages',
-    sortBy: ['name:asc'],
+    attribute: 'languageCategory',
+    transformItems: (items) =>
+      items
+        .sort(
+          (a, b) =>
+            languageCategories[a.value].order -
+            languageCategories[b.value].order
+        )
+        .map((item) => ({
+          ...item,
+          label: languageCategories[item.label].label,
+          highlighted: languageCategories[item.label].label,
+        })),
   }),
   refinementList({
     container: '#sound-quality-list',
