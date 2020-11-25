@@ -57,7 +57,8 @@ search.addWidgets([
     container: '#location-list',
     attribute: 'location',
     searchable: true,
-    searchableIsAlwaysActive: false,
+    showMore: true,
+    showMoreLimit: 50,
     sortBy: ['name:asc'],
   }),
   panel({
