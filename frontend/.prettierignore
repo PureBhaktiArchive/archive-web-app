@@ -1,3 +1,5 @@
 # Ignore artifacts:
-build
+dist
 coverage
+.cache
+.serve

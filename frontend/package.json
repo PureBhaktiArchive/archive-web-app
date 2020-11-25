@@ -2,34 +2,10 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "algoliasearch": "^3.35.1",
-    "feather-icons": "^4.28.0",
-    "framer-motion": "^2.9.4",
-    "instantsearch.css": "^7.4.5",
-    "react": "^16.14.0",
-    "react-anchor-link-smooth-scroll": "^1.0.12",
-    "react-dom": "^16.14.0",
-    "react-instantsearch-dom": "^6.8.2",
-    "react-modal": "^3.11.2",
-    "react-rnd": "^10.2.3",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.0",
-    "react-slick": "^0.27.12",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^5.2.0",
-    "tailwindcss": "^1.9.6",
-    "twin.macro": "^1.11.0",
-    "use-in-view": "^1.0.15"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "parcel src/index.html --port 3000 --out-dir .serve",
+    "build": "parcel build src/index.html --experimental-scope-hoisting",
+    "lint": "eslint ."
   },
   "browserslist": {
     "production": [
@@ -44,14 +20,16 @@
     ]
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^3.0.0",
-    "autoprefixer": "^10.0.1",
-    "css-loader": "^5.0.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "7.14.0",
     "eslint-config-prettier": "6.15.0",
-    "postcss": "^8.1.4",
-    "postcss-cli": "^8.1.0",
-    "prettier": "2.1.2",
-    "prop-types": "^15.7.2",
-    "style-loader": "^2.0.0"
+    "eslint-plugin-header": "3.1.0",
+    "eslint-plugin-import": "2.22.1",
+    "parcel-bundler": "1.12.4",
+    "prettier": "2.2.0"
+  },
+  "dependencies": {
+    "algoliasearch": "4.8.0",
+    "instantsearch.js": "4.8.7"
   }
 }

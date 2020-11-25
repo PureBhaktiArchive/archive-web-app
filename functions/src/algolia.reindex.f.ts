@@ -6,6 +6,7 @@ import algoliasearch from 'algoliasearch';
 import * as functions from 'firebase-functions';
 import { DateTime } from 'luxon';
 import { parsePseudoISODate, Precision } from './dates';
+import { categorizeLanguages, parseLanguages } from './languages';
 import { getAllRows } from './sheets';
 
 interface IRow {
@@ -34,6 +35,7 @@ interface IRecord {
   location: string;
   category: string;
   languages: string[];
+  languageCategory?: string;
   percentage: number;
   soundQualityRating: string;
   seriesName: string;
@@ -74,20 +76,25 @@ export default functions.pubsub.topic('reindex').onPublish(async () => {
     functions.config().spreadsheet.id,
     'Final For Archive'
   );
-  const records = rows.map<IRecord>((row) => ({
-    objectID: row.ID,
-    title: row.Title,
-    topics: row.Topics,
-    ...getDateAttributes(row.Date),
-    time: row.Time,
-    location: row.Location,
-    category: row.Category,
-    languages: row.Languages?.split(',').map((language) => language.trim()),
-    percentage: row['Srila Gurudeva Timing'],
-    soundQualityRating: row['Sound Quality Rating'],
-    seriesName: row['Series Name'],
-    positionInSeries: row['Position In Series'],
-  }));
+  const records = rows.map<IRecord>((row) => {
+    const languages = parseLanguages(row.Languages);
+
+    return {
+      objectID: row.ID,
+      title: row.Title,
+      topics: row.Topics,
+      ...getDateAttributes(row.Date),
+      time: row.Time,
+      location: row.Location,
+      category: row.Category,
+      languages,
+      languageCategory: categorizeLanguages(languages) || undefined,
+      percentage: row['Srila Gurudeva Timing'],
+      soundQualityRating: row['Sound Quality Rating'],
+      seriesName: row['Series Name'],
+      positionInSeries: row['Position In Series'],
+    };
+  });
 
   const client = algoliasearch(
     functions.config().algolia.appid,
