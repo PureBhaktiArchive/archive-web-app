@@ -10,6 +10,7 @@ import {
   numericMenu,
   pagination,
   panel,
+  poweredBy,
   refinementList,
   searchBox,
 } from 'instantsearch.js/es/widgets';
@@ -44,6 +45,9 @@ search.addWidgets([
   }),
   searchBox({
     container: '#searchbox',
+  }),
+  poweredBy({
+    container: '#powered-by',
   }),
   panel({
     templates: {
