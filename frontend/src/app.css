@@ -12,10 +12,11 @@
 
 .search-panel__filters {
   flex: 1;
+  margin-right: 1rem;
 }
 
 .search-panel__results {
-  flex: 3;
+  flex: 4;
 }
 
 .ais-Highlight-highlighted {
@@ -39,6 +40,9 @@
   width: 100%;
 }
 
+.ais-Panel {
+  margin-bottom: 1rem;
+}
 .tag {
   border: 1px solid black;
 }

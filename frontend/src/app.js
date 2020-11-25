@@ -9,6 +9,7 @@ import {
   infiniteHits,
   numericMenu,
   pagination,
+  panel,
   refinementList,
   searchBox,
 } from 'instantsearch.js/es/widgets';
@@ -44,14 +45,22 @@ search.addWidgets([
   searchBox({
     container: '#searchbox',
   }),
-  refinementList({
+  panel({
+    templates: {
+      header: 'Location',
+    },
+  })(refinementList)({
     container: '#location-list',
     attribute: 'location',
     searchable: true,
     searchableIsAlwaysActive: false,
     sortBy: ['name:asc'],
   }),
-  refinementList({
+  panel({
+    templates: {
+      header: 'Languages',
+    },
+  })(refinementList)({
     container: '#language-list',
     attribute: 'languageCategory',
     transformItems: (items) =>
@@ -67,7 +76,11 @@ search.addWidgets([
           highlighted: languageCategories[item.label].label,
         })),
   }),
-  refinementList({
+  panel({
+    templates: {
+      header: 'Sound Quality',
+    },
+  })(refinementList)({
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
     sortBy: (a, b) => {
@@ -76,17 +89,29 @@ search.addWidgets([
       );
     },
   }),
-  refinementList({
+  panel({
+    templates: {
+      header: 'Category',
+    },
+  })(refinementList)({
     container: '#category-list',
     attribute: 'category',
     sortBy: ['name:asc'],
   }),
-  refinementList({
+  panel({
+    templates: {
+      header: 'Year',
+    },
+  })(refinementList)({
     container: '#year-list',
     attribute: 'year',
     sortBy: ['name:asc'],
   }),
-  numericMenu({
+  panel({
+    templates: {
+      header: 'Srila Gurudeva Timing',
+    },
+  })(numericMenu)({
     container: '#percentage-menu',
     attribute: 'percentage',
     items: [
@@ -95,7 +120,11 @@ search.addWidgets([
       { label: 'More than 90%', start: 0.9 },
     ],
   }),
-  numericMenu({
+  panel({
+    templates: {
+      header: 'Duration',
+    },
+  })(numericMenu)({
     container: '#duration-menu',
     attribute: 'duration',
     items: [
