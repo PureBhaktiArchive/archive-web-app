@@ -42,10 +42,7 @@
 
     <script type="text/template" id="item-template">
       <div>
-        <h2>
-          {{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}
-        </h2>
-        <p>{{#helpers.snippet}}{ "attribute": "topics" }{{/helpers.snippet}}</p>
+        <span>{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</span>
 
         {{#_highlightResult.languages}}
         <span class="tag">{{{value}}}</span>
