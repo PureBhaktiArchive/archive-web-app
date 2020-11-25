@@ -32,7 +32,10 @@
   text-align: center;
 }
 
-.ais-Hits-item {
+.ais-Hits-item,
+.ais-InfiniteHits-item,
+.ais-InfiniteResults-item,
+.ais-Results-item {
   width: 100%;
 }
 

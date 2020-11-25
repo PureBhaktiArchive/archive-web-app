@@ -5,7 +5,8 @@
 import algoliasearch from 'algoliasearch/lite';
 import instantsearch from 'instantsearch.js';
 import {
-  hits,
+  configure,
+  infiniteHits,
   numericMenu,
   pagination,
   refinementList,
@@ -37,6 +38,9 @@ const languageCategories = {
 const soundQualityOrder = ['Low', 'Average', 'Good'];
 
 search.addWidgets([
+  configure({
+    hitsPerPage: 100,
+  }),
   searchBox({
     container: '#searchbox',
   }),
@@ -101,7 +105,7 @@ search.addWidgets([
       { label: '45+ minutes', start: 30 },
     ],
   }),
-  hits({
+  infiniteHits({
     container: '#hits',
     templates: {
       item: document.getElementById('item-template').innerHTML,
