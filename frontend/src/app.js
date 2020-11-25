@@ -97,8 +97,8 @@ search.addWidgets([
     items: [
       { label: 'Any' },
       { label: 'Less than 15 minutes', end: 15 },
-      { label: '15-30 minutes', start: 15, end: 30 },
-      { label: '30 minutes and longer', start: 30 },
+      { label: '15-45 minutes', start: 15, end: 46 },
+      { label: '45+ minutes', start: 30 },
     ],
   }),
   hits({
