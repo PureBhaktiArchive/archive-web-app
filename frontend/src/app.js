@@ -67,7 +67,6 @@ search.addWidgets([
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
     sortBy: (a, b) => {
-      console.log(a, b);
       return (
         soundQualityOrder.indexOf(a.name) - soundQualityOrder.indexOf(b.name)
       );
