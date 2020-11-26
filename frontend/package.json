@@ -26,7 +26,10 @@
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
     "parcel-bundler": "1.12.4",
-    "prettier": "2.2.0"
+    "postcss": "7.0.35",
+    "postcss-preset-env": "6.7.0",
+    "prettier": "2.2.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.1"
   },
   "dependencies": {
     "algoliasearch": "4.8.0",
