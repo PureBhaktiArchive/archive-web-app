@@ -5,6 +5,6 @@
 module.exports = {
   plugins: {
     tailwindcss: {},
-    'postcss-preset-env': {},
+    'postcss-preset-env': { stage: 1 },
   },
 };
