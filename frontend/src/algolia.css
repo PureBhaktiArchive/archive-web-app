@@ -315,6 +315,20 @@
 
   .ais-SearchBox-input {
     @apply py-1 px-7 w-full relative bg-white border rounded;
+
+    /* clears the 'X' from Internet Explorer */
+    &::-ms-clear,
+    &::-ms-reveal {
+      @apply hidden w-0 h-0;
+    }
+
+    /* clears the 'X' from Chrome */
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-decoration,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      @apply hidden;
+    }
   }
 
   .ais-SearchBox-submit,
