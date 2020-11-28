@@ -218,7 +218,7 @@
   .ais-InfiniteResults-list,
   .ais-Hits-list,
   .ais-Results-list {
-    @apply -m-4 flex flex-wrap;
+    @apply flex flex-wrap;
 
     @nest .ais-Panel-body & {
       @apply mt-2 mr-0 mb-0 -ml-4;
@@ -243,6 +243,10 @@
 
   .ais-InfiniteHits-loadPrevious {
     @apply mb-4;
+  }
+
+  .ais-Panel {
+    @apply mt-4;
   }
 
   .ais-Panel--collapsible {
