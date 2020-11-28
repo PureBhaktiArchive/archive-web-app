@@ -318,7 +318,7 @@
   }
 
   .ais-SearchBox-input {
-    @apply py-1 px-7 w-full relative bg-white border rounded;
+    @apply py-1 px-7 w-full relative bg-white border rounded shadow;
 
     /* clears the 'X' from Internet Explorer */
     &::-ms-clear,
