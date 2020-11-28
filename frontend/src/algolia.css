@@ -338,14 +338,15 @@
   .ais-SearchBox-submit,
   .ais-SearchBox-reset,
   .ais-SearchBox-loadingIndicator {
-    @apply absolute z-10 w-6 h-6 top-6 right-1 transform -translate-y-5;
+    @apply absolute z-10 w-6 h-6 top-6 transform -translate-y-5;
   }
 
   .ais-SearchBox-submit {
     @apply left-1;
   }
 
-  .ais-SearchBox-reset {
+  .ais-SearchBox-reset,
+  .ais-SearchBox-loadingIndicator {
     @apply right-1;
   }
 
