@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="text-gray-900">
   <head>
     <meta charset="utf-8" />
     <meta
@@ -12,10 +12,13 @@
     <title>Pure Bhakti Archive</title>
   </head>
 
-  <body>
-    <div class="container">
-      <div class="search-panel">
-        <div class="search-panel__filters">
+  <body class="min-h-screen">
+    <div id="search" class="flex flex-col mx-auto p-4">
+      <div id="searchbox"></div>
+      <div id="powered-by"></div>
+
+      <div class="flex">
+        <div id="filters" class="w-1/5">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
           <div id="duration-menu"></div>
@@ -24,13 +27,9 @@
           <div id="year-list"></div>
           <div id="location-list"></div>
         </div>
-        <div class="search-panel__results">
-          <div id="searchbox"></div>
-          <div id="powered-by"></div>
-          <div id="hits"></div>
-        </div>
+        <div id="hits" class="w-4/5 ml-4"></div>
       </div>
-      <div id="pagination"></div>
+      <div id="pagination" class="text-center my-2 mx-auto"></div>
     </div>
 
     <script type="text/template" id="item-template">

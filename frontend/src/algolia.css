@@ -1,0 +1,351 @@
+/*
+ * sri sri guru gaurangau jayatah
+ */
+
+@layer components {
+  /*
+    Prevent InfiniteHits buttons from moving scroll position
+    https://bugs.chromium.org/p/chromium/issues/detail?id=1110323
+  */
+  .ais-InfiniteHits-loadPrevious,
+  .ais-InfiniteHits-loadMore,
+  .ais-HierarchicalMenu-showMore,
+  .ais-Menu-showMore,
+  .ais-RefinementList-showMore {
+    overflow-anchor: none;
+  }
+
+  .ais-Breadcrumb-list,
+  .ais-Breadcrumb-item,
+  .ais-Pagination-list,
+  .ais-RangeInput-form,
+  .ais-RatingMenu-link,
+  .ais-PoweredBy {
+    @apply flex items-center;
+  }
+
+  .ais-GeoSearch,
+  .ais-GeoSearch-map {
+    @apply h-full;
+  }
+
+  .ais-HierarchicalMenu-list .ais-HierarchicalMenu-list {
+    @apply ml-4;
+  }
+
+  .ais-PoweredBy-logo {
+    @apply block h-5 w-auto;
+  }
+
+  .ais-RatingMenu-starIcon {
+    @apply block w-4 h-4;
+  }
+
+  .ais-RangeSlider {
+    .rheostat {
+      @apply overflow-visible mt-10 mb-10;
+    }
+
+    .rheostat-background {
+      @apply h-2 top-0 w-full;
+    }
+
+    .rheostat-handle {
+      @apply -ml-3 -top-2;
+    }
+
+    .rheostat-background {
+      @apply relative bg-white border-gray-400;
+    }
+
+    .rheostat-progress {
+      @apply absolute top-px h-1 bg-gray-800;
+    }
+  }
+
+  .rheostat-handle {
+    @apply relative z-10 w-3 h-3 bg-white border-gray-800 rounded-3xl cursor-grab;
+  }
+
+  .rheostat-marker {
+    @apply -ml-px absolute w-px h-1 bg-gray-400;
+  }
+
+  .rheostat-marker--large {
+    @apply h-2;
+  }
+
+  .rheostat-value {
+    @apply ml-2 pt-4 absolute text-center -translate-x-2;
+  }
+
+  .rheostat-tooltip {
+    @apply ml-2 absolute -top-6 text-center -translate-x-2;
+  }
+
+  [class^='ais-'] {
+    @apply text-base box-border;
+  }
+
+  a[class^='ais-'] {
+    @apply no-underline;
+  }
+
+  .ais-Breadcrumb-separator {
+    @apply my-0 mx-1 font-normal;
+  }
+
+  .ais-Breadcrumb-link,
+  .ais-HierarchicalMenu-link,
+  .ais-Menu-link,
+  .ais-Pagination-link,
+  .ais-RatingMenu-link {
+    @apply transition-colors ease-out duration-200;
+  }
+
+  .ais-Breadcrumb-item--selected,
+  .ais-HierarchicalMenu-item--selected,
+  .ais-Menu-item--selected {
+    @apply font-bold;
+  }
+
+  .ais-Breadcrumb-separator {
+    @apply my-0 mx-1 font-normal;
+  }
+
+  .ais-ClearRefinements-button,
+  .ais-CurrentRefinements-reset,
+  .ais-GeoSearch-redo,
+  .ais-GeoSearch-reset,
+  .ais-HierarchicalMenu-showMore,
+  .ais-InfiniteHits-loadPrevious,
+  .ais-InfiniteHits-loadMore,
+  .ais-InfiniteResults-loadMore,
+  .ais-Menu-showMore,
+  .ais-RefinementList-showMore {
+    @apply rounded text-xs py-1 px-2 bg-peach transition-colors ease-out duration-200 outline-none hover:bg-peach-dark focus:bg-peach-dark;
+  }
+
+  .ais-ClearRefinements-button--disabled,
+  .ais-GeoSearch-redo--disabled,
+  .ais-GeoSearch-reset--disabled,
+  .ais-HierarchicalMenu-showMore--disabled,
+  .ais-InfiniteHits-loadMore--disabled,
+  .ais-InfiniteResults-loadMore--disabled,
+  .ais-Menu-showMore--disabled,
+  .ais-RefinementList-showMore--disabled {
+    @apply opacity-60 cursor-not-allowed hover:bg-peach focus:bg-peach;
+  }
+  .ais-InfiniteHits-loadPrevious--disabled {
+    @apply hidden;
+  }
+
+  .ais-CurrentRefinements {
+    @apply -mt-1 flex flex-wrap;
+  }
+  .ais-CurrentRefinements-list {
+    @apply flex flex-wrap;
+  }
+
+  .ais-CurrentRefinements-item {
+    @apply mr-1 mt-1 py-1 px-2 flex bg-peach rounded;
+  }
+
+  .ais-CurrentRefinements-category {
+    @apply flex ml-1;
+  }
+
+  .ais-CurrentRefinements-delete {
+    @apply ml-1;
+  }
+
+  .ais-CurrentRefinements-label,
+  .ais-CurrentRefinements-categoryLabel,
+  .ais-CurrentRefinements-delete {
+    @apply whitespace-nowrap text-sm text-white;
+  }
+
+  .ais-CurrentRefinements-reset {
+    @apply mt-1 whitespace-nowrap;
+
+    & + .ais-CurrentRefinements-list {
+      @apply ml-1;
+    }
+  }
+
+  .ais-HierarchicalMenu-link,
+  .ais-Menu-link {
+    @apply block leading-normal;
+  }
+
+  .ais-HierarchicalMenu-list,
+  .ais-Menu-list,
+  .ais-NumericMenu-list,
+  .ais-RatingMenu-list,
+  .ais-RefinementList-list {
+    @apply font-normal leading-normal;
+  }
+
+  .ais-HierarchicalMenu-link {
+    @nest .ais-HierarchicalMenu-item--parent > &:after {
+      @apply inline-block;
+    }
+
+    @nest .ais-HierarchicalMenu-item--selected > &:after {
+      @apply rotate-90;
+    }
+  }
+
+  .ais-HierarchicalMenu-count,
+  .ais-Menu-count,
+  .ais-RefinementList-count,
+  .ais-ToggleRefinement-count {
+    @apply py-0.5 px-1.5 text-sm rounded-lg;
+  }
+
+  .ais-HierarchicalMenu-showMore,
+  .ais-Menu-showMore,
+  .ais-RefinementList-showMore {
+    @apply mt-2;
+  }
+
+  .ais-Highlight-highlighted,
+  .ais-Snippet-highlighted {
+    @apply bg-yellow-300;
+  }
+
+  .ais-InfiniteHits-list,
+  .ais-InfiniteResults-list,
+  .ais-Hits-list,
+  .ais-Results-list {
+    @apply -m-4 flex flex-wrap;
+
+    @nest .ais-Panel-body & {
+      @apply mt-2 mr-0 mb-0 -ml-4;
+    }
+  }
+
+  .ais-InfiniteHits-item,
+  .ais-InfiniteResults-item,
+  .ais-Hits-item,
+  .ais-Results-item {
+    @apply p-1 w-full border;
+
+    @nest .ais-Panel-body & {
+      @apply my-2 mt-0;
+    }
+  }
+
+  .ais-InfiniteHits-loadMore,
+  .ais-InfiniteResults-loadMore {
+    @apply mt-4;
+  }
+
+  .ais-InfiniteHits-loadPrevious {
+    @apply mb-4;
+  }
+
+  .ais-Panel--collapsible {
+    @apply relative;
+
+    &.ais-Panel--collapsed {
+      & .ais-Panel-body,
+      & .ais-Panel-footer {
+        @apply hidden;
+      }
+    }
+
+    & .ais-Panel-collapseButton {
+      @apply absolute top-0 right-0 p-0 border-none bg-none;
+    }
+  }
+
+  .ais-Panel-header {
+    @apply border-b text-xs font-bold mb-2 pb-2 uppercase;
+  }
+
+  .ais-Panel-footer {
+    @apply text-xs mt-2;
+  }
+
+  .ais-Pagination-list {
+    @apply justify-center;
+  }
+
+  .ais-Pagination-item {
+    & + .ais-Pagination-item {
+      @apply ml-1.5;
+    }
+  }
+
+  .ais-Pagination-link {
+    @apply rounded border block py-1 px-2 transition-colors ease-out duration-200 focus:bg-peach-light hover:bg-peach-light;
+
+    @nest .ais-Pagination-item--disabled & {
+      @apply cursor-not-allowed opacity-60 text-gray-400 focus:text-gray-400 focus:bg-white hover:text-gray-400 hover:bg-white;
+    }
+
+    @nest .ais-Pagination-item--selected & {
+      @apply text-white bg-peach-dark hover:text-white focus:text-white;
+    }
+  }
+
+  .ais-PoweredBy-text,
+  .rheostat-tooltip,
+  .rheostat-value,
+  .ais-Stats-text {
+    @apply text-sm;
+  }
+
+  .ais-PoweredBy-logo {
+    @apply ml-1;
+  }
+
+  .ais-HierarchicalMenu-searchBox,
+  .ais-Menu-searchBox,
+  .ais-RefinementList-searchBox {
+    & > * {
+      @apply mb-2;
+    }
+  }
+
+  .ais-SearchBox-form {
+    @apply block relative;
+  }
+
+  .ais-SearchBox-input {
+    @apply py-1 px-7 w-full relative bg-white border rounded;
+  }
+
+  .ais-SearchBox-submit,
+  .ais-SearchBox-reset,
+  .ais-SearchBox-loadingIndicator {
+    @apply absolute z-10 w-6 h-6 top-6 right-1 transform -translate-y-5;
+  }
+
+  .ais-SearchBox-submit {
+    @apply left-1;
+  }
+
+  .ais-SearchBox-reset {
+    @apply right-1;
+  }
+
+  .ais-SearchBox-submitIcon,
+  .ais-SearchBox-resetIcon,
+  .ais-SearchBox-loadingIcon {
+    @apply: absolute;
+  }
+
+  .ais-SearchBox-submitIcon {
+    @apply w-4 h-4;
+  }
+
+  .ais-SearchBox-resetIcon {
+    @apply w-3 h-3;
+  }
+
+  .ais-SearchBox-loadingIcon {
+    @apply w-4 h-4;
+  }
+}

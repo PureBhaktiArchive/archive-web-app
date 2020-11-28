@@ -14,7 +14,9 @@ import {
   refinementList,
   searchBox,
 } from 'instantsearch.js/es/widgets';
+import './algolia.css';
 import './app.css';
+import './tailwind.css';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
