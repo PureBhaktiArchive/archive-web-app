@@ -76,11 +76,11 @@
   }
 
   .rheostat-value {
-    @apply ml-2 pt-4 absolute text-center -translate-x-2;
+    @apply ml-2 pt-4 absolute text-center transform -translate-x-2;
   }
 
   .rheostat-tooltip {
-    @apply ml-2 absolute -top-6 text-center -translate-x-2;
+    @apply ml-2 absolute -top-6 text-center transform -translate-x-2;
   }
 
   [class^='ais-'] {
