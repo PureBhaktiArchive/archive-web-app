@@ -34,7 +34,7 @@
   }
 
   .ais-PoweredBy-logo {
-    @apply block h-5 w-auto;
+    @apply block h-3 w-auto;
   }
 
   .ais-RatingMenu-starIcon {
