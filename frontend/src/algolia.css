@@ -200,7 +200,7 @@
   .ais-Menu-count,
   .ais-RefinementList-count,
   .ais-ToggleRefinement-count {
-    @apply py-0.5 px-1.5 text-sm rounded-lg;
+    @apply py-0.5 px-1.5 text-xs rounded-lg bg-gray-200;
   }
 
   .ais-HierarchicalMenu-showMore,
