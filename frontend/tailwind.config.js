@@ -17,9 +17,6 @@ module.exports = {
       cursor: {
         grab: 'grab',
       },
-      spacing: {
-        half: '50%',
-      },
     },
   },
   variants: {

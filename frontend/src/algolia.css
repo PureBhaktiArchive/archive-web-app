@@ -363,6 +363,6 @@
   .ais-SearchBox-submitIcon,
   .ais-SearchBox-resetIcon,
   .ais-SearchBox-loadingIcon {
-    @apply fill-current absolute left-half top-half transform -translate-y-half -translate-x-half h-half w-half;
+    @apply fill-current absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 h-1/2 w-1/2;
   }
 }
