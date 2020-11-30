@@ -2,4 +2,8 @@
   .tag {
     @apply border border-black border-solid;
   }
+
+  #year-list .ais-RefinementList-list {
+    columns: 5rem auto;
+  }
 }
