@@ -267,7 +267,7 @@
   }
 
   .ais-Panel-header {
-    @apply mb-2 pb-2 text-xs font-bold border-b uppercase;
+    @apply mb-2 text-xs font-bold uppercase;
   }
 
   .ais-Panel-footer {
