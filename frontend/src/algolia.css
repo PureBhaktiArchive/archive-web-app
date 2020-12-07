@@ -83,10 +83,6 @@
     @apply absolute -top-6 ml-2 text-center transform -translate-x-2;
   }
 
-  [class^='ais-'] {
-    @apply text-base box-border;
-  }
-
   a[class^='ais-'] {
     @apply no-underline;
   }
