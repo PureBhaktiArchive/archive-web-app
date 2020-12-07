@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="text-gray-900">
+<html lang="en" class="font-sans text-gray-600">
 
 <head>
   <meta charset="utf-8" />
-  <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#000000" />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="shortcut icon" href="./favicon.png" />
@@ -13,55 +11,117 @@
 </head>
 
 <body class="min-h-screen">
-  <div id="search" class="flex flex-col p-4 mx-auto">
+  <div id="search" class="max-w-screen-sm p-4 mx-auto">
     <div id="searchbox"></div>
     <div class="relative w-full mt-2">
       <div id="powered-by" class="absolute top-0 right-0"></div>
     </div>
-    <div class="flex">
-      <div id="filters" class="w-1/5">
-        <div id="language-list"></div>
-        <div id="sound-quality-list"></div>
-        <div id="duration-menu"></div>
-        <div id="percentage-menu"></div>
-        <div id="category-list"></div>
-        <div id="year-list"></div>
-        <div id="location-list"></div>
-      </div>
-      <div id="hits" class="w-4/5 mt-10 ml-4"></div>
-    </div>
-    <div id="pagination" class="mx-auto my-2 text-center"></div>
   </div>
-
-  <script type="text/template" id="item-template">
-      <div>
-        <span>{{#helpers.highlight}}{ "attribute": "title" }{{/helpers.highlight}}</span>
-
-        {{#_highlightResult.languages}}
-        <span class="tag">{{{value}}}</span>
-        {{/_highlightResult.languages}}
-
-        {{#_highlightResult.category}}
-        <span class="tag">{{{value}}}</span>
-        {{/_highlightResult.category}}
-
-        {{#_highlightResult.location}}
-        <span class="tag">{{{value}}}</span>
-        {{/_highlightResult.location}}
-
-        {{#_highlightResult.dateForHumans}}
-        <span class="tag">{{{value}}}</span>
-        {{/_highlightResult.dateForHumans}}
-
-        {{#percentage}}
-        <span class="tag">{{percentage}}%</span>
-        {{/percentage}}
-
-        {{#soundQualityRating}}
-        <span class="tag">Quality: {{soundQualityRating}}</span>
-        {{/soundQualityRating}}
-      </div>
-    </script>
+  <div class="flex w-full px-4">
+    <section id="filters" class="hidden w-1/5 sm:block">
+      <div id="language-list"></div>
+      <div id="sound-quality-list"></div>
+      <div id="duration-menu"></div>
+      <div id="percentage-menu"></div>
+      <div id="category-list"></div>
+      <div id="year-list"></div>
+      <div id="location-list"></div>
+    </section>
+    <div id="hits" class="flex-grow w-4/5 mt-4 ml-4 overflow-x-hidden lg:max-w-screen-md">
+      <template id="item-template">
+        <div class="flex w-full mb-6">
+          <span class="flex-none">
+            <svg class="w-6 h-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </span>
+          <div class="w-full ml-2 overflow-x-hidden">
+            <!-- Title -->
+            <div class="flex-grow font-semibold text-gray-900 sm:truncate">
+              {{#helpers.highlight}}
+                { "attribute": "title" }
+              {{/helpers.highlight}}
+            </div>
+            <!-- Tags -->
+            <div class="hidden mt-1 text-sm text-gray-400 sm:flex sm:space-x-2">
+              <!-- Date -->
+              <div class="flex items-center">
+                {{#_highlightResult.dateForHumans}}
+                  <svg class="flex-shrink-0 mr-0.5 h-5 w-5 text-gray-200" xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                          clip-rule="evenodd" />
+                  </svg>
+                  {{{value}}}
+                {{/_highlightResult.dateForHumans}}
+              </div>
+              <!-- Location -->
+              <div class="flex items-center">
+                {{#_highlightResult.location}}
+                  <svg class="flex-shrink-0 mr-0.5 h-5 w-5 text-gray-200" xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd"
+                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                          clip-rule="evenodd" />
+                  </svg>
+                  {{{value}}}
+                {{/_highlightResult.location}}
+              </div>
+              <!-- Category -->
+              <div class="flex items-center" title="Category">
+                {{#_highlightResult.category}}
+                  <svg class="flex-shrink-0 mr-0.5 h-5 w-5 text-gray-200" xmlns="http://www.w3.org/2000/svg" fill="none"
+                       viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                  {{{value}}}
+                {{/_highlightResult.category}}
+              </div>
+              <!-- Languages -->
+              {{#_highlightResult.languages}}
+                <div class="flex items-center" title="Language spoken in the recording">
+                  <svg class="flex-shrink-0 mr-0.5 h-5 w-5 text-gray-200" xmlns="http://www.w3.org/2000/svg" fill="none"
+                       viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                  </svg>
+                  {{{value}}}
+                </div>
+              {{/_highlightResult.languages}}
+              <!--  Sound Quality Rating -->
+              <div class="flex items-center" title="Sound Quality: {{{value}}}">
+                {{#_highlightResult.soundQualityRating}}
+                  <svg class="flex-shrink-0 mr-0.5 h-5 w-5 text-yellow-200" xmlns="http://www.w3.org/2000/svg"
+                       fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                  </svg>
+                  {{{value}}}
+                {{/_highlightResult.soundQualityRating}}
+              </div>
+            </div>
+          </div>
+          <!-- Duration -->
+          <span class="flex-none" title="Duration">??:??</span>
+          <!-- Download -->
+          <span class="flex-none mx-2">
+            <svg class="flex-shrink-0 w-6 h-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </span>
+        </div>
+      </template>
+    </div>
+  </div>
+  <div id="pagination" class="mx-auto my-2 text-center"></div>
 
   <script src="./app.js"></script>
 </body>

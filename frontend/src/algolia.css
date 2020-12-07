@@ -218,8 +218,6 @@
   .ais-InfiniteResults-list,
   .ais-Hits-list,
   .ais-Results-list {
-    @apply flex flex-wrap;
-
     @nest .ais-Panel-body & {
       @apply mt-2 mr-0 mb-0 -ml-4;
     }
@@ -229,11 +227,7 @@
   .ais-InfiniteResults-item,
   .ais-Hits-item,
   .ais-Results-item {
-    @apply p-1 w-full border;
-
-    @nest .ais-Panel-body & {
-      @apply my-2 mt-0;
-    }
+    @apply w-full;
   }
 
   .ais-InfiniteHits-loadMore,
