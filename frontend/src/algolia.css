@@ -192,11 +192,23 @@
     }
   }
 
+  .ais-RefinementList-item {
+    @apply mb-1;
+  }
+
+  .ais-RefinementList-label {
+    @apply flex items-baseline;
+  }
+
+  .ais-RefinementList-labelText {
+    @apply flex-grow px-1 break-words overflow-x-hidden;
+  }
+
   .ais-HierarchicalMenu-count,
   .ais-Menu-count,
   .ais-RefinementList-count,
   .ais-ToggleRefinement-count {
-    @apply float-right px-1.5 py-0.5 text-xs bg-gray-200 rounded-lg;
+    @apply self-end px-1.5 py-0.5 text-xs bg-gray-200 rounded;
   }
 
   .ais-HierarchicalMenu-showMore,
