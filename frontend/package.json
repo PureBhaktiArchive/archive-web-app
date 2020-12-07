@@ -26,6 +26,7 @@
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
+    "htmlhint": "0.14.2",
     "parcel-bundler": "1.12.4",
     "postcss": "7.0.35",
     "postcss-preset-env": "6.7.0",

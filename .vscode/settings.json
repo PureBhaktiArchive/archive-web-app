@@ -28,5 +28,8 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/node_modules": true
+  },
+  "files.associations": {
+    ".htmlhintrc": "json"
   }
 }
