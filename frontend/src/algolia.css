@@ -34,7 +34,7 @@
   }
 
   .ais-PoweredBy-logo {
-    @apply block h-3 w-auto;
+    @apply block w-auto h-3;
   }
 
   .ais-RatingMenu-starIcon {
@@ -43,15 +43,15 @@
 
   .ais-RangeSlider {
     .rheostat {
-      @apply overflow-visible mt-10 mb-10;
+      @apply mb-10 mt-10 overflow-visible;
     }
 
     .rheostat-background {
-      @apply h-2 top-0 w-full;
+      @apply top-0 w-full h-2;
     }
 
     .rheostat-handle {
-      @apply -ml-3 -top-2;
+      @apply -top-2 -ml-3;
     }
 
     .rheostat-background {
@@ -68,7 +68,7 @@
   }
 
   .rheostat-marker {
-    @apply -ml-px absolute w-px h-1 bg-gray-400;
+    @apply absolute -ml-px w-px h-1 bg-gray-400;
   }
 
   .rheostat-marker--large {
@@ -76,11 +76,11 @@
   }
 
   .rheostat-value {
-    @apply ml-2 pt-4 absolute text-center transform -translate-x-2;
+    @apply absolute ml-2 pt-4 text-center transform -translate-x-2;
   }
 
   .rheostat-tooltip {
-    @apply ml-2 absolute -top-6 text-center transform -translate-x-2;
+    @apply absolute -top-6 ml-2 text-center transform -translate-x-2;
   }
 
   [class^='ais-'] {
@@ -92,7 +92,7 @@
   }
 
   .ais-Breadcrumb-separator {
-    @apply my-0 mx-1 font-normal;
+    @apply mx-1 my-0 font-normal;
   }
 
   .ais-Breadcrumb-link,
@@ -100,7 +100,7 @@
   .ais-Menu-link,
   .ais-Pagination-link,
   .ais-RatingMenu-link {
-    @apply transition-colors ease-out duration-200;
+    @apply transition-colors duration-200 ease-out;
   }
 
   .ais-Breadcrumb-item--selected,
@@ -110,7 +110,7 @@
   }
 
   .ais-Breadcrumb-separator {
-    @apply my-0 mx-1 font-normal;
+    @apply mx-1 my-0 font-normal;
   }
 
   .ais-ClearRefinements-button,
@@ -123,7 +123,7 @@
   .ais-InfiniteResults-loadMore,
   .ais-Menu-showMore,
   .ais-RefinementList-showMore {
-    @apply rounded text-xs py-1 px-2 bg-peach transition-colors ease-out duration-200 outline-none hover:bg-peach-dark focus:bg-peach-dark;
+    @apply px-2 py-1 text-xs bg-peach hover:bg-peach-dark focus:bg-peach-dark rounded outline-none transition-colors duration-200 ease-out;
   }
 
   .ais-ClearRefinements-button--disabled,
@@ -134,21 +134,21 @@
   .ais-InfiniteResults-loadMore--disabled,
   .ais-Menu-showMore--disabled,
   .ais-RefinementList-showMore--disabled {
-    @apply opacity-60 cursor-not-allowed hover:bg-peach focus:bg-peach;
+    @apply hover:bg-peach focus:bg-peach opacity-60 cursor-not-allowed;
   }
   .ais-InfiniteHits-loadPrevious--disabled {
     @apply hidden;
   }
 
   .ais-CurrentRefinements {
-    @apply -mt-1 flex flex-wrap;
+    @apply flex flex-wrap -mt-1;
   }
   .ais-CurrentRefinements-list {
     @apply flex flex-wrap;
   }
 
   .ais-CurrentRefinements-item {
-    @apply mr-1 mt-1 py-1 px-2 flex bg-peach rounded;
+    @apply flex mr-1 mt-1 px-2 py-1 bg-peach rounded;
   }
 
   .ais-CurrentRefinements-category {
@@ -162,7 +162,7 @@
   .ais-CurrentRefinements-label,
   .ais-CurrentRefinements-categoryLabel,
   .ais-CurrentRefinements-delete {
-    @apply whitespace-nowrap text-sm text-white;
+    @apply text-white whitespace-nowrap text-sm;
   }
 
   .ais-CurrentRefinements-reset {
@@ -200,7 +200,7 @@
   .ais-Menu-count,
   .ais-RefinementList-count,
   .ais-ToggleRefinement-count {
-    @apply py-0.5 px-1.5 text-xs rounded-lg bg-gray-200 float-right;
+    @apply float-right px-1.5 py-0.5 text-xs bg-gray-200 rounded-lg;
   }
 
   .ais-HierarchicalMenu-showMore,
@@ -219,7 +219,7 @@
   .ais-Hits-list,
   .ais-Results-list {
     @nest .ais-Panel-body & {
-      @apply mt-2 mr-0 mb-0 -ml-4;
+      @apply -ml-4 mb-0 mr-0 mt-2;
     }
   }
 
@@ -254,16 +254,16 @@
     }
 
     & .ais-Panel-collapseButton {
-      @apply absolute top-0 right-0 p-0 border-none bg-none;
+      @apply absolute right-0 top-0 p-0 bg-none border-none;
     }
   }
 
   .ais-Panel-header {
-    @apply border-b text-xs font-bold mb-2 pb-2 uppercase;
+    @apply mb-2 pb-2 text-xs font-bold border-b uppercase;
   }
 
   .ais-Panel-footer {
-    @apply text-xs mt-2;
+    @apply mt-2 text-xs;
   }
 
   .ais-Pagination-list {
@@ -277,14 +277,14 @@
   }
 
   .ais-Pagination-link {
-    @apply rounded border block py-1 px-3 transition-colors ease-out duration-200 focus:bg-peach-light hover:bg-peach-light;
+    @apply block px-3 py-1 focus:bg-peach-light hover:bg-peach-light border rounded transition-colors duration-200 ease-out;
 
     @nest .ais-Pagination-item--disabled & {
-      @apply cursor-not-allowed opacity-60 text-gray-400 focus:text-gray-400 focus:bg-white hover:text-gray-400 hover:bg-white;
+      @apply text-gray-400 focus:text-gray-400 hover:text-gray-400 focus:bg-white hover:bg-white opacity-60 cursor-not-allowed;
     }
 
     @nest .ais-Pagination-item--selected & {
-      @apply text-white bg-peach-dark hover:text-white focus:text-white;
+      @apply text-white hover:text-white focus:text-white bg-peach-dark;
     }
   }
 
@@ -307,7 +307,7 @@
     }
 
     & .ais-SearchBox-input {
-      @apply h-8 px-8 text-sm;
+      @apply px-8 h-8 text-sm;
     }
 
     & .ais-SearchBox-submit,
@@ -318,11 +318,11 @@
   }
 
   .ais-SearchBox-form {
-    @apply block relative;
+    @apply relative block;
   }
 
   .ais-SearchBox-input {
-    @apply h-10 px-10 w-full relative bg-white border rounded shadow focus:outline-none;
+    @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
 
     /* clears the 'X' from Internet Explorer */
     &::-ms-clear,
@@ -342,7 +342,7 @@
   .ais-SearchBox-submit,
   .ais-SearchBox-reset,
   .ais-SearchBox-loadingIndicator {
-    @apply absolute h-full w-8;
+    @apply absolute w-8 h-full;
   }
 
   .ais-SearchBox-submit {
@@ -357,6 +357,6 @@
   .ais-SearchBox-submitIcon,
   .ais-SearchBox-resetIcon,
   .ais-SearchBox-loadingIcon {
-    @apply fill-current absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 h-1/2 w-1/2;
+    @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current transform -translate-x-1/2 -translate-y-1/2;
   }
 }
