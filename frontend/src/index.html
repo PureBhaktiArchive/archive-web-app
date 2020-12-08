@@ -17,7 +17,7 @@
       <div id="powered-by" class="absolute top-0 right-0"></div>
     </div>
   </div>
-  <div class="flex w-full px-4">
+  <div class="flex w-full sm:px-4">
     <section id="filters" class="hidden w-1/5 text-sm sm:block max-w-max">
       <div class="border-r-2 pr-2">
         <div id="language-list"></div>
@@ -29,10 +29,10 @@
         <div id="location-list"></div>
       </div>
     </section>
-    <div id="hits" class="flex-grow w-4/5 mt-4 ml-4 overflow-x-hidden lg:max-w-screen-md">
+    <div id="hits" class="flex-grow w-4/5 mt-4 sm:ml-4 overflow-x-hidden lg:max-w-screen-md">
       <template id="item-template">
-        <div class="flex w-full mb-6">
-          <span class="flex-none">
+        <div class="flex w-full py-2 sm:py-4">
+          <span class="flex-none mx-1">
             <svg class="w-6 h-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                  stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -49,7 +49,7 @@
               {{/helpers.highlight}}
             </div>
             <!-- Tags -->
-            <div class="hidden mt-1 text-sm text-gray-400 sm:flex sm:space-x-2">
+            <div class="mt-1 text-sm text-gray-400 flex flex-wrap justify-between sm:space-x-2">
               <!-- Date -->
               <div class="flex items-center">
                 {{#_highlightResult.dateForHumans}}
@@ -112,7 +112,7 @@
           <!-- Duration -->
           <span class="flex-none" title="Duration">??:??</span>
           <!-- Download -->
-          <span class="flex-none mx-2">
+          <span class="flex-none mx-1">
             <svg class="flex-shrink-0 w-6 h-6 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

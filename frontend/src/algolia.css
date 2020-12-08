@@ -235,7 +235,7 @@
   .ais-InfiniteResults-item,
   .ais-Hits-item,
   .ais-Results-item {
-    @apply w-full;
+    @apply w-full border-b-2;
   }
 
   .ais-InfiniteHits-loadMore,
