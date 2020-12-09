@@ -39,7 +39,7 @@ const languageCategories = {
   O: { label: 'English with translation to other languages', order: 8 },
 };
 
-const soundQualityOrder = ['Low', 'Average', 'Good'];
+const soundQualityOrder = ['Good', 'Average', 'Low'];
 
 search.addWidgets([
   configure({
