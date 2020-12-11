@@ -1,7 +1,7 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
@@ -15,11 +15,6 @@
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.lintTask.enable": true,
-
-  "html.format.enable": true,
-  "html.format.indentHandlebars": true,
-  "html.format.maxPreserveNewLines": 1,
-  "html.format.wrapAttributes": "preserve-aligned",
 
   "files.exclude": {
     "**/.git": true,
