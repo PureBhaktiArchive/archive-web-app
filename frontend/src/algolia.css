@@ -208,7 +208,7 @@
   .ais-Menu-count,
   .ais-RefinementList-count,
   .ais-ToggleRefinement-count {
-    @apply self-end px-1.5 py-0.5 text-xs bg-gray-200 rounded;
+    @apply self-end px-1.5 py-0.5 text-xs bg-gray-100 rounded;
   }
 
   .ais-HierarchicalMenu-showMore,
