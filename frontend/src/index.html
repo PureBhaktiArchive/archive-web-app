@@ -43,26 +43,26 @@
                 <span> {{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</span>
               </div>
               <!-- Tags -->
-              <div class="flex flex-wrap gap-1 mt-1 text-xs text-gray-500 align-baseline">
+              <div class="flex flex-wrap align-baseline children:mb-1 children:mr-1 mt-1 children:px-1.5 children:py-0.5 text-xs children:bg-teal-50 children:rounded">
                 <!-- Date -->
                 {{#_highlightResult.dateForHumans}}
-                <div class="px-1.5 py-0.5 bg-gray-100 rounded">{{{value}}}</div>
+                <div title="Date">{{{value}}}</div>
                 {{/_highlightResult.dateForHumans}}
                 <!-- Location -->
                 {{#_highlightResult.location}}
-                <div class="px-1.5 py-0.5 bg-gray-100 rounded">{{{value}}}</div>
+                <div title="Location">{{{value}}}</div>
                 {{/_highlightResult.location}}
                 <!-- Category -->
                 {{#_highlightResult.category}}
-                <div class="px-1.5 py-0.5 bg-gray-100 rounded" title="Category">{{{value}}}</div>
+                <div title="Category">{{{value}}}</div>
                 {{/_highlightResult.category}}
                 <!-- Languages -->
                 {{#_highlightResult.languages}}
-                <div class="px-1.5 py-0.5 bg-gray-100 rounded" title="Language spoken in the recording">{{{value}}}</div>
+                <div title="Language spoken in the recording">{{{value}}}</div>
                 {{/_highlightResult.languages}}
                 <!--  Sound Quality Rating -->
                 {{#_highlightResult.soundQualityRating}}
-                <div class="px-1.5 py-0.5 bg-gray-100 rounded" title="Sound Quality: {{{value}}}">{{{value}}}</div>
+                <div title="Sound Quality: {{{value}}}">{{{value}}}</div>
                 {{/_highlightResult.soundQualityRating}}
               </div>
             </div>

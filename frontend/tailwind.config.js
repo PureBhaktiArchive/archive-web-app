@@ -2,6 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   purge: {
     content: ['./src/**/*.html', './src/**/*.js'],
@@ -32,14 +34,50 @@ module.exports = {
           800: '#4e0000',
           900: '#400000',
         },
+        teal: colors.teal,
       },
       cursor: {
         grab: 'grab',
       },
     },
   },
+  variantOrder: [
+    'children',
+    'DEFAULT',
+    'first',
+    'last',
+    'odd',
+    'even',
+    'visited',
+    'checked',
+    'group-hover',
+    'group-focus',
+    'focus-within',
+    'children-first',
+    'children-last',
+    'children-odd',
+    'children-even',
+    'children-not-first',
+    'children-not-last',
+    'children-hover',
+    'hover',
+    'children-focus',
+    'focus',
+    'children-focus-within',
+    'focus-visible',
+    'children-active',
+    'active',
+    'children-visited',
+    'children-disabled',
+    'disabled',
+  ],
   variants: {
-    extend: {},
+    extend: {
+      padding: ['children'],
+      margin: ['children'],
+      borderRadius: ['children'],
+      backgroundColor: ['children'],
+    },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-children')],
 };
