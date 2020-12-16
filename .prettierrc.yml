@@ -4,4 +4,4 @@ singleQuote: true
 overrides:
   - files: '*.html'
     options:
-      printWidth: 200
+      printWidth: 200 # This will prevent wrapping of the tags’ attributes.
