@@ -222,22 +222,6 @@
     @apply bg-yellow-300;
   }
 
-  .ais-InfiniteHits-list,
-  .ais-InfiniteResults-list,
-  .ais-Hits-list,
-  .ais-Results-list {
-    @nest .ais-Panel-body & {
-      @apply -ml-4 mb-0 mr-0 mt-2;
-    }
-  }
-
-  .ais-InfiniteHits-item,
-  .ais-InfiniteResults-item,
-  .ais-Hits-item,
-  .ais-Results-item {
-    @apply w-full border-b-2;
-  }
-
   .ais-InfiniteHits-loadMore,
   .ais-InfiniteResults-loadMore {
     @apply mt-4;
