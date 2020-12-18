@@ -16,11 +16,6 @@
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.lintTask.enable": true,
 
-  "html.format.enable": true,
-  "html.format.indentHandlebars": true,
-  "html.format.maxPreserveNewLines": 0,
-  "html.format.wrapAttributes": "aligned-multiple",
-
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
@@ -28,5 +23,8 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/node_modules": true
+  },
+  "files.associations": {
+    ".htmlhintrc": "json"
   }
 }

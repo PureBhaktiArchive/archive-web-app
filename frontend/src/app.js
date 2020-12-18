@@ -14,7 +14,9 @@ import {
   refinementList,
   searchBox,
 } from 'instantsearch.js/es/widgets';
+import './algolia.css';
 import './app.css';
+import './tailwind.css';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -37,7 +39,7 @@ const languageCategories = {
   O: { label: 'English with translation to other languages', order: 8 },
 };
 
-const soundQualityOrder = ['Low', 'Average', 'Good'];
+const soundQualityOrder = ['Good', 'Average', 'Low'];
 
 search.addWidgets([
   configure({

@@ -40,7 +40,7 @@ jobs:
 
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 12
 
       - name: Cache NPM modules
         id: cache
@@ -55,6 +55,7 @@ jobs:
       - run: npm run build
       - run: npm test
       - run: npx prettier --check .
+      - run: npx htmlhint
 
   # Job id should match the folder name because it's used in the expressions
   functions:

@@ -11,7 +11,8 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not ie 11"
     ],
     "development": [
       "last 1 chrome version",
@@ -25,8 +26,15 @@
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
+    "htmlhint": "0.14.2",
     "parcel-bundler": "1.12.4",
-    "prettier": "2.2.0"
+    "parcel-plugin-bundle-visualiser": "1.2.0",
+    "postcss": "7.0.35",
+    "postcss-preset-env": "6.7.0",
+    "prettier": "2.2.0",
+    "prettier-plugin-tailwind": "2.2.8",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.1",
+    "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
     "algoliasearch": "4.8.0",
