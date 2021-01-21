@@ -2,5 +2,6 @@
 node_modules
 # don't lint nyc coverage output
 coverage
+lib
 *.config.js
 .*rc.js
