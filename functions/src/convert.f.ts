@@ -72,15 +72,16 @@ export default functions
         .withAudioBitrate(64)
         .withAudioFrequency(22050)
         .withOutputFormat('mp3')
-        .withOutputOptions([
-          // Using the best reasonable quality https://github.com/gypified/libmp3lame/blob/f416c19b3140a8610507ebb60ac7cd06e94472b8/USAGE#L491
-          '-compression_level 2',
-          // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
-          '-map_metadata -1',
-          // To pass option parameter with spaces we need to add it separately, see https://github.com/fluent-ffmpeg/node-fluent-ffmpeg/issues/311#issuecomment-54281059
+        // Using the best reasonable quality https://github.com/gypified/libmp3lame/blob/f416c19b3140a8610507ebb60ac7cd06e94472b8/USAGE#L491
+        .withOutputOption('-compression_level 2')
+        // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
+        .withOutputOption('-map_metadata -1')
+        .withOutputOption('-metadata', `title=${contentDetails?.title}`)
+        .withOutputOption(
           '-metadata',
-          `title=${contentDetails?.title}`,
-          `-metadata date=${contentDetails?.date?.substr(0, 4)}`,
+          `date=${contentDetails?.date?.substr(0, 4)}`
+        )
+        .withOutputOptions([
           // Required because Windows only supports version 3 of ID3v2 tags
           '-id3v2_version 3',
           // the ID3v1 version to create legacy v1.1 tags
