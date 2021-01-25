@@ -49,16 +49,19 @@ export default functions
       await change.after.ref.parent?.child('contentDetails').once('value')
     )?.val() as ContentDetails;
 
-    const mp3File = admin.storage().bucket().file(`${id}.mp3`);
-    const uploadStream = mp3File.createWriteStream({
-      resumable: false, // Turning off to avoid consuming memory for the local storage of the file
-      metadata: {
+    const uploadStream = admin
+      .storage()
+      .bucket()
+      .file(`${id}.mp3`)
+      .createWriteStream({
+        resumable: false, // Turning off to avoid consuming memory for the local storage of the file
         metadata: {
-          duration,
-          source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
+          metadata: {
+            duration,
+            source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
+          },
         },
-      },
-    });
+      });
 
     return Promise.all([
       // Converting the file
