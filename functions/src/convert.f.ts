@@ -65,7 +65,7 @@ export default functions
 
     return Promise.all([
       // Converting the file
-      ffmpeg()
+      ffmpeg({ logger: functions.logger })
         .input(sourceFile.createReadStream())
         .output(uploadStream, { end: true })
         .withAudioCodec('libmp3lame')
@@ -87,6 +87,15 @@ export default functions
           // the ID3v1 version to create legacy v1.1 tags
           '-write_id3v1 1',
         ])
+        .on('start', (commandLine) =>
+          functions.logger.debug('Spawned ffmpeg with command', commandLine)
+        )
+        .on('progress', (progress) =>
+          functions.logger.debug('Progressed up to', progress.timemark)
+        )
+        .on('stderr', functions.logger.error)
+        .on('error', functions.logger.error)
+        .on('end', () => functions.logger.debug('Transcoding succeeded.'))
         .runAsync(),
       // Waiting for the upload to finish
       new Promise((resolve, reject) => {
