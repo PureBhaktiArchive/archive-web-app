@@ -20,6 +20,15 @@ export default functions
 
     const sourceFileRef = change.after.val() as StorageFileReference;
 
+    functions.logger.debug(
+      'Converting file for',
+      id,
+      'from',
+      sourceFileRef.bucket,
+      sourceFileRef.name,
+      sourceFileRef.generation
+    );
+
     const sourceFile = admin
       .storage()
       .bucket(sourceFileRef.bucket)
@@ -30,7 +39,7 @@ export default functions
     ).format.duration;
 
     if (!duration) {
-      console.error('Cannot extract duration for', id);
+      functions.logger.error('Cannot extract duration for', id);
       return;
     }
 
