@@ -27,7 +27,14 @@ export default functions
 
     const duration = (
       await ffmpeg().input(sourceFile.createReadStream()).ffprobeAsync()
-    )?.format?.duration;
+    ).format.duration;
+
+    if (!duration) {
+      console.error('Cannot extract duration for', id);
+      return;
+    }
+
+    await change.after.ref.parent?.child('duration').set(duration);
 
     const contentDetails = (
       await change.after.ref.parent?.child('contentDetails').once('value')
