@@ -67,6 +67,7 @@ export default functions
       // Converting the file
       ffmpeg({ logger: functions.logger })
         .withOption('-hide_banner')
+        .withOption('-nostats')
         .input(sourceFile.createReadStream())
         .output(uploadStream, { end: true })
         .withAudioCodec('libmp3lame')
