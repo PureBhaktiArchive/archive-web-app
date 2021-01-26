@@ -84,14 +84,14 @@ export default functions
         .on('error', reject)
         .on('end', (stdout, stderr) => {
           functions.logger.debug(stderr);
-          const match = /time=(\d+):(\d\d):(\d\d).(\d+)\b/.exec(stderr);
+          const match = /time=(\d+):(\d\d):(\d\d)(.\d+)\b/.exec(stderr);
           resolve(
             match
               ? Duration.fromObject({
                   hours: Number(match[1]),
                   minutes: Number(match[2]),
                   seconds: Number(match[3]),
-                  milliseconds: Number(match[4]),
+                  milliseconds: Number(match[4]) * 1000,
                 }).as('seconds')
               : NaN
           );
