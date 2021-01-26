@@ -34,36 +34,22 @@ export default functions
       .bucket(sourceFileRef.bucket)
       .file(sourceFileRef.name, { generation: sourceFileRef.generation });
 
-    const duration = (
-      await ffmpeg().input(sourceFile.createReadStream()).ffprobeAsync()
-    ).format.duration;
-
-    if (!duration) {
-      functions.logger.error('Cannot extract duration for', id);
-      return;
-    }
-
-    await change.after.ref.parent?.child('duration').set(duration);
-
     const contentDetails = (
       await change.after.ref.parent?.child('contentDetails').once('value')
     )?.val() as ContentDetails;
 
-    const uploadStream = admin
-      .storage()
-      .bucket()
-      .file(`${id}.mp3`)
-      .createWriteStream({
-        resumable: false, // Turning off to avoid consuming memory for the local storage of the file
-        metadata: {
-          metadata: {
-            duration,
-            source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
-          },
-        },
-      });
+    const mp3File = admin.storage().bucket().file(`${id}.mp3`);
 
-    return Promise.all([
+    const uploadStream = mp3File.createWriteStream({
+      resumable: false, // Turning off to avoid consuming memory for the local storage of the file
+      metadata: {
+        metadata: {
+          source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
+        },
+      },
+    });
+
+    await Promise.all([
       // Converting the file
       ffmpeg({ logger: functions.logger })
         .withOption('-hide_banner')
@@ -102,4 +88,13 @@ export default functions
         uploadStream.once('finish', resolve).once('error', reject);
       }),
     ]);
+
+    const probe = await ffmpeg()
+      .input(mp3File.createReadStream())
+      .ffprobeAsync();
+    const duration = probe.format.duration;
+
+    if (!duration || duration.toString() === 'N/A') {
+      functions.logger.error('Cannot extract duration for', id);
+    } else await change.after.ref.parent?.child('duration').set(duration);
   });
