@@ -21,12 +21,13 @@ export default functions
     const sourceFileRef = change.after.val() as StorageFileReference;
 
     functions.logger.debug(
-      'Converting file for',
+      'Transcoding file',
       id,
       'from',
       sourceFileRef.bucket,
       sourceFileRef.name,
-      sourceFileRef.generation
+      sourceFileRef.generation,
+      'to MP3'
     );
 
     const sourceFile = admin
