@@ -66,6 +66,7 @@ export default functions
     return Promise.all([
       // Converting the file
       ffmpeg({ logger: functions.logger })
+        .withOption('-hide_banner')
         .input(sourceFile.createReadStream())
         .output(uploadStream, { end: true })
         .withAudioCodec('libmp3lame')
@@ -90,12 +91,10 @@ export default functions
         .on('start', (commandLine) =>
           functions.logger.debug('Spawned ffmpeg with command', commandLine)
         )
-        .on('progress', (progress) =>
-          functions.logger.debug('Progressed up to', progress.timemark)
-        )
-        .on('stderr', functions.logger.error)
         .on('error', functions.logger.error)
-        .on('end', () => functions.logger.debug('Transcoding succeeded.'))
+        .on('end', (stdout, stderr) =>
+          functions.logger.debug('Transcoding succeeded.', stderr)
+        )
         .runAsync(),
       // Waiting for the upload to finish
       new Promise((resolve, reject) => {
