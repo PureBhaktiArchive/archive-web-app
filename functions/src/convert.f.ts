@@ -5,8 +5,8 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import ffmpeg from 'fluent-ffmpeg';
+import { Duration } from 'luxon';
 import { ContentDetails } from './ContentDetails';
-import './ffmpeg-async';
 import { StorageFileReference } from './StorageFileReference';
 
 if (!admin.apps.length) admin.initializeApp();
@@ -49,8 +49,11 @@ export default functions
       },
     });
 
-    await Promise.all([
-      // Converting the file
+    const uploadTask = new Promise((resolve, reject) =>
+      uploadStream.once('finish', resolve).once('error', reject)
+    );
+
+    const duration = await new Promise<number>((resolve, reject) =>
       ffmpeg({ logger: functions.logger })
         .withOption('-hide_banner')
         .withOption('-nostats')
@@ -78,23 +81,27 @@ export default functions
         .on('start', (commandLine) =>
           functions.logger.debug('Spawned ffmpeg with command', commandLine)
         )
-        .on('error', functions.logger.error)
-        .on('end', (stdout, stderr) =>
-          functions.logger.debug('Transcoding succeeded.', stderr)
-        )
-        .runAsync(),
-      // Waiting for the upload to finish
-      new Promise((resolve, reject) => {
-        uploadStream.once('finish', resolve).once('error', reject);
-      }),
-    ]);
+        .on('error', reject)
+        .on('end', (stdout, stderr) => {
+          functions.logger.debug(stderr);
+          const match = /time=(\d+):(\d\d):(\d\d).(\d+)\b/.exec(stderr);
+          resolve(
+            match
+              ? Duration.fromObject({
+                  hours: Number(match[1]),
+                  minutes: Number(match[2]),
+                  seconds: Number(match[3]),
+                  milliseconds: Number(match[4]),
+                }).as('seconds')
+              : NaN
+          );
+        })
+        .run()
+    );
 
-    const probe = await ffmpeg()
-      .input(mp3File.createReadStream())
-      .ffprobeAsync();
-    const duration = probe.format.duration;
+    if (Number.isFinite(duration))
+      await change.after.ref.parent?.child('duration').set(duration);
+    else functions.logger.warn('Could not extract duration.');
 
-    if (!duration || duration.toString() === 'N/A') {
-      functions.logger.error('Cannot extract duration for', id);
-    } else await change.after.ref.parent?.child('duration').set(duration);
+    return uploadTask;
   });
