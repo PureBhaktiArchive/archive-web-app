@@ -84,6 +84,11 @@ export default functions
         .on('error', reject)
         .on('end', (stdout, stderr) => {
           functions.logger.debug(stderr);
+          /**
+           * Sometimes `ffprobe` cannot extract duration from a stream and returns N/A.
+           * Therefore it is officially suggested to get real duration by decoding:
+           * https://trac.ffmpeg.org/wiki/FFprobeTips#Getdurationbydecoding
+           */
           const match = /time=(\d+):(\d\d):(\d\d)(.\d+)\b/.exec(stderr);
           resolve(
             match
