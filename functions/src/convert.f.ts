@@ -12,7 +12,7 @@ import { StorageFileReference } from './StorageFileReference';
 if (!admin.apps.length) admin.initializeApp();
 
 export default functions
-  .runWith({ timeoutSeconds: 540 })
+  .runWith({ timeoutSeconds: 540, memory: '4GB' })
   .database.ref('/audio/entries/{id}/file')
   .onWrite(async (change, { params: { id } }) => {
     // Don't process deletions
