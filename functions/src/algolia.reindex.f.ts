@@ -11,6 +11,8 @@ import { parsePseudoISODate, Precision } from './dates';
 import { Entry } from './Entry';
 import { categorizeLanguages, parseLanguages } from './languages';
 
+if (!admin.apps.length) admin.initializeApp();
+
 function getLanguageAttributes(
   input: string
 ): Pick<AlgoliaRecord, 'languageCategory' | 'languages'> {
