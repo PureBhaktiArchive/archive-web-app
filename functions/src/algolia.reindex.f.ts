@@ -76,6 +76,7 @@ export default functions.pubsub
         ...getLanguageAttributes(entry.contentDetails.languages),
         percentage: entry.contentDetails.percentage,
         soundQualityRating: entry.contentDetails.soundQualityRating,
+        duration: entry.duration || null,
       }));
 
     const client = algoliasearch(

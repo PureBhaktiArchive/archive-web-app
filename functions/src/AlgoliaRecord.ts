@@ -16,4 +16,5 @@ export interface AlgoliaRecord {
   languageCategory?: string;
   percentage: number;
   soundQualityRating: string;
+  duration: number | null;
 }
