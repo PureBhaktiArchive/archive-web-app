@@ -150,6 +150,7 @@ search.addWidgets([
       items.map((item) => ({
         ...item,
         percentage: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+        duration: new Date(1000 * item.duration).toISOString().substr(11, 8),
       })),
   }),
   pagination({
