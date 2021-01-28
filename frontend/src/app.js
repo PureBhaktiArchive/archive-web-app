@@ -136,9 +136,9 @@ search.addWidgets([
     attribute: 'duration',
     items: [
       { label: 'Any' },
-      { label: 'Less than 15 minutes', end: 15 },
-      { label: '15-45 minutes', start: 15, end: 46 },
-      { label: '45+ minutes', start: 30 },
+      { label: 'Less than 15 minutes', end: 900 },
+      { label: '15-45 minutes', start: 900, end: 2700 },
+      { label: '45+ minutes', start: 2700 },
     ],
   }),
   infiniteHits({
