@@ -71,30 +71,24 @@
                 </div>
               </div>
               <div
-                class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-t border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:border-l sm:border-t-0 sm:space-x-0 sm:space-y-2"
+                class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-t border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:border-t-0 sm:space-x-0 sm:space-y-2"
               >
                 <!-- Percentage -->
                 {{#percentage}}
-                <div class="relative w-28 text-xs">
-                  <div class="flex items-center justify-between mb-1">
-                    <div>
-                      <span class="inline-block">Srila Gurudeva</span>
-                    </div>
-                    <div class="text-right">
-                      <span class="inline-block">{{percentageRounded}}%</span>
-                    </div>
-                  </div>
-                  <div class="flex h-2 border border-gray-300 rounded overflow-hidden">
-                    <!-- Changing delimiters to make interpolation in the `styles` attribute work -->
-                    {{=^% %^=}}
-                    <div style="width: ^%percentageRounded%^%" class="flex flex-col justify-center text-center text-white whitespace-nowrap bg-gray-300 shadow-none"></div>
-                    ^%={{ }}=%^
+                <div class="relative text-xs border border-gray-300 rounded-lg overflow-hidden">
+                  <!-- Changing delimiters to make interpolation in the `styles` attribute work -->
+                  {{=^% %^=}}
+                  <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
+                  ^%={{ }}=%^
+                  <div class="flex justify-between px-1.5 w-full opacity-95 space-x-2">
+                    <span class="whitespace-nowrap">Srila Gurudeva</span>
+                    <span>{{percentageRounded}}%</span>
                   </div>
                 </div>
                 {{/percentage}}
                 <!-- Sound Quality Rating -->
                 {{#soundQualityRating}}
-                <div title="Sound Quality" class="{{soundQualityRatingColor}} flex flex-none px-1.5 py-0.5 text-xs rounded-lg space-x-1">
+                <div title="Sound Quality" class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1">
                   <svg class="flex-none w-4 h-4 stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
                       d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
