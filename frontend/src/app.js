@@ -40,6 +40,11 @@ const languageCategories = {
 };
 
 const soundQualityOrder = ['Good', 'Average', 'Low'];
+const soundQualityRatingColors = {
+  Good: 'bg-green-100',
+  Average: 'bg-yellow-100',
+  Low: 'bg-red-100',
+};
 
 search.addWidgets([
   configure({
@@ -149,7 +154,9 @@ search.addWidgets([
     transformItems: (items) =>
       items.map((item) => ({
         ...item,
-        percentage: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+        percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+        soundQualityRatingColor:
+          soundQualityRatingColors[item.soundQualityRating],
         duration: new Date(1000 * item.duration).toISOString().substr(11, 8),
       })),
   }),
