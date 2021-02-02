@@ -64,10 +64,27 @@
                     <div title="Language spoken in the recording">{{{value}}}</div>
                     {{/_highlightResult.languages}}
                   </div>
-                  <!-- Download -->
-                  <svg class="flex-none w-6 h-6 stroke-current stroke-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
+                  <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
+                    <!-- Download -->
+                    <a href="" class="inline-flex items-center space-x-1" title="Download file for listening offline">
+                      <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      <span class="hidden lg:inline">Download</span>
+                    </a>
+                    <!-- Feedback -->
+                    <a href="" class="inline-flex space-x-1" title="Provide feedback on fidelity or sound quality">
+                      <svg class="flex-none w-4 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                        />
+                      </svg>
+                      <span class="hidden lg:inline">Feedback</span>
+                    </a>
+                  </div>
                 </div>
               </div>
               <div
