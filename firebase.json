@@ -12,6 +12,10 @@
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
+        "source": "/download/*",
+        "function": "download"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
