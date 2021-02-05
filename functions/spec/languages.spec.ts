@@ -2,7 +2,11 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { categorizeLanguages, parseLanguages } from '../src/languages';
+import {
+  abbreviateLanguages,
+  categorizeLanguages,
+  parseLanguages,
+} from '../src/languages';
 
 describe('Languages', () => {
   it.each`
@@ -44,6 +48,30 @@ describe('Languages', () => {
     '$languages should be categorized to "$category" category',
     ({ languages, category }) => {
       expect(categorizeLanguages(languages)).toBe(category);
+    }
+  );
+
+  it.each`
+    languages                          | abbreviation
+    ${['English']}                     | ${'ENG'}
+    ${['Hindi']}                       | ${'HIN'}
+    ${['Bengali']}                     | ${'BEN'}
+    ${['Hindi', 'English']}            | ${'HIN,ENG'}
+    ${['English', 'Hindi']}            | ${'HIN,ENG'}
+    ${['Hindi', 'Bengali']}            | ${'HIN,BEN'}
+    ${['Bengali', 'Hindi']}            | ${'HIN,BEN'}
+    ${['English', 'Bengali']}          | ${'ENG,BEN'}
+    ${['Bengali', 'English']}          | ${'ENG,BEN'}
+    ${['English', 'Russian']}          | ${'ENG,RUS'}
+    ${['Spanish', 'English']}          | ${'ENG,SPA'}
+    ${['SPANISH', 'English']}          | ${'ENG,SPA'}
+    ${['Bengali', 'Hindi', 'English']} | ${'HIN,ENG,BEN'}
+    ${['English', 'Hindi', 'Spanish']} | ${'HIN,ENG,SPA'}
+    ${[]}                              | ${null}
+  `(
+    '$languages should be abbreviated as "$abbreviation"',
+    ({ languages, abbreviation }) => {
+      expect(abbreviateLanguages(languages)).toBe(abbreviation);
     }
   );
 });

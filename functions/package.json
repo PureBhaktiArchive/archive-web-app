@@ -25,6 +25,7 @@
     "fluent-ffmpeg": "2.1.2",
     "glob": "7.1.6",
     "googleapis": "65.0.0",
+    "iso-639-2": "2.0.0",
     "luxon": "1.25.0"
   },
   "devDependencies": {
