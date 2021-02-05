@@ -75,6 +75,8 @@ module.exports = {
     extend: {
       padding: ['children'],
       margin: ['children'],
+      borderColor: ['children'],
+      borderWidth: ['children', 'children-last'],
       borderRadius: ['children'],
       backgroundColor: ['children'],
     },
