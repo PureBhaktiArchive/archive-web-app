@@ -37,6 +37,7 @@ export default functions.https.onRequest(
           action: 'read',
           expires: DateTime.local().plus({ days: 3 }).toJSDate(),
           promptSaveAs: composeFileName(contentDetails, id),
+          virtualHostedStyle: true,
         });
 
         res
