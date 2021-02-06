@@ -27,7 +27,7 @@ describe('Filename', () => {
         soundQualityRating: 'Good',
       };
 
-      expect(composeFileName(contentDetails, id)).toBe(filename);
+      expect(composeFileName(id, contentDetails)).toBe(filename);
     }
   );
 });

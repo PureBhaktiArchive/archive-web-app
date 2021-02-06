@@ -6,9 +6,9 @@ import { ContentDetails } from './ContentDetails';
 import { abbreviateLanguages, parseLanguages } from './languages';
 
 export function composeFileName(
-  contentDetails: ContentDetails,
-  id: string
-): string | undefined {
+  id: string,
+  contentDetails: ContentDetails
+): string {
   return [
     contentDetails.date ?? 'UNDATED',
     contentDetails.timeOfDay?.toUpperCase(),

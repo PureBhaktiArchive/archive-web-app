@@ -36,7 +36,7 @@ export default functions.https.onRequest(
         const [url] = await file.getSignedUrl({
           action: 'read',
           expires: DateTime.local().plus({ days: 3 }).toJSDate(),
-          promptSaveAs: composeFileName(contentDetails, id),
+          promptSaveAs: composeFileName(id, contentDetails),
           virtualHostedStyle: true,
         });
 
