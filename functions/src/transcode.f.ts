@@ -68,6 +68,7 @@ export default functions
         .withOutputOption('-compression_level 2')
         // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
         .withOutputOption('-map_metadata -1')
+        .withOutputOption('-metadata', `BVNM Archive ID=${id}`)
         .withOutputOption('-metadata', `title=${contentDetails?.title || ''}`)
         .withOutputOption(
           '-metadata',

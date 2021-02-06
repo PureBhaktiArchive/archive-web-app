@@ -2,8 +2,27 @@
  * sri sri guru gaurangau jayatah
  */
 
+import iso6392 from 'iso-639-2';
+
 export const parseLanguages = (text: string | null): string[] =>
   (text?.trim() || null)?.split(',')?.map((language) => language.trim()) || [];
+
+const languagesOrder = ['Hindi', 'English', 'Bengali'].reverse();
+
+const languageToISO = iso6392.sort((a, b) => a.name.length - b.name.length);
+
+export const abbreviateLanguages = (languages: string[]): string | null =>
+  languages
+    .sort((a, b) => -(languagesOrder.indexOf(a) - languagesOrder.indexOf(b)))
+    .map((language) =>
+      languageToISO
+        .find((info) =>
+          info.name.toLowerCase().startsWith(language.toLowerCase())
+        )
+        ?.iso6392B?.toUpperCase()
+    )
+    .filter(Boolean)
+    .join(',') || null;
 
 export const categorizeLanguages = (languages: string[]): string | null => {
   enum Language {
@@ -19,7 +38,6 @@ export const categorizeLanguages = (languages: string[]): string | null => {
     Language.None
   );
 
-  // console.debug(languages, flags);
   if (flags & Language.Other) return 'O';
 
   const categories = {
