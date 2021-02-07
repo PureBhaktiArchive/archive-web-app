@@ -16,6 +16,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
+import { sounds } from './player';
 import './tailwind.css';
 
 const searchClient = algoliasearch(
@@ -158,6 +159,8 @@ search.addWidgets([
         soundQualityRatingColor:
           soundQualityRatingColors[item.soundQualityRating],
         duration: new Date(1000 * item.duration).toISOString().substr(11, 8),
+        playing:
+          sounds.has(item.objectID) && sounds.get(item.objectID).playing(),
       })),
   }),
   pagination({
