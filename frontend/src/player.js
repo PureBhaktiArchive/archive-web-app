@@ -49,4 +49,5 @@ window.togglePlay = function (/** @type {HTMLButtonElement} */ button) {
         .on('stop', () => switchPlayButton(fileId, false))
         .once('end', () => switchPlayButton(fileId, false))
     );
+  switchPlayButton(fileId, true);
 };
