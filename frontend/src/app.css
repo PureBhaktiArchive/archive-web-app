@@ -1,5 +1,15 @@
 @import './tailwind.css';
 
+@layer base {
+  @font-face {
+    font-family: 'Capitals';
+    src: url('fonts/capitals.woff2') format('woff2'),
+      url('fonts/capitals.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;

@@ -3,6 +3,7 @@
  */
 
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: {
@@ -38,6 +39,9 @@ module.exports = {
       },
       cursor: {
         grab: 'grab',
+      },
+      fontFamily: {
+        header: ['capitals', ...defaultTheme.fontFamily.serif],
       },
     },
   },
