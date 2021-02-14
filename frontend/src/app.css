@@ -1,3 +1,5 @@
+@import './tailwind.css';
+
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;

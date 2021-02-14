@@ -17,7 +17,6 @@ import {
 import './algolia.css';
 import './app.css';
 import { sounds } from './player';
-import './tailwind.css';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
