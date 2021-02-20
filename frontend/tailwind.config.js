@@ -43,6 +43,9 @@ module.exports = {
       fontFamily: {
         header: ['capitals', ...defaultTheme.fontFamily.serif],
       },
+      scale: {
+        '-1': '-1',
+      },
     },
   },
   variantOrder: [
