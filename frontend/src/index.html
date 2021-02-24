@@ -10,17 +10,73 @@
   </head>
 
   <body class="flex flex-col h-screen">
-    <header class="bg-header flex pb-0.5 w-full text-center bg-clip-content border-b-4 border-dotted border-peach-dark">
-      <div class="bg-header-decor flex-none w-24 h-full bg-contain bg-bottom bg-no-repeat"></div>
-      <div class="flex-grow my-3 text-teal-800 font-header text-lg font-semibold">
-        <div class="flex justify-center">
-          <div class="bg-lotus flex-none w-7 bg-contain bg-right bg-no-repeat"></div>
-          <span class="mx-3">The Official Archive of His Divine Grace</span>
-          <div class="bg-lotus flex-none w-7 bg-contain bg-right bg-no-repeat transform -scale-x-1"></div>
+    <header>
+      <div class="bg-header flex pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
+        <div class="bg-header-decor flex-none w-24 bg-contain bg-bottom bg-no-repeat"></div>
+        <div class="flex-grow my-3 text-teal-800 font-header text-lg font-semibold">
+          <div class="flex justify-center">
+            <div class="bg-lotus flex-none w-7 bg-contain bg-right-top bg-no-repeat"></div>
+            <span class="mx-3">The Official Archive of His Divine Grace</span>
+            <div class="bg-lotus flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1"></div>
+          </div>
+          <div class="text-center text-xl">Sri Srimad Bhakivedanta Narayana Gosvami Maharaja</div>
         </div>
-        <div class="text-xl">Sri Srimad Bhakivedanta Narayana Gosvami Maharaja</div>
+        <div class="bg-header-decor flex-none w-24 bg-contain bg-bottom bg-no-repeat transform -scale-x-1"></div>
       </div>
-      <div class="bg-header-decor flex-none w-24 h-full bg-contain bg-bottom bg-no-repeat transform -scale-x-1"></div>
+      <nav class="bg-submarine-500 mt-0.5">
+        <div class="relative flex items-center justify-between">
+          <!-- Mobile menu button-->
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <button
+              type="button"
+              class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-md focus:outline-none focus:ring-white focus:ring-2 focus:ring-inset"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <!-- Icon when menu is closed. -->
+              <!--
+                  Heroicon name: outline/menu
+
+                  Menu open: "hidden", Menu closed: "block"
+                -->
+              <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <!-- Icon when menu is open. -->
+              <!--
+                  Heroicon name: outline/x
+
+                  Menu open: "block", Menu closed: "hidden"
+                -->
+              <svg class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <!-- Menu items -->
+          <div class="hidden flex-1 py-1 text-gray-600 font-header font-semibold space-x-4 sm:flex sm:items-stretch sm:justify-center sm:ml-6">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="#" class="px-3 rounded-md">Audios</a>
+            <a href="#" class="px-3 rounded-md">Memories</a>
+            <a href="#" class="px-3 rounded-md">Series</a>
+            <a href="#" class="px-3 rounded-md">Donate</a>
+            <a href="#" class="px-3 rounded-md">Newsletter</a>
+            <a href="#" class="px-3 rounded-md">About</a>
+          </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="sm:hidden" id="mobile-menu">
+          <div class="pb-3 pt-2 px-2 space-y-1">
+            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+            <a href="#" class="block px-3 py-2 text-white text-base font-medium bg-gray-900 rounded-md">Dashboard</a>
+            <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Team</a>
+            <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Projects</a>
+            <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Calendar</a>
+          </div>
+        </div>
+      </nav>
     </header>
     <div class="border-b">
       <div class="mx-auto p-4 max-w-screen-sm">
