@@ -11,7 +11,6 @@ import {
   numericMenu,
   pagination,
   panel,
-  poweredBy,
   refinementList,
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
@@ -62,9 +61,6 @@ search.addWidgets([
     input.value = query;
   })({
     container: document.querySelector('#searchbox'),
-  }),
-  poweredBy({
-    container: '#powered-by',
   }),
   panel({
     templates: {
