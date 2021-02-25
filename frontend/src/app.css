@@ -36,4 +36,8 @@
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;
   }
+
+  button {
+    @apply focus:outline-none;
+  }
 }
