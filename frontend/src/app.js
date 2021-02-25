@@ -12,6 +12,7 @@ import {
   pagination,
   panel,
   refinementList,
+  stats,
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
@@ -61,6 +62,16 @@ search.addWidgets([
     input.value = query;
   })({
     container: document.querySelector('#searchbox'),
+  }),
+  stats({
+    container: '#stats',
+    templates: {
+      text: `
+  {{#hasNoResults}}No results{{/hasNoResults}}
+  {{#hasOneResult}}1 result{{/hasOneResult}}
+  {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} results{{/hasManyResults}}
+`,
+    },
   }),
   panel({
     templates: {
