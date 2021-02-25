@@ -77,9 +77,16 @@
         </div>
       </div>
     </nav>
-    <div class="border-b">
-      <div class="mx-auto p-4 max-w-screen-sm">
-        <div id="searchbox"></div>
+    <div class="mx-auto w-full max-w-screen-xl border-b">
+      <div class="p-4 pl-72">
+        <div id="searchbox" class="flex">
+          <input
+            type="search"
+            placeholder="Search for title, topics, locations, dates, etc."
+            class="placeholder-gray-300 block w-full border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md focus:outline-none focus:ring-0"
+          />
+          <button type="submit" class="px-4 font-semibold bg-submarine-500 border-l-0 border-gray-300 rounded-r-md shadow-sm">Search</button>
+        </div>
         <div class="relative mt-2 w-full">
           <div id="powered-by" class="absolute right-0 top-0"></div>
         </div>

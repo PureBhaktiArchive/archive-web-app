@@ -112,5 +112,5 @@ module.exports = {
       backgroundColor: ['children'],
     },
   },
-  plugins: [require('tailwindcss-children')],
+  plugins: [require('tailwindcss-children'), require('@tailwindcss/forms')],
 };

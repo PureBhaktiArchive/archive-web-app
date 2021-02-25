@@ -4,6 +4,7 @@
 
 import algoliasearch from 'algoliasearch/lite';
 import instantsearch from 'instantsearch.js';
+import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
   configure,
   infiniteHits,
@@ -12,7 +13,6 @@ import {
   panel,
   poweredBy,
   refinementList,
-  searchBox,
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
@@ -50,8 +50,18 @@ search.addWidgets([
   configure({
     hitsPerPage: 100,
   }),
-  searchBox({
-    container: '#searchbox',
+  connectSearchBox((renderOptions, isFirstRender) => {
+    const { query, refine, widgetParams } = renderOptions;
+
+    const input = widgetParams.container.querySelector('input');
+    if (isFirstRender) {
+      input.addEventListener('input', (event) => {
+        refine(event.target.value);
+      });
+    }
+    input.value = query;
+  })({
+    container: document.querySelector('#searchbox'),
   }),
   poweredBy({
     container: '#powered-by',

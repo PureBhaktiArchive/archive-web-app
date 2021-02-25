@@ -308,47 +308,4 @@
       @apply w-6;
     }
   }
-
-  .ais-SearchBox-form {
-    @apply relative block;
-  }
-
-  .ais-SearchBox-input {
-    @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
-
-    /* clears the 'X' from Internet Explorer */
-    &::-ms-clear,
-    &::-ms-reveal {
-      @apply hidden w-0 h-0;
-    }
-
-    /* clears the 'X' from Chrome */
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-decoration,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      @apply hidden;
-    }
-  }
-
-  .ais-SearchBox-submit,
-  .ais-SearchBox-reset,
-  .ais-SearchBox-loadingIndicator {
-    @apply absolute w-8 h-full;
-  }
-
-  .ais-SearchBox-submit {
-    @apply left-0;
-  }
-
-  .ais-SearchBox-reset,
-  .ais-SearchBox-loadingIndicator {
-    @apply right-0;
-  }
-
-  .ais-SearchBox-submitIcon,
-  .ais-SearchBox-resetIcon,
-  .ais-SearchBox-loadingIcon {
-    @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current transform -translate-x-1/2 -translate-y-1/2;
-  }
 }
