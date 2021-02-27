@@ -13,7 +13,11 @@
     <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor float-left w-16 h-12 bg-contain bg-top bg-no-repeat lg:w-24 lg:h-20"></div>
-        <img src="images/gurudeva.png" alt="Srila Gurudeva" class="absolute z-10 left-20 top-4 hidden w-44 rounded-full lg:block" />
+        <img
+          src="images/gurudeva.png"
+          alt="Srila Gurudeva"
+          class="absolute z-10 bottom-0 left-1/2 w-28 rounded-full transform -translate-x-1/2 translate-y-24 lg:left-20 lg:w-44 lg:translate-x-0 lg:translate-y-28"
+        />
         <div class="bg-header-decor float-right w-16 h-12 bg-contain bg-top bg-no-repeat transform -scale-x-1 lg:w-24 lg:h-20"></div>
         <div class="py-3 text-center text-teal-800 font-header font-semibold lg:ml-44 lg:text-lg">
           <span class="sm:flex sm:justify-center">
@@ -31,15 +35,10 @@
         </div>
       </div>
     </header>
-    <nav class="relative mt-0.5 pl-56 bg-submarine-500">
+    <nav class="relative mt-0.5">
       <!-- Mobile menu button-->
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <button
-          type="button"
-          class="inline-flex items-center justify-center p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-md focus:outline-none focus:ring-white focus:ring-2 focus:ring-inset"
-          aria-controls="mobile-menu"
-          aria-expanded="false"
-        >
+      <div class="flex justify-end mb-2 p-4 lg:hidden">
+        <button type="button" class="p-2 text-white bg-gray-500 hover:bg-gray-700 rounded-md focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <!-- Icon when menu is closed. -->
           <!--
@@ -62,7 +61,7 @@
         </button>
       </div>
       <!-- Menu items -->
-      <div class="hidden flex-1 py-1 text-gray-600 font-header font-semibold space-x-4 sm:flex sm:items-stretch sm:justify-center sm:ml-6">
+      <div class="hidden py-1 text-gray-600 font-header font-semibold bg-submarine-500 space-x-4 lg:flex lg:items-stretch lg:justify-center lg:pl-56">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
         <a href="#" class="px-3 rounded-md">Audios</a>
         <a href="#" class="px-3 rounded-md">Memories</a>
@@ -73,7 +72,7 @@
       </div>
 
       <!-- Mobile menu, show/hide based on menu state. -->
-      <div class="sm:hidden" id="mobile-menu">
+      <div class="hidden" id="mobile-menu">
         <div class="pb-3 pt-2 px-2 space-y-1">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <a href="#" class="block px-3 py-2 text-white text-base font-medium bg-gray-900 rounded-md">Dashboard</a>
@@ -83,13 +82,18 @@
         </div>
       </div>
     </nav>
-    <div id="searchbox" class="flex mx-auto p-4 pl-72 w-full max-w-screen-xl border-b">
+    <div id="searchbox" class="flex mx-auto p-4 w-full max-w-screen-xl border-b lg:pl-72">
       <input
         type="search"
         placeholder="Search for title, topics, locations, dates, etc."
         class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md focus:outline-none focus:ring-0"
       />
-      <button type="submit" class="px-4 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">Search</button>
+      <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="hidden sm:inline">Search</span>
+      </button>
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
       <section id="filters" class="hidden p-2 w-1/5 max-w-sm text-sm overflow-y-scroll sm:block">
