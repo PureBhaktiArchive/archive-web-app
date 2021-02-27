@@ -11,18 +11,24 @@
 
   <body class="flex flex-col h-screen">
     <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
-      <div class="relative flex mx-auto max-w-screen-xl">
-        <div class="bg-header-decor flex-none w-24 bg-contain bg-bottom bg-no-repeat"></div>
-        <img src="images/gurudeva.png" alt="Srila Gurudeva" class="absolute z-10 left-24 top-4 w-44 rounded-full" />
-        <div class="flex-grow ml-44 my-3 text-teal-800 font-header text-lg font-semibold">
-          <div class="flex justify-center">
-            <div class="bg-lotus flex-none w-7 bg-contain bg-right-top bg-no-repeat"></div>
-            <span class="mx-3 text-center">The Official Archive of His Divine Grace</span>
-            <div class="bg-lotus flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1"></div>
-          </div>
-          <div class="text-center text-xl">Sri Srimad Bhakivedanta Narayana Gosvami Maharaja</div>
+      <div class="relative mx-auto max-w-screen-xl">
+        <div class="bg-header-decor float-left w-16 h-12 bg-contain bg-top bg-no-repeat lg:w-24 lg:h-20"></div>
+        <img src="images/gurudeva.png" alt="Srila Gurudeva" class="absolute z-10 left-20 top-4 hidden w-44 rounded-full lg:block" />
+        <div class="bg-header-decor float-right w-16 h-12 bg-contain bg-top bg-no-repeat transform -scale-x-1 lg:w-24 lg:h-20"></div>
+        <div class="py-3 text-center text-teal-800 font-header font-semibold lg:ml-44 lg:text-lg">
+          <span class="sm:flex sm:justify-center">
+            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat lg:block"></span>
+            <span class="lg:mx-3">
+              <span>The Official Archive of</span>
+              <span class="whitespace-nowrap">His Divine Grace</span>
+            </span>
+            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1 lg:block"></span>
+          </span>
+          <span class="lg:text-xl">
+            <span class="whitespace-nowrap">Sri Srimad</span>
+            <span>Bhakivedanta Narayana Gosvami Maharaja</span>
+          </span>
         </div>
-        <div class="bg-header-decor flex-none w-24 bg-contain bg-bottom bg-no-repeat transform -scale-x-1"></div>
       </div>
     </header>
     <nav class="relative mt-0.5 pl-56 bg-submarine-500">
