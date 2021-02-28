@@ -16,6 +16,12 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'mobile-s': '320px',
+      'mobile-m': '375px',
+      'mobile-l': '425px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         peach: {
