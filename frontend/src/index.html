@@ -40,10 +40,10 @@
         />
       </div>
     </header>
-    <nav class="relative mt-0.5">
+    <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
       <!-- Mobile menu button-->
-      <div class="flex justify-end mb-2 p-4 sm:hidden">
-        <button type="button" class="p-2 text-white bg-gray-500 hover:bg-gray-700 rounded-md focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
+      <div class="flex justify-end sm:hidden">
+        <button type="button" id="menu-button" class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <!-- Icon when menu is closed. -->
           <!--
@@ -51,7 +51,7 @@
 
                   Menu open: "hidden", Menu closed: "block"
                 -->
-          <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg class="menu-toggle block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           <!-- Icon when menu is open. -->
@@ -60,32 +60,22 @@
 
                   Menu open: "block", Menu closed: "hidden"
                 -->
-          <svg class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg class="menu-toggle hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       <!-- Menu items -->
-      <div
-        class="hidden items-stretch justify-start pl-36 pr-4 py-1 text-gray-600 font-header text-sm font-semibold bg-submarine-500 space-x-3 sm:flex md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
-      >
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <a href="#">Audios</a>
-        <a href="#">Memories</a>
-        <a href="#">Series</a>
-        <a href="#">Donate</a>
-        <a href="#">Newsletter</a>
-        <a href="#">About</a>
-      </div>
-
-      <!-- Mobile menu, show/hide based on menu state. -->
-      <div class="hidden" id="mobile-menu">
-        <div class="pb-3 pt-2 px-2 space-y-1">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="#" class="block px-3 py-2 text-white text-base font-medium bg-gray-900 rounded-md">Dashboard</a>
-          <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Team</a>
-          <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Projects</a>
-          <a href="#" class="block px-3 py-2 text-gray-300 hover:text-white text-base font-medium hover:bg-gray-700 rounded-md">Calendar</a>
+      <div class="menu-toggle hidden sm:block">
+        <div
+          class="flex flex-col items-end justify-end pl-36 pr-4 py-2 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0 md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
+        >
+          <a href="#">Audios</a>
+          <a href="#">Memories</a>
+          <a href="#">Series</a>
+          <a href="#">Donate</a>
+          <a href="#">Newsletter</a>
+          <a href="#">About</a>
         </div>
       </div>
     </nav>

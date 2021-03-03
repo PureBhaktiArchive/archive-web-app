@@ -187,3 +187,9 @@ search.addWidgets([
 ]);
 
 search.start();
+
+document.getElementById('menu-button').onclick = function toggleMenu() {
+  for (const element of document.getElementsByClassName('menu-toggle')) {
+    element.classList.toggle('hidden');
+  }
+};
