@@ -10,7 +10,7 @@
     <title>Pure Bhakti Archive</title>
   </head>
 
-  <body class="relative flex flex-col h-screen">
+  <body class="relative flex flex-col sm:h-screen">
     <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
@@ -83,7 +83,7 @@
       <input
         type="search"
         placeholder="Search for title, topics, locations, dates, etc."
-        class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md focus:outline-none focus:ring-0"
+        class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md rounded-none focus:outline-none appearance-none focus:ring-0"
       />
       <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
@@ -146,15 +146,15 @@
                   </div>
                   <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
                     <!-- Download -->
-                    <a href="/download/{{objectID}}" class="inline-flex items-center space-x-1" title="Download file for listening offline">
-                      <svg class="w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <a href="/download/{{objectID}}" class="inline-flex space-x-1" title="Download file for listening offline">
+                      <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                       </svg>
                       <span class="hidden lg:inline">Download</span>
                     </a>
                     <!-- Feedback -->
                     <a href="" class="inline-flex space-x-1" title="Provide feedback on fidelity or sound quality">
-                      <svg class="flex-none w-4 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg class="w-4 h-full stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <path
                           stroke-linecap="round"
                           stroke-linejoin="round"
