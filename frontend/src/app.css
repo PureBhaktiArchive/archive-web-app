@@ -9,6 +9,12 @@
     font-style: normal;
   }
 
+  button {
+    @apply focus:outline-none;
+  }
+}
+
+@layer utilities {
   /**
     Cannot use Tailwind's facility for background image (https://tailwindcss.com/docs/background-image#background-images)
     because parcel does not look into tailwind config file and does not pick up the image asset from there.
@@ -35,9 +41,5 @@
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;
-  }
-
-  button {
-    @apply focus:outline-none;
   }
 }
