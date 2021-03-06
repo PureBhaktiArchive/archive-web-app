@@ -1,3 +1,43 @@
+@import './tailwind.css';
+
+@layer base {
+  @font-face {
+    font-family: 'Capitals';
+    src: url('fonts/capitals.woff2') format('woff2'),
+      url('fonts/capitals.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  button {
+    @apply focus:outline-none;
+  }
+}
+
+@layer utilities {
+  /**
+    Cannot use Tailwind's facility for background image (https://tailwindcss.com/docs/background-image#background-images)
+    because parcel does not look into tailwind config file and does not pick up the image asset from there.
+    Also, we need multiple background images which is not supported by Tailwind CSS.
+  */
+  .bg-header {
+    background: url('./images/header-left.png') no-repeat left top / auto 100%
+        content-box,
+      url('./images/header-right.png') no-repeat right top / auto 100%
+        content-box,
+      url('./images/header-center.png') repeat-x left top / auto 100%
+        content-box;
+  }
+
+  .bg-header-decor {
+    background-image: url('images/header-decor.png');
+  }
+
+  .bg-lotus {
+    background-image: url('images/lotus.png');
+  }
+}
+
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;

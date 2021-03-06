@@ -4,20 +4,19 @@
 
 import algoliasearch from 'algoliasearch/lite';
 import instantsearch from 'instantsearch.js';
+import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
   configure,
   infiniteHits,
   numericMenu,
   pagination,
   panel,
-  poweredBy,
   refinementList,
-  searchBox,
+  stats,
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
 import { sounds } from './player';
-import './tailwind.css';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -51,11 +50,28 @@ search.addWidgets([
   configure({
     hitsPerPage: 100,
   }),
-  searchBox({
-    container: '#searchbox',
+  connectSearchBox((renderOptions, isFirstRender) => {
+    const { query, refine, widgetParams } = renderOptions;
+
+    const input = widgetParams.container.querySelector('input');
+    if (isFirstRender) {
+      input.addEventListener('input', (event) => {
+        refine(event.target.value);
+      });
+    }
+    input.value = query;
+  })({
+    container: document.querySelector('#searchbox'),
   }),
-  poweredBy({
-    container: '#powered-by',
+  stats({
+    container: '#stats',
+    templates: {
+      text: `
+  {{#hasNoResults}}No results{{/hasNoResults}}
+  {{#hasOneResult}}1 result{{/hasOneResult}}
+  {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} results{{/hasManyResults}}
+`,
+    },
   }),
   panel({
     templates: {
@@ -172,3 +188,9 @@ search.addWidgets([
 ]);
 
 search.start();
+
+document.getElementById('menu-button').onclick = function toggleMenu() {
+  for (const element of document.getElementsByClassName('menu-toggle')) {
+    element.classList.toggle('hidden');
+  }
+};

@@ -3,6 +3,7 @@
  */
 
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: {
@@ -15,6 +16,12 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'mobile-s': '320px',
+      'mobile-m': '375px',
+      'mobile-l': '425px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         peach: {
@@ -34,10 +41,40 @@ module.exports = {
           800: '#4e0000',
           900: '#400000',
         },
+        submarine: {
+          50: '#fbfcfc',
+          100: '#f8fafa',
+          200: '#edf1f2',
+          300: '#e1e9eb',
+          400: '#cbd9db',
+          500: '#b5c8cc',
+          600: '#a3b4b8',
+          700: '#889699',
+          800: '#6d787a',
+          900: '#596264',
+        },
+        'burnt-sienna': {
+          50: '#fef8f6',
+          100: '#fdf0ed',
+          200: '#fbdbd2',
+          300: '#f9c5b7',
+          400: '#f49981',
+          500: '#ef6d4b',
+          600: '#d76244',
+          700: '#b35238',
+          800: '#8f412d',
+          900: '#753525',
+        },
         teal: colors.teal,
       },
       cursor: {
         grab: 'grab',
+      },
+      fontFamily: {
+        header: ['capitals', ...defaultTheme.fontFamily.serif],
+      },
+      scale: {
+        '-1': '-1',
       },
     },
   },

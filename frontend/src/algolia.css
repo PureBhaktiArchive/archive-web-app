@@ -119,7 +119,7 @@
   .ais-InfiniteResults-loadMore,
   .ais-Menu-showMore,
   .ais-RefinementList-showMore {
-    @apply px-2 py-1 text-xs bg-peach hover:bg-peach-dark focus:bg-peach-dark rounded outline-none transition-colors duration-200 ease-out;
+    @apply px-2 py-1 text-white text-xs bg-teal-800 rounded outline-none transition-colors duration-200 ease-out;
   }
 
   .ais-ClearRefinements-button--disabled,
@@ -130,7 +130,7 @@
   .ais-InfiniteResults-loadMore--disabled,
   .ais-Menu-showMore--disabled,
   .ais-RefinementList-showMore--disabled {
-    @apply hover:bg-peach focus:bg-peach opacity-60 cursor-not-allowed;
+    @apply opacity-60 cursor-not-allowed;
   }
   .ais-InfiniteHits-loadPrevious--disabled {
     @apply hidden;
@@ -269,14 +269,14 @@
   }
 
   .ais-Pagination-link {
-    @apply block px-3 py-1 focus:bg-peach-light hover:bg-peach-light border rounded transition-colors duration-200 ease-out;
+    @apply block px-3 py-1 border rounded focus:outline-none transition-colors duration-200 ease-out;
 
     @nest .ais-Pagination-item--disabled & {
-      @apply text-gray-400 focus:text-gray-400 hover:text-gray-400 focus:bg-white hover:bg-white opacity-60 cursor-not-allowed;
+      @apply text-gray-400 opacity-60 cursor-not-allowed;
     }
 
     @nest .ais-Pagination-item--selected & {
-      @apply text-white hover:text-white focus:text-white bg-peach-dark;
+      @apply text-white bg-teal-800;
     }
   }
 
