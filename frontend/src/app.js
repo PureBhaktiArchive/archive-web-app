@@ -12,7 +12,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
@@ -194,3 +194,34 @@ document.getElementById('menu-button').onclick = function toggleMenu() {
     element.classList.toggle('hidden');
   }
 };
+
+const mobFilterButton = document.querySelector('#mobFilterButton')
+const filters = document.querySelector('#filters')
+const backdrop  = document.querySelector('.backdrop')
+const filterClose  = document.querySelector('.filter-close')
+const applyFilter  = document.querySelector('.apply-filter-btn')
+
+mobFilterButton.onclick = () =>{
+  filters.classList.toggle('translate-x-0')
+  filters.classList.toggle('-translate-x-96')
+  backdrop.classList.toggle('hidden')
+  backdrop.classList.toggle('block')
+}
+filterClose.onclick = () =>{
+  filters.classList.toggle('translate-x-0')
+  filters.classList.toggle('-translate-x-96')
+  backdrop.classList.toggle('hidden')
+  backdrop.classList.toggle('block')
+}
+applyFilter.onclick = () =>{
+  filters.classList.toggle('translate-x-0')
+  filters.classList.toggle('-translate-x-96')
+  backdrop.classList.toggle('hidden')
+  backdrop.classList.toggle('block')
+}
+backdrop.onclick = () =>{
+  filters.classList.toggle('translate-x-0')
+  filters.classList.toggle('-translate-x-96')
+  backdrop.classList.toggle('hidden')
+  backdrop.classList.toggle('block')
+}
