@@ -195,33 +195,35 @@ document.getElementById('menu-button').onclick = function toggleMenu() {
   }
 };
 
-const mobFilterButton = document.querySelector('#mobFilterButton')
+const filtersBtn = document.querySelector('#filtersBtn')
 const filters = document.querySelector('#filters')
-const backdrop  = document.querySelector('.backdrop')
-const filterClose  = document.querySelector('.filter-close')
-const applyFilter  = document.querySelector('.apply-filter-btn')
+const backdrop  = document.querySelector('#backdrop')
+const filterClose  = document.querySelector('#filterClose')
+const applyFilterBtn  = document.querySelector('#applyFilterBtn')
 
-mobFilterButton.onclick = () =>{
-  filters.classList.toggle('translate-x-0')
-  filters.classList.toggle('-translate-x-96')
+const filterOpen = () => {
+  filters.classList.toggle('left-0')
+  filters.classList.toggle('-left-full')
+  filters.classList.toggle('hidden')
+  filters.classList.toggle('block')
   backdrop.classList.toggle('hidden')
   backdrop.classList.toggle('block')
+  document.body.classList.toggle('overflow-hidden')
+}
+filtersBtn.onclick = () =>{
+  
+  filterOpen();
 }
 filterClose.onclick = () =>{
-  filters.classList.toggle('translate-x-0')
-  filters.classList.toggle('-translate-x-96')
-  backdrop.classList.toggle('hidden')
-  backdrop.classList.toggle('block')
+  
+  filterOpen();
 }
-applyFilter.onclick = () =>{
-  filters.classList.toggle('translate-x-0')
-  filters.classList.toggle('-translate-x-96')
-  backdrop.classList.toggle('hidden')
-  backdrop.classList.toggle('block')
+applyFilterBtn.onclick = () =>{
+  
+  filterOpen();
 }
 backdrop.onclick = () =>{
-  filters.classList.toggle('translate-x-0')
-  filters.classList.toggle('-translate-x-96')
-  backdrop.classList.toggle('hidden')
-  backdrop.classList.toggle('block')
+  
+  filterOpen();
+  
 }

@@ -93,15 +93,17 @@
       </button>
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <div class="backdrop hidden fixed z-10 inset-0 bg-black bg-opacity-50"></div>
-      <section id="filters" class="fixed z-10 top-0 bottom-0 left-0 md:relative max-w-xs bg-white md:bg-transparent md:w-1/5 max-w-sm text-sm  md:block transition duration-300 transform -translate-x-96 md:-translate-x-0">
-        <div class="filter-head bg-teal-800 text-center block md:hidden fixed top-0 left-0 right-01 w-64 p-3 transition duration-300">
+      <div id="backdrop" class="hidden md:hidden fixed z-10 inset-0 bg-black bg-opacity-50"></div>
+      
+      <section id="filters" class="fixed z-10 top-0 bottom-0 -left-full md:left-auto md:relative bg-white md:bg-transparent w-64 md:w-1/5 text-sm hidden md:block">
+
+        <div class="filter-head bg-teal-800 text-center block md:hidden fixed top-0 left-0 w-64 p-3">
           <span class="font-bold uppercase text-white">Filter</span>
-          <span class="filter-close  text-white absolute right-4">
+          <span id="filterClose" class="text-white absolute right-4">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
           </span>
         </div>
-        <div class="overflow-y-scroll mt-10 md:mt-0 px-4 pb-28 md:p-2 h-full">
+        <div class="filters-content overflow-y-scroll mt-10 md:mt-0 px-4 md:p-2">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
           <div id="duration-menu"></div>
@@ -110,21 +112,21 @@
           <div id="year-list"></div>
           <div id="location-list"></div>
       </div>
-      <div class="bg-white text-center border-t fixed bottom-0 w-full">
-        <button class="apply-filter-btn inline-flex items-center justify-center md:hidden my-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm uppercase w-56">
+      <div class="bg-white text-center border-t fixed bottom-0 w-64">
+        <button id="applyFilterBtn" class="inline-flex items-center justify-center md:hidden my-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm uppercase w-56">
           Apply 
         </button>
       </div>
       </section>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
-        <!-- Mobile filter button -->
-          <button id="mobFilterButton" class="inline-flex items-center justify-center md:hidden my-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm  w-24">
+        <!--  filter button -->
+          <button id="filtersBtn" class="inline-flex items-center justify-center md:hidden my-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm  w-24">
             <div class="h-5 w-5 mr-3">
             <svg width="24"  height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23 0l-9 14.146v7.73l-3.996 2.124v-9.853l-9.004-14.147h22zm-20.249 1l8.253 12.853v8.491l1.996-1.071v-7.419l8.229-12.854h-18.478z"/></svg>
           </div>
             Filter
           </button>
-          <!-- End Mobile filter button -->
+          <!-- End  filter button -->
         <div id="stats" class="my-1 pl-1 whitespace-nowrap"></div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
