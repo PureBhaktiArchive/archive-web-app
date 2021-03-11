@@ -94,17 +94,12 @@
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
       <div id="backdrop" class="fixed z-10 inset-0 hidden bg-black bg-opacity-50 md:hidden"></div>
-
-      <section id="filters" class="fixed z-10 -left-full bottom-0 top-0 hidden w-64 text-sm bg-white md:relative md:left-auto md:block md:w-1/5 md:bg-transparent">
-        <div class="filter-head fixed left-0 top-0 block p-3 w-64 text-center bg-teal-800 md:hidden">
-          <span class="text-white font-bold uppercase">Filter</span>
-          <span id="filterClose" class="absolute right-4 text-white">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 24 24">
-              <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z" />
-            </svg>
-          </span>
-        </div>
-        <div class="filters-content mt-10 px-4 overflow-y-scroll md:mt-0 md:p-2">
+      <section
+        id="filters"
+        class="fixed z-10 -left-full bottom-0 top-0 flex hidden flex-col justify-items-stretch w-64 text-sm bg-gray-50 border overflow-hidden md:relative md:left-auto md:block md:w-1/5"
+      >
+        <header class="p-3 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</header>
+        <div class="filters-content flex-grow px-4 overflow-y-scroll md:mt-0 md:p-2">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
           <div id="duration-menu"></div>
@@ -113,15 +108,12 @@
           <div id="year-list"></div>
           <div id="location-list"></div>
         </div>
-        <div class="fixed bottom-0 w-64 text-center bg-white border-t">
-          <button id="applyFilterBtn" class="inline-flex items-center justify-center my-3 px-4 py-2 w-56 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm uppercase md:hidden">
-            Apply
-          </button>
-        </div>
+        <footer class="flex items-stretch justify-items-stretch border-t">
+          <button id="close-filters-button" class="flex-grow m-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm uppercase">Close</button>
+        </footer>
       </section>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
-        <!--  filter button -->
-        <button id="filtersBtn" class="inline-flex items-center justify-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm md:hidden">
+        <button id="filters-button" class="inline-flex items-center justify-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm md:hidden">
           <div class="mr-3 w-5 h-5">
             <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
               <path d="M23 0l-9 14.146v7.73l-3.996 2.124v-9.853l-9.004-14.147h22zm-20.249 1l8.253 12.853v8.491l1.996-1.071v-7.419l8.229-12.854h-18.478z" />
@@ -129,7 +121,6 @@
           </div>
           Filter
         </button>
-        <!-- End  filter button -->
         <div id="stats" class="my-1 pl-1 whitespace-nowrap"></div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">

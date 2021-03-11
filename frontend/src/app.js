@@ -195,13 +195,12 @@ document.getElementById('menu-button').onclick = function toggleMenu() {
   }
 };
 
-const filtersBtn = document.querySelector('#filtersBtn');
-const filters = document.querySelector('#filters');
-const backdrop = document.querySelector('#backdrop');
-const filterClose = document.querySelector('#filterClose');
-const applyFilterBtn = document.querySelector('#applyFilterBtn');
+const filtersButton = document.getElementById('filters-button');
+const filters = document.getElementById('filters');
+const backdrop = document.getElementById('backdrop');
+const filterCloseButton = document.getElementById('close-filters-button');
 
-const filterOpen = () => {
+const toggleFilters = () => {
   filters.classList.toggle('left-0');
   filters.classList.toggle('-left-full');
   filters.classList.toggle('hidden');
@@ -210,15 +209,5 @@ const filterOpen = () => {
   backdrop.classList.toggle('block');
   document.body.classList.toggle('overflow-hidden');
 };
-filtersBtn.onclick = () => {
-  filterOpen();
-};
-filterClose.onclick = () => {
-  filterOpen();
-};
-applyFilterBtn.onclick = () => {
-  filterOpen();
-};
-backdrop.onclick = () => {
-  filterOpen();
-};
+
+filtersButton.onclick = filterCloseButton.onclick = backdrop.onclick = toggleFilters;
