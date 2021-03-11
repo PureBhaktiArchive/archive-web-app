@@ -12,6 +12,11 @@
   button {
     @apply focus:outline-none;
   }
+
+  html {
+    /* Avoiding tap highlight on Android which causes blink through the filter panel. */
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @layer utilities {
