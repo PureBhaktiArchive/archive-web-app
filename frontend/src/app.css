@@ -43,13 +43,3 @@
     columns: 5rem auto;
   }
 }
-
-.filters-content {
-  height: calc(100% - theme('height.28'));
-}
-
-@screen md {
-  .filters-content {
-    @apply h-full;
-  }
-}
