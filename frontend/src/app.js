@@ -12,7 +12,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats
+  stats,
 } from 'instantsearch.js/es/widgets';
 import './algolia.css';
 import './app.css';
@@ -195,35 +195,30 @@ document.getElementById('menu-button').onclick = function toggleMenu() {
   }
 };
 
-const filtersBtn = document.querySelector('#filtersBtn')
-const filters = document.querySelector('#filters')
-const backdrop  = document.querySelector('#backdrop')
-const filterClose  = document.querySelector('#filterClose')
-const applyFilterBtn  = document.querySelector('#applyFilterBtn')
+const filtersBtn = document.querySelector('#filtersBtn');
+const filters = document.querySelector('#filters');
+const backdrop = document.querySelector('#backdrop');
+const filterClose = document.querySelector('#filterClose');
+const applyFilterBtn = document.querySelector('#applyFilterBtn');
 
 const filterOpen = () => {
-  filters.classList.toggle('left-0')
-  filters.classList.toggle('-left-full')
-  filters.classList.toggle('hidden')
-  filters.classList.toggle('block')
-  backdrop.classList.toggle('hidden')
-  backdrop.classList.toggle('block')
-  document.body.classList.toggle('overflow-hidden')
-}
-filtersBtn.onclick = () =>{
-  
+  filters.classList.toggle('left-0');
+  filters.classList.toggle('-left-full');
+  filters.classList.toggle('hidden');
+  filters.classList.toggle('block');
+  backdrop.classList.toggle('hidden');
+  backdrop.classList.toggle('block');
+  document.body.classList.toggle('overflow-hidden');
+};
+filtersBtn.onclick = () => {
   filterOpen();
-}
-filterClose.onclick = () =>{
-  
+};
+filterClose.onclick = () => {
   filterOpen();
-}
-applyFilterBtn.onclick = () =>{
-  
+};
+applyFilterBtn.onclick = () => {
   filterOpen();
-}
-backdrop.onclick = () =>{
-  
+};
+backdrop.onclick = () => {
   filterOpen();
-  
-}
+};
