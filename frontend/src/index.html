@@ -113,13 +113,12 @@
         </footer>
       </section>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
-        <button id="filters-button" class="inline-flex items-center justify-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm md:hidden">
-          <div class="mr-3 w-5 h-5">
-            <svg width="24" height="24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
-              <path d="M23 0l-9 14.146v7.73l-3.996 2.124v-9.853l-9.004-14.147h22zm-20.249 1l8.253 12.853v8.491l1.996-1.071v-7.419l8.229-12.854h-18.478z" />
-            </svg>
-          </div>
-          Filter
+        <button id="filters-button" class="inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
+          <!-- Heroicon name: solid/filter -->
+          <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+          </svg>
+          <span>Filter</span>
         </button>
         <div id="stats" class="my-1 pl-1 whitespace-nowrap"></div>
         <div id="hits" class="overflow-x-hidden">
