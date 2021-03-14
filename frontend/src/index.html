@@ -94,9 +94,9 @@
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
       <div id="backdrop" class="fixed z-10 inset-0 hidden bg-black bg-opacity-50 md:hidden"></div>
-      <section id="filters" class="fixed z-10 -left-full bottom-0 top-0 flex hidden flex-col justify-items-stretch w-64 text-sm bg-gray-50 overflow-hidden md:relative md:left-auto md:block md:w-1/5">
-        <header class="p-3 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</header>
-        <div class="flex-grow px-4 overflow-y-scroll md:mt-0 md:p-2">
+      <section id="filters" class="fixed z-10 bottom-0 top-0 flex hidden flex-col w-64 h-full text-sm bg-gray-50 overflow-hidden md:relative md:block md:w-1/5">
+        <header class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</header>
+        <div class="flex-grow p-2 pt-0 overflow-y-auto md:h-full">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
           <div id="duration-menu"></div>
@@ -105,8 +105,8 @@
           <div id="year-list"></div>
           <div id="location-list"></div>
         </div>
-        <footer class="flex items-stretch justify-items-stretch border-t md:hidden">
-          <button id="close-filters-button" class="flex-grow m-3 px-4 py-2 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm uppercase">Close</button>
+        <footer class="flex-none p-2 border-t md:hidden">
+          <button id="close-filters-button" class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
         </footer>
       </section>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">

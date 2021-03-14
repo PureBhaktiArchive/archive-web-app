@@ -201,12 +201,10 @@ const backdrop = document.getElementById('backdrop');
 const filterCloseButton = document.getElementById('close-filters-button');
 
 const toggleFilters = () => {
-  filters.classList.toggle('left-0');
-  filters.classList.toggle('-left-full');
   filters.classList.toggle('hidden');
-  filters.classList.toggle('block');
   backdrop.classList.toggle('hidden');
-  backdrop.classList.toggle('block');
+
+  // Preventing body to scroll behind the overlay
   document.body.classList.toggle('overflow-hidden');
 };
 
