@@ -195,17 +195,21 @@ document.getElementById('menu-button').onclick = function toggleMenu() {
   }
 };
 
-const filtersButton = document.getElementById('filters-button');
-const filters = document.getElementById('filters');
+const filterPanel = document.getElementById('filter-panel');
 const backdrop = document.getElementById('backdrop');
-const filterCloseButton = document.getElementById('close-filters-button');
 
-const toggleFilter = () => {
-  filters.toggleAttribute('data-state-open');
-  backdrop.toggleAttribute('data-state-open');
+const toggleFilter = (isOpen) => {
+  filterPanel.toggleAttribute('data-state-open', isOpen);
+  backdrop.toggleAttribute('data-state-open', isOpen);
 
   // Preventing body from scrolling behind the overlay
-  document.body.toggleAttribute('data-state-overlayed');
+  document.body.toggleAttribute('data-state-overlayed', isOpen);
 };
 
-filtersButton.onclick = filterCloseButton.onclick = backdrop.onclick = toggleFilter;
+document.querySelectorAll('[data-filter-toggle]').forEach(
+  (element) =>
+    (element.onclick = () => {
+      const isOpen = filterPanel.hasAttribute('data-state-open');
+      toggleFilter(!isOpen);
+    })
+);
