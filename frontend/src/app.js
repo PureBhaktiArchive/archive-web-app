@@ -189,11 +189,15 @@ search.addWidgets([
 
 search.start();
 
-document.getElementById('menu-button').onclick = function toggleMenu() {
-  for (const element of document.getElementsByClassName('menu-toggle')) {
-    element.classList.toggle('hidden');
-  }
-};
+document
+  .querySelectorAll('[data-menu-toggle')
+  .forEach(
+    (toggle) =>
+      (toggle.onclick = () =>
+        document
+          .querySelectorAll('[data-menu-toggled]')
+          .forEach((target) => target.classList.toggle('hidden')))
+  );
 
 const filterPanel = document.getElementById('filter-panel');
 const backdrop = document.getElementById('backdrop');
