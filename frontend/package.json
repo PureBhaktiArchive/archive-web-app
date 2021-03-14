@@ -28,6 +28,7 @@
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
     "htmlhint": "0.14.2",
+    "mdn-polyfills": "5.20.0",
     "parcel-bundler": "1.12.4",
     "parcel-plugin-bundle-visualiser": "1.2.0",
     "postcss": "7.0.35",
