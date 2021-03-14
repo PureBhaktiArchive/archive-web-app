@@ -10,7 +10,7 @@
     <title>Pure Bhakti Archive</title>
   </head>
 
-  <body class="relative flex flex-col sm:h-screen">
+  <body class="relative flex flex-col overlayed:overflow-hidden sm:h-screen">
     <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
@@ -93,7 +93,7 @@
       </button>
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <div id="filters" class="fixed z-20 bottom-0 top-0 flex hidden flex-col w-64 h-full text-sm bg-gray-50 overflow-hidden md:relative md:z-auto md:block md:w-1/5">
+      <div id="filters" class="fixed z-20 bottom-0 top-0 open:flex hidden flex-col w-64 h-full text-sm bg-gray-50 overflow-hidden md:relative md:z-auto md:block md:w-1/5">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
         <div class="flex-grow p-2 pt-0 overflow-y-auto md:h-full">
           <div id="language-list"></div>
@@ -233,7 +233,7 @@
         <div id="pagination" class="mx-auto my-2 text-center"></div>
       </main>
     </div>
-    <div id="backdrop" class="fixed z-10 inset-0 hidden bg-black bg-opacity-50 md:hidden"></div>
+    <div id="backdrop" class="fixed z-10 inset-0 open:block hidden bg-black bg-opacity-50 md:hidden"></div>
     <script src="./app.js"></script>
   </body>
 </html>

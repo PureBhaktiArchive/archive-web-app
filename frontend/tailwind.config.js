@@ -78,6 +78,7 @@ module.exports = {
       },
     },
   },
+  dataStates: ['open', 'overlayed'],
   variantOrder: [
     'children',
     'DEFAULT',
@@ -116,7 +117,12 @@ module.exports = {
       borderWidth: ['children', 'children-last'],
       borderRadius: ['children'],
       backgroundColor: ['children'],
+      display: ['open'],
+      overflow: ['overlayed'],
     },
   },
-  plugins: [require('tailwindcss-children')],
+  plugins: [
+    require('tailwindcss-children'),
+    require('./tailwind-plugins/data-states'),
+  ],
 };

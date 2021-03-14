@@ -200,12 +200,12 @@ const filters = document.getElementById('filters');
 const backdrop = document.getElementById('backdrop');
 const filterCloseButton = document.getElementById('close-filters-button');
 
-const toggleFilters = () => {
-  filters.classList.toggle('hidden');
-  backdrop.classList.toggle('hidden');
+const toggleFilter = () => {
+  filters.toggleAttribute('data-state-open');
+  backdrop.toggleAttribute('data-state-open');
 
-  // Preventing body to scroll behind the overlay
-  document.body.classList.toggle('overflow-hidden');
+  // Preventing body from scrolling behind the overlay
+  document.body.toggleAttribute('data-state-overlayed');
 };
 
-filtersButton.onclick = filterCloseButton.onclick = backdrop.onclick = toggleFilters;
+filtersButton.onclick = filterCloseButton.onclick = backdrop.onclick = toggleFilter;
