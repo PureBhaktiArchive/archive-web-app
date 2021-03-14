@@ -190,7 +190,7 @@ search.addWidgets([
 search.start();
 
 document
-  .querySelectorAll('[data-menu-toggle')
+  .querySelectorAll('[data-menu-toggle]')
   .forEach(
     (toggle) =>
       (toggle.onclick = () =>
