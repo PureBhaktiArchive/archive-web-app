@@ -93,8 +93,8 @@
       </button>
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <section id="filters" class="fixed z-20 bottom-0 top-0 flex hidden flex-col w-64 h-full text-sm bg-gray-50 overflow-hidden md:relative md:z-auto md:block md:w-1/5">
-        <header class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</header>
+      <div id="filters" class="fixed z-20 bottom-0 top-0 flex hidden flex-col w-64 h-full text-sm bg-gray-50 overflow-hidden md:relative md:z-auto md:block md:w-1/5">
+        <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
         <div class="flex-grow p-2 pt-0 overflow-y-auto md:h-full">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
@@ -104,12 +104,13 @@
           <div id="year-list"></div>
           <div id="location-list"></div>
         </div>
-        <footer class="flex-none p-2 border-t md:hidden">
+        <div class="flex-none p-2 border-t md:hidden">
           <button id="close-filters-button" class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
-        </footer>
-      </section>
+        </div>
+      </div>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
-        <section class="flex items-center space-x-4 md:space-x-0">
+        <div class="flex items-center space-x-4 md:space-x-0">
+          <!-- Filter button -->
           <button id="filters-button" class="inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
             <!-- Heroicon name: solid/filter -->
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -122,7 +123,7 @@
             <span>Filter</span>
           </button>
           <span id="stats" class="my-1 pl-1 whitespace-nowrap"></span>
-        </section>
+        </div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
             <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" data-file-id="{{objectID}}">
