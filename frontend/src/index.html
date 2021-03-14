@@ -10,7 +10,7 @@
     <title>Pure Bhakti Archive</title>
   </head>
 
-  <body class="relative flex flex-col sm:h-screen">
+  <body class="relative flex flex-col overlayed:overflow-hidden sm:h-screen">
     <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
@@ -43,7 +43,7 @@
     <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
       <!-- Mobile menu button-->
       <div class="flex justify-end sm:hidden">
-        <button type="button" id="menu-button" class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
+        <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <!-- Icon when menu is closed. -->
           <!--
@@ -51,7 +51,7 @@
 
                   Menu open: "hidden", Menu closed: "block"
                 -->
-          <svg class="menu-toggle block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg data-menu-toggled class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           <!-- Icon when menu is open. -->
@@ -60,13 +60,13 @@
 
                   Menu open: "block", Menu closed: "hidden"
                 -->
-          <svg class="menu-toggle hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg data-menu-toggled class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       <!-- Menu items -->
-      <div class="menu-toggle hidden sm:block">
+      <div data-menu-toggled class="hidden sm:block">
         <div
           class="flex flex-col items-end justify-end pl-36 pr-4 py-2 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0 md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
         >
@@ -93,17 +93,37 @@
       </button>
     </div>
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <section id="filters" class="hidden p-2 w-1/5 max-w-sm text-sm overflow-y-scroll sm:block">
-        <div id="language-list"></div>
-        <div id="sound-quality-list"></div>
-        <div id="duration-menu"></div>
-        <div id="percentage-menu"></div>
-        <div id="category-list"></div>
-        <div id="year-list"></div>
-        <div id="location-list"></div>
-      </section>
+      <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-gray-50 md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+        <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
+        <div class="flex-grow p-2 pt-0 overflow-x-hidden overflow-y-auto">
+          <div id="language-list"></div>
+          <div id="sound-quality-list"></div>
+          <div id="duration-menu"></div>
+          <div id="percentage-menu"></div>
+          <div id="category-list"></div>
+          <div id="year-list"></div>
+          <div id="location-list"></div>
+        </div>
+        <div class="flex-none p-2 border-t md:hidden">
+          <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
+        </div>
+      </div>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
-        <div id="stats" class="my-1 pl-1 whitespace-nowrap"></div>
+        <div class="flex items-center space-x-4 md:space-x-0">
+          <!-- Filter button -->
+          <button data-filter-toggle class="inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
+            <!-- Heroicon name: solid/filter -->
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Filter</span>
+          </button>
+          <span id="stats" class="my-1 pl-1 whitespace-nowrap"></span>
+        </div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
             <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" data-file-id="{{objectID}}">
@@ -213,6 +233,7 @@
         <div id="pagination" class="mx-auto my-2 text-center"></div>
       </main>
     </div>
+    <div id="backdrop" data-filter-toggle class="md:open:hidden fixed z-10 inset-0 open:block hidden bg-black bg-opacity-50 md:hidden"></div>
     <script src="./app.js"></script>
   </body>
 </html>
