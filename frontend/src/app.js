@@ -172,6 +172,7 @@ search.addWidgets([
     transformItems: (items) =>
       items.map((item) => ({
         ...item,
+        idPadded: item.objectID.padStart(4, '0'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
         soundQualityRatingColor:
           soundQualityRatingColors[item.soundQualityRating],
