@@ -5,9 +5,11 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { DateTime } from 'luxon';
 import { AlgoliaRecord } from './AlgoliaRecord';
-import { parsePseudoISODate, Precision } from './dates';
+import {
+  formatReducedPrecisionDateForHumans,
+  parseReducedPrecisionIsoDate,
+} from './dates';
 import { Entry } from './Entry';
 import { categorizeLanguages, parseLanguages } from './languages';
 
@@ -23,32 +25,24 @@ function getLanguageAttributes(
   };
 }
 
-const getFormatOptions = (precision: Precision): Intl.DateTimeFormatOptions =>
-  precision === 'day'
-    ? DateTime.DATE_FULL
-    : precision === 'month'
-    ? {
-        year: 'numeric',
-        month: 'long',
-      }
-    : { year: 'numeric' };
-
 function getDateAttributes(
-  date: string
+  source: string
 ): Pick<AlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null {
-  const parsedDate = parsePseudoISODate(date);
+  if (!source) return null;
+
+  const date = parseReducedPrecisionIsoDate(source);
+  if (!date) return null;
+
   return {
-    dateISO: parsedDate?.iso,
+    dateISO: source,
     /**
      * Formatting date for free-text search according to precision.
      * - Full date: April 22, 1996
      * - Month: April 1996
      * - Year: 1996
      */
-    dateForHumans: parsedDate?.date.toLocaleString(
-      getFormatOptions(parsedDate.precision)
-    ),
-    year: parsedDate?.date.year,
+    dateForHumans: formatReducedPrecisionDateForHumans(date),
+    year: date.date.year,
   };
 }
 
