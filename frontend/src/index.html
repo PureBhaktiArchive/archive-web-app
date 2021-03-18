@@ -150,10 +150,14 @@
                     <!-- Date -->
                     {{#_highlightResult.dateForHumans}}
                     <div title="Date">{{{value}}}</div>
+                    {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
+                    <div>Date unknown</div>
                     {{/_highlightResult.dateForHumans}}
                     <!-- Location -->
                     {{#_highlightResult.location}}
                     <div title="Location">{{{value}}}</div>
+                    {{/_highlightResult.location}} {{^_highlightResult.location}}
+                    <div>Location unknown</div>
                     {{/_highlightResult.location}}
                     <!-- Category -->
                     {{#_highlightResult.category}}
