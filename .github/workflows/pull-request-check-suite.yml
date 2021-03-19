@@ -52,10 +52,11 @@ jobs:
             ${{ runner.os }}-npm-${{ github.job }}-
 
       - run: npm ci
+      - run: npm run lint
+      - run: npx htmlhint
       - run: npm run build
       - run: npm test
       - run: npx prettier --check .
-      - run: npx htmlhint
 
   # Job id should match the folder name because it's used in the expressions
   functions:
