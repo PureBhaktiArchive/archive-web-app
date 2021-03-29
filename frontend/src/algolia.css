@@ -314,7 +314,7 @@
   }
 
   .ais-SearchBox-input {
-    @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
+    /* @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow; */
 
     /* clears the 'X' from Internet Explorer */
     &::-ms-clear,
