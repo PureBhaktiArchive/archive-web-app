@@ -68,7 +68,7 @@
   }
 }
 body {
-  height: calc(100vh - 30rem) !important;
+  height: calc(100vh - 108px) !important;
 }
 @media (max-width: 640px) {
   body {
