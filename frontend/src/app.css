@@ -47,4 +47,38 @@
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;
   }
+  .seek-track-slider .track-slider::-webkit-slider-thumb {
+    @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+  }
+  .seek-track-slider .track-slider::-webkit-slider-runnable-track {
+    @apply h-1.5;
+  }
+  .seek-volume-slider .volume-slider::-webkit-slider-thumb {
+    @apply -mt-0.5 w-2.5 h-2.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+  }
+  .seek-volume-slider .volume-slider::-webkit-slider-runnable-track {
+    @apply h-1.5;
+  }
+
+  /* styles for Firefox */
+  .seek-track-slider .track-slider::-moz-range-thumb {
+    @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+  }
+  .seek-track-slider .track-slider::-moz-range-track {
+    @apply h-1.5;
+  }
+  .seek-volume-slider .volume-slider::-moz-range-thumb {
+    @apply -mt-0.5 w-2.5 h-2.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+  }
+  .seek-volume-slider .volume-slider::-moz-range-track {
+    @apply h-1.5;
+  }
+}
+body {
+  height: calc(100vh - 108px) !important;
+}
+@media (max-width: 640px) {
+  body {
+    height: calc(100vh - 200px) !important;
+  }
 }
