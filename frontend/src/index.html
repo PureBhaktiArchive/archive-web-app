@@ -177,7 +177,7 @@
         placeholder="Search for title, topics, locations, dates, etc."
         class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md rounded-none focus:outline-none appearance-none focus:ring-0"
       />
-      <button type="submit" class="shadow-sm sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md">
+      <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
@@ -197,13 +197,13 @@
           <div id="location-list"></div>
         </div>
         <div class="flex-none p-2 border-t md:hidden">
-          <button data-filter-toggle class="shadow-sm p-2 w-full text-white font-semibold bg-teal-800 rounded-md uppercase">Close</button>
+          <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
         </div>
       </div>
       <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
         <div class="flex items-center space-x-4 md:space-x-0">
           <!-- Filter button -->
-          <button data-filter-toggle class="shadow-sm inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md space-x-1 md:hidden">
+          <button data-filter-toggle class="inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
             <!-- Heroicon name: solid/filter -->
             <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path
@@ -218,7 +218,7 @@
         </div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
-            <article class="shadow-md flex flex-col mb-4 p-1 w-full bg-white rounded-sm sm:flex-row sm:p-4" data-file-id="{{objectID}}">
+            <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" data-file-id="{{objectID}}">
               <div class="flex flex-col flex-grow overflow-x-hidden">
                 <div class="flex items-start justify-between space-x-1">
                   <!-- Play button -->
@@ -293,7 +293,7 @@
                 <div class="relative text-xs border border-gray-300 rounded-lg overflow-hidden" title="How much Srila Gurudeva is speaking in the recording">
                   <!-- Changing delimiters to make interpolation in the `styles` attribute work -->
                   {{=^% %^=}}
-                  <div class="shadow-none absolute z-auto h-full bg-gray-300" style="width: ^%percentageRounded%^%"></div>
+                  <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
                   ^%={{ }}=%^
                   <div class="flex justify-between px-1.5 w-full opacity-95 space-x-2">
                     <span class="whitespace-nowrap">Srila Gurudeva</span>
