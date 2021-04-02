@@ -252,6 +252,8 @@
 
   .ais-Panel-header {
     @apply mb-2 text-xs font-bold uppercase;
+    @apply sticky top-0 bg-gray-50;
+  }
   }
 
   .ais-Panel-footer {
