@@ -220,7 +220,7 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
     })
 );
 
-// Sleek Slider and Volume Slider
+// Seek Slider and Volume Slider
 document.getElementById('progress').oninput = function () {
   var value = ((this.value - this.min) / (this.max - this.min)) * 100;
   this.style.background =
