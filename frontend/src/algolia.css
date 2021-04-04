@@ -251,9 +251,11 @@
     }
   }
 
+ 
   .ais-Panel-header {
-  @apply sticky -top-3 pb-0 pt-4 text-xs font-bold bg-gray-50 uppercase;
+    @apply sticky -top-3  pt-4 text-xs font-bold bg-gray-50 uppercase;
   }
+
 
 
   .ais-Panel-footer {
