@@ -197,7 +197,7 @@
   }
 
   .ais-RefinementList-label {
-    @apply flex items-baseline;
+    @apply flex items-baseline py-1;
   }
 
   .ais-RefinementList-labelText {
@@ -232,8 +232,9 @@
   }
 
   .ais-Panel {
-    @apply mt-4;
+    @apply mt-0;
   }
+
 
   .ais-Panel--collapsible {
     @apply relative;
@@ -251,8 +252,7 @@
   }
 
   .ais-Panel-header {
-    @apply mb-2 text-xs font-bold uppercase;
-    @apply sticky top-0 bg-gray-50;
+    @apply sticky -top-3 pb-0 pt-4 text-xs font-bold bg-gray-50 uppercase;
   }
   }
 
