@@ -107,7 +107,7 @@ export default functions
     );
 
     if (Number.isFinite(duration))
-      await change.after.ref.parent?.child('duration').set(duration);
+      await admin.database().ref('/audio/durations').child(id).set(duration);
     else functions.logger.warn('Could not extract duration.');
 
     return uploadTask;

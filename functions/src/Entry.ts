@@ -8,6 +8,5 @@ import { StorageFileReference } from './StorageFileReference';
 export interface Entry {
   contentDetails: ContentDetails;
   file: StorageFileReference;
-  duration?: number;
   obsolete?: boolean;
 }
