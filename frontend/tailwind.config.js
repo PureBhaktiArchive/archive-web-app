@@ -71,6 +71,9 @@ module.exports = {
         },
         teal: colors.teal,
       },
+      backgroundImage: (theme) => ({
+        fade: 'linear-gradient(to right, #ffffff00, #ffffff)',
+      }),
       cursor: {
         grab: 'grab',
       },
