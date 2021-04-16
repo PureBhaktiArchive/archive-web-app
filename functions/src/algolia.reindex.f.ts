@@ -50,14 +50,21 @@ export default functions.pubsub
   .schedule('every monday 00:00')
   .timeZone('Asia/Calcutta')
   .onRun(async () => {
-    const snapshot = await admin.database().ref('/audio/entries').once('value');
-
+    const [entriesSnapshot, durationsSnapshot] = await Promise.all([
+      admin.database().ref('/audio/entries').once('value'),
+      admin.database().ref('/audio/durations').once('value'),
+    ]);
+    const durations = new Map(
+      Object.entries(durationsSnapshot.val() as Record<string, number>)
+    );
     /**
      * Since we are using integer keys, Firebase can return either array or map:
      * https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
-    const records = Object.entries(snapshot.val() as Record<number, Entry>)
+    const records = Object.entries(
+      entriesSnapshot.val() as Record<string, Entry>
+    )
       .filter(([, entry]) => !entry.obsolete)
       .map<AlgoliaRecord>(([id, entry]) => ({
         objectID: id,
@@ -70,7 +77,7 @@ export default functions.pubsub
         ...getLanguageAttributes(entry.contentDetails.languages),
         percentage: entry.contentDetails.percentage,
         soundQualityRating: entry.contentDetails.soundQualityRating,
-        duration: entry.duration || null,
+        duration: durations.get(id) || null,
       }));
 
     const client = algoliasearch(
