@@ -151,13 +151,21 @@
                     <div title="Unique file identifier">#{{idPadded}}</div>
                     <!-- Date -->
                     {{#_highlightResult.dateForHumans}}
-                    <div title="Date">{{{value}}}</div>
+                    <div title="Date">
+                      {{{value}}} {{#dateUncertain}}
+                      <span title="Date is uncertain">&#x2BD1;</span>
+                      {{/dateUncertain}}
+                    </div>
                     {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
                     <div>Date unknown</div>
                     {{/_highlightResult.dateForHumans}}
                     <!-- Location -->
                     {{#_highlightResult.location}}
-                    <div title="Location">{{{value}}}</div>
+                    <div title="Location">
+                      {{{value}}} {{#locationUncertain}}
+                      <span title="Location is uncertain">&#x2BD1;</span>
+                      {{/locationUncertain}}
+                    </div>
                     {{/_highlightResult.location}} {{^_highlightResult.location}}
                     <div>Location unknown</div>
                     {{/_highlightResult.location}}

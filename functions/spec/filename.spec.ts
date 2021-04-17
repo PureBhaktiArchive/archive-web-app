@@ -18,9 +18,11 @@ describe('Filename', () => {
       const contentDetails: ContentDetails = {
         date,
         timeOfDay,
+        dateUncertain: false,
         languages,
         title,
         location,
+        locationUncertain: false,
         topics: '',
         topicsReady: false,
         category: '',

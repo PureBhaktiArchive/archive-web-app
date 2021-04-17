@@ -7,8 +7,10 @@ export interface ContentDetails {
   topics: string;
   topicsReady: boolean;
   date: string;
+  dateUncertain: boolean;
   timeOfDay: string;
   location: string;
+  locationUncertain: boolean;
   category: string;
   languages: string;
   percentage: number;
