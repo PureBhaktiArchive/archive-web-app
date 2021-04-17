@@ -10,8 +10,10 @@ export interface AlgoliaRecord {
   dateISO?: string;
   dateForHumans?: string;
   year?: number;
+  dateUncertain: boolean;
   timeOfDay: string;
   location: string;
+  locationUncertain: boolean;
   category: string;
   languages: string[];
   languageCategory?: string;
