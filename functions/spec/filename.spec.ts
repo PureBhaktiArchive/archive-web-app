@@ -22,6 +22,7 @@ describe('Filename', () => {
         title,
         location,
         topics: '',
+        topicsReady: false,
         category: '',
         percentage: 1,
         soundQualityRating: 'Good',
