@@ -20,6 +20,44 @@ export default functions
 
     const sourceFileRef = change.after.val() as StorageFileReference;
 
+    const sourceFile = admin
+      .storage()
+      .bucket(sourceFileRef.bucket)
+      .file(sourceFileRef.name, { generation: sourceFileRef.generation });
+
+    if (!(await sourceFile.exists()).shift()) {
+      functions.logger.warn(
+        'File',
+        sourceFileRef.bucket,
+        sourceFileRef.name,
+        sourceFileRef.generation,
+        'does not exist.'
+      );
+      return;
+    }
+
+    const mp3File = admin.storage().bucket().file(`${id}.mp3`);
+
+    if (
+      (await mp3File.exists()).shift() &&
+      mp3File.metadata.metadata?.sourceMd5Hash === sourceFile.metadata.md5Hash
+    ) {
+      functions.logger.debug(
+        'Hash of the source file is the same, skipping transcoding.'
+      );
+      return;
+    }
+
+    const uploadStream = mp3File.createWriteStream({
+      resumable: false, // Turning off to avoid consuming memory for the local storage of the file
+      metadata: {
+        metadata: {
+          source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
+          sourceMd5Hash: sourceFile.metadata.md5Hash,
+        },
+      },
+    });
+
     functions.logger.debug(
       'Transcoding file',
       id,
@@ -30,29 +68,13 @@ export default functions
       'to MP3'
     );
 
-    const sourceFile = admin
-      .storage()
-      .bucket(sourceFileRef.bucket)
-      .file(sourceFileRef.name, { generation: sourceFileRef.generation });
+    const uploadTask = new Promise((resolve, reject) =>
+      uploadStream.once('finish', resolve).once('error', reject)
+    );
 
     const contentDetails = (
       await change.after.ref.parent?.child('contentDetails').once('value')
     )?.val() as ContentDetails;
-
-    const mp3File = admin.storage().bucket().file(`${id}.mp3`);
-
-    const uploadStream = mp3File.createWriteStream({
-      resumable: false, // Turning off to avoid consuming memory for the local storage of the file
-      metadata: {
-        metadata: {
-          source: `${sourceFileRef.bucket}/${sourceFileRef.name}#${sourceFileRef.generation}`,
-        },
-      },
-    });
-
-    const uploadTask = new Promise((resolve, reject) =>
-      uploadStream.once('finish', resolve).once('error', reject)
-    );
 
     const duration = await new Promise<number>((resolve, reject) =>
       ffmpeg({ logger: functions.logger })
