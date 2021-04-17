@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["ES2018"],
+    "lib": ["ES2019"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -9,7 +9,7 @@
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "target": "ES2018"
+    "target": "ES2019"
   },
   "compileOnSave": true,
   "include": ["src"]
