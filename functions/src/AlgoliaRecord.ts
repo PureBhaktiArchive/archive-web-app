@@ -6,6 +6,7 @@ export interface AlgoliaRecord {
   objectID: string;
   title: string;
   topics: string;
+  topicsReady: boolean;
   dateISO?: string;
   dateForHumans?: string;
   year?: number;

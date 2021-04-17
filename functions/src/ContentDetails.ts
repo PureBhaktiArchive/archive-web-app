@@ -5,6 +5,7 @@
 export interface ContentDetails {
   title: string;
   topics: string;
+  topicsReady: boolean;
   date: string;
   timeOfDay: string;
   location: string;

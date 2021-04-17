@@ -70,6 +70,7 @@ export default functions.pubsub
         objectID: id,
         title: entry.contentDetails.title,
         topics: entry.contentDetails.topics,
+        topicsReady: entry.contentDetails.topicsReady,
         ...getDateAttributes(entry.contentDetails.date),
         timeOfDay: entry.contentDetails.timeOfDay,
         location: entry.contentDetails.location,
