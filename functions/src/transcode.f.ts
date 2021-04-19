@@ -7,6 +7,7 @@ import * as functions from 'firebase-functions';
 import ffmpeg from 'fluent-ffmpeg';
 import { Duration } from 'luxon';
 import { ContentDetails } from './ContentDetails';
+import { composeMediaMetadata, getFfmpegMetadataOptions } from './metadata';
 import { StorageFileReference } from './StorageFileReference';
 
 if (!admin.apps.length) admin.initializeApp();
@@ -88,20 +89,9 @@ export default functions
         .withOutputFormat('mp3')
         // Using the best reasonable quality https://github.com/gypified/libmp3lame/blob/f416c19b3140a8610507ebb60ac7cd06e94472b8/USAGE#L491
         .withOutputOption('-compression_level 2')
-        // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
-        .withOutputOption('-map_metadata -1')
-        .withOutputOption('-metadata', `BVNM Archive ID=${id}`)
-        .withOutputOption('-metadata', `title=${contentDetails?.title || ''}`)
-        .withOutputOption(
-          '-metadata',
-          `date=${contentDetails?.date?.substr(0, 4) || ''}`
+        .withOutputOptions(
+          getFfmpegMetadataOptions(composeMediaMetadata(id, contentDetails))
         )
-        .withOutputOptions([
-          // Required because Windows only supports version 3 of ID3v2 tags
-          '-id3v2_version 3',
-          // the ID3v1 version to create legacy v1.1 tags
-          '-write_id3v1 1',
-        ])
         .on('start', (commandLine) =>
           functions.logger.debug('Spawned ffmpeg with command', commandLine)
         )
