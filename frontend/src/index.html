@@ -109,7 +109,7 @@
           <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
         </div>
       </div>
-      <main class="flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
+      <main class="main flex flex-col flex-grow mx-2 w-4/5 overflow-y-auto sm:mx-4">
         <div class="flex items-center space-x-4 md:space-x-0">
           <!-- Filter button -->
           <button data-filter-toggle class="inline-flex items-center my-3 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
@@ -246,9 +246,9 @@
       <div class="relative">
         <div class="relative pb-0 pt-2">
           <div class="items-center md:flex">
-            <div class="flex flex-col-reverse items-center w-full sm:px-3 md:flex-row md:space-x-10">
+            <div class="flex flex-col-reverse items-center w-full sm:px-3 md:flex-row md:space-x-6">
               <div class="flex flex-col">
-                <div class="flex items-center mb-1 sm:mb-0">
+                <div class="flex items-center justify-between mb-1 sm:mb-0">
                   <button id="backward">
                     <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 24 24" width="28px" fill="#4b5563">
                       <path d="M0 0h24v24H0V0z" fill="none" />
@@ -257,7 +257,7 @@
                       />
                     </svg>
                   </button>
-                  <button class="mx-2" id="play">
+                  <button class="mx-2 md:mx-0" id="play">
                     <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="40px" fill="#4b5563">
                       <path d="M0 0h24v24H0V0z" fill="none" />
                       <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
@@ -277,7 +277,7 @@
                   </button>
                 </div>
                 <div>
-                  <div class="volume-slider hidden items-center sm:mt-1.5 md:flex">
+                  <div class="volume-slider hidden items-center sm:mt-1.5 md:flex md:mr-1">
                     <button id="volume-control">
                       <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#4b5563">
                         <path d="M0 0h24v24H0V0z" fill="none" />
@@ -296,20 +296,20 @@
                   </div>
                 </div>
               </div>
-              <div class="w-full md:mx-auto md:w-full">
+              <div class="w-full overflow-hidden md:mx-auto md:w-full">
                 <div class="relative w-full">
-                  <div class="flex-grow break-words font-semibold overflow-x-auto">
-                    <div class="absolute -left-1 top-0 w-10 h-6 bg-fade transform rotate-180 sm:hidden"></div>
+                  <div class="title flex-grow break-words font-semibold overflow-x-auto">
+                    <div class="absolute -left-3 top-0 w-10 h-6 bg-fade transform rotate-180"></div>
                     <div class="sm:whitespace-wrap whitespace-nowrap">
-                      <span class="mr-4"> </span>
+                      <span class="mr-2"> </span>
                       Q&A - The Love Between Krsna and Vrajavasis, How to Attain Perfection, etc.
                       <span class="ml-8"> </span>
                     </div>
-                    <div class="absolute -right-1 top-0 w-20 h-6 bg-fade sm:hidden"></div>
+                    <div class="absolute -right-1 top-0 w-20 h-6 bg-fade"></div>
                   </div>
-                  <div class="relative flex items-center justify-between px-3 sm:px-0">
-                    <div class="overflow-x-auto">
-                      <div class="children:last:border-0 flex children:mr-1 children:mt-1 children:pr-1 whitespace-nowrap text-xs children:border-r children:border-gray-300">
+                  <div class="relative flex items-center justify-between px-3 sm:mx-2 sm:px-0">
+                    <div class="tags overflow-x-auto">
+                      <div class="children:last:border-0 flex items-center children:mr-1 children:mt-1 children:pr-1 whitespace-nowrap text-xs children:border-r children:border-gray-300">
                         <span> #003 </span>
                         <span class="ml-2"> Srila Gurudeva 100% </span>
                         <span class="mx-1"> English </span>
@@ -320,7 +320,7 @@
                         </span>
                       </div>
                     </div>
-                    <div class="relative right-0 flex children:ml-1 children:pl-1 w-12 h-5 text-sm bg-fade divide-x sm:absolute sm:w-auto sm:h-auto">
+                    <div class="relative right-0 flex items-center children:ml-1 children:pl-1 w-12 h-5 text-sm bg-fade divide-x sm:absolute sm:w-auto sm:h-auto">
                       <!-- Download -->
                       <a href="/download/{{objectID}}" class="inline-flex space-x-1" title="Download file for listening offline">
                         <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -348,7 +348,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="seek-slider flex items-center pt-2 px-3 sm:px-0 sm:py-3">
+                <div class="seek-slider flex items-center pt-2 px-3 sm:mx-2 sm:px-0 sm:py-3">
                   <span class="teal-500 mr-2 text-xs">20:43</span>
                   <input type="range" id="progress" name="seek" min="0" max="100" value="0" class="track-slider relative w-full h-1.5 bg-gray-100 rounded-full focus:outline-none appearance-none" />
                   <span class="teal-500 ml-2 text-xs">00:00</span>
