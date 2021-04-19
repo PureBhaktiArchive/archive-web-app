@@ -182,6 +182,7 @@ search.addWidgets([
         playing:
           sounds.has(item.objectID) && sounds.get(item.objectID).playing(),
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
+        downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
       })),
   }),
   pagination({
