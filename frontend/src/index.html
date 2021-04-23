@@ -7,6 +7,7 @@
     <meta name="msapplication-navbutton-color" content="#115E59 " />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="shortcut icon" href="./favicon.png" />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <title>Pure Bhakti Archive</title>
   </head>
 
@@ -126,7 +127,7 @@
         </div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
-            <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" data-file-id="{{objectID}}">
+            <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" x-data="{is_open:false}" data-file-id="{{objectID}}">
               <div class="flex flex-col flex-grow overflow-x-hidden">
                 <div class="flex items-start justify-between space-x-1">
                   <!-- Play button -->
@@ -177,6 +178,7 @@
                     {{#_highlightResult.languages}}
                     <div title="Language spoken in the recording">{{{value}}}</div>
                     {{/_highlightResult.languages}}
+                    <a x-on:click="is_open=!is_open" href="#" class="flex flex-col flex-grow text-center">More...</a>
                   </div>
                   <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
                     <!-- Download -->
@@ -199,6 +201,11 @@
                       <span class="hidden lg:inline">Feedback</span>
                     </a>
                   </div>
+                </div>
+                <div x-show="is_open" @click="text_open=false" class="mt-1">
+                  {{#_highlightResult.topics}}
+                  <h3 title="{{topics}}">{{#helpers.highlight}} { "attribute": "title" }{{/helpers.highlight}}>{{{value}}}</h3>
+                  {{/_highlightResult.topics}}
                 </div>
               </div>
               <div
