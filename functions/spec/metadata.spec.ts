@@ -3,9 +3,9 @@
  */
 
 import { ContentDetails } from '../src/ContentDetails';
-import { composeFileName } from '../src/filename';
+import { composeFileName, composeMediaMetadata } from '../src/metadata';
 
-describe('Filename', () => {
+describe('File', () => {
   it.each`
     id   | date            | timeOfDay | languages          | title                        | location       | filename
     ${1} | ${'1998-06-22'} | ${'AM'}   | ${'English'}       | ${'Deep moods of Gopi Gita'} | ${'Badger'}    | ${'1998-06-22 AM ENG — Deep moods of Gopi Gita, Badger (#0001).mp3'}
@@ -13,7 +13,7 @@ describe('Filename', () => {
     ${3} | ${'1991'}       | ${null}   | ${'Hindi'}         | ${'Ragavartma Candrika'}     | ${'Mathura'}   | ${'1991 HIN — Ragavartma Candrika, Mathura (#0003).mp3'}
     ${4} | ${null}         | ${null}   | ${'English'}       | ${'Another lecture'}         | ${null}        | ${'UNDATED ENG — Another lecture (#0004).mp3'}
   `(
-    'for $id should be "$filename"',
+    '$id should have file name "$filename"',
     ({ id, date, timeOfDay, languages, title, location, filename }) => {
       const contentDetails: ContentDetails = {
         date,
@@ -33,4 +33,33 @@ describe('Filename', () => {
       expect(composeFileName(id, contentDetails)).toBe(filename);
     }
   );
+
+  it.each`
+    id     | date            | title
+    ${'1'} | ${'1998-06-22'} | ${'Deep moods of Gopi Gita'}
+    ${'2'} | ${'2000-11'}    | ${'Kartika Mahima'}
+    ${'3'} | ${'1991'}       | ${'Ragavartma Candrika'}
+    ${'4'} | ${null}         | ${'Another lecture'}
+  `('$id should have proper metadata', ({ id, date, title }) => {
+    const contentDetails: ContentDetails = {
+      date,
+      dateUncertain: false,
+      timeOfDay: '',
+      languages: '',
+      title,
+      location: '',
+      locationUncertain: false,
+      topics: '',
+      topicsReady: false,
+      category: '',
+      percentage: 1,
+      soundQualityRating: 'Good',
+    };
+
+    expect(composeMediaMetadata(id, contentDetails)).toEqual({
+      'BVNM Archive ID': String(id),
+      title: title,
+      date: date?.substr(0, 4),
+    });
+  });
 });

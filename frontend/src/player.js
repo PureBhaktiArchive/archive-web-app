@@ -40,7 +40,7 @@ window.togglePlay = function (/** @type {HTMLButtonElement} */ button) {
     sounds.set(
       fileId,
       new Howl({
-        src: `https://${process.env.STORAGE_HOST}/${fileId}.mp3`,
+        src: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${fileId}.mp3`,
         html5: true,
         autoplay: true,
       })
