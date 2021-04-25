@@ -44,6 +44,12 @@ export default functions
       entry.contentDetails
     );
 
+    /*
+     * Performing least operation possible
+     * depending on what was changed in the entry
+     */
+
+    // Transcoding from source if MP3 does not exist or the source file changed
     if (
       !(await mp3File.exists()).shift() ||
       mp3File.metadata.metadata?.sourceMd5Hash !== sourceFile.metadata.md5Hash
@@ -66,7 +72,10 @@ export default functions
       if (Number.isFinite(duration))
         await admin.database().ref('/audio/durations').child(id).set(duration);
       else functions.logger.warn('Could not extract duration.');
-    } else if (
+    }
+
+    // Updating media metadata if it changed
+    else if (
       !change.before.exists() ||
       !shallowlyEqual(
         composeMediaMetadata(id, entryBefore.contentDetails),
@@ -81,7 +90,10 @@ export default functions
         mediaMetadata,
         storageMetadata
       );
-    } else if (
+    }
+
+    // Updating only storage metadata if it changed
+    else if (
       !shallowlyEqual(
         composeStorageMetadata(id, sourceFile, entryBefore.contentDetails),
         storageMetadata
@@ -89,7 +101,10 @@ export default functions
     ) {
       functions.logger.debug('Updating storage metadata for file', id);
       await mp3File.setMetadata(storageMetadata);
-    } else
+    }
+
+    // Otherwise doing nothing
+    else
       functions.logger.debug(
         'Nothing essential changed in content details for file',
         id
