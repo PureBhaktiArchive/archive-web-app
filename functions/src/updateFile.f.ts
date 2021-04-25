@@ -147,7 +147,7 @@ const runCommandAsync = (command: FfmpegCommand): Promise<number> =>
       .on('error', reject)
       .on('end', (stdout, stderr) => {
         functions.logger.debug(stderr);
-        /**
+        /*
          * Sometimes `ffprobe` cannot extract duration from a stream and returns N/A.
          * Therefore it is officially suggested to get real duration by decoding:
          * https://trac.ffmpeg.org/wiki/FFprobeTips#Getdurationbydecoding
@@ -177,7 +177,7 @@ const composeStorageMetadata = (
   sourceFile: File,
   contentDetails: ContentDetails
 ): Partial<StorageFileMetadata> => ({
-  /**
+  /*
    * File name may need encoding according to RFC 5987 as we have non-ASCII characters.
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent#encoding_for_content-disposition_and_link_headers
    * https://stackoverflow.com/a/32782542/3082178
