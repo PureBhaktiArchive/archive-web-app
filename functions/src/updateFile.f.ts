@@ -177,6 +177,11 @@ const composeStorageMetadata = (
   sourceFile: File,
   contentDetails: ContentDetails
 ): Partial<StorageFileMetadata> => ({
+  /**
+   * File name may need encoding according to RFC 5987 as we have non-ASCII characters.
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent#encoding_for_content-disposition_and_link_headers
+   * https://stackoverflow.com/a/32782542/3082178
+   */
   contentDisposition: `attachment; filename="${composeFileName(
     id,
     contentDetails
