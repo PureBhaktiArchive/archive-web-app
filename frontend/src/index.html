@@ -7,7 +7,6 @@
     <meta name="msapplication-navbutton-color" content="#115E59 " />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="shortcut icon" href="./favicon.png" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     <title>Pure Bhakti Archive</title>
   </head>
 
@@ -178,10 +177,11 @@
                     {{#_highlightResult.languages}}
                     <div title="Language spoken in the recording">{{{value}}}</div>
                     {{/_highlightResult.languages}}
-                    <a x-on:click="is_open=!is_open" href="#" class="flex flex-col flex-grow text-center">More...</a>
+                    <!--Show Topics-->
+                    <div x-on:click="is_open=true" class="cursor-pointer">More...</div>
                   </div>
                   <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
-                    <!-- Download -->
+                    <!-- Download  -->
                     <a href="/download/{{objectID}}" class="inline-flex space-x-1" title="Download file for listening offline">
                       <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -202,11 +202,10 @@
                     </a>
                   </div>
                 </div>
-                <div x-show="is_open" @click="text_open=false" class="mt-1">
-                  {{#_highlightResult.topics}}
-                  <h3 title="{{topics}}">{{#helpers.highlight}} { "attribute": "title" }{{/helpers.highlight}}>{{{value}}}</h3>
-                  {{/_highlightResult.topics}}
-                </div>
+                <!--Topics discussed in the recording-->
+                {{#_highlightResult.topics}}
+                <p x-show="is_open" @click="text_open=false" class="mt-1">{{{value}}}</p>
+                {{/_highlightResult.topics}}
               </div>
               <div
                 class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-t border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:border-t-0 sm:space-x-0 sm:space-y-2"

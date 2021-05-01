@@ -2,7 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
+
 import algoliasearch from 'algoliasearch/lite';
+import 'alpinejs';
 import instantsearch from 'instantsearch.js';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
@@ -12,7 +14,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
