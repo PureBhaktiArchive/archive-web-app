@@ -13,6 +13,11 @@
     @apply focus:outline-none;
   }
 
+  html {
+    /* Avoiding tap highlight on Android which causes blink through the filter panel. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
   input[type='range'] {
     &::-webkit-slider-thumb {
       @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
