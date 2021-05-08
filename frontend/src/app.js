@@ -2,7 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-
 import algoliasearch from 'algoliasearch/lite';
 import 'alpinejs';
 import instantsearch from 'instantsearch.js';
@@ -14,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats
+  stats,
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
@@ -175,6 +174,7 @@ search.addWidgets([
       items.map((item) => ({
         ...item,
         idPadded: item.objectID.padStart(4, '0'),
+        topicsArray: item._highlightResult.topics.value.split('\n'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
         soundQualityRatingColor:
           soundQualityRatingColors[item.soundQualityRating],

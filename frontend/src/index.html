@@ -204,7 +204,11 @@
                 </div>
                 <!--Topics discussed in the recording-->
                 {{#_highlightResult.topics}}
-                <p x-show="is_open" @click="text_open=false" class="mt-1">{{{value}}}</p>
+                <div x-show="is_open" @click="text_open=false"><ul class="ml-7 mt-2 text-sm list-disc">
+                  {{#topicsArray}}
+                  <li>{{{.}}}</li>
+                  {{/topicsArray}}
+                </div>
                 {{/_highlightResult.topics}}
               </div>
               <div
