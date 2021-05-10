@@ -261,12 +261,12 @@
       </div>
     </div>
     <!-- Player UI -->
-    <div class="z-10 flex flex-none flex-col-reverse px-3 py-2 border-gray-300 rounded-t-md shadow-xl-around overflow-hidden md:flex-row md:space-x-6">
+    <div id="player" class="z-10 flex flex-none flex-col-reverse px-3 py-2 border-gray-300 rounded-t-md shadow-xl-around overflow-hidden md:flex-row md:space-x-6">
       <!-- Controls -->
       <div class="flex flex-col justify-between">
         <!-- Buttons -->
-        <div class="flex items-center justify-center mb-1 sm:mb-0 md:justify-between">
-          <button id="backward" class="w-7">
+        <div class="flex items-center justify-center mb-1 space-x-2 sm:mb-0 md:justify-between">
+          <button id="backward-button" class="w-7">
             <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path
@@ -274,17 +274,19 @@
               />
             </svg>
           </button>
-          <button class="mx-2 w-10 md:mx-0" id="play">
+          <button id="play-button" class="w-10">
             <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
             </svg>
+          </button>
+          <button id="pause-button" class="w-10">
             <svg class="hidden w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
             </svg>
           </button>
-          <button id="forward" class="w-7">
+          <button id="forward-button" class="w-7">
             <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path
@@ -315,21 +317,21 @@
       <!-- Metadata block -->
       <div class="overflow-hidden md:flex-grow">
         <!-- Title -->
-        <div class="no-scrollbar flex-grow whitespace-nowrap font-semibold overflow-x-auto">Q&A - The Love Between Krsna and Vrajavasis, How to Attain Perfection, etc.</div>
+        <div id="player-title" class="no-scrollbar flex-grow whitespace-nowrap font-semibold overflow-x-auto">Q&A - The Love Between Krsna and Vrajavasis, How to Attain Perfection, etc.</div>
         <!-- Second line with tags and actions -->
         <div class="flex mt-1 overflow-hidden space-x-2">
           <!-- Tags -->
           <div class="no-scrollbar children:not-first:pl-1 flex children:flex-none flex-grow text-xs children:border-gray-300 divide-x overflow-x-auto space-x-1">
             <!-- ID -->
-            <span title="Unique file identifier">#0000</span>
+            <span id="player-uid" title="Unique file identifier">#0000</span>
             <!-- Date -->
-            <span title="Date">December 7, 1990</span>
+            <span id="player-date" title="Date">December 7, 1990</span>
             <!-- Location -->
-            <span title="Location">Mumbai</span>
+            <span id="player-location" title="Location">Mumbai</span>
             <!-- Category -->
-            <span title="Category">Darsana</span>
+            <span id="player-category" title="Category">Darsana</span>
             <!-- Languages -->
-            <span title="Language spoken in the recording">English</span>
+            <span id="player-languages" title="Language spoken in the recording">English</span>
           </div>
           <!-- Actions -->
           <div class="children:not-first:pl-1 flex flex-none items-baseline text-xs divide-x space-x-1">
