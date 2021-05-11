@@ -3,6 +3,7 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "html.validate.styles": false,
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
     "other": true,
