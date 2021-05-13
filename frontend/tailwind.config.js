@@ -122,6 +122,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
     require('tailwindcss-children'),
     require('./tailwind-plugins/data-states'),
   ],
