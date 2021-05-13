@@ -263,7 +263,7 @@
   }
 
   .ais-Pagination-list {
-    @apply justify-center;
+    @apply pb-2 w-full overflow-auto;
   }
 
   .ais-Pagination-item {
