@@ -15,6 +15,10 @@
     overflow-anchor: none;
   }
 
+  .ais-InfiniteHits-loadMore {
+    @apply block mx-auto;
+  }
+
   .ais-Breadcrumb-list,
   .ais-Breadcrumb-item,
   .ais-Pagination-list,
