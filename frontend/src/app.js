@@ -3,6 +3,7 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
+import 'alpinejs';
 import instantsearch from 'instantsearch.js';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
@@ -17,6 +18,7 @@ import {
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
 import './app.css';
+import './modal';
 import { sounds } from './player';
 
 const searchClient = algoliasearch(

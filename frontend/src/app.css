@@ -17,6 +17,10 @@
     /* Avoiding tap highlight on Android which causes blink through the filter panel. */
     -webkit-tap-highlight-color: transparent;
   }
+
+  [x-cloak] {
+    display: none !important;
+  }
 }
 
 @layer utilities {
