@@ -75,7 +75,7 @@
           <a href="#">Series</a>
           <a href="#">Donate</a>
           <a href="#">Newsletter</a>
-          <a href="#">About</a>
+          <a href="" x-id="about-link" x-data="" @click.prevent="$dispatch('show-modal', 'about')">About</a>
         </div>
       </div>
     </nav>
@@ -252,6 +252,114 @@
       </main>
     </div>
     <div id="backdrop" data-filter-toggle class="md:open:hidden fixed z-10 inset-0 open:block hidden bg-black bg-opacity-50 md:hidden"></div>
+    <!-- Modal -->
+    <div x-data="modalComponent()" x-init="init()" x-cloak @show-modal.window="show()">
+      <!-- Backdrop -->
+      <div class="fixed z-30 inset-0 flex items-stretch p-6 bg-black bg-opacity-50" x-show="open">
+        <!-- Modal itself -->
+        <div
+          class="flex flex-col flex-grow items-stretch mx-auto py-4 max-w-screen-lg max-h-full bg-white rounded shadow-lg"
+          x-show="open"
+          x-transition:enter="transition motion-safe:ease-out duration-300"
+          x-transition:enter-start="opacity-0 transform scale-90"
+          x-transition:enter-end="opacity-100 transform scale-100"
+          @click.away="close()"
+          x-on:keydown.escape.window="close()"
+        >
+          <!-- Title / Close-->
+          <div class="flex flex-none items-center justify-between mx-6">
+            <h2 class="flex-grow mr-3 text-center text-xl font-medium leading-6">About</h2>
+            <button type="button" class="z-50 flex-none cursor-pointer" @click="close()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <!-- Content -->
+          <div class="flex-grow mt-6 px-6 overflow-y-auto">
+            <article class="prose prose-lg mx-auto text-justify">
+              <p>
+                Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual
+                day, he gave 3-4 classes and darsanas. So, as per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between
+                10,000-11,000! The website currently hosts 1,100 Audios, and progressively more and more audios will be uploaded as soon as they are finalised. We expect to have 3,000+ audios ready by
+                the end of 2021. We expect to launch all 10,000+ lectures by December 2023. This website will eventually also host Srila Gurudeva's organised Video Archive, Memories Archive as well as
+                other Media like News coverage, letters, etc. all of which will be populated over the coming years.
+              </p>
+              <p>
+                The website is equipped with a user-friendly filtration, search, playback and download options. The filtration and search features are instantly applied as you type or tick the options
+                in the filter panel. Search query that you type is sought through all the recording attributes like title, date, location, category, including the topics as well. For instance, if you
+                are looking for a lecture where Srila Gurudeva spoke about 'anyabhilasita sunyam', the results will include even those files which don't have these words in the title, but are listed
+                in the topics. You can additionally filter the audios on various parameters such as Sound Quality, Srila Gurudeva timings, Duration, Category, Language, Location & Year. Soon, we will
+                also add many lecture series such as Sri Vilapa Kusumanjali, Raya Ramananda Samvada, Venu Gita, Gopi Gita, Sri Brhad-bhagavatamrtam, etc.
+              </p>
+              <p>
+                Once you start playing any audio, the playback continues in the background while you can continue to filter and search for other audios. Soon we will add a more featured floating audio
+                player. Currently each file can be downloaded individually, but going forward we will be adding a bulk download option. Also, brief topics for each lecture, transcripts, and many more
+                usability features will be added in the upcoming months.
+              </p>
+              <p>
+                Although we have tried our best, we are sure there will still be ways to improve the audios and we look forward to your inputs - whether it is proposing a better title, or looking into
+                audio content issues. To enable this, the website has a feature where feedback can be provided for each audio specifically. Use a
+                <span class="whitespace-nowrap">
+                  Feedback button
+                  <svg class="inline-block w-4 h-auto stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
+                </span>
+                in the search result item for this. You can also give general feedback on the website using the 'Contact Us' menu item. Feel free to report any issue or propose an improvement or a new
+                functionality.
+              </p>
+              <h4>How we worked with the AUDIO FILES:</h4>
+              <p>
+                Although in the later years of Srila Gurudeva's preaching, lectures were officially recorded in an organised manner, this archive, to a great extent, has been aggregated from personal
+                cassette recordings of various devotees. We had to work with the raw material we had. You may notice several inconsistencies in the recordings - Some devotees only recorded when Srila
+                Gurudeva spoke and stopped recording when other speakers, called upon to speak by Srila Gurudeva, spoke. Some devotees had good quality recorders which auto-changed the cassette side
+                so that none of the recording was lost while changing sides. But in many cases some katha was lost while changing the cassette side. Thus we have a lot of cases of abrupt beginnings
+                and endings. Some devotees recorded in bits and pieces on different cassettes. This made it very difficult for us to piece together those lectures, especially if some of those
+                cassettes were missing or corrupt. If low quality cassettes were used, then the voice frequencies are impaired, some are warped and distorted. In such cases we just saved whatever we
+                could.
+              </p>
+              <p>To bring some method to the overall exercise, we followed these rules while working on these files:</p>
+              <ul>
+                <li>
+                  As far as possible, whatever Srila Gurudeva spoke, whether in a lecture or casually, has not been cut. Additionally all audios of kirtanas or other speakers recorded in Srila
+                  Gurudeva's presence have been retained. The only cases where they have been cut is when they are inaudible.
+                </li>
+                <li>When some part of the lecture is missing in between the lecture, we have left a 2 second silent space to indicate discontinuity.</li>
+                <li>Some recordings originally have glitches in them, which mostly sound like a pinched audio. We have left these as they are.</li>
+                <li>
+                  For the convenience of the listeners, the audios have been given a sound quality rating: Good, Average, Barely Audible.
+                  <ul>
+                    <li>
+                      Some recordings had very bad quality original sound, we have tried to restore them as much as possible, but the output may not be well-audible. They have been sound-rated
+                      accordingly.
+                    </li>
+                    <li>
+                      In some bad quality sound files which have recurring speed, distortion, or other such issues, we tried our best but not much could be done to make them clearly audible. Yet,
+                      these tapes have been retained for posterity. They have been given a sound rating accordingly, to call the listeners' attention to the fact that they can expect audibility
+                      issues.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  There are some recordings spoken by other guru varga like Srila BV Vamana Gosvami Maharaja, Srila BV Trivikrama Gosvami Maharaja, Srila BJ Janardhana Gosvami Maharaja, Srila BP Puri
+                  Gosvami Maharaja, etc. These have been restored and included in the archive.
+                </li>
+                <li>Srila Gurudeva Timings are indicative of how much Srila Gurudeva spoke in that file. They have been mentioned as 100% if its a conversation with devotees.</li>
+                <li>Some dates and/or locations are uncertain or unknown. In those cases you will notice a ? icon next to the date and/or location.</li>
+              </ul>
+              <p>To see the detailed process followed for each audio, please watch <a target="_blank" href="https://youtu.be/R-ZyCz38cEY">the video</a>.</p>
+              <p>Please forgive us for any shortcomings and we look forward to your feedback to help us improve.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="./app.js"></script>
   </body>
 </html>

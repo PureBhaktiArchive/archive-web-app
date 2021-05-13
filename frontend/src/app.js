@@ -18,6 +18,7 @@ import {
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
 import './app.css';
+import './modal';
 import { sounds } from './player';
 
 const searchClient = algoliasearch(
