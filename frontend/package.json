@@ -39,6 +39,7 @@
     "parcel-plugin-static-files-copy": "2.6.0",
     "postcss": "7.0.35",
     "postcss-preset-env": "6.7.0",
+    "posthtml-expressions": "1.7.1",
     "prettier": "2.2.0",
     "prettier-plugin-tailwind": "2.2.8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.1",
