@@ -9,6 +9,7 @@ module.exports = {
     'posthtml-expressions': {
       delimiters: ['{{%', '%}}'],
       locals: {
+        DONATION_URL: process.env.DONATION_URL,
       },
     },
   },
