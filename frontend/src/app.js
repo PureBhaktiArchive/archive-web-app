@@ -190,6 +190,7 @@ search.addWidgets([
     container: '#hits',
     templates: {
       item: document.getElementById('item-template').innerHTML,
+      empty: '',
     },
     transformItems: (items) =>
       items.map((item) => ({
