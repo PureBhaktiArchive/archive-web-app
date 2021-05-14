@@ -77,6 +77,20 @@ search.addWidgets([
 `,
     },
   }),
+  // Loading indicator
+  {
+    render: ({ searchMetadata = {} }) => {
+      const { isSearchStalled } = searchMetadata;
+      document
+        .getElementById('loading')
+        .classList.toggle('hidden', !isSearchStalled);
+      document
+        .getElementById('stats')
+        .classList.toggle('hidden', isSearchStalled);
+      if (!isSearchStalled)
+        document.getElementById('under-progress').classList.remove('hidden');
+    },
+  },
   panel({
     templates: {
       header: 'Location',

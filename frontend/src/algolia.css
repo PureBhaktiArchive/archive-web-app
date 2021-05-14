@@ -289,13 +289,6 @@
     }
   }
 
-  .ais-PoweredBy-text,
-  .rheostat-tooltip,
-  .rheostat-value,
-  .ais-Stats-text {
-    @apply text-sm;
-  }
-
   .ais-PoweredBy-logo {
     @apply ml-1;
   }
