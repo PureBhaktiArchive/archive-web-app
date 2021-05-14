@@ -197,11 +197,16 @@
   }
 
   .ais-RefinementList-item {
-    @apply mb-1;
+    @apply py-1;
+    break-inside: avoid;
   }
 
   .ais-RefinementList-label {
-    @apply flex items-baseline py-1;
+    @apply flex items-baseline;
+  }
+
+  .ais-RefinementList-checkbox {
+    @apply flex-none;
   }
 
   .ais-RefinementList-labelText {
@@ -212,7 +217,7 @@
   .ais-Menu-count,
   .ais-RefinementList-count,
   .ais-ToggleRefinement-count {
-    @apply self-end px-1.5 py-0.5 text-gray-400 text-xs;
+    @apply flex-none text-gray-400 text-xs;
   }
 
   .ais-HierarchicalMenu-showMore,
