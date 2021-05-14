@@ -25,7 +25,7 @@
   .ais-RangeInput-form,
   .ais-RatingMenu-link,
   .ais-PoweredBy {
-    @apply flex items-center;
+    @apply inline-flex;
   }
 
   .ais-GeoSearch,
@@ -262,8 +262,8 @@
     @apply mt-2 text-xs;
   }
 
-  .ais-Pagination-list {
-    @apply pb-2 w-full overflow-auto;
+  .ais-Pagination {
+    @apply pb-2 text-center overflow-x-auto;
   }
 
   .ais-Pagination-item {
