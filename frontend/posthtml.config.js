@@ -10,6 +10,7 @@ module.exports = {
       delimiters: ['{{%', '%}}'],
       locals: {
         DONATION_URL: process.env.DONATION_URL,
+        CONTACT_URL: process.env.CONTACT_URL,
       },
     },
   },
