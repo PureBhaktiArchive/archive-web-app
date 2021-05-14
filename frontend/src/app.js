@@ -16,6 +16,8 @@ import {
   stats,
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 import './algolia.css';
 import './app.css';
 import './modal';
@@ -223,3 +225,5 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
       toggleFilter(!isOpen);
     })
 );
+
+tippy('[data-tippy-content]');
