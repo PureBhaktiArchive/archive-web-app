@@ -137,6 +137,7 @@ search.addWidgets([
   })(refinementList)({
     container: '#year-list',
     attribute: 'year',
+    limit: 100,
     sortBy: ['name:asc'],
   }),
   panel({
