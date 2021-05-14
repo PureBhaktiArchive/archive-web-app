@@ -36,7 +36,10 @@ export default functions
       return;
     }
 
-    const mp3File = admin.storage().bucket().file(`${id}.mp3`);
+    const mp3File = admin
+      .storage()
+      .bucket(functions.config().storage?.bucket)
+      .file(`${id}.mp3`);
     const mediaMetadata = composeMediaMetadata(id, entry.contentDetails);
     const storageMetadata = composeStorageMetadata(
       id,
