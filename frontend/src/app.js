@@ -44,11 +44,10 @@ const languageCategories = {
   O: { label: 'English with translation to other languages', order: 8 },
 };
 
-const soundQualityOrder = ['Good', 'Average', 'Low'];
-const soundQualityRatingColors = {
-  Good: 'bg-green-100',
-  Average: 'bg-yellow-100',
-  Low: 'bg-red-100',
+const soundQualityRatingMapping = {
+  Good: { label: 'Good', order: 1, color: 'bg-green-100' },
+  Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
+  Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
 };
 
 search.addWidgets([
@@ -117,11 +116,15 @@ search.addWidgets([
   })(refinementList)({
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
-    sortBy: (a, b) => {
-      return (
-        soundQualityOrder.indexOf(a.name) - soundQualityOrder.indexOf(b.name)
-      );
-    },
+    sortBy: (a, b) =>
+      soundQualityRatingMapping[a.name].order -
+      soundQualityRatingMapping[b.name].order,
+    transformItems: (items) =>
+      items.map((item) => ({
+        ...item,
+        label: soundQualityRatingMapping[item.label].label || item.label,
+        highlighted: soundQualityRatingMapping[item.label].label || item.label,
+      })),
   }),
   panel({
     templates: {
@@ -179,8 +182,10 @@ search.addWidgets([
         ...item,
         idPadded: item.objectID.padStart(4, '0'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+        soundQualityRatingLabel:
+          soundQualityRatingMapping[item.soundQualityRating].label,
         soundQualityRatingColor:
-          soundQualityRatingColors[item.soundQualityRating],
+          soundQualityRatingMapping[item.soundQualityRating].color,
         durationForHumans: new Date(1000 * item.duration)
           .toISOString()
           .substr(11, 8),
