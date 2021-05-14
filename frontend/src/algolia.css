@@ -15,13 +15,17 @@
     overflow-anchor: none;
   }
 
+  .ais-InfiniteHits-loadMore {
+    @apply block mx-auto;
+  }
+
   .ais-Breadcrumb-list,
   .ais-Breadcrumb-item,
   .ais-Pagination-list,
   .ais-RangeInput-form,
   .ais-RatingMenu-link,
   .ais-PoweredBy {
-    @apply flex items-center;
+    @apply inline-flex;
   }
 
   .ais-GeoSearch,
@@ -258,8 +262,8 @@
     @apply mt-2 text-xs;
   }
 
-  .ais-Pagination-list {
-    @apply justify-center;
+  .ais-Pagination {
+    @apply pb-2 text-center overflow-x-auto;
   }
 
   .ais-Pagination-item {
@@ -350,5 +354,9 @@
   .ais-SearchBox-resetIcon,
   .ais-SearchBox-loadingIcon {
     @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current transform -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .ais-InfiniteHits-list {
+    @apply divide-y;
   }
 }

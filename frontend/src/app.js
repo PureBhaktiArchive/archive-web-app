@@ -51,7 +51,7 @@ const soundQualityRatingColors = {
 
 search.addWidgets([
   configure({
-    hitsPerPage: 100,
+    hitsPerPage: 30,
   }),
   connectSearchBox((renderOptions, isFirstRender) => {
     const { query, refine, widgetParams } = renderOptions;
