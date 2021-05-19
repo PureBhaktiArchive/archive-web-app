@@ -1,6 +1,14 @@
 # Frontend
 
-This sub-project contains the frontend part of the Archive. Mainly it is a single page application built with vanilla JS.
+This sub-project contains the frontend part of the Archive.
+
+## Technology stack
+
+- [Parcel.js](https://parceljs.org/) v1 as a bundler
+- [Tailwind CSS](https://tailwindcss.com/) as an utility-first CSS framework
+- [Alpine JS](https://github.com/alpinejs/alpine) as a JS framework
+- [Algolia InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/getting-started/js/) for search UI
+- [Howler.js](https://howlerjs.com/) as an audio library
 
 ## Environment variables
 
