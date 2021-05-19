@@ -2,17 +2,15 @@
   <i>sri sri guru gaurangau jayatah</i>
 </p>
 
-# Pure Bhakti Archive Web App
+# Srila Gurudeva’s Archive Web App
 
-## Technology stack
+## Architecture
 
-- JavaScript
-- Frontend (see [README](frontend/README.md))
-  - React
-  - Create React App
-- Backend (see [README](functions/README.md))
-  - [Firebase](https://firebase.google.com/docs/)
-  - [Algolia](https://www.algolia.com/doc/)
+The web app consists of the following components.
+
+- [Frontend](frontend) hosted at Firebase Hosting.
+- [Serverless Backend](functions) implemented as Cloud Functions for Firebase.
+- [Algolia](https://www.algolia.com/doc/) as an external search provider.
 
 ## Contributing
 
