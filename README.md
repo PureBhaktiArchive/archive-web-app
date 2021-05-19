@@ -8,8 +8,8 @@
 
 The web app consists of the following components.
 
-- [Frontend](frontend/README.md) hosted at Firebase Hosting.
-- [Serverless Backend](functions/README.md) implemented as Cloud Functions for Firebase.
+- [Frontend](frontend) hosted at Firebase Hosting.
+- [Serverless Backend](functions) implemented as Cloud Functions for Firebase.
 - [Algolia](https://www.algolia.com/doc/) as an external search provider.
 
 ## Contributing
