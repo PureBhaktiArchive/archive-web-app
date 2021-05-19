@@ -14,9 +14,13 @@ We're using a workflow similar to [GitHub flow](https://guides.github.com/introd
 
 1. Commit your changes.
 
-   - Make sure all commits are **logically [atomic](https://www.freshconsulting.com/atomic-commits/)**.
-   - When you merge `main` into your branch for resolving conflicts, **don't include any additional changes into the merge commit besides conflicts resolution**. Further code adjustments should be committed separately after merge.
-   - **Don't include irrelevant changes into commits.** Only changes aimed to resolve the task should be included into commits of the task branch. Inspect your changes attentively before committing. Use some good tool like TortoiseGIT or VSCode's built-in Source Control panel, it helps gaining control on what you commit. If you feel that some other code should be improved, let's discuss this and create a separate task.
+   - Make sure all commits are logically [atomic](https://www.freshconsulting.com/atomic-commits/).
+   - Don't include irrelevant changes into commits.
+
+     Only changes aimed to resolve the task should be included into commits of the task branch. Inspect your changes attentively before committing. Use some good tool like TortoiseGIT or VSCode's built-in Source Control panel, it helps gaining control on what you commit. If you feel that some other code should be improved, let's discuss this and create a separate task.
+
+     Particularly, when you merge `main` into your feature branch, don't include any additional changes into the merge commit besides conflicts resolution. Further code adjustments should be committed separately after merge.
+
    - Follow [Git Commit Message Styleguide](#git-commit-message) below.
 
 1. Push your branch to GitHub and create a [draft pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests#draft-pull-requests). It can be done directly from VSCode.
