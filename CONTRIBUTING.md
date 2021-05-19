@@ -12,9 +12,14 @@ We're using a workflow similar to [GitHub flow](https://guides.github.com/introd
    - Use `kebab-case` for a branch name.
    - Use short and descriptive branch name. For example, `continuous-integration` or `audio-player-position`.
 
-1. Commit your changes. See [Git Commits Styleguide](#git-commits) below.
+1. Commit your changes.
 
-1. Push your branch to GitHub and create a [draft pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests#draft-pull-requests).
+   - Make sure all commits are **logically [atomic](https://www.freshconsulting.com/atomic-commits/)**.
+   - When you merge `main` into your branch for resolving conflicts, **don't include any additional changes into the merge commit besides conflicts resolution**. Further code adjustments should be committed separately after merge.
+   - **Don't include irrelevant changes into commits.** Only changes aimed to resolve the task should be included into commits of the task branch. Inspect your changes attentively before committing. Use some good tool like TortoiseGIT or VSCode's built-in Source Control panel, it helps gaining control on what you commit. If you feel that some other code should be improved, let's discuss this and create a separate task.
+   - Follow [Git Commit Message Styleguide](#git-commit-message) below.
+
+1. Push your branch to GitHub and create a [draft pull request](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests#draft-pull-requests). It can be done directly from VSCode.
 
    - Name the pull request according to the Trello card and put the card link into the description of the pull request.
    - Pull request will be attached to the card automatically.
@@ -27,13 +32,31 @@ We're using a workflow similar to [GitHub flow](https://guides.github.com/introd
 
 ## Styleguides
 
-### Git Commits
+### Git Commit Message
 
-- **Use imperative present tense for the commit message first line.** Instead of “I added tests for…” or “Adding tests for…” use “Add tests for…” — [Source](https://www.git-scm.com/book/id/v2/Distributed-Git-Contributing-to-a-Project), [Also good to read](https://medium.com/@danielfeelfine/commit-verbs-101-why-i-like-to-use-this-and-why-you-should-also-like-it-d3ed2689ef70).
+- **Separate subject from body with a blank line**
 
-- **Don't include irrelevant changes into commits.** Only changes aimed to resolve the task should be included into commits of the task branch. Inspect your changes attentively before committing. Use some good tool like TortoiseGIT or VSCode's built-in Source Control panel, it helps gaining control on what you commit. If you feel that some other code should be improved, let's discuss this and create a separate task.
+  Not every commit requires both a subject and a body. Sometimes a single line is fine, especially when the change is so simple that no further context is necessary.
 
-- When you merge `main` into your branch for resolving conflicts, **don't include any additional changes into the merge commit besides conflicts resolution**. Further code adjustments should be committed separately after merge.
+- **Limit the subject line to 50 characters**
+
+  50 characters is not a hard limit, just a rule of thumb. Keeping subject lines at this length ensures that they are readable, and forces the author to think for a moment about the most concise way to explain what’s going on.
+
+- **Capitalize the subject line**
+
+- **Do not end the subject line with a period**
+
+- **Use the imperative mood in the subject line**
+
+  Imperative mood means “spoken or written as if giving a command or instruction”. Instead of “I&nbsp;added tests for…” or “Adding tests for…” use “Add tests for…” — [Source](https://www.git-scm.com/book/id/v2/Distributed-Git-Contributing-to-a-Project), [Also good to read](https://medium.com/@danielfeelfine/commit-verbs-101-why-i-like-to-use-this-and-why-you-should-also-like-it-d3ed2689ef70).
+
+- **Use the body to explain what and why vs. how**
+
+  In most cases, you can leave out details about how a change has been made. Code is generally self-explanatory in this regard (and if the code is so complex that it needs to be explained in prose, that’s what source comments are for). Just focus on making clear the reasons why you made the change in the first place—the way things worked before the change (and what was wrong with that), the way they work now, and why you decided to solve it the way you did.
+
+- **Wrap the body at 72 characters**
+
+Inspired by the following blog post: https://chris.beams.io/posts/git-commit/
 
 ### Code style
 
