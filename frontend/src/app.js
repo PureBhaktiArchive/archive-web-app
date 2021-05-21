@@ -248,22 +248,7 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
 
 tippy('[data-tippy-content]');
 
-// Sleek slider for track and volume
-document.getElementById('progress').oninput = function () {
-  var value = ((this.value - this.min) / (this.max - this.min)) * 100;
-  this.style.background =
-    'linear-gradient(to right, #2b5f5a 0%, #2b5f5a ' +
-    value +
-    '%, #e0e0e0 ' +
-    value +
-    '%, #e0e0e0 100%)';
-};
-document.getElementById('volume').oninput = function () {
-  var value = ((this.value - this.min) / (this.max - this.min)) * 100;
-  this.style.background =
-    'linear-gradient(to right, #2b5f5a 0%, #2b5f5a ' +
-    value +
-    '%, #e0e0e0 ' +
-    value +
-    '%, #e0e0e0 100%)';
+// Seek Slider and Volume Slider
+window.setRangeProgress = function (/** @type {HTMLInputElement} */ target) {
+  target.style.setProperty('--progress', target.value / target.max);
 };
