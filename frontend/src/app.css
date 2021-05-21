@@ -61,6 +61,18 @@
   .bg-lotus {
     background-image: url('images/lotus.png');
   }
+
+  /* Hide scrollbars, inspired by https://stackoverflow.com/a/66436651/3082178 */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Chrome, Safari and Opera */
+  /* Cannot use nesting here due to issue https://github.com/tailwindlabs/tailwindcss/issues/1833 */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
