@@ -18,22 +18,6 @@
     -webkit-tap-highlight-color: transparent;
   }
 
-  input[type='range'] {
-    &::-webkit-slider-thumb {
-      @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
-    }
-    &::-webkit-slider-runnable-track {
-      @apply h-1.5;
-    }
-
-    &::-moz-range-thumb {
-      @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
-    }
-    &::-moz-range-track {
-      @apply h-1.5;
-    }
-  }
-
   .title::-webkit-scrollbar,
   .tags::-webkit-scrollbar {
     @apply hidden;
@@ -83,5 +67,22 @@
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;
+  }
+
+  // Sliders
+  input[type='range'] {
+    &::-webkit-slider-thumb {
+      @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+    }
+    &::-webkit-slider-runnable-track {
+      @apply h-1.5;
+    }
+
+    &::-moz-range-thumb {
+      @apply -mt-1 w-3.5 h-3.5 bg-green-800 rounded-full appearance-none cursor-pointer;
+    }
+    &::-moz-range-track {
+      @apply h-1.5;
+    }
   }
 }
