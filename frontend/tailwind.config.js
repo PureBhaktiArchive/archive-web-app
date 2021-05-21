@@ -24,8 +24,7 @@ module.exports = {
     },
     extend: {
       boxShadow: {
-        upward:
-          '0 -6px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+        'xl-around': '0px 0px 25px 0px rgba(0,0,0,0.3)',
       },
       colors: {
         peach: {
@@ -118,7 +117,7 @@ module.exports = {
   ],
   variants: {
     extend: {
-      padding: ['children'],
+      padding: ['children', 'children-not-first'],
       margin: ['children'],
       borderColor: ['children'],
       borderWidth: ['children', 'children-last'],
@@ -126,6 +125,7 @@ module.exports = {
       backgroundColor: ['children'],
       display: ['open'],
       overflow: ['overlayed'],
+      flex: ['children'],
     },
   },
   plugins: [
