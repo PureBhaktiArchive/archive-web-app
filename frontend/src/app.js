@@ -256,7 +256,7 @@ document.getElementById('progress').oninput = function () {
     value +
     '%, #e0e0e0 ' +
     value +
-    '%, #fff 100%)';
+    '%, #e0e0e0 100%)';
 };
 document.getElementById('volume').oninput = function () {
   var value = ((this.value - this.min) / (this.max - this.min)) * 100;
@@ -265,5 +265,5 @@ document.getElementById('volume').oninput = function () {
     value +
     '%, #e0e0e0 ' +
     value +
-    '%, #fff 100%)';
+    '%, #e0e0e0 100%)';
 };
