@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import tippy from 'tippy.js';
@@ -21,7 +21,7 @@ import 'tippy.js/dist/tippy.css';
 import './algolia.css';
 import './app.css';
 import './modal';
-import { player } from './player';
+import './player';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -204,7 +204,7 @@ search.addWidgets([
         durationForHumans: new Date(1000 * item.duration)
           .toISOString()
           .substr(11, 8),
-        playing: player.isPlaying && player.currentFileId === item.objectID,
+        // playing: player.isPlaying && player.currentFileId === item.objectID,
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
         downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
       })),
