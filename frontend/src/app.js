@@ -21,7 +21,7 @@ import 'tippy.js/dist/tippy.css';
 import './algolia.css';
 import './app.css';
 import './modal';
-import { sounds } from './player';
+import { player } from './player';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -204,8 +204,7 @@ search.addWidgets([
         durationForHumans: new Date(1000 * item.duration)
           .toISOString()
           .substr(11, 8),
-        playing:
-          sounds.has(item.objectID) && sounds.get(item.objectID).playing(),
+        playing: player.isPlaying && player.currentFileId === item.objectID,
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
         downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
       })),
