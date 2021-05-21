@@ -21,253 +21,248 @@
     </script>
   </head>
 
-  <body class="relative flex flex-col justify-between overlayed:overflow-hidden sm:pb-0 sm:h-screen">
-    <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
-      <div class="relative mx-auto max-w-screen-xl">
-        <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
-        <div
-          class="bg-header-decor absolute right-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-right-top bg-no-repeat mobile-s:opacity-100 opacity-25 transform -scale-x-1 md:top-0 md:w-24 md:h-20"
-        ></div>
-        <div
-          class="relative z-10 px-1 py-3 text-center text-teal-800 font-header mobile-l:text-base mobile-m:text-sm text-xs font-semibold tracking-tighter sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
-        >
-          <span class="sm:flex sm:justify-center sm:space-x-3">
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
-            <span>
-              <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
-              <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
+  <body class="relative flex flex-col justify-between h-screen overlayed:overflow-hidden">
+    <!-- Wrapper to enable scrolling of the content above audio player on mobiles -->
+    <div class="flex flex-col flex-grow overflow-y-auto sm:overflow-y-hidden">
+      <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
+        <div class="relative mx-auto max-w-screen-xl">
+          <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
+          <div
+            class="bg-header-decor absolute right-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-right-top bg-no-repeat mobile-s:opacity-100 opacity-25 transform -scale-x-1 md:top-0 md:w-24 md:h-20"
+          ></div>
+          <div
+            class="relative z-10 px-1 py-3 text-center text-teal-800 font-header mobile-l:text-base mobile-m:text-sm text-xs font-semibold tracking-tighter sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
+          >
+            <span class="sm:flex sm:justify-center sm:space-x-3">
+              <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
+              <span>
+                <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
+                <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
+              </span>
+              <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1 sm:block"></span>
             </span>
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1 sm:block"></span>
-          </span>
-          <span class="lg:text-xl">
-            <span class="whitespace-nowrap">Sri Srimad</span>
-            <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">Bhaktivedanta Narayana Gosvami Maharaja</span>
-          </span>
+            <span class="lg:text-xl">
+              <span class="whitespace-nowrap">Sri Srimad</span>
+              <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">Bhaktivedanta Narayana Gosvami Maharaja</span>
+            </span>
+          </div>
+          <img
+            src="images/gurudeva.png"
+            alt="Srila Gurudeva"
+            class="absolute z-10 left-0 right-0 top-full mx-auto w-28 rounded-full transform -translate-y-3 sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
+          />
         </div>
-        <img
-          src="images/gurudeva.png"
-          alt="Srila Gurudeva"
-          class="absolute z-10 left-0 right-0 top-full mx-auto w-28 rounded-full transform -translate-y-3 sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
+      </header>
+      <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
+        <!-- Mobile menu button-->
+        <div class="flex justify-end sm:hidden">
+          <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <!-- Icon when menu is closed. -->
+            <!-- Heroicon name: outline/menu -->
+            <svg data-menu-toggled class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open. -->
+            <!-- Heroicon name: outline/x -->
+            <svg data-menu-toggled class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <!-- Menu items -->
+        <div data-menu-toggled class="hidden sm:block">
+          <div
+            class="flex flex-col items-end justify-end pl-36 pr-4 py-2 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0 md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
+          >
+            <a href="#">Audios</a>
+            <a class="cursor-pointer" data-tippy-content="Coming soon" data-tippy-placement="auto">Memories</a>
+            <a href="{% DONATION_URL %}" target="_blank">Donate</a>
+            <a href="{% CONTACT_URL %}" target="_blank">Contact</a>
+            <a href="" x-id="about-link" x-data="" @click.prevent="$dispatch('show-modal', 'about')">About</a>
+          </div>
+        </div>
+      </nav>
+
+      <div id="searchbox" class="flex mx-auto p-4 w-full max-w-screen-xl border-b sm:pl-36 md:pl-56 lg:pl-72">
+        <input
+          type="search"
+          placeholder="Search for title, topics, locations, dates, etc."
+          class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md rounded-none focus:outline-none appearance-none focus:ring-0"
         />
-      </div>
-    </header>
-    <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
-      <!-- Mobile menu button-->
-      <div class="flex justify-end sm:hidden">
-        <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <!-- Icon when menu is closed. -->
-          <!--
-                  Heroicon name: outline/menu
-
-                  Menu open: "hidden", Menu closed: "block"
-                -->
-          <svg data-menu-toggled class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <!-- Icon when menu is open. -->
-          <!--
-                  Heroicon name: outline/x
-
-                  Menu open: "block", Menu closed: "hidden"
-                -->
-          <svg data-menu-toggled class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <span class="hidden sm:inline">Search</span>
         </button>
       </div>
-      <!-- Menu items -->
-      <div data-menu-toggled class="hidden sm:block">
-        <div
-          class="flex flex-col items-end justify-end pl-36 pr-4 py-2 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0 md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
-        >
-          <a href="#">Audios</a>
-          <a class="cursor-pointer" data-tippy-content="Coming soon" data-tippy-placement="auto">Memories</a>
-          <a href="{% DONATION_URL %}" target="_blank">Donate</a>
-          <a href="{% CONTACT_URL %}" target="_blank">Contact</a>
-          <a href="" x-id="about-link" x-data="" @click.prevent="$dispatch('show-modal', 'about')">About</a>
+      <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
+        <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+          <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
+          <div class="flex-grow p-2 pt-0 overflow-x-hidden overflow-y-auto">
+            <div id="language-list"></div>
+            <div id="sound-quality-list"></div>
+            <div id="duration-menu"></div>
+            <div id="percentage-menu"></div>
+            <div id="category-list"></div>
+            <div id="year-list"></div>
+            <div id="location-list"></div>
+          </div>
+          <div class="flex-none p-2 border-t md:hidden">
+            <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
+          </div>
         </div>
-      </div>
-    </nav>
-
-    <div id="searchbox" class="flex mx-auto p-4 w-full max-w-screen-xl border-b sm:pl-36 md:pl-56 lg:pl-72">
-      <input
-        type="search"
-        placeholder="Search for title, topics, locations, dates, etc."
-        class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md rounded-none focus:outline-none appearance-none focus:ring-0"
-      />
-      <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span class="hidden sm:inline">Search</span>
-      </button>
-    </div>
-    <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
-        <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
-        <div class="flex-grow p-2 pt-0 overflow-x-hidden overflow-y-auto">
-          <div id="language-list"></div>
-          <div id="sound-quality-list"></div>
-          <div id="duration-menu"></div>
-          <div id="percentage-menu"></div>
-          <div id="category-list"></div>
-          <div id="year-list"></div>
-          <div id="location-list"></div>
-        </div>
-        <div class="flex-none p-2 border-t md:hidden">
-          <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
-        </div>
-      </div>
-      <main class="flex flex-col flex-grow px-2 w-4/5 overflow-y-auto sm:px-4">
-        <div class="flex items-center my-3">
-          <!-- Filter button -->
-          <button data-filter-toggle class="inline-flex items-center mr-4 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
-            <!-- Heroicon name: solid/filter -->
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fill-rule="evenodd"
-                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span>Filter</span>
-          </button>
-          <span id="stats" class="whitespace-nowrap text-sm"></span>
-          <span id="loading" class="text-gray-500 text-sm">Loading…</span>
-        </div>
-        <div id="hits">
-          <template id="item-template">
-            <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" data-file-id="{{objectID}}">
-              <!-- Main section -->
-              <div class="flex flex-grow items-start">
-                <!-- Play button -->
-                <button class="flex-none w-7 focus:outline-none fill-current" title="Play" type="button" onclick="togglePlay(this);">
-                  <!-- Material Icons: Play Arrow -->
-                  <svg class="play-icon {{#playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
-                  </svg>
-                  <!-- Material Icons: Pause -->
-                  <svg class="pause-icon {{^playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
-                  </svg>
-                </button>
-                <div class="flex-grow">
-                  <!-- First line -->
-                  <div class="flex items-start justify-between space-x-1">
-                    <!-- Title -->
-                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
-                    <!-- Duration -->
-                    <span class="flex-none" title="Duration">{{durationForHumans}}</span>
-                  </div>
-                  <!-- Second line -->
-                  <div class="flex items-end justify-between">
-                    <!-- Tags -->
-                    <div class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
-                      <!-- ID -->
-                      <div title="Unique file identifier">#{{idPadded}}</div>
-                      {{#_highlightResult.dateForHumans}}
-                      <div title="Date">
-                        {{{value}}} {{#dateUncertain}}
-                        <span title="Date is uncertain">(?)</span>
-                        {{/dateUncertain}}
-                      </div>
-                      {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
-                      <div>Date unknown</div>
-                      {{/_highlightResult.dateForHumans}} {{#_highlightResult.location}}
-                      <div title="Location">
-                        {{{value}}} {{#locationUncertain}}
-                        <span title="Location is uncertain">(?)</span>
-                        {{/locationUncertain}}
-                      </div>
-                      {{/_highlightResult.location}} {{^_highlightResult.location}}
-                      <div>Location unknown</div>
-                      {{/_highlightResult.location}} {{#_highlightResult.category}}
-                      <div title="Category">{{{value}}}</div>
-                      {{/_highlightResult.category}} {{#_highlightResult.languages}}
-                      <div title="Language spoken in the recording">{{{value}}}</div>
-                      {{/_highlightResult.languages}}
+        <main class="flex flex-col flex-grow px-2 w-4/5 sm:px-4">
+          <div class="flex items-center my-3">
+            <!-- Filter button -->
+            <button data-filter-toggle class="inline-flex items-center mr-4 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
+              <!-- Heroicon name: solid/filter -->
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              <span>Filter</span>
+            </button>
+            <span id="stats" class="whitespace-nowrap text-sm"></span>
+            <span id="loading" class="text-gray-500 text-sm">Loading…</span>
+          </div>
+          <div id="hits">
+            <template id="item-template">
+              <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" data-file-id="{{objectID}}">
+                <!-- Main section -->
+                <div class="flex flex-grow items-start">
+                  <!-- Play button -->
+                  <button class="flex-none w-7 focus:outline-none fill-current" title="Play" type="button" onclick="togglePlay(this);">
+                    <!-- Material Icons: Play Arrow -->
+                    <svg class="play-icon {{#playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
+                    </svg>
+                    <!-- Material Icons: Pause -->
+                    <svg class="pause-icon {{^playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
+                    </svg>
+                  </button>
+                  <div class="flex-grow">
+                    <!-- First line -->
+                    <div class="flex items-start justify-between space-x-1">
+                      <!-- Title -->
+                      <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
+                      <!-- Duration -->
+                      <span class="flex-none" title="Duration">{{durationForHumans}}</span>
                     </div>
-                    <!-- Actions -->
-                    <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
-                      <!-- Download -->
-                      <a href="{{downloadURL}}" class="inline-flex space-x-1" title="Download file for listening offline">
-                        <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        <span class="hidden lg:inline">Download</span>
-                      </a>
-                      <!-- Feedback -->
-                      <a
-                        href="{{feedbackURL}}"
-                        target="_blank"
-                        class="inline-flex space-x-1"
-                        title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
-                      >
-                        <svg class="w-4 h-full stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                          />
-                        </svg>
-                        <span class="hidden lg:inline">Feedback</span>
-                      </a>
+                    <!-- Second line -->
+                    <div class="flex items-end justify-between">
+                      <!-- Tags -->
+                      <div class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
+                        <!-- ID -->
+                        <div title="Unique file identifier">#{{idPadded}}</div>
+                        {{#_highlightResult.dateForHumans}}
+                        <div title="Date">
+                          {{{value}}} {{#dateUncertain}}
+                          <span title="Date is uncertain">(?)</span>
+                          {{/dateUncertain}}
+                        </div>
+                        {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
+                        <div>Date unknown</div>
+                        {{/_highlightResult.dateForHumans}} {{#_highlightResult.location}}
+                        <div title="Location">
+                          {{{value}}} {{#locationUncertain}}
+                          <span title="Location is uncertain">(?)</span>
+                          {{/locationUncertain}}
+                        </div>
+                        {{/_highlightResult.location}} {{^_highlightResult.location}}
+                        <div>Location unknown</div>
+                        {{/_highlightResult.location}} {{#_highlightResult.category}}
+                        <div title="Category">{{{value}}}</div>
+                        {{/_highlightResult.category}} {{#_highlightResult.languages}}
+                        <div title="Language spoken in the recording">{{{value}}}</div>
+                        {{/_highlightResult.languages}}
+                      </div>
+                      <!-- Actions -->
+                      <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
+                        <!-- Download -->
+                        <a href="{{downloadURL}}" class="inline-flex space-x-1" title="Download file for listening offline">
+                          <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                          </svg>
+                          <span class="hidden lg:inline">Download</span>
+                        </a>
+                        <!-- Feedback -->
+                        <a
+                          href="{{feedbackURL}}"
+                          target="_blank"
+                          class="inline-flex space-x-1"
+                          title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
+                        >
+                          <svg class="w-4 h-full stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                            />
+                          </svg>
+                          <span class="hidden lg:inline">Feedback</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <!-- Complimentary section -->
-              <div
-                class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:space-x-0 sm:space-y-2"
-              >
-                {{#percentage}}
-                <div class="relative text-xs border border-gray-300 rounded-lg overflow-hidden" title="How much Srila Gurudeva is speaking in the recording">
-                  {{=^% %^=}}<!-- Changing delimiters to make interpolation in the `styles` attribute work -->
-                  <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
-                  ^%={{ }}=%^
-                  <div class="flex justify-between px-1.5 w-full opacity-95 space-x-2">
-                    <span class="whitespace-nowrap">Srila Gurudeva</span>
-                    <span>{{percentageRounded}}%</span>
+                <!-- Complimentary section -->
+                <div
+                  class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:space-x-0 sm:space-y-2"
+                >
+                  {{#percentage}}
+                  <div class="relative text-xs border border-gray-300 rounded-lg overflow-hidden" title="How much Srila Gurudeva is speaking in the recording">
+                    {{=^% %^=}}<!-- Changing delimiters to make interpolation in the `styles` attribute work -->
+                    <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
+                    ^%={{ }}=%^
+                    <div class="flex justify-between px-1.5 w-full opacity-95 space-x-2">
+                      <span class="whitespace-nowrap">Srila Gurudeva</span>
+                      <span>{{percentageRounded}}%</span>
+                    </div>
                   </div>
+                  {{/percentage}} {{#soundQualityRating}}
+                  <div class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
+                    <svg class="flex-none w-4 h-4 stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <path
+                        d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                      />
+                      <path
+                        d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-miterlimit="10"
+                        stroke-width="32"
+                      />
+                    </svg>
+                    <span>{{soundQualityRatingLabel}}</span>
+                  </div>
+                  {{/soundQualityRating}}
                 </div>
-                {{/percentage}} {{#soundQualityRating}}
-                <div class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
-                  <svg class="flex-none w-4 h-4 stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path
-                      d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="32"
-                    />
-                    <path
-                      d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-miterlimit="10"
-                      stroke-width="32"
-                    />
-                  </svg>
-                  <span>{{soundQualityRatingLabel}}</span>
-                </div>
-                {{/soundQualityRating}}
-              </div>
-            </article>
-          </template>
-        </div>
-        <div id="pagination" class="my-2 w-full"></div>
-        <p id="under-progress" class="hidden p-2 text-center text-gray-500 text-sm">
-          This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added every month. If you don’t find the audio you are looking for, we request you to
-          check again later.
-        </p>
-      </main>
+              </article>
+            </template>
+          </div>
+          <div id="pagination" class="my-2 w-full"></div>
+          <p id="under-progress" class="hidden p-2 text-center text-gray-500 text-sm">
+            This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added every month. If you don’t find the audio you are looking for, we request you to
+            check again later.
+          </p>
+        </main>
+      </div>
     </div>
 
     <!-- player UI design -->
-    <div class="relative z-10 bottom-0 w-full bg-white border border-solid border-gray-300 rounded-t-md shadow-upward">
+    <div class="relative z-10 bottom-0 flex-none w-full bg-white border border-solid border-gray-300 rounded-t-md shadow-upward">
       <div class="relative">
         <div class="relative pb-0 pt-2">
           <div class="items-center md:flex">
