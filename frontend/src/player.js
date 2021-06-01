@@ -5,7 +5,8 @@
 import { Howl } from 'howler';
 
 window.player = () => ({
-  open: false,
+  isOpen: false,
+  isPlaying: false,
   /** @type {string} */ fileId: null,
   metadata: {
     /** @type {string} */ title: null,
@@ -16,53 +17,61 @@ window.player = () => ({
   },
   /** @type {Howl} */ howl: null,
 
-  $dispatch: null,
-
   init() {
-    this.$watch('fileId', () => this.changeFile());
+    this.$watch('isPlaying', (value) => {
+      // Dispatching event to the search result
+      window.dispatchEvent(
+        new CustomEvent(`archive:toggle-play-${this.fileId}`, {
+          detail: { isPlaying: value },
+        })
+      );
+    });
   },
 
-  changeFile() {
-    console.log('Current file ID changed to', this.fileId);
-    if (this.howl) {
-      this.howl.stop();
-      this.howl.unload();
+  /**
+   * Handles `archive:toggle-play` event from the search result item
+   * @param {CustomEvent} $event
+   */
+  loadFile({ detail: item }) {
+    if (item.fileId === this.fileId) {
+      this.togglePlay();
+      return;
     }
+
+    this.fileId = item.fileId;
+    this.metadata = item.metadata;
+    this.isOpen = true;
+
+    if (this.howl) this.howl.unload();
 
     this.howl = new Howl({
       src: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${this.fileId}.mp3`,
       html5: true,
       autoplay: true,
+      onplay: () => {
+        this.isPlaying = true;
+      },
+      onpause: () => (this.isPlaying = false),
+      onstop: () => (this.isPlaying = false),
+      onend: () => (this.isPlaying = false),
+      // TODO: handle load error and add loading indication
     });
-    // .on('play', () => this.switchPlayButton(this.fileId, true))
-    // .on('pause', () => this.switchPlayButton(this.fileId, false))
-    // .on('stop', () => this.switchPlayButton(this.fileId, false))
-    // .once('end', () => this.switchPlayButton(this.fileId, false))
   },
 
   togglePlay() {
-    console.log('Toggled');
-    if (!this.fileId) return;
+    if (!this.howl) return;
 
-    if (this.howl && this.howl.playing()) {
-      this.pause();
-      return;
-    }
-
-    this.open = true;
+    if (this.howl.playing()) this.howl.pause();
+    else this.howl.play();
   },
 
   // For x-spread
   self: {
-    'x-show.transition': 'open',
-    '@archive:toggle-play.window'({ detail }) {
-      this.fileId = detail.fileId;
-      this.metadata = detail.metadata;
-      this.open = true;
-    },
+    'x-show.transition': 'isOpen',
+    '@archive:toggle-play.window': 'loadFile',
   },
   playButton: {
-    '@click': 'togglePlay($dispatch)',
+    '@click': 'togglePlay',
   },
   backwardButton: {},
   forwardButton: {},

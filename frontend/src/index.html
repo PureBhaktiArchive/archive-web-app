@@ -132,17 +132,17 @@
           </div>
           <div id="hits">
             <template id="item-template">
-              <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" x-data="searchResultItem({{objectID}})" x-id="Search Result {{objectID}}" data-file-id="{{objectID}}">
+              <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" x-data="searchResultItem({{objectID}})" x-id="Search Result {{objectID}}" data-file-id="{{objectID}}" x-spread="self">
                 <!-- Main section -->
                 <div class="flex flex-grow items-start">
                   <!-- Play button -->
                   <button class="flex-none w-7 focus:outline-none fill-current" title="Play" type="button" x-spread="playButton">
                     <!-- Material Icons: Play Arrow -->
-                    <svg class="play-icon {{#playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg x-show="!isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
                     </svg>
                     <!-- Material Icons: Pause -->
-                    <svg class="pause-icon {{^playing}}hidden{{/playing}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg x-show="isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
                     </svg>
                   </button>
@@ -282,11 +282,11 @@
             </svg>
           </button>
           <button x-spread="playButton" class="w-10">
-            <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
+            <svg x-show="!isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
             </svg>
-            <svg class="hidden w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
+            <svg x-show="isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4b5563">
               <path d="M0 0h24v24H0V0z" fill="none" />
               <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
             </svg>
