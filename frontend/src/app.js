@@ -22,6 +22,7 @@ import './algolia.css';
 import './app.css';
 import './modal';
 import './player';
+import './search-result-item';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
