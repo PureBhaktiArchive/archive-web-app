@@ -21,7 +21,7 @@ window.searchResultItem = (fileId) => {
         new CustomEvent('archive:toggle-play', {
           detail: {
             fileId: this.fileId,
-            isPlaying: this.isPlaying,
+            shouldPlay: !this.isPlaying,
             metadata: { ...this.metadata },
           },
         })

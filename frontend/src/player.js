@@ -18,51 +18,63 @@ window.player = () => ({
   /** @type {Howl} */ howl: null,
 
   init() {
-    this.$watch('isPlaying', (value) => {
-      // Dispatching event to the search result
-      window.dispatchEvent(
-        new CustomEvent(`archive:toggle-play-${this.fileId}`, {
-          detail: { isPlaying: value },
-        })
-      );
-    });
+    // Syncing state between the player and the search result item
+    this.$watch('isPlaying', (value) =>
+      this.dispatchEventToSearchResultItem(value)
+    );
+  },
+
+  dispatchEventToSearchResultItem(value) {
+    window.dispatchEvent(
+      new CustomEvent(`archive:toggle-play-${this.fileId}`, {
+        detail: { isPlaying: value },
+      })
+    );
   },
 
   /**
    * Handles `archive:toggle-play` event from the search result item
    * @param {CustomEvent} $event
    */
-  loadFile({ detail: item }) {
-    if (item.fileId === this.fileId) {
-      this.togglePlay();
+  loadFile({ detail: { fileId, metadata, shouldPlay } }) {
+    if (fileId === this.fileId) {
+      this.togglePlay(shouldPlay);
       return;
     }
 
-    this.fileId = item.fileId;
-    this.metadata = item.metadata;
+    if (this.howl) {
+      this.isPlaying = false;
+      this.howl.unload();
+    }
+
+    this.fileId = fileId;
+    this.metadata = metadata;
     this.isOpen = true;
-
-    if (this.howl) this.howl.unload();
-
+    this.isPlaying = shouldPlay;
     this.howl = new Howl({
-      src: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${this.fileId}.mp3`,
+      src: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${fileId}.mp3`,
       html5: true,
-      autoplay: true,
-      onplay: () => {
-        this.isPlaying = true;
-      },
-      onpause: () => (this.isPlaying = false),
-      onstop: () => (this.isPlaying = false),
+      autoplay: shouldPlay,
       onend: () => (this.isPlaying = false),
       // TODO: handle load error and add loading indication
-    });
+    })
+      .on('load', () => console.log('Loaded', fileId))
+      .on('stop', () => console.log('Stopped', fileId))
+      .on('end', () => console.log('Ended', fileId))
+      .on('play', () => console.log('Playing', fileId))
+      .on('pause', () => console.log('Paused', fileId));
   },
 
-  togglePlay() {
+  /**
+   * Toggles the playing state, or sets it to the passed value
+   * @param {boolean} value Optional state: playing or not
+   */
+  togglePlay(value) {
     if (!this.howl) return;
 
-    if (this.howl.playing()) this.howl.pause();
-    else this.howl.play();
+    this.isPlaying = value || !this.isPlaying;
+    if (this.isPlaying) this.howl.play();
+    else this.howl.pause();
   },
 
   // For x-spread
@@ -71,7 +83,7 @@ window.player = () => ({
     '@archive:toggle-play.window': 'loadFile',
   },
   playButton: {
-    '@click': 'togglePlay',
+    '@click': 'togglePlay()',
   },
   backwardButton: {},
   forwardButton: {},
