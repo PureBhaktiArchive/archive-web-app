@@ -26,7 +26,6 @@
     ]
   },
   "devDependencies": {
-    "@types/howler": "2.2.1",
     "babel-eslint": "10.1.0",
     "eslint": "7.14.0",
     "eslint-config-prettier": "6.15.0",
@@ -50,7 +49,6 @@
     "algoliasearch": "4.8.0",
     "alpine-magic-helpers": "1.2.2",
     "alpinejs": "2.8.2",
-    "howler": "2.2.1",
     "instantsearch.js": "4.8.7",
     "tippy.js": "6.3.1"
   }

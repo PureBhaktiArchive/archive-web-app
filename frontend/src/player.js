@@ -2,8 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { Howl } from 'howler';
-
 window.player = () => ({
   isOpen: false,
   isPlaying: false,
@@ -15,7 +13,7 @@ window.player = () => ({
     /** @type {string} */ category: null,
     /** @type {string[]} */ languages: null,
   },
-  /** @type {Howl} */ howl: null,
+  audio: new Audio(),
 
   init() {
     // Syncing state between the player and the search result item
@@ -42,27 +40,16 @@ window.player = () => ({
       return;
     }
 
-    if (this.howl) {
-      this.isPlaying = false;
-      this.howl.unload();
-    }
+    // Sending event to the previously played search result item
+    if (this.fileId && this.isPlaying) this.isPlaying = false;
 
     this.fileId = fileId;
     this.metadata = metadata;
     this.isOpen = true;
     this.isPlaying = shouldPlay;
-    this.howl = new Howl({
-      src: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${fileId}.mp3`,
-      html5: true,
-      autoplay: shouldPlay,
-      onend: () => (this.isPlaying = false),
-      // TODO: handle load error and add loading indication
-    })
-      .on('load', () => console.log('Loaded', fileId))
-      .on('stop', () => console.log('Stopped', fileId))
-      .on('end', () => console.log('Ended', fileId))
-      .on('play', () => console.log('Playing', fileId))
-      .on('pause', () => console.log('Paused', fileId));
+
+    this.audio.src = `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${fileId}.mp3`;
+    if (shouldPlay) this.audio.play();
   },
 
   /**
@@ -70,11 +57,11 @@ window.player = () => ({
    * @param {boolean} value Optional state: playing or not
    */
   togglePlay(value) {
-    if (!this.howl) return;
+    if (!this.fileId) return;
 
     this.isPlaying = value || !this.isPlaying;
-    if (this.isPlaying) this.howl.play();
-    else this.howl.pause();
+    if (this.isPlaying) this.audio.play();
+    else this.audio.pause();
   },
 
   // For x-spread
