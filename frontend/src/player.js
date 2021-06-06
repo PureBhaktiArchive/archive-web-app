@@ -104,4 +104,7 @@ window.player = () => ({
   },
   backwardButton: {},
   forwardButton: {},
+  seekSlider: {
+    'x-bind:max': 'duration',
+  },
 });

@@ -361,7 +361,7 @@
         <!-- Seek control with timings -->
         <div class="flex items-center h-6 space-x-2">
           <span class="text-xs">20:43</span>
-          <input type="range" id="progress" name="seek" min="0" max="2000" value="0" oninput="setRangeProgress(this);" class="flex-grow h-1.5" />
+          <input type="range" min="0" x-spread="seekSlider" class="flex-grow h-1.5" />
           <span x-text="durationForHumans" class="text-xs"></span>
         </div>
       </div>
