@@ -322,7 +322,7 @@
       <!-- Main block -->
       <div class="overflow-hidden md:flex-grow">
         <!-- Title -->
-        <div x-text="metadata.title" class="no-scrollbar flex-grow whitespace-nowrap font-semibold overflow-x-auto"></div>
+        <div x-text="contentDetails.title" class="no-scrollbar flex-grow whitespace-nowrap font-semibold overflow-x-auto"></div>
         <!-- Second line with tags and actions -->
         <div class="flex mt-1 overflow-hidden space-x-2">
           <!-- Tags -->
@@ -330,13 +330,13 @@
             <!-- ID -->
             <span title="Unique file identifier">#<span x-text="fileId"></span></span>
             <!-- Date -->
-            <span x-text="metadata.date" title="Date"></span>
+            <span x-text="contentDetails.date" title="Date"></span>
             <!-- Location -->
-            <span x-text="metadata.location" title="Location"></span>
+            <span x-text="contentDetails.location" title="Location"></span>
             <!-- Category -->
-            <span x-text="metadata.category" title="Category"></span>
+            <span x-text="contentDetails.category" title="Category"></span>
             <!-- Languages -->
-            <template x-for="language in metadata.languages" :key="language">
+            <template x-for="language in contentDetails.languages" :key="language">
               <span x-text="language" title="Language spoken in the recording"></span>
             </template>
           </div>
@@ -362,7 +362,7 @@
         <div class="flex items-center h-6 space-x-2">
           <span class="text-xs">20:43</span>
           <input type="range" id="progress" name="seek" min="0" max="2000" value="0" oninput="setRangeProgress(this);" class="flex-grow h-1.5" />
-          <span class="text-xs">00:00</span>
+          <span x-text="durationForHumans" class="text-xs"></span>
         </div>
       </div>
     </div>

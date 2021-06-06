@@ -6,19 +6,49 @@ window.player = () => ({
   isOpen: false,
   isPlaying: false,
   /** @type {string} */ fileId: null,
-  metadata: {
+  contentDetails: {
     /** @type {string} */ title: null,
     /** @type {string} */ date: null,
     /** @type {string} */ location: null,
     /** @type {string} */ category: null,
     /** @type {string[]} */ languages: null,
+    /** @type {number} */ duration: null,
   },
   audio: new Audio(),
+
+  get duration() {
+    return Math.floor(
+      // Duration of the audio can be NaN or +Infinity
+      Number.isFinite(this.audio.duration)
+        ? this.audio.duration
+        : this.contentDetails.duration
+    );
+  },
+
+  get durationForHumans() {
+    const durationInSeconds = this.duration;
+
+    if (!durationInSeconds) return '??:??';
+
+    const hours = Math.floor(durationInSeconds / 3600);
+    const minutes = Math.floor((durationInSeconds % 3600) / 60)
+      .toString()
+      .padStart(2, '0');
+    const seconds = Math.floor(durationInSeconds % 60)
+      .toString()
+      .padStart(2, '0');
+    return `${hours ? `${hours}:` : ''}${minutes}:${seconds}`;
+  },
 
   init() {
     // Syncing state between the player and the search result item
     this.$watch('isPlaying', (value) =>
       this.dispatchEventToSearchResultItem(value)
+    );
+
+    this.audio.addEventListener(
+      'durationchange',
+      () => (this.contentDetails.duration = this.audio.duration)
     );
   },
 
@@ -34,17 +64,17 @@ window.player = () => ({
    * Handles `archive:toggle-play` event from the search result item
    * @param {CustomEvent} $event
    */
-  loadFile({ detail: { fileId, metadata, shouldPlay } }) {
+  loadFile({ detail: { fileId, contentDetails, shouldPlay } }) {
     if (fileId === this.fileId) {
       this.togglePlay(shouldPlay);
       return;
     }
 
     // Sending event to the previously played search result item
-    if (this.fileId && this.isPlaying) this.isPlaying = false;
+    if (this.fileId) this.isPlaying = false;
 
     this.fileId = fileId;
-    this.metadata = metadata;
+    this.contentDetails = contentDetails;
     this.isOpen = true;
     this.isPlaying = shouldPlay;
 

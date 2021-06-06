@@ -8,12 +8,13 @@ window.searchResultItem = (fileId) => {
   return {
     fileId,
     isPlaying: false,
-    metadata: {
+    contentDetails: {
       /** @type {string} */ title: 'Title',
       /** @type {string} */ date: 'Date',
       /** @type {string} */ location: 'Location',
       /** @type {string} */ category: 'Category',
       /** @type {string[]} */ languages: ['English', 'Hindi'],
+      /** @type {number} */ duration: null,
     },
 
     togglePlay() {
@@ -22,7 +23,7 @@ window.searchResultItem = (fileId) => {
           detail: {
             fileId: this.fileId,
             shouldPlay: !this.isPlaying,
-            metadata: { ...this.metadata },
+            contentDetails: { ...this.contentDetails },
           },
         })
       );
