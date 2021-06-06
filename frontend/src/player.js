@@ -50,6 +50,8 @@ window.player = () => ({
       'durationchange',
       () => (this.contentDetails.duration = this.audio.duration)
     );
+
+    this.audio.addEventListener('progress', () => this.displayBufferedAmount());
   },
 
   dispatchEventToSearchResultItem(value) {
@@ -92,6 +94,14 @@ window.player = () => ({
     this.isPlaying = value || !this.isPlaying;
     if (this.isPlaying) this.audio.play();
     else this.audio.pause();
+  },
+
+  displayBufferedAmount() {
+    this.$refs.seekSlider.style.setProperty(
+      '--buffered',
+      Math.floor(this.audio.buffered.end(this.audio.buffered.length - 1)) /
+        this.duration
+    );
   },
 
   // For x-spread
