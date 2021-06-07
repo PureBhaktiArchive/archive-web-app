@@ -169,7 +169,9 @@
                       <div title="Date">
                         {{{value}}} {{#dateUncertain}}
                         <span title="Date is uncertain">(?)</span>
-                        {{/dateUncertain}}
+                        {{/dateUncertain}} {{#timeOfDay}}
+                        <span title="Time of day">{{timeOfDay}}</span>
+                        {{/timeOfDay}}
                       </div>
                       {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
                       <div>Date unknown</div>
