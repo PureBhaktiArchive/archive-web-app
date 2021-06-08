@@ -5,7 +5,9 @@
 window.player = () => ({
   isOpen: false,
   isPlaying: false,
+  isSeeking: false,
   duration: 0,
+  currentTime: 0,
   /** @type {string} */ fileId: null,
   contentDetails: {
     /** @type {string} */ title: null,
@@ -20,11 +22,24 @@ window.player = () => ({
     return new Date(1000 * this.duration).toISOString().substr(11, 8);
   },
 
+  get currentTimeForHumans() {
+    return new Date(1000 * this.currentTime).toISOString().substr(11, 8);
+  },
+
   init() {
     // Syncing state between the player and the search result item
     this.$watch('isPlaying', (value) =>
       this.dispatchEventToSearchResultItem(value)
     );
+
+    // As WebKit browsers do not provide any pseudo-element for range progress,
+    // we have to use the ::before pseudo-element to improvise the progress.
+    this.$watch('currentTime', (value) => {
+      this.$refs.seekSlider.style.setProperty(
+        '--progress',
+        value / this.duration
+      );
+    });
 
     this.audio.addEventListener('durationchange', () => {
       if (Number.isFinite(this.audio.duration))
@@ -47,6 +62,11 @@ window.player = () => ({
           .map(([, end]) => end)
           .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
       );
+    });
+
+    this.audio.addEventListener('timeupdate', () => {
+      if (this.isSeeking) return;
+      this.currentTime = this.audio.currentTime;
     });
   },
 
@@ -93,6 +113,24 @@ window.player = () => ({
     else this.audio.pause();
   },
 
+  /**
+   * @param {InputEvent} e
+   */
+  startSeeking(e) {
+    // Disabling progress updates from the audio
+    this.isSeeking = true;
+    this.currentTime = e.target.value;
+  },
+
+  /**
+   * @param {InputEvent} e
+   */
+  commitSeeking(e) {
+    this.audio.currentTime = e.target.value;
+    // Enabling progress updates from the audio
+    this.isSeeking = false;
+  },
+
   // For x-spread
   self: {
     'x-show.transition': 'isOpen',
@@ -104,6 +142,9 @@ window.player = () => ({
   backwardButton: {},
   forwardButton: {},
   seekSlider: {
-    'x-bind:max': 'duration',
+    ':max': 'duration',
+    ':value': 'currentTime',
+    '@input': 'startSeeking',
+    '@change': 'commitSeeking',
   },
 });

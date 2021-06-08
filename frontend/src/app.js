@@ -247,8 +247,3 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
 );
 
 tippy('[data-tippy-content]');
-
-// Seek Slider and Volume Slider
-window.setRangeProgress = function (/** @type {HTMLInputElement} */ target) {
-  target.style.setProperty('--progress', target.value / target.max);
-};
