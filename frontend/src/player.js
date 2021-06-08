@@ -51,7 +51,23 @@ window.player = () => ({
       () => (this.contentDetails.duration = this.audio.duration)
     );
 
-    this.audio.addEventListener('progress', () => this.displayBufferedAmount());
+    this.audio.addEventListener('progress', () => {
+      this.$refs.seekSlider.style.setProperty(
+        '--buffered',
+        // Finding the last buffered range which begins before the current time
+        [...Array(this.audio.buffered.length)]
+          // Extracting buffered ranges as [start, end] couple to avoid depending on the original index
+          .map((value, index) => [
+            this.audio.buffered.start(index),
+            this.audio.buffered.end(index),
+          ])
+          // Picking only those ranges which start before current time
+          .filter(([start]) => start <= this.audio.currentTime)
+          // Getting the end of the rightmost of such ranges, hopefully it is after the current time
+          .map(([, end]) => end)
+          .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
+      );
+    });
   },
 
   dispatchEventToSearchResultItem(value) {
@@ -94,24 +110,6 @@ window.player = () => ({
     this.isPlaying = value || !this.isPlaying;
     if (this.isPlaying) this.audio.play();
     else this.audio.pause();
-  },
-
-  displayBufferedAmount() {
-    this.$refs.seekSlider.style.setProperty(
-      '--buffered',
-      // Finding the last buffered range which begins before the current time
-      [...Array(this.audio.buffered.length)]
-        // Extracting buffered ranges as [start, end] couple to avoid depending on the original index
-        .map((value, index) => [
-          this.audio.buffered.start(index),
-          this.audio.buffered.end(index),
-        ])
-        // Picking only those ranges which start before current time
-        .filter(([start]) => start <= this.audio.currentTime)
-        // Getting the end of the rightmost of such ranges, hopefully it is after the current time
-        .map(([, end]) => end)
-        .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
-    );
   },
 
   // For x-spread
