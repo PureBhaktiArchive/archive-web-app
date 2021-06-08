@@ -99,8 +99,18 @@ window.player = () => ({
   displayBufferedAmount() {
     this.$refs.seekSlider.style.setProperty(
       '--buffered',
-      Math.floor(this.audio.buffered.end(this.audio.buffered.length - 1)) /
-        this.duration
+      // Finding the last buffered range which begins before the current time
+      [...Array(this.audio.buffered.length)]
+        // Extracting buffered ranges as [start, end] couple to avoid depending on the original index
+        .map((value, index) => [
+          this.audio.buffered.start(index),
+          this.audio.buffered.end(index),
+        ])
+        // Picking only those ranges which start before current time
+        .filter(([start]) => start <= this.audio.currentTime)
+        // Getting the end of the rightmost of such ranges, hopefully it is after the current time
+        .map(([, end]) => end)
+        .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
     );
   },
 
