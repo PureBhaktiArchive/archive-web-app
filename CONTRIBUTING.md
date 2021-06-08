@@ -2,11 +2,20 @@ _sri sri guru gaurangau jayatah_
 
 # Contributing
 
+## Development environment
+
+Prerequisites:
+
+- [Visual Studio Code](https://code.visualstudio.com/) is recommended as a source code editor since the repository includes the workspace settings and recommended extensions for establishing streamligned and reproducible development environment.
+  - Open the whole repository in the editor, not only `frontend` or `functions` folders.
+  - Confirm the recommended extensions installation upon opening the repository in Visual Studio Code.
+- [Git client](https://git-scm.com/downloads).
+- [Node.js](https://nodejs.org/) v20 and npm.
+
 ## Development workflow
 
 We're using a workflow similar to [GitHub flow](https://guides.github.com/introduction/flow/).
 
-1. Clone the repo.
 1. Create a branch from the `main` branch and name it according to your Trello card.
 
    - Use `kebab-case` for a branch name.
