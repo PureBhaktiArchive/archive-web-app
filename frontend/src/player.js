@@ -5,6 +5,7 @@
 window.player = () => ({
   isOpen: false,
   isPlaying: false,
+  duration: 0,
   /** @type {string} */ fileId: null,
   contentDetails: {
     /** @type {string} */ title: null,
@@ -12,18 +13,8 @@ window.player = () => ({
     /** @type {string} */ location: null,
     /** @type {string} */ category: null,
     /** @type {string[]} */ languages: null,
-    /** @type {number} */ duration: null,
   },
   audio: new Audio(),
-
-  get duration() {
-    return Math.floor(
-      // Duration of the audio can be NaN or +Infinity
-      Number.isFinite(this.audio.duration)
-        ? this.audio.duration
-        : this.contentDetails.duration
-    );
-  },
 
   get durationForHumans() {
     const durationInSeconds = this.duration;
@@ -46,10 +37,10 @@ window.player = () => ({
       this.dispatchEventToSearchResultItem(value)
     );
 
-    this.audio.addEventListener(
-      'durationchange',
-      () => (this.contentDetails.duration = this.audio.duration)
-    );
+    this.audio.addEventListener('durationchange', () => {
+      if (Number.isFinite(this.audio.duration))
+        this.duration = this.audio.duration;
+    });
 
     this.audio.addEventListener('progress', () => {
       this.$refs.seekSlider.style.setProperty(
@@ -93,6 +84,7 @@ window.player = () => ({
 
     this.fileId = fileId;
     this.contentDetails = contentDetails;
+    this.duration = contentDetails.duration;
     this.isOpen = true;
     this.isPlaying = shouldPlay;
 
