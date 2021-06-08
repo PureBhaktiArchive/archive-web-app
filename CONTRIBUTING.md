@@ -10,7 +10,7 @@ Prerequisites:
   - Open the whole repository in the editor, not only `frontend` or `functions` folders.
   - Confirm the recommended extensions installation upon opening the repository in Visual Studio Code.
 - [Git client](https://git-scm.com/downloads).
-- [Node.js](https://nodejs.org/) v20 and npm.
+- [Node.js](https://nodejs.org/) v12 and npm.
 
 ## Development workflow
 
