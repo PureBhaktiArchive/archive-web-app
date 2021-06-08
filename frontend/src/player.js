@@ -17,18 +17,7 @@ window.player = () => ({
   audio: new Audio(),
 
   get durationForHumans() {
-    const durationInSeconds = this.duration;
-
-    if (!durationInSeconds) return '??:??';
-
-    const hours = Math.floor(durationInSeconds / 3600);
-    const minutes = Math.floor((durationInSeconds % 3600) / 60)
-      .toString()
-      .padStart(2, '0');
-    const seconds = Math.floor(durationInSeconds % 60)
-      .toString()
-      .padStart(2, '0');
-    return `${hours ? `${hours}:` : ''}${minutes}:${seconds}`;
+    return new Date(1000 * this.duration).toISOString().substr(11, 8);
   },
 
   init() {
