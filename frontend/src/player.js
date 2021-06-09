@@ -131,6 +131,13 @@ window.player = () => ({
     this.isSeeking = false;
   },
 
+  /**
+   * @param {Number} amount
+   */
+  seekRelative(amount) {
+    this.audio.currentTime += amount;
+  },
+
   // For x-spread
   self: {
     'x-show.transition': 'isOpen',
@@ -139,8 +146,12 @@ window.player = () => ({
   playButton: {
     '@click': 'togglePlay()',
   },
-  backwardButton: {},
-  forwardButton: {},
+  backwardButton: {
+    '@click': 'seekRelative(-30)',
+  },
+  forwardButton: {
+    '@click': 'seekRelative(30)',
+  },
   seekSlider: {
     ':max': 'duration',
     ':value': 'currentTime',
