@@ -114,19 +114,19 @@ window.player = () => ({
   },
 
   /**
-   * @param {InputEvent} e
+   * @param {InputEvent & { target: HTMLInputElement }} e
    */
   startSeeking(e) {
     // Disabling progress updates from the audio
     this.isSeeking = true;
-    this.currentTime = e.target.value;
+    this.currentTime = +e.target.value;
   },
 
   /**
-   * @param {InputEvent} e
+   * @param {InputEvent & { target: HTMLInputElement }} e
    */
   commitSeeking(e) {
-    this.audio.currentTime = e.target.value;
+    this.audio.currentTime = +e.target.value;
     // Enabling progress updates from the audio
     this.isSeeking = false;
   },
