@@ -28,9 +28,13 @@ window.player = () => ({
 
   init() {
     // Syncing state between the player and the search result item
-    this.$watch('isPlaying', (value) =>
-      this.dispatchEventToSearchResultItem(value)
-    );
+    this.$watch('isPlaying', (value) => {
+      window.dispatchEvent(
+        new CustomEvent(`archive:toggle-play-${this.fileId}`, {
+          detail: { isPlaying: value },
+        })
+      );
+    });
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
     // we have to use the ::before pseudo-element to improvise the progress.
@@ -72,14 +76,6 @@ window.player = () => ({
     this.audio.addEventListener('ended', () => {
       this.isPlaying = false;
     });
-  },
-
-  dispatchEventToSearchResultItem(value) {
-    window.dispatchEvent(
-      new CustomEvent(`archive:toggle-play-${this.fileId}`, {
-        detail: { isPlaying: value },
-      })
-    );
   },
 
   /**
