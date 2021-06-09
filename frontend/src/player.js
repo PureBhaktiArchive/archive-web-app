@@ -68,6 +68,10 @@ window.player = () => ({
       if (this.isSeeking) return;
       this.currentTime = this.audio.currentTime;
     });
+
+    this.audio.addEventListener('ended', () => {
+      this.isPlaying = false;
+    });
   },
 
   dispatchEventToSearchResultItem(value) {
