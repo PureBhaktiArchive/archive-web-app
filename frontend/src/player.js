@@ -8,6 +8,10 @@ window.player = () => ({
   isSeeking: false,
   duration: 0,
   currentTime: 0,
+  volume: 0,
+  /** @type {Number} */
+  previousVolume: null,
+
   /** @type {string} */ fileId: null,
   contentDetails: {
     /** @type {string} */ title: null,
@@ -38,11 +42,15 @@ window.player = () => ({
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
     // we have to use the ::before pseudo-element to improvise the progress.
-    this.$watch('currentTime', (value) => {
+    this.$watch('currentTime', () => {
       this.$refs.seekSlider.style.setProperty(
         '--progress',
-        value / this.duration
+        this.currentTime / this.duration
       );
+    });
+    this.$watch('volume', (/** @type {Number} */ value) => {
+      this.audio.volume = value;
+      this.$refs.volumeSlider.style.setProperty('--progress', this.volume);
     });
 
     this.audio.addEventListener('durationchange', () => {
@@ -76,6 +84,9 @@ window.player = () => ({
     this.audio.addEventListener('ended', () => {
       this.isPlaying = false;
     });
+
+    // Triggering all updates for the volume slider
+    this.$nextTick(() => (this.volume = 1));
   },
 
   /**
@@ -138,6 +149,17 @@ window.player = () => ({
     this.audio.currentTime += amount;
   },
 
+  /**
+   * @param {InputEvent & { target: HTMLInputElement }} e
+   */
+  setVolume(e) {
+    this.volume = e.target.value / e.target.max;
+  },
+
+  commitVolume() {
+    this.previousVolume = this.volume;
+  },
+
   // For x-spread
   self: {
     'x-show.transition': 'isOpen',
@@ -157,5 +179,10 @@ window.player = () => ({
     ':value': 'currentTime',
     '@input': 'startSeeking',
     '@change': 'commitSeeking',
+  },
+  volumeSlider: {
+    ':value': 'volume',
+    '@input': 'setVolume',
+    '@change': 'commitVolume',
   },
 });
