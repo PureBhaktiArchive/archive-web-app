@@ -160,6 +160,15 @@ window.player = () => ({
     this.previousVolume = this.volume;
   },
 
+  toggleMute() {
+    if (this.volume > 0) this.volume = 0;
+    else this.volume = this.previousVolume || 1;
+  },
+
+  get isMuted() {
+    return !(this.volume > 0);
+  },
+
   // For x-spread
   self: {
     'x-show.transition': 'isOpen',
@@ -184,5 +193,14 @@ window.player = () => ({
     ':value': 'volume',
     '@input': 'setVolume',
     '@change': 'commitVolume',
+  },
+  muteButton: {
+    '@click': 'toggleMute',
+  },
+  mutedIcon: {
+    'x-show': 'isMuted',
+  },
+  unmutedIcon: {
+    'x-show': '!isMuted',
   },
 });
