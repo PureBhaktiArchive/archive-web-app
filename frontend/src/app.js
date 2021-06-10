@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
@@ -171,7 +171,7 @@ search.addWidgets([
       item: document.getElementById('item-template').innerHTML,
     },
     transformItems: (items) =>
-      items.map((item) => ({
+     items.map((item) => ({
         ...item,
         idPadded: item.objectID.padStart(4, '0'),
         topicsArray: item._highlightResult.topics.value.replace(/^-\s*/gm,' ').split('\n'),
