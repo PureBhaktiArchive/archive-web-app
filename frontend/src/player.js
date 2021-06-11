@@ -12,15 +12,21 @@ window.player = () => ({
   /** @type {Number} */
   previousVolume: null,
 
-  /** @type {string} */ fileId: null,
+  /** @type {number} */ fileId: null,
   contentDetails: {
     /** @type {string} */ title: null,
-    /** @type {string} */ date: null,
+    /** @type {string} */ dateForHumans: null,
+    /** @type {boolean} */ dateUncertain: null,
     /** @type {string} */ location: null,
+    /** @type {boolean} */ locationUncertain: null,
     /** @type {string} */ category: null,
     /** @type {string[]} */ languages: null,
   },
   audio: new Audio(),
+
+  get idPadded() {
+    return this.fileId ? this.fileId.toString().padStart(4, '0') : null;
+  },
 
   get durationForHumans() {
     return new Date(1000 * this.duration).toISOString().substr(11, 8);

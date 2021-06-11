@@ -2,20 +2,21 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { search } from './search';
+
 window.searchResultItem = (fileId) => {
-  // TODO: fetch metadata from Algolia helper
+  const itemData = search.helper.lastResults.hits.find(
+    // fileId has to be converted to string because the objectID is a string
+    (hit) => hit.objectID === fileId.toString()
+  );
+  if (!itemData)
+    throw new Error(`Cannot find search result item for ${fileId}`);
+
   // TODO: fetch isPlaying property from the player
   return {
     fileId,
     isPlaying: false,
-    contentDetails: {
-      /** @type {string} */ title: 'Title',
-      /** @type {string} */ date: 'Date',
-      /** @type {string} */ location: 'Location',
-      /** @type {string} */ category: 'Category',
-      /** @type {string[]} */ languages: ['English', 'Hindi'],
-      /** @type {number} */ duration: null,
-    },
+    itemData,
 
     togglePlay() {
       window.dispatchEvent(
@@ -23,7 +24,16 @@ window.searchResultItem = (fileId) => {
           detail: {
             fileId: this.fileId,
             shouldPlay: !this.isPlaying,
-            contentDetails: { ...this.contentDetails },
+            contentDetails: {
+              title: this.itemData.title,
+              dateForHumans: this.itemData.dateForHumans,
+              dateUncertain: this.itemData.dateUncertain,
+              location: this.itemData.location,
+              locationUncertain: this.itemData.locationUncertain,
+              category: this.itemData.category,
+              languages: this.itemData.languages,
+              duration: this.itemData.duration,
+            },
           },
         })
       );
