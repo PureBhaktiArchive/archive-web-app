@@ -28,6 +28,14 @@ window.player = () => ({
     return this.fileId ? this.fileId.toString().padStart(4, '0') : null;
   },
 
+  get downloadURL() {
+    return `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${this.fileId}.mp3`;
+  },
+
+  get feedbackURL() {
+    return process.env.FEEDBACK_FORM + this.fileId;
+  },
+
   get durationForHumans() {
     return new Date(1000 * this.duration).toISOString().substr(11, 8);
   },
@@ -114,7 +122,7 @@ window.player = () => ({
     this.isOpen = true;
     this.isPlaying = shouldPlay;
 
-    this.audio.src = `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${fileId}.mp3`;
+    this.audio.src = this.downloadURL;
     if (shouldPlay) this.audio.play();
   },
 
