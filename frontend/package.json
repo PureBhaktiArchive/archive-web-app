@@ -49,7 +49,7 @@
     "algoliasearch": "4.8.0",
     "alpine-magic-helpers": "1.2.2",
     "alpinejs": "2.8.2",
-    "instantsearch.js": "4.8.7",
+    "instantsearch.js": "4.23.0-experimental-typescript.0",
     "tippy.js": "6.3.1"
   }
 }
