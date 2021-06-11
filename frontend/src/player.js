@@ -157,7 +157,7 @@ window.player = () => ({
   },
 
   commitVolume() {
-    this.previousVolume = this.volume;
+    if (this.volume > 0) this.previousVolume = this.volume;
   },
 
   toggleMute() {
