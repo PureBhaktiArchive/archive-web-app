@@ -26,6 +26,7 @@
     "**/node_modules": true
   },
   "files.associations": {
-    ".htmlhintrc": "json"
+    ".htmlhintrc": "json",
+    ".htmlnanorc": "json"
   }
 }
