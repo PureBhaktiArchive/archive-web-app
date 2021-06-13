@@ -9,18 +9,26 @@ window.player = () => ({
   duration: 0,
   currentTime: 0,
   volume: 0,
-  /** @type {Number} */
+  /** @type {number} */
   previousVolume: null,
 
-  /** @type {number} */ fileId: null,
+  /** @type {number} */
+  fileId: null,
   contentDetails: {
-    /** @type {string} */ title: null,
-    /** @type {string} */ dateForHumans: null,
-    /** @type {boolean} */ dateUncertain: null,
-    /** @type {string} */ location: null,
-    /** @type {boolean} */ locationUncertain: null,
-    /** @type {string} */ category: null,
-    /** @type {string[]} */ languages: null,
+    /** @type {string} */
+    title: null,
+    /** @type {string} */
+    dateForHumans: null,
+    /** @type {boolean} */
+    dateUncertain: null,
+    /** @type {string} */
+    location: null,
+    /** @type {boolean} */
+    locationUncertain: null,
+    /** @type {string} */
+    category: null,
+    /** @type {string[]} */
+    languages: null,
   },
   audio: new Audio(),
 
