@@ -64,7 +64,8 @@
     columns: 5rem auto;
   }
 }
-/* Sliders */
+
+/* Sliders, outside layers to avoid purging */
 /* Styling borrowed from https://css-tricks.com/lets-create-a-custom-audio-player/ */
 
 @define-mixin slider-thumb {
