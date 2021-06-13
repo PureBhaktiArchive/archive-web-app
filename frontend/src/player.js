@@ -157,10 +157,12 @@ window.player = () => ({
   },
 
   /**
-   * @param {Number} amount
+   * @param {Event & { currentTarget: HTMLElement }} e
    */
-  seekRelative(amount) {
-    this.audio.currentTime += amount;
+  seekRelative(e) {
+    const element = e.currentTarget;
+    console.log(e, e.currentTarget);
+    this.audio.currentTime += +element.dataset.seekAmount;
   },
 
   /**
@@ -191,11 +193,8 @@ window.player = () => ({
   playButton: {
     '@click': 'togglePlay()',
   },
-  backwardButton: {
-    '@click': 'seekRelative(-30)',
-  },
-  forwardButton: {
-    '@click': 'seekRelative(30)',
+  seekButton: {
+    '@click': 'seekRelative',
   },
   seekSlider: {
     ':max': 'duration',
