@@ -37,6 +37,7 @@
     "parcel-plugin-bundle-visualiser": "1.2.0",
     "parcel-plugin-static-files-copy": "2.6.0",
     "postcss": "7.0.35",
+    "postcss-mixins": "6.2.3",
     "postcss-preset-env": "6.7.0",
     "posthtml-expressions": "1.7.1",
     "prettier": "2.2.0",
