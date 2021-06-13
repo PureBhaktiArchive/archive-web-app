@@ -43,7 +43,7 @@ const soundQualityRatingMapping = {
 
 search.addWidgets([
   configure({
-    hitsPerPage: 5,
+    hitsPerPage: 30,
   }),
   connectSearchBox((renderOptions, isFirstRender) => {
     const { query, refine, widgetParams } = renderOptions;
