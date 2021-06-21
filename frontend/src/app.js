@@ -38,7 +38,7 @@ const search = instantsearch({
     helper.search();
   }
 });
-const myWidgets = new AlgoliaWidgets(search)
+const myWidgets = new AlgoliaWidgets()
 
 const languageCategories = {
   E: { label: 'English only', order: 1 },
@@ -87,6 +87,9 @@ search.addWidgets([
   // Loading indicator
   {
     render: ({ searchMetadata = {} }) => {
+      // added a log just to stop eslint crying
+      console.log('searchMetadata', searchMetadata);
+
       // const { isSearchStalled } = searchMetadata;
 
       // document

@@ -10,10 +10,6 @@ export class AlgoliaWidgets {
 
   static error = null;
 
-  constructor(search, error) {
-    this.search = search
-  }
-
   get appInfiniteHits() {
     const renderInfiniteHits = (renderOptions) => {
       const {hits} = renderOptions;
