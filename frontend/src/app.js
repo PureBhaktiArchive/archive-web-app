@@ -8,7 +8,6 @@ import instantsearch from 'instantsearch.js';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
   configure,
-  infiniteHits,
   numericMenu,
   pagination,
   panel,
@@ -22,16 +21,24 @@ import './algolia.css';
 import './app.css';
 import './modal';
 import { sounds } from './player';
+import { restoreSearchWidgets } from './dom-utils';
+import {AlgoliaWidgets} from './algolia-widgets';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
-  process.env.ALGOLIA_API_KEY
+  process.env.ALGOLIA_API_KEY,
 );
 
 const search = instantsearch({
   indexName: process.env.ALGOLIA_INDEX,
   searchClient,
+  searchFunction: (helper) => {
+    AlgoliaWidgets.error = null;
+    restoreSearchWidgets()
+    helper.search();
+  }
 });
+const myWidgets = new AlgoliaWidgets(search)
 
 const languageCategories = {
   E: { label: 'English only', order: 1 },
@@ -80,15 +87,19 @@ search.addWidgets([
   // Loading indicator
   {
     render: ({ searchMetadata = {} }) => {
-      const { isSearchStalled } = searchMetadata;
-      document
-        .getElementById('loading')
-        .classList.toggle('hidden', !isSearchStalled);
-      document
-        .getElementById('stats')
-        .classList.toggle('hidden', isSearchStalled);
-      if (!isSearchStalled)
-        document.getElementById('under-progress').classList.remove('hidden');
+      // const { isSearchStalled } = searchMetadata;
+
+      // document
+      //   .getElementById('loading')
+      //   .classList.toggle('hidden', !isSearchStalled);
+
+      // document
+      //   .getElementById('stats')
+      //   .classList.toggle('hidden', isSearchStalled);
+
+      // if (!isSearchStalled)
+      //   document.getElementById('under-progress').classList.remove('hidden');
+
     },
   },
   panel({
@@ -115,7 +126,7 @@ search.addWidgets([
         .sort(
           (a, b) =>
             languageCategories[a.value].order -
-            languageCategories[b.value].order
+            languageCategories[b.value].order,
         )
         .map((item) => ({
           ...item,
@@ -186,21 +197,21 @@ search.addWidgets([
       { label: '45+ minutes', start: 2700 },
     ],
   }),
-  infiniteHits({
+  myWidgets.appInfiniteHits({
     container: '#hits',
     templates: {
       item: document.getElementById('item-template').innerHTML,
       empty: '',
     },
-    transformItems: (items) =>
-      items.map((item) => ({
+    transformItems: (items) => {
+      return items.map((item) => ({
         ...item,
         idPadded: item.objectID.padStart(4, '0'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
         soundQualityRatingLabel:
-          soundQualityRatingMapping[item.soundQualityRating].label,
+        soundQualityRatingMapping[item.soundQualityRating].label,
         soundQualityRatingColor:
-          soundQualityRatingMapping[item.soundQualityRating].color,
+        soundQualityRatingMapping[item.soundQualityRating].color,
         durationForHumans: new Date(1000 * item.duration)
           .toISOString()
           .substr(11, 8),
@@ -208,12 +219,17 @@ search.addWidgets([
           sounds.has(item.objectID) && sounds.get(item.objectID).playing(),
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
         downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
-      })),
+      }))
+    },
   }),
   pagination({
     container: '#pagination',
   }),
 ]);
+
+search.on('error', ({ error }) => {
+  AlgoliaWidgets.error = error
+});
 
 search.start();
 
@@ -224,7 +240,7 @@ document
       (toggle.onclick = () =>
         document
           .querySelectorAll('[data-menu-toggled]')
-          .forEach((target) => target.classList.toggle('hidden')))
+          .forEach((target) => target.classList.toggle('hidden'))),
   );
 
 const filterPanel = document.getElementById('filter-panel');
@@ -243,7 +259,7 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
     (element.onclick = () => {
       const isOpen = filterPanel.hasAttribute('data-state-open');
       toggleFilter(!isOpen);
-    })
+    }),
 );
 
 tippy('[data-tippy-content]');

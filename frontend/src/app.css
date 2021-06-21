@@ -52,3 +52,7 @@
     columns: 5rem auto;
   }
 }
+
+.search-error-wrapper {
+  margin-bottom: calc(100vh - 300px);
+}

@@ -49,6 +49,7 @@
     "@tailwindcss/typography": "0.4.0",
     "algoliasearch": "4.8.0",
     "alpinejs": "2.8.2",
+    "hogan.js": "3.0.2",
     "howler": "2.2.1",
     "instantsearch.js": "4.8.7",
     "tippy.js": "6.3.1"
