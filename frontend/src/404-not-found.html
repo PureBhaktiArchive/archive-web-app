@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" class="text-gray-600 font-sans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#115E59" />
+    <meta name="msapplication-navbutton-color" content="#115E59 " />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" sizes="32x32" type="image/png" href="images/favicon-32x32.png" />
+    <link rel="icon" sizes="16x16" type="image/png" href="images/favicon-16x16.png" />
+   <link rel="stylesheet" href="\404-not-found.css">
+    <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={% ANALYTICS_ID %}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', '{% ANALYTICS_ID %}');
+    </script>
+  </head>
+  <body class="relative flex flex-col overlayed:overflow-hidden sm:h-screen">
+ 
+    <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
+      <div class="relative mx-auto max-w-screen-xl">
+        <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
+        <div
+          class="bg-header-decor absolute right-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-right-top bg-no-repeat mobile-s:opacity-100 opacity-25 transform -scale-x-1 md:top-0 md:w-24 md:h-20"
+        ></div>
+        <div
+          class="relative z-10 px-1 py-3 text-center text-teal-800 font-header mobile-l:text-base mobile-m:text-sm text-xs font-semibold tracking-tighter sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
+        >
+          <span class="sm:flex sm:justify-center sm:space-x-3">
+            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
+            <span>
+              <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
+              <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
+            </span>
+            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1 sm:block"></span>
+          </span>
+          <span class="lg:text-xl">
+            <span class="whitespace-nowrap">Sri Srimad</span>
+            <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">Bhaktivedanta Narayana Gosvami Maharaja</span>
+          </span>
+        </div>
+        <img
+          src="images/gurudeva.png"
+          alt="Srila Gurudeva"
+          class="absolute z-10 left-0 right-0 top-full mx-auto w-28 rounded-full transform -translate-y-3 sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
+        />
+      </div>
+    </header>
+   
+    <div id="error-page">
+      <div class="content">
+         <h2 class="header" data-text="404">
+            404
+         </h2>
+         <h4 data-text="Opps! Page not found">
+            Oops! Page not found
+         </h4>
+         <p>
+            Sorry, the page you're looking for doesn't exist. It might have been moved or deleted.
+         </p>
+         <div class="btn">
+            <a href="#">return home</a>
+         </div>
+      </div>
+   </div>
+   <script src="./app.js"></script>
+  </body>
+</html>
