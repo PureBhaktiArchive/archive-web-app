@@ -134,11 +134,16 @@
           </button>
           <span id="stats" class="whitespace-nowrap text-sm"></span>
           <span id="loading" class="text-gray-500 text-sm">Loading…</span>
-          <div id="search-error" class="text-gray-500 text-sm search-error-wrapper hidden"></div>
+          <div id="search-error" class="text-gray-500 text-sm search-error-wrapper hidden">
+            Error occurred:
+            <b id="search-error-message"> ${TempStorage.searchError.message} </b>
+            Please retry later, or
+            <a class='text-blue-300' href='https://docs.google.com/forms/d/e/1FAIpQLSfjwP_n5uJPD-BxwE_Ta-tbaf2aWNWZqe-YOOoUzjcPw209Uw/viewform' target='_blank'>contact tech support</a>.
+          </div>
         </div>
         <div id="hits">
           <template id="item-template">
-            <article id="hit-article" class="flex flex-col py-1 w-full sm:flex-row sm:py-2" data-file-id="{{objectID}}">
+            <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" data-file-id="{{objectID}}">
               <!-- Main section -->
               <div class="flex flex-grow items-start">
                 <!-- Play button -->
@@ -156,7 +161,7 @@
                   <!-- First line -->
                   <div class="flex items-start justify-between space-x-1">
                     <!-- Title -->
-                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
+                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{title}}</h3>
                     <!-- Duration -->
                     <span class="flex-none" title="Duration">{{durationForHumans}}</span>
                   </div>
