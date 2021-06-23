@@ -88,7 +88,6 @@ search.addWidgets([
   // Loading indicator
   {
     render: () => {
-      // added a log just to stop eslint crying
       // console.log('searchMetadata', searchMetadata);
       // const { isSearchStalled } = searchMetadata;
       // document

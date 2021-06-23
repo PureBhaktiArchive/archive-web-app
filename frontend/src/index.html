@@ -161,7 +161,9 @@
                   <!-- First line -->
                   <div class="flex items-start justify-between space-x-1">
                     <!-- Title -->
-                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{title}}</h3>
+                    {{#_highlightResult.title}}
+                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{{value}}}</h3>
+                    {{/_highlightResult.title}}
                     <!-- Duration -->
                     <span class="flex-none" title="Duration">{{durationForHumans}}</span>
                   </div>
