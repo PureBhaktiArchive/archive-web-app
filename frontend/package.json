@@ -32,9 +32,9 @@
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
-    "htmlhint": "0.14.2",
+    "htmlhint": "0.15.1",
     "mdn-polyfills": "5.20.0",
-    "parcel-bundler": "1.12.4",
+    "parcel-bundler": "1.12.5",
     "parcel-plugin-bundle-visualiser": "1.2.0",
     "parcel-plugin-static-files-copy": "2.6.0",
     "postcss": "7.0.35",
@@ -42,7 +42,7 @@
     "posthtml-expressions": "1.7.1",
     "prettier": "2.2.0",
     "prettier-plugin-tailwind": "2.2.8",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.4",
     "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
