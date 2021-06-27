@@ -17,6 +17,9 @@
     "schedule": ["at any time"],
     "automerge": true
   },
+  "major": {
+    "dependencyDashboardApproval": true
+  },
   "packageRules": [
     {
       "matchPackageNames": ["googleapis"],
