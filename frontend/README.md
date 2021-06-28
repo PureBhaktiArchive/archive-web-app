@@ -22,6 +22,13 @@ Environment variables should be added to an `.env.local` file according to the [
 | `FEEDBACK_FORM`          | The base URL of the Feedback Form, file ID will be appended in the end. |
 | `DONATION_URL`           | The link to the external donation page                                  |
 | `CONTACT_URL`            | The link to the external contact form                                   |
+| `SUBSCRIPTION_URL`       | The link to the external subscription form                              |
 | `ANALYTICS_ID`           | Google Analytics Measurement ID                                         |
 
 Note: To use environment variables in HTML they should be added to `posthtml.config.js` file first, because [Parcel does not replaces them in HTML](https://github.com/parcel-bundler/parcel/issues/1209#issuecomment-432424397).
+
+## Running locally
+
+In order to run the website locally, execute `npm start` command in the terminal. This will run the Parcel development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
+
+Required environment variables should be added to the `.env.development.local` file in the `frontend` folder. Request the contents of this file from the lead developer.

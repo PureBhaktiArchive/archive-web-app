@@ -12,6 +12,7 @@ module.exports = {
       locals: {
         DONATION_URL: process.env.DONATION_URL,
         CONTACT_URL: process.env.CONTACT_URL,
+        SUBSCRIPTION_URL: process.env.SUBSCRIPTION_URL,
         ANALYTICS_ID: process.env.ANALYTICS_ID,
       },
     },

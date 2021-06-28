@@ -26,10 +26,40 @@
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
         <div
-          class="bg-header-decor absolute right-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-right-top bg-no-repeat mobile-s:opacity-100 opacity-25 transform -scale-x-1 md:top-0 md:w-24 md:h-20"
+          class="
+            bg-header-decor
+            absolute
+            right-0
+            top-2
+            w-11
+            mobile-m:w-12
+            mobile-l:w-14
+            h-full
+            bg-contain bg-right-top bg-no-repeat
+            mobile-s:opacity-100
+            opacity-25
+            transform
+            -scale-x-1
+            md:top-0 md:w-24 md:h-20
+          "
         ></div>
         <div
-          class="relative z-10 px-1 py-3 text-center text-teal-800 font-header mobile-l:text-base mobile-m:text-sm text-xs font-semibold tracking-tighter sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
+          class="
+            relative
+            z-10
+            px-1
+            py-3
+            text-center text-teal-800
+            font-header
+            mobile-l:text-base
+            mobile-m:text-sm
+            text-xs
+            font-semibold
+            tracking-tighter
+            sm:text-lg
+            md:tracking-normal
+            lg:ml-60 lg:mr-28
+          "
         >
           <span class="sm:flex sm:justify-center sm:space-x-3">
             <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
@@ -71,13 +101,29 @@
       <!-- Menu items -->
       <div data-menu-toggled class="hidden sm:block">
         <div
-          class="flex flex-col items-end justify-end pl-36 pr-4 py-2 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0 md:pl-56 md:text-base md:space-x-4 lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5"
+          class="
+            flex flex-col
+            items-end
+            justify-end
+            pl-36
+            pr-4
+            py-2
+            text-gray-600
+            font-header
+            text-sm
+            font-semibold
+            space-y-4
+            sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0
+            md:pl-56 md:text-base md:space-x-4
+            lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5
+          "
         >
           <a href="#">Audios</a>
           <a class="cursor-pointer" data-tippy-content="Coming soon" data-tippy-placement="auto">Memories</a>
           <a href="{% DONATION_URL %}" target="_blank">Donate</a>
           <a href="{% CONTACT_URL %}" target="_blank">Contact</a>
           <a href="" x-id="about-link" x-data="" @click.prevent="$dispatch('show-modal', 'about')">About</a>
+          <a href="{% SUBSCRIPTION_URL %}" target="_blank">Subscribe</a>
         </div>
       </div>
     </nav>
@@ -161,7 +207,9 @@
                       <div title="Date">
                         {{{value}}} {{#dateUncertain}}
                         <span title="Date is uncertain">(?)</span>
-                        {{/dateUncertain}}
+                        {{/dateUncertain}} {{#timeOfDay}}
+                        <span title="Time of day">{{timeOfDay}}</span>
+                        {{/timeOfDay}}
                       </div>
                       {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
                       <div>Date unknown</div>
