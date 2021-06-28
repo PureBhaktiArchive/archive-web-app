@@ -47,7 +47,7 @@
     "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
-    "@tailwindcss/typography": "0.4.0",
+    "@tailwindcss/typography": "0.4.1",
     "algoliasearch": "4.8.0",
     "alpinejs": "2.8.2",
     "howler": "2.2.1",
