@@ -16,8 +16,11 @@ import {
   stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 import './algolia.css';
 import './app.css';
+import './modal';
 import { sounds } from './player';
 
 const searchClient = algoliasearch(
@@ -41,16 +44,15 @@ const languageCategories = {
   O: { label: 'English with translation to other languages', order: 8 },
 };
 
-const soundQualityOrder = ['Good', 'Average', 'Low'];
-const soundQualityRatingColors = {
-  Good: 'bg-green-100',
-  Average: 'bg-yellow-100',
-  Low: 'bg-red-100',
+const soundQualityRatingMapping = {
+  Good: { label: 'Good', order: 1, color: 'bg-green-100' },
+  Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
+  Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
 };
 
 search.addWidgets([
   configure({
-    hitsPerPage: 100,
+    hitsPerPage: 30,
   }),
   connectSearchBox((renderOptions, isFirstRender) => {
     const { query, refine, widgetParams } = renderOptions;
@@ -75,6 +77,20 @@ search.addWidgets([
 `,
     },
   }),
+  // Loading indicator
+  {
+    render: ({ searchMetadata = {} }) => {
+      const { isSearchStalled } = searchMetadata;
+      document
+        .getElementById('loading')
+        .classList.toggle('hidden', !isSearchStalled);
+      document
+        .getElementById('stats')
+        .classList.toggle('hidden', isSearchStalled);
+      if (!isSearchStalled)
+        document.getElementById('under-progress').classList.remove('hidden');
+    },
+  },
   panel({
     templates: {
       header: 'Location',
@@ -114,11 +130,15 @@ search.addWidgets([
   })(refinementList)({
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
-    sortBy: (a, b) => {
-      return (
-        soundQualityOrder.indexOf(a.name) - soundQualityOrder.indexOf(b.name)
-      );
-    },
+    sortBy: (a, b) =>
+      soundQualityRatingMapping[a.name].order -
+      soundQualityRatingMapping[b.name].order,
+    transformItems: (items) =>
+      items.map((item) => ({
+        ...item,
+        label: soundQualityRatingMapping[item.label].label || item.label,
+        highlighted: soundQualityRatingMapping[item.label].label || item.label,
+      })),
   }),
   panel({
     templates: {
@@ -136,6 +156,7 @@ search.addWidgets([
   })(refinementList)({
     container: '#year-list',
     attribute: 'year',
+    limit: 100,
     sortBy: ['name:asc'],
   }),
   panel({
@@ -169,6 +190,7 @@ search.addWidgets([
     container: '#hits',
     templates: {
       item: document.getElementById('item-template').innerHTML,
+      empty: '',
     },
     transformItems: (items) =>
      items.map((item) => ({
@@ -176,14 +198,17 @@ search.addWidgets([
         idPadded: item.objectID.padStart(4, '0'),
         topicsArray: item._highlightResult.topics.value.replace(/^-\s*/gm,' ').split('\n'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
+        soundQualityRatingLabel:
+          soundQualityRatingMapping[item.soundQualityRating].label,
         soundQualityRatingColor:
-          soundQualityRatingColors[item.soundQualityRating],
+          soundQualityRatingMapping[item.soundQualityRating].color,
         durationForHumans: new Date(1000 * item.duration)
           .toISOString()
           .substr(11, 8),
         playing:
           sounds.has(item.objectID) && sounds.get(item.objectID).playing(),
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
+        downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
       })),
   }),
   pagination({
@@ -221,3 +246,5 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
       toggleFilter(!isOpen);
     })
 );
+
+tippy('[data-tippy-content]');
