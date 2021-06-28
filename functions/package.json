@@ -23,7 +23,7 @@
     "firebase-admin": "9.10.0",
     "firebase-functions": "3.14.1",
     "fluent-ffmpeg": "2.1.2",
-    "glob": "7.1.6",
+    "glob": "7.1.7",
     "googleapis": "78.0.0",
     "iso-639-2": "2.0.0",
     "luxon": "1.27.0"
