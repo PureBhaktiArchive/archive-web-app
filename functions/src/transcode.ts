@@ -20,24 +20,23 @@ export const convertToMp3 = (command: FfmpegCommand): unknown =>
 export const copyCodec = (command: FfmpegCommand): unknown =>
   command.withAudioCodec('copy');
 
-const addMediaMetadata = (metadata: Record<string, string>) => (
-  command: FfmpegCommand
-) =>
-  command
-    .withOutputOptions([
-      // Required because Windows only supports version up to 3 of ID3v2 tags
-      '-id3v2_version 3',
-      // the ID3v1 version to create legacy v1.1 tags
-      '-write_id3v1 1',
-      // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
-      '-map_metadata -1',
-    ])
-    .withOutputOptions(
-      Object.entries(metadata).flatMap(([name, value]) => [
-        '-metadata',
-        `${name}=${value || ''}`,
+const addMediaMetadata =
+  (metadata: Record<string, string>) => (command: FfmpegCommand) =>
+    command
+      .withOutputOptions([
+        // Required because Windows only supports version up to 3 of ID3v2 tags
+        '-id3v2_version 3',
+        // the ID3v1 version to create legacy v1.1 tags
+        '-write_id3v1 1',
+        // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
+        '-map_metadata -1',
       ])
-    );
+      .withOutputOptions(
+        Object.entries(metadata).flatMap(([name, value]) => [
+          '-metadata',
+          `${name}=${value || ''}`,
+        ])
+      );
 
 const runCommandAsync = (command: FfmpegCommand): Promise<number> =>
   new Promise<number>((resolve, reject) =>
