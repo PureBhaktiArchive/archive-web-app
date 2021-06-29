@@ -69,6 +69,7 @@ module.exports = {
           900: '#753525',
         },
         teal: colors.teal,
+        gray: colors.blueGray,
       },
       cursor: {
         grab: 'grab',

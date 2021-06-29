@@ -85,7 +85,7 @@
 }
 
 input[type='range'] {
-  @apply relative outline-none focus:outline-none appearance-none;
+  @apply relative bg-transparent outline-none focus:outline-none appearance-none;
 
   --buffered: 0;
   --thumb-size: theme('spacing[3.5]');
