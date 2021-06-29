@@ -28,7 +28,7 @@ window.player = () => ({
     /** @type {string} */
     category: null,
     /** @type {string[]} */
-    languages: null,
+    languages: [],
   },
   audio: new Audio(),
 
