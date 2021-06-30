@@ -14,6 +14,7 @@ import {
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
+import { formatDurationForHumans } from './duration';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -192,9 +193,7 @@ search.addWidgets([
           soundQualityRatingMapping[item.soundQualityRating].label,
         soundQualityRatingColor:
           soundQualityRatingMapping[item.soundQualityRating].color,
-        durationForHumans: new Date(1000 * item.duration)
-          .toISOString()
-          .substr(11, 8),
+        durationForHumans: formatDurationForHumans(item.duration),
         // playing: player.isPlaying && player.currentFileId === item.objectID,
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
         downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,

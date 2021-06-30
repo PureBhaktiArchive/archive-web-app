@@ -2,6 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { formatDurationForHumans } from './duration';
+
 window.player = () => ({
   isOpen: false,
   isPlaying: false,
@@ -45,11 +47,11 @@ window.player = () => ({
   },
 
   get durationForHumans() {
-    return new Date(1000 * this.duration).toISOString().substr(11, 8);
+    return formatDurationForHumans(this.duration);
   },
 
   get currentTimeForHumans() {
-    return new Date(1000 * this.currentTime).toISOString().substr(11, 8);
+    return formatDurationForHumans(this.currentTime, this.duration);
   },
 
   init() {
