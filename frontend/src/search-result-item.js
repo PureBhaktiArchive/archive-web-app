@@ -12,10 +12,14 @@ window.searchResultItem = (fileId) => {
   if (!itemData)
     throw new Error(`Cannot find search result item for ${fileId}`);
 
-  // TODO: fetch isPlaying property from the player
+  // Implemented using https://codewithhugo.com/alpinejs-inspect-component-data-from-js/
+  // We'll have to use another approach in Alpine v3: https://github.com/alpinejs/alpine/discussions/1543#discussioncomment-887031
+  const playerData = document.getElementById('player').__x.getUnobservedData();
+  const isPlaying = playerData.isPlaying && playerData.fileId === fileId;
+
   return {
     fileId,
-    isPlaying: false,
+    isPlaying,
     itemData,
 
     togglePlay() {

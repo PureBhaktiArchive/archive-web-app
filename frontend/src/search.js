@@ -194,7 +194,6 @@ search.addWidgets([
         soundQualityRatingColor:
           soundQualityRatingMapping[item.soundQualityRating].color,
         durationForHumans: formatDurationForHumans(item.duration),
-        // playing: player.isPlaying && player.currentFileId === item.objectID,
         feedbackURL: process.env.FEEDBACK_FORM + item.objectID,
         downloadURL: `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${item.objectID}.mp3`,
       })),
