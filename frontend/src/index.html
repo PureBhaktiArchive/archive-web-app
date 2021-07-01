@@ -126,7 +126,7 @@
         </div>
         <div id="hits" class="overflow-x-hidden">
           <template id="item-template">
-            <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" data-file-id="{{objectID}}">
+            <article class="flex flex-col mb-4 p-1 w-full bg-white rounded-sm shadow-md sm:flex-row sm:p-4" x-data="{isOpen:false}" data-file-id="{{objectID}}">
               <div class="flex flex-col flex-grow overflow-x-hidden">
                 <div class="flex items-start justify-between space-x-1">
                   <!-- Play button -->
@@ -177,6 +177,10 @@
                     {{#_highlightResult.languages}}
                     <div title="Language spoken in the recording">{{{value}}}</div>
                     {{/_highlightResult.languages}}
+                    <!--Show Topics-->
+                    {{#topicsReady}}
+                    <a x-on:click="isOpen=!isOpen" href="#" class="cursor-pointer">More...</a>
+                    {{/topicsReady}}
                   </div>
                   <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
                     <!-- Download -->
@@ -200,6 +204,14 @@
                     </a>
                   </div>
                 </div>
+                <!--Topics discussed in the recording-->
+                  {{#topicsReady}}
+                  <div x-show="isOpen"><ul class="ml-7 mt-2 text-sm list-disc list-inside">
+                    {{#topicsArray}}
+                    <li>{{{.}}}</li>
+                    {{/topicsArray}}
+                  </div>
+                  {{/topicsReady}}
               </div>
               <div
                 class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-t border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:border-t-0 sm:space-x-0 sm:space-y-2"
