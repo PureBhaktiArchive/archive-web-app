@@ -10,6 +10,7 @@
   "browserslist": {
     "production": [
       ">0.2%",
+      "> 0.2% in my stats",
       "not dead",
       "not op_mini all",
       "not ie 11"
