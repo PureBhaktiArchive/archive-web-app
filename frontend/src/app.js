@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import tippy from 'tippy.js';
@@ -193,9 +193,10 @@ search.addWidgets([
       empty: '',
     },
     transformItems: (items) =>
-      items.map((item) => ({
+     items.map((item) => ({
         ...item,
         idPadded: item.objectID.padStart(4, '0'),
+        topicsArray: item._highlightResult.topics.value.replace(/^-\s*/gm,' ').split('\n'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
         soundQualityRatingLabel:
           soundQualityRatingMapping[item.soundQualityRating].label,

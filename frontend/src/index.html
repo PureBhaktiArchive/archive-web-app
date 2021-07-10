@@ -234,6 +234,10 @@
                       {{/_highlightResult.category}} {{#_highlightResult.languages}}
                       <div title="Language spoken in the recording">{{{value}}}</div>
                       {{/_highlightResult.languages}}
+                      <!--Show Topics-->
+                      {{#topicsReady}}
+                      <div x-on:click="is_open=true" class="cursor-pointer">More...</div>
+                      {{/topicsReady}}
                     </div>
                     <!-- Actions -->
                     <div class="flex children:ml-1 children:pl-1 text-sm divide-x">
@@ -263,6 +267,16 @@
                       </a>
                     </div>
                   </div>
+                  <!--Topics discussed in the recording-->
+                  {{#_highlightResult.topics}}
+                  <div x-show="is_open" @click="text_open=false">
+                    <ul class="ml-7 mt-2 text-sm list-inside list-disc">
+                      {{#topicsArray}}
+                      <li>{{{.}}}</li>
+                      {{/topicsArray}}
+                    </ul>
+                  </div>
+                  {{/_highlightResult.topics}}
                 </div>
               </div>
               <!-- Complimentary section -->
