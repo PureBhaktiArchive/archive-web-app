@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "0.4.1",
-    "algoliasearch": "4.10.2",
+    "algoliasearch": "4.10.3",
     "alpinejs": "2.8.2",
     "howler": "2.2.3",
     "instantsearch.js": "4.24.2",
