@@ -4,6 +4,7 @@
 
 module.exports = {
   plugins: {
+    'postcss-mixins': {},
     tailwindcss: {},
     'postcss-preset-env': { stage: 1 },
   },

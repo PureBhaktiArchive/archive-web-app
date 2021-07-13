@@ -27,7 +27,6 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "3.0.0",
-    "@types/howler": "2.2.3",
     "babel-eslint": "10.1.0",
     "eslint": "7.30.0",
     "eslint-config-prettier": "6.15.0",
@@ -38,6 +37,7 @@
     "parcel-bundler": "1.12.5",
     "parcel-plugin-bundle-visualiser": "1.2.0",
     "parcel-plugin-static-files-copy": "2.6.0",
+    "postcss-mixins": "6.2.3",
     "postcss": "7.0.36",
     "postcss-preset-env": "6.7.0",
     "posthtml-expressions": "1.7.1",
@@ -50,8 +50,7 @@
     "@tailwindcss/typography": "0.4.1",
     "algoliasearch": "4.10.3",
     "alpinejs": "2.8.2",
-    "howler": "2.2.3",
-    "instantsearch.js": "4.25.0",
+    "instantsearch.js": "4.25.0-experimental-typescript.0",
     "tippy.js": "6.3.1"
   }
 }

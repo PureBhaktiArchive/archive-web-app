@@ -23,6 +23,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      boxShadow: {
+        'xl-around': '0px 0px 25px 0px rgba(0,0,0,0.3)',
+      },
       colors: {
         peach: {
           light: '#fed0b1',
@@ -66,6 +69,7 @@ module.exports = {
           900: '#753525',
         },
         teal: colors.teal,
+        gray: colors.blueGray,
       },
       cursor: {
         grab: 'grab',
@@ -111,7 +115,7 @@ module.exports = {
   ],
   variants: {
     extend: {
-      padding: ['children'],
+      padding: ['children', 'children-not-first'],
       margin: ['children'],
       borderColor: ['children'],
       borderWidth: ['children', 'children-last'],
@@ -119,6 +123,7 @@ module.exports = {
       backgroundColor: ['children'],
       display: ['open'],
       overflow: ['overlayed'],
+      flex: ['children'],
     },
   },
   plugins: [

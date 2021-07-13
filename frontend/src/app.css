@@ -45,10 +45,93 @@
   .bg-lotus {
     background-image: url('images/lotus.png');
   }
+
+  /* Hide scrollbars, inspired by https://stackoverflow.com/a/66436651/3082178 */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Chrome, Safari and Opera */
+  /* Cannot use nesting here due to issue https://github.com/tailwindlabs/tailwindcss/issues/1833 */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @layer components {
   #year-list .ais-RefinementList-list {
     columns: 5rem auto;
+  }
+}
+
+/* Sliders, outside layers to avoid purging */
+/* Styling borrowed from https://css-tricks.com/lets-create-a-custom-audio-player/ */
+
+@define-mixin slider-thumb {
+  @apply relative -mt-1 bg-teal-800 rounded-full appearance-none cursor-pointer;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+}
+
+@define-mixin slider-track {
+  @apply h-1.5 rounded-full cursor-pointer;
+  --buffered-position: calc(100% * var(--buffered));
+  background: linear-gradient(
+    to right,
+    theme('colors.gray.400') var(--buffered-position),
+    theme('colors.gray.300') var(--buffered-position)
+  );
+}
+
+input[type='range'] {
+  @apply relative bg-transparent outline-none focus:outline-none appearance-none;
+
+  --buffered: 0;
+  --thumb-size: theme('spacing[3.5]');
+
+  &::-webkit-slider-thumb {
+    @mixin slider-thumb;
+  }
+  &::-webkit-slider-runnable-track {
+    @mixin slider-track;
+  }
+
+  /* Firefox provides the ::-moz-range-progress pseudo-element
+     while Internet Explorer provides ::-ms-fill-lower.
+     As WebKit browsers do not provide any similar pseudo-element,
+     we have to use the ::before pseudo-element to improvise the progress. */
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    &::before {
+      @apply absolute left-0 h-full bg-teal-800 rounded-full cursor-pointer;
+      content: '';
+      width: calc(
+        100% * var(--progress) + var(--thumb-size) * (0.5 - var(--progress))
+      );
+    }
+  }
+
+  &::-moz-range-thumb {
+    @mixin slider-thumb;
+  }
+  &::-moz-range-track {
+    @mixin slider-track;
+  }
+  &::-moz-range-progress {
+    @apply bg-teal-800;
+  }
+  &::-moz-focus-outer {
+    @apply border-none;
+  }
+
+  &::-ms-thumb {
+    @mixin slider-thumb;
+  }
+  &::-ms-track {
+    @mixin slider-track;
+    @apply text-transparent bg-transparent border-transparent;
+  }
+  &::-ms-fill-lower {
+    @apply bg-teal-800;
   }
 }
