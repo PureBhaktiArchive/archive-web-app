@@ -28,7 +28,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "3.0.0",
     "babel-eslint": "10.1.0",
-    "eslint": "7.29.0",
+    "eslint": "7.30.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-header": "3.1.1",
     "eslint-plugin-import": "2.23.4",
@@ -48,9 +48,9 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "0.4.1",
-    "algoliasearch": "4.10.2",
+    "algoliasearch": "4.10.3",
     "alpinejs": "2.8.2",
-    "instantsearch.js": "4.24.1-experimental-typescript.0",
+    "instantsearch.js": "4.25.0-experimental-typescript.0",
     "tippy.js": "6.3.1"
   }
 }
