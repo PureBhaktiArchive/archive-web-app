@@ -8,3 +8,5 @@ frontend:
   - 'frontend/**'
 functions:
   - 'functions/**'
+workflows:
+  - '.github/workflows/*.yml'
