@@ -4,6 +4,7 @@
     ":automergeMinor",
     ":dependencyDashboard",
     ":enableVulnerabilityAlertsWithLabel(security)",
+    ":followTag(instantsearch.js, experimental-typescript)",
     ":prHourlyLimit2",
     ":prConcurrentLimit10",
     "group:googleapis",
