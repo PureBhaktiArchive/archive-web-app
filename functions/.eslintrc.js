@@ -27,7 +27,6 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'prettier',
-    'prettier/@typescript-eslint',
   ],
   rules: {
     'header/header': [
