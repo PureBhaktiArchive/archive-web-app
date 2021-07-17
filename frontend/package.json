@@ -10,6 +10,7 @@
   "browserslist": {
     "production": [
       ">0.2%",
+      "> 0.2% in my stats",
       "not dead",
       "not op_mini all",
       "not ie 11"
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "3.0.0",
     "babel-eslint": "10.1.0",
+    "browserslist": "4.16.6",
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-header": "3.1.1",
