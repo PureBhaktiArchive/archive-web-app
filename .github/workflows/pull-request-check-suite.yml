@@ -13,8 +13,8 @@ jobs:
     name: Detect changes in sub-projects
     runs-on: ubuntu-latest
     outputs:
-      frontend: ${{ steps.filter.outputs.frontend }}
-      functions: ${{ steps.filter.outputs.functions }}
+      frontend: ${{ steps.filter.outputs.frontend == 'true' || steps.filter.outputs.workflows == 'true' }}
+      functions: ${{ steps.filter.outputs.functions == 'true' || steps.filter.outputs.workflows == 'true' }}
     steps:
       # Checkout to use filters from file
       - uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: 12
 
@@ -73,7 +73,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
           node-version: 12
 
