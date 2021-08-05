@@ -83,6 +83,34 @@ search.addWidgets([
         document.getElementById('under-progress').classList.remove('hidden');
     },
   },
+  {
+    message: '',
+    init() {
+      document.getElementById('retry-search').addEventListener('click', () => {
+        document.getElementById('loading').classList.remove('hidden');
+        document.getElementById('stats').classList.add('hidden');
+        document.getElementById('error').classList.add('hidden');
+        this.message = '';
+        setTimeout(() => {
+          search.helper.search();
+        }, 500);
+      });
+      search.on('error', ({ error }) => {
+        this.message = error.message;
+        document.getElementById('error-message').innerHTML = error.message;
+      });
+    },
+    render({ searchMetadata = {} }) {
+      const { isSearchStalled } = searchMetadata;
+      document
+        .getElementById('stats')
+        .classList.toggle('hidden', this.message || isSearchStalled);
+      document
+        .getElementById('error')
+        .classList.toggle('hidden', !this.message);
+      this.message = '';
+    },
+  },
   panel({
     templates: {
       header: 'Location',
