@@ -203,6 +203,7 @@
                     <div class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
                       <!-- ID -->
                       <div title="Unique file identifier">#{{idPadded}}</div>
+                      <!-- Date -->
                       {{#_highlightResult.dateForHumans}}
                       <div title="Date">
                         {{{value}}} {{#dateUncertain}}
@@ -213,7 +214,9 @@
                       </div>
                       {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
                       <div>Date unknown</div>
-                      {{/_highlightResult.dateForHumans}} {{#_highlightResult.location}}
+                      {{/_highlightResult.dateForHumans}}
+                      <!-- Location -->
+                      {{#_highlightResult.location}}
                       <div title="Location">
                         {{{value}}} {{#locationUncertain}}
                         <span title="Location is uncertain">(?)</span>
@@ -221,9 +224,13 @@
                       </div>
                       {{/_highlightResult.location}} {{^_highlightResult.location}}
                       <div>Location unknown</div>
-                      {{/_highlightResult.location}} {{#_highlightResult.category}}
+                      {{/_highlightResult.location}}
+                      <!-- Category -->
+                      {{#_highlightResult.category}}
                       <div title="Category">{{{value}}}</div>
-                      {{/_highlightResult.category}} {{#_highlightResult.languages}}
+                      {{/_highlightResult.category}}
+                      <!-- Languages -->
+                      {{#_highlightResult.languages}}
                       <div title="Language spoken in the recording">{{{value}}}</div>
                       {{/_highlightResult.languages}}
                     </div>
@@ -261,9 +268,11 @@
               <div
                 class="flex flex-none items-end mt-2 pb-2 pl-7 pt-2 border-gray-200 space-x-2 sm:flex-col sm:items-start sm:ml-4 sm:mt-0 sm:pl-4 sm:pt-0 sm:w-36 sm:border-l sm:space-x-0 sm:space-y-2"
               >
+                <!-- Percentage -->
                 {{#percentage}}
                 <div class="relative text-xs border border-gray-300 rounded-lg overflow-hidden" title="How much Srila Gurudeva is speaking in the recording">
-                  {{=^% %^=}}<!-- Changing delimiters to make interpolation in the `styles` attribute work -->
+                  <!-- Changing delimiters to make interpolation in the `styles` attribute work -->
+                  {{=^% %^=}}
                   <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
                   ^%={{ }}=%^
                   <div class="flex justify-between px-1.5 w-full opacity-95 space-x-2">
@@ -271,7 +280,9 @@
                     <span>{{percentageRounded}}%</span>
                   </div>
                 </div>
-                {{/percentage}} {{#soundQualityRating}}
+                {{/percentage}}
+                <!-- Sound Quality Rating -->
+                {{#soundQualityRating}}
                 <div class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
                   <svg class="flex-none w-4 h-4 stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path
