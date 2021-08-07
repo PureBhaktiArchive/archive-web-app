@@ -85,7 +85,7 @@ search.addWidgets([
   },
   panel({
     templates: {
-      header: 'Location',
+      // header: 'Location',
     },
   })(refinementList)({
     container: '#location-list',
@@ -97,7 +97,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Languages',
+      // header: 'Languages',
     },
   })(refinementList)({
     container: '#language-list',
@@ -117,7 +117,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Sound Quality',
+      //  header: 'Sound Quality',
     },
   })(refinementList)({
     container: '#sound-quality-list',
