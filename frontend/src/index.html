@@ -143,58 +143,35 @@
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
       <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
-        <div class="flex-none p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
-          <!-- <div id="language-list"></div>
-          <div id="sound-quality-list"></div>
-          <div id="duration-menu"></div>
-          <div id="percentage-menu"></div>
-          <div id="category-list"></div>
-          <div id="year-list"></div>
-          <div id="location-list"></div> -->
-
-          <div>
-            <ul>
-              <li x-data="{selected:null}">
-                <button type="button" @click="selected !== 1 ? selected = 1 : selected = null">
-                  <div><span class="">LANGUAGES</span></div>
-                </button>
-                <div
-                  class="relative max-h-0 overflow-hidden transition-all duration-700"
-                  style=""
-                  x-ref="container1"
-                  x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''"
-                >
-                  <div>
-                    <div id="language-list"></div>
-                  </div>
-                </div>
-              </li>
-            </ul>
+        <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Languages</div>
+            <div id="language-list" x-show="open"></div>
           </div>
-
-          <div>
-            <ul>
-              <li x-data="{selected:null}">
-                <button type="button" @click="selected !== 1 ? selected = 1 : selected = null">
-                  <div><span>SOUND QUALITY</span></div>
-                </button>
-                <div
-                  class="relative max-h-0 overflow-hidden transition-all duration-700"
-                  style=""
-                  x-ref="container1"
-                  x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''"
-                >
-                  <div><div id="sound-quality-list"></div></div>
-                </div>
-              </li>
-            </ul>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Sound Quality</div>
+            <div id="sound-quality-list" x-show="open"></div>
           </div>
-
-          <div id="duration-menu"></div>
-          <div id="percentage-menu"></div>
-          <div id="category-list"></div>
-          <div id="year-list"></div>
-          <div id="location-list"></div>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Duration</div>
+            <div id="duration-menu" x-show="open"></div>
+          </div>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Srila Gurudeva Timing</div>
+            <div id="percentage-menu" x-show="open"></div>
+          </div>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Category</div>
+            <div id="category-list" x-show="open"></div>
+          </div>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Year</div>
+            <div id="year-list" x-show="open"></div>
+          </div>
+          <div x-data="collapsible()">
+            <div x-on:click="collapseExpand()" class="ais-Panel-header">Location</div>
+            <div id="location-list" x-show="open"></div>
+          </div>
         </div>
         <div class="flex-none p-2 border-t md:hidden">
           <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>

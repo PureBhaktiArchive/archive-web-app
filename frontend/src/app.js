@@ -8,11 +8,11 @@ import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 import './algolia.css';
 import './app.css';
+import './collapsible';
 import './modal';
 import './player';
 import { search } from './search';
 import './search-result-item';
-
 search.start();
 
 document
