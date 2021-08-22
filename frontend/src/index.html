@@ -144,33 +144,41 @@
       <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
         <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
+          <!-- Search Criteria -->
+          <!-- Languages -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Languages</div>
-            <div id="language-list" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Languages</div>
+            <div id="language-list" x-spread="itemsList"></div>
           </div>
+          <!-- Sound Quality -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Sound Quality</div>
-            <div id="sound-quality-list" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Sound Quality</div>
+            <div id="sound-quality-list" x-spread="itemsList"></div>
           </div>
+          <!-- Duration -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Duration</div>
-            <div id="duration-menu" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Duration</div>
+            <div id="duration-menu" x-spread="itemsList"></div>
           </div>
+          <!-- Srila Gurudeva Timing -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Srila Gurudeva Timing</div>
-            <div id="percentage-menu" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Srila Gurudeva Timing</div>
+            <div id="percentage-menu" x-spread="itemsList"></div>
           </div>
+          <!-- Category -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Category</div>
-            <div id="category-list" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Category</div>
+            <div id="category-list" x-spread="itemsList"></div>
           </div>
+          <!-- Year -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Year</div>
-            <div id="year-list" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Year</div>
+            <div id="year-list" x-spread="itemsList"></div>
           </div>
+          <!-- Location -->
           <div x-data="collapsible()">
-            <div x-on:click="collapseExpand()" class="ais-Panel-header">Location</div>
-            <div id="location-list" x-show="open"></div>
+            <div x-spread="searchHeader" class="sticky top-0 py-1 text-xs font-bold bg-white uppercase">Location</div>
+            <div id="location-list" x-spread="itemsList"></div>
           </div>
         </div>
         <div class="flex-none p-2 border-t md:hidden">

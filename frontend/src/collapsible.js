@@ -2,12 +2,20 @@
  * sri sri guru gaurangau jayatah
  */
 
-window.collapsible = function () {
+window.collapsible = () => {
   return {
-    open: false,
+    expanded: false,
 
-    collapseExpand() {
-      this.open = !this.open;
+    toggle() {
+      this.expanded = !this.expanded;
+    },
+    itemsList: {
+      'x-show'() {
+        return this.expanded;
+      },
+      searchHeader: {
+        '@click': 'toggle',
+      },
     },
   };
 };

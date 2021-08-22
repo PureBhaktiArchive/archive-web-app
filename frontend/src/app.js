@@ -13,6 +13,7 @@ import './modal';
 import './player';
 import { search } from './search';
 import './search-result-item';
+
 search.start();
 
 document
