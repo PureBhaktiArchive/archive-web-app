@@ -9,13 +9,11 @@ window.collapsible = () => {
     toggle() {
       this.expanded = !this.expanded;
     },
-    itemsList: {
-      'x-show'() {
-        return this.expanded;
-      },
-      searchHeader: {
-        '@click': 'toggle',
-      },
+    header: {
+      '@click': 'toggle',
+    },
+    contents: {
+      'x-show': 'expanded',
     },
   };
 };
