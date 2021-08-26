@@ -147,37 +147,65 @@
           <!-- Filters  -->
           <!-- Languages -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Languages</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white select-none uppercase">
+              Languages
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="language-list" x-spread="contents"></div>
           </div>
           <!-- Sound Quality -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Sound Quality</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Sound Quality
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="sound-quality-list" x-spread="contents"></div>
           </div>
           <!-- Duration -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Duration</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Duration
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="duration-menu" x-spread="contents"></div>
           </div>
           <!-- Srila Gurudeva Timing -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Srila Gurudeva Timing</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Srila Gurudeva Timing
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="percentage-menu" x-spread="contents"></div>
           </div>
           <!-- Category -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Category</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Category
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="category-list" x-spread="contents"></div>
           </div>
           <!-- Year -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Year</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Year
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="year-list" x-spread="contents"></div>
           </div>
           <!-- Location -->
           <div x-data="collapsible()">
-            <div x-spread="header" class="sticky top-0 py-1 text-xs font-bold bg-white cursor-pointer select-none uppercase">Location</div>
+            <div class="sticky top-0 py-1 h-7 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+              Location
+              <img x-show="!expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/plus.svg" alt="plus" />
+              <img x-show="expanded" x-spread="header" class="float-right cursor-pointer lg:w-3" src="images/minus.svg" alt="minus" />
+            </div>
             <div id="location-list" x-spread="contents"></div>
           </div>
         </div>

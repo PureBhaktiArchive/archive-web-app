@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-Web_1280_1">
+      <rect width="30" height="30"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1280_1" data-name="Web 1280 – 1" clip-path="url(#clip-Web_1280_1)">
+    <rect width="30" height="30" fill="#fff"/>
+    <g id="noun_Plus_4075746" transform="translate(-4.206 -4.706)">
+      <g id="Math_Plus" data-name="Math, Plus" transform="translate(7 7)">
+        <path id="Path_2525" data-name="Path 2525" d="M32.412,19.706A1.5,1.5,0,0,1,30.917,21.2H21.2v9.716a1.495,1.495,0,1,1-2.99,0V21.2H8.495a1.495,1.495,0,1,1,0-2.99h9.716V8.495a1.495,1.495,0,1,1,2.99,0v9.716h9.716A1.5,1.5,0,0,1,32.412,19.706Z" transform="translate(-7 -7)" stroke="#000001" stroke-width="0.7"/>
+      </g>
+    </g>
+  </g>
+</svg>
