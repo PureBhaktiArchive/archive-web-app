@@ -18,7 +18,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "algoliasearch": "4.10.3",
+    "algoliasearch": "4.10.5",
     "express": "4.17.1",
     "firebase-admin": "9.11.1",
     "firebase-functions": "3.15.4",
