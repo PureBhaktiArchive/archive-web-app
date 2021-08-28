@@ -40,7 +40,7 @@
     "postcss-mixins": "6.2.3",
     "postcss": "7.0.36",
     "postcss-preset-env": "6.7.0",
-    "posthtml-expressions": "1.8.1",
+    "posthtml-expressions": "1.9.0",
     "prettier": "2.3.2",
     "prettier-plugin-tailwind": "2.2.12",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.8",
