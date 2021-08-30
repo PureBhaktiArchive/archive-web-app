@@ -16,6 +16,9 @@ window.collapsible = () => ({
     '@click': 'toggle',
   },
   contents: {
-    'x-show.transition.opacity.duration.200ms': 'expanded',
+    'x-show': 'expanded',
+    'x-transition:enter': 'transition motion-safe:ease-out duration-200',
+    'x-transition:enter-start': 'opacity-0',
+    'x-transition:enter-end': 'opacity-100',
   },
 });
