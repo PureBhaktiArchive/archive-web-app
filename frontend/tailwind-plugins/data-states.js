@@ -22,11 +22,20 @@
 module.exports = function ({ addVariant, e, config }) {
   const states = config('dataStates');
 
-  states.forEach((state) =>
+  states.forEach((state) => {
+    const dataAttribute = `data-state-${state}`;
+
     addVariant(state, ({ modifySelectors, separator }) => {
-      modifySelectors(({ className }) => {
-        return `.${e(`${state}${separator}${className}`)}[data-state-${state}]`;
-      });
-    })
-  );
+      modifySelectors(
+        ({ className }) =>
+          `.${e(`${state}${separator}${className}`)}[${dataAttribute}]`
+      );
+    });
+    addVariant(`within-${state}`, ({ modifySelectors, separator }) => {
+      modifySelectors(
+        ({ className }) =>
+          `[${dataAttribute}] .${e(`within-${state}${separator}${className}`)}`
+      );
+    });
+  });
 };

@@ -121,7 +121,7 @@ module.exports = {
       borderWidth: ['children', 'children-last'],
       borderRadius: ['children'],
       backgroundColor: ['children'],
-      display: ['open'],
+      display: ['open', 'within-open'],
       overflow: ['overlayed'],
       flex: ['children'],
     },
