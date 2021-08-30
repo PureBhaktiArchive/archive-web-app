@@ -31,7 +31,7 @@
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-header": "3.1.1",
-    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-import": "2.24.2",
     "htmlhint": "0.15.1",
     "mdn-polyfills": "5.20.0",
     "parcel-bundler": "1.12.5",
@@ -40,18 +40,18 @@
     "postcss": "7.0.36",
     "postcss-mixins": "6.2.3",
     "postcss-preset-env": "6.7.0",
-    "posthtml-expressions": "1.7.1",
+    "posthtml-expressions": "1.9.0",
     "posthtml-include": "1.7.1",
     "prettier": "2.3.2",
     "prettier-plugin-tailwind": "2.2.12",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.8",
     "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
     "@tailwindcss/typography": "0.4.1",
-    "algoliasearch": "4.10.3",
+    "algoliasearch": "4.10.5",
     "alpinejs": "2.8.2",
-    "instantsearch.js": "4.25.3-experimental-typescript.0",
+    "instantsearch.js": "4.26.0-experimental-typescript.0",
     "tippy.js": "6.3.1"
   }
 }

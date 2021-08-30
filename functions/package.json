@@ -18,10 +18,10 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "algoliasearch": "4.10.3",
+    "algoliasearch": "4.10.5",
     "express": "4.17.1",
-    "firebase-admin": "9.11.0",
-    "firebase-functions": "3.14.1",
+    "firebase-admin": "9.11.1",
+    "firebase-functions": "3.15.4",
     "fluent-ffmpeg": "2.1.2",
     "glob": "7.1.7",
     "googleapis": "78.0.0",
@@ -33,18 +33,18 @@
     "@types/glob": "7.1.4",
     "@types/jest": "26.0.24",
     "@types/luxon": "1.27.1",
-    "@typescript-eslint/eslint-plugin": "4.28.5",
-    "@typescript-eslint/parser": "4.28.5",
+    "@typescript-eslint/eslint-plugin": "4.29.3",
+    "@typescript-eslint/parser": "4.29.3",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-header": "3.1.1",
-    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-import": "2.24.2",
     "eslint-plugin-jest": "24.4.0",
-    "firebase-functions-test": "0.3.1",
+    "firebase-functions-test": "0.3.2",
     "jest": "26.6.3",
     "prettier": "2.3.2",
     "ts-jest": "26.5.6",
-    "typescript": "4.3.5"
+    "typescript": "4.4.2"
   },
   "private": true
 }
