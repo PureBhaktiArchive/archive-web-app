@@ -144,126 +144,13 @@
       <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
         <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
-          <!-- Filters  -->
-          <!-- Languages -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Languages</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="language-list" x-spread="contents"></div>
-          </div>
-          <!-- Sound Quality -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Sound Quality</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="sound-quality-list" x-spread="contents"></div>
-          </div>
-          <!-- Duration -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Duration</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="duration-menu" x-spread="contents"></div>
-          </div>
-          <!-- Srila Gurudeva Timing -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Srila Gurudeva Timing</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="percentage-menu" x-spread="contents"></div>
-          </div>
-          <!-- Category -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Category</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="category-list" x-spread="contents"></div>
-          </div>
-          <!-- Year -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Year</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="year-list" x-spread="contents"></div>
-          </div>
-          <!-- Location -->
-          <div x-data="collapsible()" x-spread="self">
-            <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
-              <span class="flex-grow">Location</span>
-              <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path
-                  d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-                  stroke="currentColor"
-                  stroke-width=".7"
-                />
-              </svg>
-              <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
-                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
-              </svg>
-            </div>
-            <div id="location-list" x-spread="contents"></div>
-          </div>
+          <include src="filter-section.html"> { "title": "Languages", "id": "language-list" } </include>
+          <include src="filter-section.html"> { "title": "Sound Quality", "id": "sound-quality-list" } </include>
+          <include src="filter-section.html"> { "title": "Duration", "id": "duration-menu" } </include>
+          <include src="filter-section.html"> { "title": "Srila Gurudeva Timing", "id": "percentage-menu" } </include>
+          <include src="filter-section.html"> { "title": "Category", "id": "category-list" } </include>
+          <include src="filter-section.html"> { "title": "Year", "id": "year-list" } </include>
+          <include src="filter-section.html"> { "title": "Location", "id": "location-list" } </include>
         </div>
         <div class="flex-none p-2 border-t md:hidden">
           <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>

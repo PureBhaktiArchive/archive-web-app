@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<div x-data="collapsible()" x-spread="self">
+  <div x-spread="header" class="sticky top-0 flex align-baseline py-2 text-xs font-bold bg-white cursor-pointer select-none uppercase">
+    <span class="flex-grow">{{ title }}</span>
+    <svg class="within-open:hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
+      <path
+        d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
+        stroke="currentColor"
+        stroke-width=".7"
+      />
+    </svg>
+    <svg class="within-open:block hidden flex-none w-3" viewBox="0 0 30 30" x-cloak>
+      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
+    </svg>
+  </div>
+  <div id="{{ id }}" x-spread="contents"></div>
+</div>
