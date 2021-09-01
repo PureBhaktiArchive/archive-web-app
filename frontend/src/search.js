@@ -85,7 +85,7 @@ search.addWidgets([
   },
   {
     error: false,
-    init() {
+    init({ helper }) {
       document.getElementById('retry-search').addEventListener('click', () => {
         document.getElementById('loading').classList.remove('hidden');
         document.getElementById('stats').classList.add('hidden');
@@ -94,7 +94,7 @@ search.addWidgets([
           search.helper.search();
         }, 500);
       });
-      search.on('error', () => {
+      helper.on('error', () => {
         this.error = true;
       });
     },
