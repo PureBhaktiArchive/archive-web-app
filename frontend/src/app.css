@@ -57,6 +57,10 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .underline-style-dotted {
+    text-decoration-style: dotted;
+  }
 }
 
 @layer components {
