@@ -5,7 +5,7 @@
 module.exports = {
   plugins: {
     'posthtml-extend': {
-      'root': './src'
+      root: './src',
     },
     // In order to use environment variables in HTML
     // Inspired by https://github.com/parcel-bundler/parcel/issues/1209#issuecomment-432424397
