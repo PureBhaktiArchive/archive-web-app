@@ -19,8 +19,5 @@ module.exports = {
         ANALYTICS_ID: process.env.ANALYTICS_ID,
       },
     },
-    'posthtml-include': {
-      root: './src',
-    },
   },
 };
