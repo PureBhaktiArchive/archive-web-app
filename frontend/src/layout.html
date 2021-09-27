@@ -129,6 +129,9 @@
           <!-- Currently it is not possible to pass data from page to the layout: https://github.com/posthtml/posthtml-extend/issues/21 -->
           <!-- Therefore override corresponding *-menu-item block in a page to make it styled active -->
           <!-- In the future we can leverage PUG: https://stackoverflow.com/a/29089926/3082178 -->
+          <block name="home-menu-item">
+            <a href="./home.html">Home</a>
+          </block>
           <block name="audios-menu-item">
             <a href="./index.html">Audios</a>
           </block>

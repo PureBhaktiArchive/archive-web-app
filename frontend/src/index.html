@@ -1,132 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" class="text-gray-600 font-sans">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="theme-color" content="#115E59" />
-    <meta name="msapplication-navbutton-color" content="#115E59 " />
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" sizes="32x32" type="image/png" href="images/favicon-32x32.png" />
-    <link rel="icon" sizes="16x16" type="image/png" href="images/favicon-16x16.png" />
-    <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={% ANALYTICS_ID %}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
-      gtag('config', '{% ANALYTICS_ID %}');
-    </script>
-  </head>
-
-  <body class="flex flex-col justify-between overlayed:overflow-hidden sm:h-screen">
-    <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
-      <div class="relative mx-auto max-w-screen-xl">
-        <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
-        <div
-          class="
-            bg-header-decor
-            absolute
-            right-0
-            top-2
-            w-11
-            mobile-m:w-12
-            mobile-l:w-14
-            h-full
-            bg-contain bg-right-top bg-no-repeat
-            mobile-s:opacity-100
-            opacity-25
-            transform
-            -scale-x-1
-            md:top-0 md:w-24 md:h-20
-          "
-        ></div>
-        <div
-          class="
-            relative
-            z-10
-            px-1
-            py-3
-            text-center text-teal-800
-            font-header
-            mobile-l:text-base
-            mobile-m:text-sm
-            text-xs
-            font-semibold
-            tracking-tighter
-            sm:text-lg
-            md:tracking-normal
-            lg:ml-60 lg:mr-28
-          "
-        >
-          <span class="sm:flex sm:justify-center sm:space-x-3">
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
-            <span>
-              <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
-              <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
-            </span>
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat transform -scale-x-1 sm:block"></span>
-          </span>
-          <span class="lg:text-xl">
-            <span class="whitespace-nowrap">Sri Srimad</span>
-            <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">Bhaktivedanta Narayana Gosvami Maharaja</span>
-          </span>
-        </div>
-        <img
-          src="images/gurudeva.png"
-          alt="Srila Gurudeva"
-          class="absolute z-10 left-0 right-0 top-full mx-auto w-28 rounded-full transform -translate-y-3 sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
-        />
-      </div>
-    </header>
-    <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
-      <!-- Mobile menu button-->
-      <div class="flex justify-end sm:hidden">
-        <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <!-- Icon when menu is closed. -->
-          <!-- Heroicon name: outline/menu -->
-          <svg data-menu-toggled class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <!-- Icon when menu is open. -->
-          <!-- Heroicon name: outline/x -->
-          <svg data-menu-toggled class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <!-- Menu items -->
-      <div data-menu-toggled class="hidden sm:block">
-        <div
-          class="
-            flex flex-col
-            items-end
-            justify-end
-            pl-36
-            pr-4
-            py-2
-            text-gray-600
-            font-header
-            text-sm
-            font-semibold
-            space-y-4
-            sm:flex-row sm:items-stretch sm:justify-start sm:space-x-3 sm:space-y-0
-            md:pl-56 md:text-base md:space-x-4
-            lg:justify-center lg:pl-72 lg:pr-28 lg:space-x-5
-          "
-        >
-          <a href="#">Audios</a>
-          <a class="cursor-pointer" data-tippy-content="Coming soon" data-tippy-placement="auto">Memories</a>
-          <a href="{% DONATION_URL %}" target="_blank">Donate</a>
-          <a href="{% CONTACT_URL %}" target="_blank">Contact</a>
-          <a href="./about.html">About</a>
-          <a href="{% SUBSCRIPTION_URL %}" target="_blank">Subscribe</a>
-        </div>
-      </div>
-    </nav>
+<extends src="layout.html">
+  <block name="audios-menu-item">
+    <a href="./index.html" class="text-white bg-teal-800 rounded-md">Audios</a>
+  </block>
+  <block name="content">
     <div id="searchbox" class="flex flex-none mx-auto p-4 w-full max-w-screen-xl border-b sm:pl-36 md:pl-56 lg:pl-72">
       <input
         type="search"
@@ -299,7 +175,7 @@
         </div>
         <div id="pagination" class="my-2 w-full"></div>
         <p id="under-progress" class="hidden p-2 text-center text-gray-500 text-sm">
-          This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
+          This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don�t find the audio you are looking for, we request you to check
           again later.
         </p>
       </main>
@@ -444,24 +320,6 @@
         </div>
       </div>
     </div>
-
-    <div id="backdrop" data-filter-toggle class="md:open:hidden fixed z-10 inset-0 open:block hidden bg-black bg-opacity-50 md:hidden"></div>
-    <!-- Modal -->
-    <div x-data="modalComponent()" x-init="init()" x-cloak @show-modal.window="show()">
-      <!-- Backdrop -->
-      <div class="fixed z-30 inset-0 flex items-stretch mobile-m:p-4 bg-black bg-opacity-50 sm:p-6" x-show="open">
-        <!-- Modal itself -->
-        <div
-          class="flex flex-col flex-grow items-stretch mx-auto pb-4 max-w-screen-lg max-h-full bg-white rounded shadow-lg"
-          x-show="open"
-          x-transition:enter="transition motion-safe:ease-out duration-300"
-          x-transition:enter-start="opacity-0 transform scale-90"
-          x-transition:enter-end="opacity-100 transform scale-100"
-          @click.away="close()"
-          x-on:keydown.escape.window="close()"
-        ></div>
-      </div>
-    </div>
     <script src="./app.js"></script>
-  </body>
-</html>
+  </block>
+</extends>
