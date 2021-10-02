@@ -51,6 +51,6 @@
     "algoliasearch": "4.10.5",
     "alpinejs": "2.8.2",
     "instantsearch.js": "4.26.0-experimental-typescript.0",
-    "tippy.js": "6.3.1"
+    "tippy.js": "6.3.2"
   }
 }
