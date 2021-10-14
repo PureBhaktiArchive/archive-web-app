@@ -4,27 +4,14 @@
 
 import 'alpinejs';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
-import tippy from 'tippy.js';
-import 'tippy.js/dist/tippy.css';
 import './algolia.css';
-import './app.css';
-import './modal';
 import './player';
 import { search } from './search';
 import './search-result-item';
 
 search.start();
 
-document
-  .querySelectorAll('[data-menu-toggle]')
-  .forEach(
-    (toggle) =>
-      (toggle.onclick = () =>
-        document
-          .querySelectorAll('[data-menu-toggled]')
-          .forEach((target) => target.classList.toggle('hidden')))
-  );
-
+//TODO: Filter panel to be migrated to Alpine.js: https://trello.com/c/lesy1wNY/182-use-alpine-for-menu-and-filter-panel
 const filterPanel = document.getElementById('filter-panel');
 const backdrop = document.getElementById('backdrop');
 
@@ -43,5 +30,3 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
       toggleFilter(!isOpen);
     })
 );
-
-tippy('[data-tippy-content]');
