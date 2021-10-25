@@ -130,5 +130,6 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('tailwindcss-children'),
     require('./tailwind-plugins/data-states'),
+    require('@tailwindcss/aspect-ratio'),
   ],
 };

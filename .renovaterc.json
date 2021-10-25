@@ -11,7 +11,7 @@
     "group:monorepos",
     "group:test",
     "group:linters",
-    "schedule:weekends"
+    "schedule:quarterly"
   ],
   "suppressNotifications": ["prIgnoreNotification"],
   "vulnerabilityAlerts": {
