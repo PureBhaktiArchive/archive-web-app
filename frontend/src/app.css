@@ -1,5 +1,4 @@
 @import './tailwind.css';
-@import 'tippy.js/dist/tippy.css';
 
 @layer base {
   @font-face {
