@@ -5,6 +5,7 @@
 import 'alpinejs';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
+import './menu';
 import './player';
 import { search } from './search';
 import './search-result-item';

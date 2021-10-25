@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html src/about.html --port 3000 --out-dir .serve",
-    "build": "parcel build src/index.html src/about.html --experimental-scope-hoisting",
+    "start": "parcel serve src/index.html src/about.html --port 3000 --dist-dir .serve",
+    "build": "parcel build src/index.html src/about.html",
     "lint": "eslint ."
   },
   "browserslist": {
@@ -20,32 +20,25 @@
       "last 1 safari version"
     ]
   },
-  "staticFiles": {
-    "staticPath": [
-      "src/images/favicon.ico"
-    ]
-  },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "3.0.0",
+    "@parcel/packager-raw-url": "2.0.0",
+    "@parcel/transformer-webmanifest": "2.0.0",
     "@tailwindcss/aspect-ratio": "0.2.1",
-    "babel-eslint": "10.1.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-header": "3.1.1",
     "eslint-plugin-import": "2.25.2",
     "htmlhint": "0.15.2",
     "mdn-polyfills": "5.20.0",
-    "parcel-bundler": "1.12.5",
-    "parcel-plugin-bundle-visualiser": "1.2.0",
-    "parcel-plugin-static-files-copy": "2.6.0",
-    "postcss-mixins": "6.2.3",
-    "postcss": "7.0.39",
+    "parcel": "2.0.0",
+    "postcss": "8.3.5",
+    "postcss-mixins": "8.1.0",
     "postcss-preset-env": "6.7.0",
     "posthtml-expressions": "1.9.0",
     "posthtml-extend": "0.6.0",
     "prettier": "2.4.1",
     "prettier-plugin-tailwind": "2.2.12",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.17",
+    "tailwindcss": "2.2.4",
     "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
