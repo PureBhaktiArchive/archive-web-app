@@ -10,6 +10,7 @@
   "hosting": {
     "public": "frontend/dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
     "headers": [
       {
         "source": "/service-worker.js",

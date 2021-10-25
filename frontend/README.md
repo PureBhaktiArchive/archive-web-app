@@ -33,4 +33,4 @@ Note: To use environment variables in HTML they should be added to `posthtml.con
 - Run `npm i` to install the dependencies.
 - Create `.env.development.local` file in the `frontend` folder and enter variables according to [Environment variables](#environment-variables) section.
 - Run `npm start` to start the Parcel development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
-- Open the local website URL using the link shown by the previous command.
+- Open the local website URL using the link shown by the previous command. Note: due to some Parcel issue the development server responds with 404 when opening this link directly. File path has to be appended, like this: http://localhost:3000/index.html. It seems to be a bug in Parcel v1 - https://github.com/parcel-bundler/parcel/discussions/6012, and may be fixed by upgrading to v2.

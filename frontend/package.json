@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel src/index.html --port 3000 --out-dir .serve",
-    "build": "parcel build src/index.html --experimental-scope-hoisting",
+    "start": "parcel src/index.html src/about.html --port 3000 --out-dir .serve",
+    "build": "parcel build src/index.html src/about.html --experimental-scope-hoisting",
     "lint": "eslint ."
   },
   "browserslist": {
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "3.0.0",
+    "@tailwindcss/aspect-ratio": "0.2.1",
     "babel-eslint": "10.1.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
@@ -41,6 +42,7 @@
     "postcss": "7.0.39",
     "postcss-preset-env": "6.7.0",
     "posthtml-expressions": "1.9.0",
+    "posthtml-extend": "0.6.0",
     "prettier": "2.4.1",
     "prettier-plugin-tailwind": "2.2.12",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.2.17",
