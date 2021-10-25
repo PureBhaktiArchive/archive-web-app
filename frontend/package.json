@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel src/!(layout).html --port 3000 --out-dir .serve",
-    "build": "parcel build src/!(layout).html --experimental-scope-hoisting",
+    "start": "parcel src/index.html scr/about.html --port 3000 --out-dir .serve",
+    "build": "parcel build src/index.html scr/about.html --experimental-scope-hoisting",
     "lint": "eslint ."
   },
   "browserslist": {
