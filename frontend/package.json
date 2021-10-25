@@ -21,8 +21,8 @@
     ]
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "2.0.0",
-    "@parcel/transformer-webmanifest": "2.0.0",
+    "@parcel/packager-raw-url": "2.0.1-nightly.2514",
+    "@parcel/transformer-webmanifest": "2.0.1-nightly.2514",
     "@tailwindcss/aspect-ratio": "0.2.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
