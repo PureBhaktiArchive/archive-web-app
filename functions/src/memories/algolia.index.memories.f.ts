@@ -5,8 +5,8 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { AlgoliaRecordMemories } from './AlgoliaRecordMemories';
-import { Entry } from './Entry';
+import { MemoriesAlgoliaRecord } from './MemoriesAlgoliaRecord';
+import { MemoriesEntry } from './MemoriesEntry';
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -26,10 +26,10 @@ export default functions.pubsub
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
     const records = Object.entries(
-      entriesSnapshot.val() as Record<string, Entry>
+      entriesSnapshot.val() as Record<string, MemoriesEntry>
     )
       .filter(([, entry]) => !entry.obsolete)
-      .map<AlgoliaRecordMemories>(([id, entry]) => ({
+      .map<MemoriesAlgoliaRecord>(([id, entry]) => ({
         objectID: id,
         programName: entry.programName,
         speakerName: entry.speakerName,

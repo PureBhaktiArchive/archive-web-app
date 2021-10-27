@@ -2,16 +2,17 @@
  * sri sri guru gaurangau jayatah
  */
 
-export interface Entry {
+export interface MemoriesAlgoliaRecord {
+  objectID: string;
   programName: string;
   speakerName: string;
   speakerCountry: string;
   speakerIntro: string;
   hostName: string;
-  recordedDate: string;
+  dateISO: string;
+  dateForHumans: string;
   language: string;
   url: string;
   duration: string;
   topics: string;
-  obsolete?: boolean;
 }
