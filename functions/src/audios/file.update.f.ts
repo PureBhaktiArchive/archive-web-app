@@ -4,10 +4,10 @@
 
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { composeMediaMetadata, composeStorageMetadata } from '../metadata';
 import { shallowlyEqual } from '../shallowly-equal';
-import { convertToMp3, copyCodec, transcode } from '../transcode';
 import { AudiosEntry } from './AudiosEntry';
+import { composeMediaMetadata, composeStorageMetadata } from './metadata';
+import { convertToMp3, copyCodec, transcode } from './transcode';
 
 if (!admin.apps.length) admin.initializeApp();
 
