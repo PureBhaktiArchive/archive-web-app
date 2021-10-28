@@ -6,7 +6,7 @@ import {
   abbreviateLanguages,
   categorizeLanguages,
   parseLanguages,
-} from '../src/languages';
+} from './languages';
 
 describe('Languages', () => {
   it.each`

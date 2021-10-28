@@ -7,7 +7,7 @@ import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
   ReducedPrecisionDate,
-} from '../src/dates';
+} from './reducedPrecisionDate';
 
 describe('ISO date', () => {
   it.each`
