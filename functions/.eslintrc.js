@@ -36,4 +36,11 @@ module.exports = {
       2,
     ],
   },
+  overrides: [
+    {
+      files: '**/*.spec.ts',
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended', 'plugin:jest/style'],
+    },
+  ],
 };

@@ -5,11 +5,11 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import { categorizeLanguages, parseLanguages } from '../languages';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from '../dates';
-import { categorizeLanguages, parseLanguages } from '../languages';
+} from '../reducedPrecisionDate';
 import { AudiosAlgoliaRecord } from './AudiosAlgoliaRecord';
 import { AudiosEntry } from './AudiosEntry';
 

@@ -1,0 +1,10 @@
+{
+  // Used for production build
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "lib",
+    "sourceMap": true
+  },
+  "exclude": ["**/*.spec.ts"]
+}
