@@ -13,5 +13,4 @@ export interface MemoriesEntry {
   url: string;
   duration: string;
   topics: string;
-  obsolete?: boolean;
 }

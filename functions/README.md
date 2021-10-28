@@ -14,12 +14,13 @@ This sub-project provides serverless backend for the Archive in the form of Clou
 
 See [Firebase Environment configuration](https://firebase.google.com/docs/functions/config-env) documentation for details.
 
-| Key              | Description                             |
-| ---------------- | --------------------------------------- |
-| `algolia.appid`  | Algolia’s App ID                        |
-| `algolia.apikey` | Algolia’s API key                       |
-| `algolia.index`  | Algolia’s index name                    |
-| `storage.bucket` | Google Storage bucket for the MP3 files |
+| Key                      | Description                             |
+| ------------------------ | --------------------------------------- |
+| `algolia.appid`          | Algolia’s App ID                        |
+| `algolia.apikey`         | Algolia’s API key                       |
+| `algolia.index`          | Algolia’s index name                    |
+| `algolia.index.memories` | Algolia’s memories index name           |
+| `storage.bucket`         | Google Storage bucket for the MP3 files |
 
 ## Tests
 
