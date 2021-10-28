@@ -5,19 +5,19 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { AlgoliaRecord } from './AlgoliaRecord';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from './dates';
-import { Entry } from './Entry';
-import { categorizeLanguages, parseLanguages } from './languages';
+} from '../dates';
+import { categorizeLanguages, parseLanguages } from '../languages';
+import { AudiosAlgoliaRecord } from './AudiosAlgoliaRecord';
+import { AudiosEntry } from './AudiosEntry';
 
 if (!admin.apps.length) admin.initializeApp();
 
 function getLanguageAttributes(
   input: string
-): Pick<AlgoliaRecord, 'languageCategory' | 'languages'> {
+): Pick<AudiosAlgoliaRecord, 'languageCategory' | 'languages'> {
   const languages = parseLanguages(input);
   return {
     languages,
@@ -27,7 +27,7 @@ function getLanguageAttributes(
 
 function getDateAttributes(
   source: string
-): Pick<AlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null {
+): Pick<AudiosAlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null {
   if (!source) return null;
 
   const date = parseReducedPrecisionIsoDate(source);
@@ -63,10 +63,10 @@ export default functions.pubsub
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
     const records = Object.entries(
-      entriesSnapshot.val() as Record<string, Entry>
+      entriesSnapshot.val() as Record<string, AudiosEntry>
     )
       .filter(([, entry]) => !entry.obsolete)
-      .map<AlgoliaRecord>(([id, entry]) => ({
+      .map<AudiosAlgoliaRecord>(([id, entry]) => ({
         objectID: id,
         title: entry.contentDetails.title,
         topics: entry.contentDetails.topics,
