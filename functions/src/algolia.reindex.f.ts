@@ -87,7 +87,7 @@ export default functions.pubsub
       functions.config().algolia.appid,
       functions.config().algolia.apikey
     );
-    const index = client.initIndex(functions.config().algolia.index);
+    const index = client.initIndex(functions.config().algolia.index.audios);
 
     if (records.length > 0) await index.replaceAllObjects(records);
     else await index.clearObjects();
