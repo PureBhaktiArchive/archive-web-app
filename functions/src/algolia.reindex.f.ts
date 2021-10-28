@@ -6,12 +6,12 @@ import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { AlgoliaRecord } from './AlgoliaRecord';
+import { Entry } from './Entry';
+import { categorizeLanguages, parseLanguages } from './languages';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from './dates';
-import { Entry } from './Entry';
-import { categorizeLanguages, parseLanguages } from './languages';
+} from './reducedPrecisionDate';
 
 if (!admin.apps.length) admin.initializeApp();
 
