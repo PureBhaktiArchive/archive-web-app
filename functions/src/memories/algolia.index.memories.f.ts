@@ -5,10 +5,34 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import {
+  formatReducedPrecisionDateForHumans,
+  parseReducedPrecisionIsoDate,
+} from '../dates';
 import { MemoriesAlgoliaRecord } from './MemoriesAlgoliaRecord';
 import { MemoriesEntry } from './MemoriesEntry';
 
 if (!admin.apps.length) admin.initializeApp();
+
+function getDateAttributes(
+  source: string
+): Pick<MemoriesAlgoliaRecord, 'dateForHumans' | 'dateISO'> | null {
+  if (!source) return null;
+
+  const date = parseReducedPrecisionIsoDate(source);
+  if (!date) return null;
+
+  return {
+    dateISO: source,
+    /**
+     * Formatting date for free-text search according to precision.
+     * - Full date: April 22, 1996
+     * - Month: April 1996
+     * - Year: 1996
+     */
+    dateForHumans: formatReducedPrecisionDateForHumans(date),
+  };
+}
 
 export default functions.pubsub
   .schedule('every monday 00:00')
@@ -33,8 +57,7 @@ export default functions.pubsub
       speakerCountry: entry.speakerCountry,
       speakerIntro: entry.speakerIntro,
       hostName: entry.hostName,
-      dateISO: entry.recordedDate,
-      dateForHumans: entry.recordedDate,
+      ...getDateAttributes(entry.recordedDate),
       language: entry.language,
       url: entry.url,
       duration: entry.duration,
@@ -45,7 +68,7 @@ export default functions.pubsub
       functions.config().algolia.appid,
       functions.config().algolia.apikey
     );
-    const index = client.initIndex(functions.config().algolia.memories.index);
+    const index = client.initIndex(functions.config().algolia.index.memories);
 
     if (records.length > 0) await index.replaceAllObjects(records);
     else await index.clearObjects();
