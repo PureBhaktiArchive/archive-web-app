@@ -9,10 +9,10 @@ export interface MemoriesAlgoliaRecord {
   speakerCountry: string;
   speakerIntro: string;
   hostName: string;
-  dateISO: string;
+  date: number; // Unix Timestamp
   dateForHumans: string;
   language: string;
   url: string;
-  duration: string;
+  duration: number;
   topics: string;
 }
