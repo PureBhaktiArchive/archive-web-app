@@ -16,11 +16,11 @@ if (!admin.apps.length) admin.initializeApp();
 function getDateAttributes(
   source: number
 ): Pick<MemoriesAlgoliaRecord, 'dateForHumans' | 'date'> {
-  const date = fromSerialDate(source);
+  const date = fromSerialDate(source, 'utc');
 
   return {
-    date: source.valueOf(),
-    dateForHumans: date.toLocaleString(DateTime.DATE_FULL),
+    date: date.valueOf(),
+    dateForHumans: date.setLocale('en-gb').toLocaleString(DateTime.DATE_FULL),
   };
 }
 
