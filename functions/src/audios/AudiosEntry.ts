@@ -2,10 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { StorageFileReference } from '../StorageFileReference';
 import { ContentDetails } from './ContentDetails';
-import { StorageFileReference } from './StorageFileReference';
 
-export interface Entry {
+export interface AudiosEntry {
   contentDetails: ContentDetails;
   file: StorageFileReference;
   obsolete?: boolean;

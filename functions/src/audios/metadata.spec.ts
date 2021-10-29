@@ -2,8 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { ContentDetails } from '../src/ContentDetails';
-import { composeFileName, composeMediaMetadata } from '../src/metadata';
+import { ContentDetails } from './ContentDetails';
+import { composeFileName, composeMediaMetadata } from './metadata';
 
 describe('File', () => {
   it.each`

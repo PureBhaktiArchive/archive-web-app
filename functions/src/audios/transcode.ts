@@ -7,7 +7,7 @@ import * as functions from 'firebase-functions';
 import ffmpeg, { FfmpegCommand } from 'fluent-ffmpeg';
 import { Duration } from 'luxon';
 import { Writable } from 'stream';
-import { StorageFileMetadata } from './StorageFileMetadata';
+import { StorageFileMetadata } from '../StorageFileMetadata';
 
 export const convertToMp3 = (command: FfmpegCommand): unknown =>
   command

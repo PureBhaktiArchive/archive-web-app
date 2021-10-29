@@ -1,11 +1,12 @@
 {
+  // Base config file used for VSCode ts language service
+  // which provides refactoring and intellisense
   "compilerOptions": {
     "lib": ["ES2019"],
     "module": "commonjs",
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "outDir": "lib",
-    "sourceMap": true,
+    "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,

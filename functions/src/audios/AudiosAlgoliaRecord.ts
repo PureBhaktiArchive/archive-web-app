@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-export interface AlgoliaRecord {
+export interface AudiosAlgoliaRecord {
   objectID: string;
   title: string;
   topics: string;
