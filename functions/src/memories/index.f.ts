@@ -62,7 +62,10 @@ export default functions.pubsub
         ...getDateAttributes(row['Date of memory (yyyy/mm/dd)']),
         language: row.Language,
         url: row['YouTube link'],
-        duration: row['Duration (of the final edited video)'],
+        // Converting duration from spreadsheet-based to seconds
+        duration: Math.ceil(
+          row['Duration (of the final edited video)'] * 24 * 3600
+        ),
         topics: row.Topics,
       }));
 
