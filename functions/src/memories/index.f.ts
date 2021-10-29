@@ -47,7 +47,9 @@ export default functions.pubsub
 
         if (!Number.isFinite(row['Duration (of the final edited video)'])) {
           console.error(row['Sr No'], 'incorrect duration');
+          return false;
         }
+
         return true;
       })
       .map<MemoriesAlgoliaRecord>((row) => ({
