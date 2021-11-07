@@ -16,5 +16,128 @@
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
+    <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
+      <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+        <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
+        <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
+          <div id="program-name-list"></div>
+          <div id="speaker-country-list"></div>
+          <div id="language-list"></div>
+          <div id="duration-menu"></div>
+        </div>
+        <div class="flex-none p-2 border-t md:hidden">
+          <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
+        </div>
+      </div>
+      <main class="flex-grow pb-40 px-2 w-full sm:px-4 sm:w-4/5 sm:overflow-y-auto">
+        <div class="flex items-center my-3">
+          <!-- Filter button -->
+          <button data-filter-toggle class="inline-flex items-center mr-4 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
+            <!-- Heroicon name: solid/filter -->
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path
+                fill-rule="evenodd"
+                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Filter</span>
+          </button>
+          <span id="stats" class="whitespace-nowrap text-sm"></span>
+          <span id="loading" class="text-gray-500 text-sm">Loading…</span>
+        </div>
+        <div id="hits">
+          <template id="item-template">
+            <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2">
+              <!-- Main section -->
+              <div class="flex flex-grow items-start">
+                <div class="flex-grow">
+                  <!-- First line -->
+                  <div class="flex items-start justify-between space-x-1">
+                    <!-- Title -->
+                    <h3 class="flex-grow break-words font-semibold" title="{{speakerName}}">{{#helpers.highlight}} { "attribute": "speakerName" } {{/helpers.highlight}}</h3>
+                    <!-- Duration -->
+                    <span class="flex-none" title="Duration">{{durationForHumans}}</span>
+                  </div>
+                  <!-- Second line -->
+                  <div class="flex items-end justify-between">
+                    <!-- Tags -->
+                    <div class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
+                      <!-- ID -->
+                      <div title="Unique file identifier">#{{idPadded}}</div>
+                      <!-- Date -->
+                      {{#_highlightResult.dateForHumans}}
+                      <div title="Date">{{{value}}}</div>
+                      {{/_highlightResult.dateForHumans}}
+                      <!-- Program Name -->
+                      {{#_highlightResult.programName}}
+                      <div title="Program">{{{value}}}</div>
+                      {{/_highlightResult.programName}}
+                      <!-- Language -->
+                      <div title="Language spoken in the recording">{{{language}}}</div>
+                      <!-- Speaker Country -->
+                      <div title="Speaker Country">{{{speakerCountry}}}</div>
+                      <!-- Host -->
+                      <div title="Host Name">{{{hostName}}}</div>
+                      <!-- Topics -->
+                      <!-- <div title="Host Name">{{{topics}}}</div> -->
+                    </div>
+                    <!-- Actions -->
+                    <div class="flex align-top children:ml-1 children:pl-1 text-sm divide-x">
+                      <!-- Download -->
+                      <a href="{{url}}" class="inline-flex space-x-1" title="Watch this video on youtube">
+                        <svg class="w-4 h-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                          />
+                        </svg>
+                        <span class="hidden lg:inline">Watch</span>
+                      </a>
+                      <!-- Feedback -->
+                      <a
+                        href="{{feedbackURL}}"
+                        target="_blank"
+                        class="inline-flex space-x-1"
+                        title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this video"
+                      >
+                        <svg class="w-4 h-full stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                          />
+                        </svg>
+                        <span class="hidden lg:inline">Feedback</span>
+                      </a>
+                    </div>
+                  </div>
+                  <!-- Embedd and Play video -->
+                  <div class="aspect-w-16 aspect-h-9 top-3">
+                    <iframe
+                      src="https://www.youtube.com/embed/mrKSYhfduI8"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </template>
+        </div>
+        <div id="pagination" class="my-2 w-full"></div>
+        <p id="under-progress" class="hidden p-2 text-center text-gray-500 text-sm">
+          This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
+          again later.
+        </p>
+      </main>
+    </div>
+  </block>
+  <block name="scripts">
+    <script type="module" src="./memories.js"></script>
   </block>
 </extends>
