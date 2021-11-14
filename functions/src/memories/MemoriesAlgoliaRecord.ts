@@ -12,7 +12,7 @@ export interface MemoriesAlgoliaRecord {
   date: number; // Unix Timestamp
   dateForHumans: string;
   language: string;
-  url: string;
+  videoId: string;
   duration: number;
   topics: string;
 }
