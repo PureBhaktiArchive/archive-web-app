@@ -197,7 +197,8 @@ window.player = () => ({
 
   // For x-spread
   self: {
-    'x-show.transition': 'isOpen',
+    'x-show': 'isOpen',
+    'x-transition': '',
     '@archive:toggle-play.window': 'loadFile',
   },
   playButton: {
