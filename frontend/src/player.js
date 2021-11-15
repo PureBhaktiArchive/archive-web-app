@@ -195,7 +195,7 @@ window.player = () => ({
     return !(this.volume > 0);
   },
 
-  // For x-spread
+  // For x-bind
   self: {
     'x-show': 'isOpen',
     'x-transition': '',

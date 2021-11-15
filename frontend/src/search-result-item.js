@@ -47,7 +47,7 @@ window.searchResultItem = (fileId) => {
       this.isPlaying = isPlaying;
     },
 
-    // For `x-spread`
+    // For `x-bind`
     self: {
       [`@archive:toggle-play-${fileId}.window`]: 'onTogglePlay',
     },
