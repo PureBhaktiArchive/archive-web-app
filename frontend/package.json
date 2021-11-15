@@ -21,8 +21,8 @@
     ]
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "2.0.0",
-    "@parcel/transformer-webmanifest": "2.0.0",
+    "@parcel/packager-raw-url": "2.0.1",
+    "@parcel/transformer-webmanifest": "2.0.1",
     "@tailwindcss/aspect-ratio": "0.2.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
@@ -30,7 +30,7 @@
     "eslint-plugin-import": "2.25.2",
     "htmlhint": "0.15.2",
     "mdn-polyfills": "5.20.0",
-    "parcel": "2.0.0",
+    "parcel": "2.0.1",
     "postcss": "8.3.11",
     "postcss-mixins": "8.1.0",
     "postcss-preset-env": "6.7.0",
