@@ -2,9 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { Alpine } from 'alpinejs';
 import { search } from './search';
 
-window.searchResultItem = (fileId) => {
+Alpine.data('searchResultItem', (fileId) => {
   const itemData = search.helper.lastResults.hits.find(
     // fileId has to be converted to string because the objectID is a string
     (hit) => hit.objectID === fileId.toString()
@@ -55,4 +56,4 @@ window.searchResultItem = (fileId) => {
       '@click': 'togglePlay',
     },
   };
-};
+});

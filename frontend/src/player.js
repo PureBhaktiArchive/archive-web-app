@@ -2,9 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { Alpine } from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
-window.player = () => ({
+Alpine.data('player', () => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -227,4 +228,4 @@ window.player = () => ({
   unmutedIcon: {
     'x-show': '!isMuted',
   },
-});
+}));
