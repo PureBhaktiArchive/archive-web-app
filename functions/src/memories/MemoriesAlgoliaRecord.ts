@@ -15,4 +15,5 @@ export interface MemoriesAlgoliaRecord {
   url: string;
   duration: number;
   topics: string;
+  videoId: string;
 }

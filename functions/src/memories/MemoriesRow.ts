@@ -16,5 +16,6 @@ export interface MemoriesRow {
   // Duration is stored as fraction of 1, where 1 corresponds to 24h
   'Duration (of the final edited video)': number;
   Topics: string;
+  VideoId: string;
   'Ready for Launch': boolean;
 }

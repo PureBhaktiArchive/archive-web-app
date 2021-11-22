@@ -67,6 +67,7 @@ export default functions.pubsub
           row['Duration (of the final edited video)'] * 24 * 3600
         ),
         topics: row.Topics,
+        videoId: row.VideoId
       }));
 
     const client = algoliasearch(
