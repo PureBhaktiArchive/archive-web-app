@@ -13,16 +13,8 @@ import { MemoriesRow } from './MemoriesRow';
 
 if (!admin.apps.length) admin.initializeApp();
 
-function getDateAttributes(
-  source: number
-): Pick<MemoriesAlgoliaRecord, 'dateForHumans' | 'date'> {
-  const date = fromSerialDate(source, 'utc');
-
-  return {
-    date: date.valueOf(),
-    dateForHumans: date.setLocale('en-gb').toLocaleString(DateTime.DATE_FULL),
-  };
-}
+const YouTubeIdRegex =
+  /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
 
 export default functions.pubsub
   .schedule('every monday 00:00')
@@ -36,39 +28,51 @@ export default functions.pubsub
     const rows = await sheet.getRows();
 
     const records = rows
-      // Only ready for launch are considered
-      .filter((row) => row['Ready for Launch'])
-      // Validation
-      .filter((row) => {
-        if (!fromSerialDate(row['Date of memory (yyyy/mm/dd)']).isValid) {
+      // Using flatMap to filter and map array in one function
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#for_adding_and_removing_items_during_a_map
+      .flatMap<MemoriesAlgoliaRecord>((row) => {
+        // Only ready for launch are considered
+        if (!row['Ready for Launch']) return [];
+
+        // Validation
+        const date = fromSerialDate(row['Date of memory (yyyy/mm/dd)'], 'utc');
+
+        if (!date.isValid) {
           console.error(row['Sr No'], 'incorrect date');
-          return false;
+          return [];
         }
 
         if (!Number.isFinite(row['Duration (of the final edited video)'])) {
           console.error(row['Sr No'], 'incorrect duration');
-          return false;
+          return [];
         }
 
-        return true;
-      })
-      .map<MemoriesAlgoliaRecord>((row) => ({
-        objectID: row['Sr No'].toString(),
-        programName: row['Program name'],
-        speakerName: row["Speaker's name"],
-        speakerCountry: row["Speaker's country"],
-        speakerIntro: row["Speaker's Intro"],
-        hostName: row.Host,
-        ...getDateAttributes(row['Date of memory (yyyy/mm/dd)']),
-        language: row.Language,
-        url: row['YouTube link'],
-        // Converting duration from spreadsheet-based to seconds
-        duration: Math.ceil(
-          row['Duration (of the final edited video)'] * 24 * 3600
-        ),
-        topics: row.Topics,
-        videoId: row.VideoId
-      }));
+        const videoId = row['YouTube link'].match(YouTubeIdRegex)?.[1];
+        if (!videoId) {
+          console.error(row['Sr No'], 'cannot extract YouTube ID');
+          return [];
+        }
+
+        return {
+          objectID: row['Sr No'].toString(),
+          programName: row['Program name'],
+          speakerName: row["Speaker's name"],
+          speakerCountry: row["Speaker's country"],
+          speakerIntro: row["Speaker's Intro"],
+          hostName: row.Host,
+          date: date.valueOf(),
+          dateForHumans: date
+            .setLocale('en-gb')
+            .toLocaleString(DateTime.DATE_FULL),
+          language: row.Language,
+          videoId,
+          // Converting duration from spreadsheet-based to seconds
+          duration: Math.ceil(
+            row['Duration (of the final edited video)'] * 24 * 3600
+          ),
+          topics: row.Topics,
+        };
+      });
 
     const client = algoliasearch(
       functions.config().algolia.appid,
