@@ -48,18 +48,21 @@
         </div>
         <div id="hits">
           <template id="item-template">
-            <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2 border-t-2 ">
-              <!-- <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2 border-t-2 items-center justify-center"> -->
+              <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2 border-t-2 items-center justify-center">
                 <!-- Main section -->
                   <!-- First Column -->
                     <!-- Embedd and Play video -->
                     <div class="flex items-start justify-between p-4 pt-1 ">
-                      <iframe
-                        src="https://www.youtube.com/embed/{{{videoId}}}"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen
-                      ></iframe>
+                      <a
+                      href="https://youtu.be/{{{videoId}}}"
+                      target="_blank"
+                      class="inline-flex space-x-1 ml-3"
+                      title="Go to youtube"
+                      >
+                      <img class="w-48 h-27"
+                      src="https://img.youtube.com/vi/{{{videoId}}}/1.jpg"
+                    ></img>
+                      </a>
                     </div>
                     <div class="flex-grow  justify-between p-4 pt-1 w-5/6 items-center">
                       <!-- First line -->
