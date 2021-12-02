@@ -20,6 +20,9 @@
       "last 1 safari version"
     ]
   },
+  "@parcel/bundler-default": {
+    "minBundles": 5
+  },
   "devDependencies": {
     "@parcel/packager-raw-url": "2.0.0",
     "@parcel/transformer-webmanifest": "2.0.0",
