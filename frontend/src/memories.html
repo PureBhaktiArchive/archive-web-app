@@ -46,38 +46,28 @@
           <span id="stats" class="whitespace-nowrap text-sm"></span>
           <span id="loading" class="text-gray-500 text-sm">Loading…</span>
         </div>
-        <div id="hits">
+       <div class="flex flex-wrap flex-col">
+         <div id="hits">
           <template id="item-template">
-              <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2 border-t-2 items-center justify-center">
-                <!-- Main section -->
+            <article class="py-1 flex flex-wrap sm:py-2 border-t-2 items-start max-w-screen-mobile-s">
+              <!-- Main section -->
                   <!-- First Column -->
                     <!-- Embedd and Play video -->
-                    <div class="flex items-start justify-between p-4 pt-1 ">
-                      <a
-                      href="https://youtu.be/{{{videoId}}}"
-                      target="_blank"
-                      class="inline-flex space-x-1 ml-3"
-                      title="Go to youtube"
-                      >
-                      <img class="w-48 h-27"
-                      src="https://img.youtube.com/vi/{{{videoId}}}/1.jpg"
-                    ></img>
-                      </a>
-                    </div>
-                    <div class="flex-grow  justify-between p-4 pt-1 w-5/6 items-center">
-                      <!-- First line -->
-                      <div class="flex items-start">
-                        <!-- Title -->
-                        <h3 class="flex break-words font-semibold" title="{{speakerName}}">
-                           {{#helpers.highlight}} { "attribute": "speakerName" } {{/helpers.highlight}}
-                        </h3>
+                    <div class="flex-wrap items-start p-4 pt-1 ">
+                      <div>
+                      <iframe class="w-64 h-32 rounded-lg mx-auto border-t-2"
+                        src="https://www.youtube.com/embed/{{{videoId}}}"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                      ></iframe>
                       </div>
-                      <div class="children:last:border-0 flex content-between align-top  text-xs text-justify pt-1">
-                        <div title="speakerIntro">{{{speakerIntro}}}</div>
+                      <div class="pl-6 pt-1">
+                        <h3 class="break-words font-semibold" title="{{speakerName}}">
+                          {{#helpers.highlight}} { "attribute": "speakerName" } {{/helpers.highlight}}
+                       </h3>
                       </div>
-                    </div>
-                    <div class="w-5/6 children:last:border-0 flex justify-between children:mt-1 children:pr-1 text-xs children:border-1 p-4 pt-1">
-                      <!-- Language column -->
+                    <div class="pl-6 pb-1 children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
                       <div class="" title="language">{{language}}</div>
                       <!-- Country column -->
                       <div class="" title="speakerCountry">{{speakerCountry}}</div>
@@ -105,10 +95,15 @@
                       </a>
                     </div>
                     </div>
-                  <!-- </div> -->
+                      <div class="children:last:border-0 flex content-between align-top text-xs text-justify p-6 pt-0">
+                        <div title="speakerIntro">{{{speakerIntro}}}</div>
+                      </div>
+                    </div>
+
             </article>
-          </template>
+         </template>
         </div>
+      </div>
         <div id="pagination" class="my-2 w-full"></div>
         <p id="under-progress" class="hidden p-2 text-center text-gray-500 text-sm">
           This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
