@@ -3,6 +3,7 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
+import 'alpinejs';
 import instantsearch from 'instantsearch.js';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
 import {
@@ -14,7 +15,10 @@ import {
   refinementList,
   stats
 } from 'instantsearch.js/es/widgets';
+import 'mdn-polyfills/Element.prototype.toggleAttribute';
+import './algolia.css';
 import { formatDurationForHumans } from './duration';
+import './menu';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -147,16 +151,3 @@ document.querySelectorAll('[data-filter-toggle]').forEach(
       toggleFilter(!isOpen);
     })
 );
-window.ShowMore = () => ({
-
-  toggle() {
-    alert('test');
-    // this.expanded = !this.expanded;
-  },
-  header: {
-    '@click': 'toggle',
-  },
-  contents: {
-    'x-show': 'expanded',
-  },
-});
