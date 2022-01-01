@@ -45,7 +45,7 @@
     "@tailwindcss/typography": "0.4.1",
     "algoliasearch": "4.11.0",
     "alpinejs": "2.8.2",
-    "instantsearch.js": "4.32.0",
+    "instantsearch.js": "4.36.0",
     "tippy.js": "6.3.7"
   }
 }
