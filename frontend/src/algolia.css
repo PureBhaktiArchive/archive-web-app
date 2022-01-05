@@ -359,6 +359,6 @@
   }
 
   .ais-Hits-list{
-    @apply flex flex-wrap justify-center ;
+    @apply flex flex-wrap justify-center md:justify-start sm:justify-start;
   }
 }
