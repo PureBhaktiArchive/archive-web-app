@@ -4,7 +4,7 @@
   </block>
   <block name="content">
     <!-- <div class="flex-none -mt-3 text-left ml-2 -mb-3 font-bold text-teal-800 uppercase md:hidden">Memories</div> -->
-    <div class="flex-none mt-1 text-center -mb-3 font-bold text-teal-800 uppercase md:hidden sm:hidden">Memories</div>
+    <div class="flex-none font-header text-sm mt-2 text-center -mb-3 font-bold text-teal-800 uppercase md:hidden sm:hidden">Memories</div>
     <div id="searchbox" class="flex flex-none mx-auto p-4 w-full max-w-screen-xl border-b sm:pl-36 md:pl-56 lg:pl-72">
       <input
         type="search"
@@ -50,20 +50,20 @@
         </div>
          <div id="hits">
           <template id="item-template">
-              <article class="p-3 max-w-screen-mobile-s">
+              <article class="pr-0 pl-0 pb-4 max-w-screen-mobile-s items-center md:pr-0 md:pl-8 sm:pr-0 sm:pl-8">
               <!-- Main section -->
                   <!-- First Column -->
                     <!-- Embedd and Play video -->
-                        <iframe class="h-32 rounded-lg border-t-2"
+                        <iframe class="w-80 h-40 rounded-lg border-t-2 md:w-72 sm:w-72"
                           src="https://www.youtube.com/embed/{{{videoId}}}"
                           frameborder="0"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowfullscreen
                         ></iframe>
-                        <h3 class="break-words font-semibold" title="{{speakerName}}">
+                         <h3 class="break-words font-semibold" title="{{speakerName}}">
                           {{#helpers.highlight}} { "attribute": "speakerName" } {{/helpers.highlight}}
                        </h3>
-                       <div class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
+                      <div class="w-80 md:w-72 sm:w-72 children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 text-xs children:border-r children:border-gray-300">
                         <div class="" title="language">{{language}}</div>
                         <!-- Country column -->
                         <div class="" title="speakerCountry">{{speakerCountry}}</div>
@@ -89,21 +89,21 @@
                           />
                         </svg>
                         </a>
-                      </div>
-                      <p class="align-top text-xs text-justify ml-1"
-                      x-data="{ isCollapsed: false, maxLength: 170, originalContent: '', content: '' }"
-                      x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-                      >
-                       <span x-text="isCollapsed ? originalContent : content">
-                        {{{speakerIntro}}}
-                       </span>
-                       <button
-                         @click="isCollapsed = !isCollapsed"
-                         x-show="originalContent.length > maxLength"
-                         x-text="isCollapsed ? 'Read less' : '...Read more'"
-                       ></button>
-                     </p>
+                       </div>
                     </div>
+                      <p class="w-80 md:w-72 sm:w-72 align-top text-xs text-justify"
+                        x-data="{ isCollapsed: false, maxLength: 170, originalContent: '', content: '' }"
+                        x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
+                        >
+                        <span x-text="isCollapsed ? originalContent : content">
+                          {{{speakerIntro}}}
+                        </span>
+                        <button class="text-teal-800"
+                          @click="isCollapsed = !isCollapsed"
+                          x-show="originalContent.length > maxLength"
+                          x-text="isCollapsed ? 'Read less' : '...Read more'"
+                        ></button>
+                      </p>
                   </article>
          </template>
       </div>

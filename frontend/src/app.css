@@ -57,6 +57,12 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+
+  .font-header {
+    @font-face {
+      font-family:'CAPITALS';
+    }
+  }
 }
 
 @layer components {
