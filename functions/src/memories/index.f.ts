@@ -8,6 +8,7 @@ import * as functions from 'firebase-functions';
 import { DateTime } from 'luxon';
 import { fromSerialDate } from '../date-conversion';
 import { Spreadsheet } from '../Spreadsheet';
+import { GuruRow } from './GuruRow';
 import { MemoriesAlgoliaRecord } from './MemoriesAlgoliaRecord';
 import { MemoriesRow } from './MemoriesRow';
 
@@ -16,10 +17,21 @@ if (!admin.apps.length) admin.initializeApp();
 const YouTubeIdRegex =
   /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
 
+const getGurusMap = async () => {
+  const sheet = await Spreadsheet.open<GuruRow>(
+    functions.config().memories.spreadsheet.id,
+    'Gurus'
+  );
+  const rows = await sheet.getRows();
+  return new Map(rows.map((i) => [i.Abbreviation, i['Full Name']]));
+};
+
 export default functions.pubsub
   .schedule('every monday 00:00')
   .timeZone('Asia/Calcutta')
   .onRun(async () => {
+    const gurus = await getGurusMap();
+
     const sheet = await Spreadsheet.open<MemoriesRow>(
       functions.config().memories.spreadsheet.id,
       'Master'
@@ -71,7 +83,10 @@ export default functions.pubsub
             row['Duration (of the final edited video)'] * 24 * 3600
           ),
           topics: row.Topics,
-          gurus: row['Gurus'],
+          gurus: row['Guru Initials'].split(',').map((i) => ({
+            abbreviation: i.trim(),
+            fullName: gurus.get(i.trim()) ?? null,
+          })),
         };
       });
 

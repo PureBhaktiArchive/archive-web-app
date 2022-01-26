@@ -15,5 +15,8 @@ export interface MemoriesAlgoliaRecord {
   videoId: string;
   duration: number;
   topics: string;
-  gurus: string;
+  gurus: {
+    abbreviation: string;
+    fullName: string | null;
+  }[];
 }

@@ -7,6 +7,7 @@ export interface MemoriesRow {
   'Program name': string;
   "Speaker's name": string;
   "Speaker's country": string;
+  'Guru Initials': string;
   "Speaker's Intro": string;
   Host: string;
   // Serial number, based on the number of days since December 30, 1899.
@@ -18,5 +19,4 @@ export interface MemoriesRow {
   Topics: string;
   VideoId: string;
   'Ready for Launch': boolean;
-  'Gurus': string;
 }

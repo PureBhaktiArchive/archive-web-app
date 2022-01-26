@@ -16,6 +16,12 @@ const encodeSheetsValue = (value: unknown): unknown =>
 const decodeSheetsValue = (value: unknown): unknown =>
   value === '' ? null : value ?? null;
 
+function* takeWhile<T>(xs: Iterable<T>, fn: (x: T) => boolean) {
+  for (const x of xs)
+    if (fn(x)) yield x;
+    else break;
+}
+
 export class Spreadsheet<T> {
   public columnNames: string[];
 
@@ -53,10 +59,7 @@ export class Spreadsheet<T> {
 
     if (!headers) throw new Error('Incorrect API response.');
 
-    this.columnNames = headers.slice(
-      0,
-      headers.findIndex((value) => !value) - 1
-    );
+    this.columnNames = [...takeWhile(headers, (value) => !!value)];
   }
 
   protected static getResponse<T>(response: GaxiosResponse<T>): T {
