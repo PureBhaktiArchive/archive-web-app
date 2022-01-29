@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "parcel serve src/!(layout).html --port 3000 --dist-dir .serve",
-    "build": "parcel build src/!(layout).html",
+    "build": "parcel build \"src/!(layout).html\"",
     "lint": "eslint ."
   },
   "browserslist": {
