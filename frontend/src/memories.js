@@ -113,12 +113,12 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Initiating Guru(s)',
+      header: 'Initiating Guru(s)<p class="ais-Panel-header-disclaimer">[Sorted by decreasing count of matching records]</p>',
     },
   })(refinementList)({
     container: '#gurus-list',
     attribute: 'gurus.fullName',
-    sortBy: ['name:asc'],
+    sortBy: ['gurus:desc'],
   }),
   hits({
     container: '#hits',
