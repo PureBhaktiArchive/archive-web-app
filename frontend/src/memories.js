@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats
+  stats,
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
@@ -113,7 +113,8 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Initiating Guru(s)<p class="ais-Panel-header-disclaimer">[Sorted by decreasing count of matching records]</p>',
+      header:
+        'Initiating Guru(s)<p class="ais-Panel-header-disclaimer">[Sorted by decreasing count of matching records]</p>',
     },
   })(refinementList)({
     container: '#gurus-list',
