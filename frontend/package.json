@@ -42,7 +42,7 @@
     "tailwindcss-children": "2.1.0"
   },
   "dependencies": {
-    "@tailwindcss/typography": "0.4.1",
+    "@tailwindcss/typography": "0.5.1",
     "algoliasearch": "4.12.1",
     "alpinejs": "2.8.2",
     "instantsearch.js": "4.36.0",
