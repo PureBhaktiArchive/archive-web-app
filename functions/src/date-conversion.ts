@@ -2,15 +2,12 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { DateTime, Settings } from 'luxon';
+import { DateTime } from 'luxon';
 
 const daysBetweenEpochs = 25569; // Number of days between December 30th 1899 and January 1st 1970
 const secondsInDay = 86400; // 24 * 60 * 60
 
-export function fromSerialDate(
-  serialDate: number,
-  timezone: string = Settings.defaultZoneName
-): DateTime {
+export function fromSerialDate(serialDate: number, timezone: string): DateTime {
   try {
     // Calculating timestamp as if the source date was specified in UTC,
     // then setting the time zone as specified but keeping local time the same
