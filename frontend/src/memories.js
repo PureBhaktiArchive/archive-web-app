@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats,
+  stats
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
@@ -118,6 +118,8 @@ search.addWidgets([
   })(refinementList)({
     container: '#gurus-list',
     attribute: 'gurus.fullName',
+    showMore: true,
+    showMoreLimit: 20,
     sortBy: ['gurus:desc'],
   }),
   hits({
