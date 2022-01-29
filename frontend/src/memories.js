@@ -113,8 +113,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header:
-        'Initiating Guru(s)<p class="ais-Panel-header-disclaimer">[Sorted by decreasing count of matching records]</p>',
+      header: document.querySelector('#gurus-list > template').innerHTML,
     },
   })(refinementList)({
     container: '#gurus-list',

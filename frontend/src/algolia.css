@@ -263,12 +263,6 @@
     @apply sticky top-0 py-1 text-xs font-bold bg-white uppercase;
   }
 
-  .ais-Panel-header-disclaimer {
-    font-size: 0.6rem;
-    text-transform: lowercase;
-    color: teal;
-  }
-
   .ais-Panel-footer {
     @apply mt-2 text-xs;
   }

@@ -21,7 +21,12 @@
       <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
         <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
-          <div id="gurus-list"></div>
+          <div id="gurus-list">
+            <template>
+              <span>Initiating Guru(s)</span>
+              <p class="text-xs font-light lowercase">[Sorted by decreasing count of matching records]</p>
+            </template>
+          </div>
           <div id="language-list"></div>
           <div id="program-name-list"></div>
           <div id="speaker-country-list"></div>
@@ -76,7 +81,18 @@
                 </span>
               </h3>
               <div
-                class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 w-80 text-xs children:border-r children:border-gray-300 sm:w-72 md:w-72"
+                class="
+                  children:last:border-0
+                  flex flex-wrap
+                  content-between
+                  align-baseline
+                  children:mr-1 children:mt-1 children:pr-1
+                  w-80
+                  text-xs
+                  children:border-r children:border-gray-300
+                  sm:w-72
+                  md:w-72
+                "
               >
                 <div class="" title="Language">{{language}}</div>
                 <!-- Country column -->
