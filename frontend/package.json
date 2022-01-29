@@ -32,7 +32,7 @@
     "mdn-polyfills": "5.20.0",
     "parcel": "2.0.1",
     "postcss": "8.4.5",
-    "postcss-mixins": "8.1.0",
+    "postcss-mixins": "9.0.1",
     "postcss-preset-env": "6.7.0",
     "posthtml-expressions": "1.9.0",
     "posthtml-extend": "0.6.2",
