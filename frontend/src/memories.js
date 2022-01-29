@@ -67,7 +67,7 @@ search.addWidgets([
         .getElementById('stats')
         .classList.toggle('hidden', isSearchStalled);
       if (!isSearchStalled)
-        document.getElementById('under-progress').classList.remove('hidden');
+        document.getElementById('results-footer').classList.remove('hidden');
     },
   },
   panel({
