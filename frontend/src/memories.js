@@ -13,7 +13,7 @@ import {
   pagination,
   panel,
   refinementList,
-  stats
+  stats,
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
