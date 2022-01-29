@@ -5,6 +5,7 @@
 export interface MemoriesRow {
   'Sr No': number;
   'Program name': string;
+  Seniority: number | null;
   "Speaker's name": string;
   "Speaker's country": string;
   'Guru Initials': string;

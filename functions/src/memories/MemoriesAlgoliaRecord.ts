@@ -5,6 +5,7 @@
 export interface MemoriesAlgoliaRecord {
   objectID: string;
   programName: string;
+  seniority: number | null;
   speakerName: string;
   speakerCountry: string;
   speakerIntro: string;
