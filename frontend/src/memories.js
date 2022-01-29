@@ -111,6 +111,15 @@ search.addWidgets([
       { label: '45+ minutes', start: 2700 },
     ],
   }),
+  panel({
+    templates: {
+      header: 'Initiating Guru(s)',
+    },
+  })(refinementList)({
+    container: '#gurus-list',
+    attribute: 'gurus.fullName',
+    sortBy: ['name:asc'],
+  }),
   hits({
     container: '#hits',
     templates: {
@@ -123,6 +132,8 @@ search.addWidgets([
         idPadded: item.objectID.padStart(4, '0'),
         percentageRounded: Math.ceil(item.percentage * 20) * 5, // Rounding up to the next 5% step
         durationForHumans: formatDurationForHumans(item.duration),
+        memoryFeedbackURL: process.env.MEMORIES_FEEDBACK_FORM + item.objectID,
+        // memoryFeedbackURL: item.gurus(0),
       })),
   }),
   pagination({

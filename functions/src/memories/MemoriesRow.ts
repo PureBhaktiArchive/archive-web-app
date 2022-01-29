@@ -18,4 +18,5 @@ export interface MemoriesRow {
   Topics: string;
   VideoId: string;
   'Ready for Launch': boolean;
+  'Gurus': string;
 }
