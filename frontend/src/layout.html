@@ -86,7 +86,9 @@
           <block name="audios-menu-item">
             <a href="/">Audios</a>
           </block>
-          <a class="cursor-pointer" data-tippy-content="Coming soon" data-tippy-placement="auto">Memories</a>
+          <block name="memories-menu-item">
+            <a href="/memories">Memories</a>
+          </block>
           <a href="https://www.audioseva.com/donate" target="_blank">Donate</a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjwP_n5uJPD-BxwE_Ta-tbaf2aWNWZqe-YOOoUzjcPw209Uw/viewform" target="_blank">Contact</a>
           <block name="about-menu-item">
@@ -96,14 +98,17 @@
         </div>
       </div>
     </nav>
-    <div class="flex flex-wrap items-center justify-center mx-auto p-1 w-full max-w-screen-xl text-sm space-x-2 sm:pl-36 md:pl-56 lg:pl-72">
-      <span class="py-3 text-center"> <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
-      <div>
+    <div class="flex flex-wrap items-center justify-center mx-auto px-4 py-2 w-full max-w-screen-xl text-sm border-b space-x-2 sm:pl-36 md:pl-56 lg:pl-72">
+      <span class="py-1 text-center"> <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
+      <div class="py-1">
         <a class="inline-flex items-center px-2 py-1 text-white bg-red-400 rounded-md shadow-sm" target="_blank" href="https://chat.whatsapp.com/DW18pIRZDqH7PvXVaCQYLG">JOIN on WhatsApp</a>
         <a class="text-blue-600 underline" target="_blank" href="https://linktr.ee/gaudiya.rasamrita">or other platforms</a>
       </div>
     </div>
     <div class="flex-1 mx-auto w-full max-w-screen-xl">
+      <div class="flex-none mt-4 text-center text-teal-800 font-header text-sm font-bold uppercase sm:hidden">
+        <block name="title"></block>
+      </div>
       <block name="content"></block>
     </div>
     <block name="scripts"></block>

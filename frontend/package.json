@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "parcel serve src/index.html src/about.html --port 3000 --dist-dir .serve",
-    "build": "parcel build src/index.html src/about.html",
+    "start": "parcel serve src/!(layout).html --port 3000 --dist-dir .serve",
+    "build": "parcel build \"src/!(layout).html\"",
     "lint": "eslint ."
   },
   "browserslist": {
@@ -19,6 +19,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "@parcel/bundler-default": {
+    "minBundles": 5
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "2.2.1",

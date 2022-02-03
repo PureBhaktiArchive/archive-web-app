@@ -3,9 +3,9 @@
  */
 
 import { File } from '@google-cloud/storage';
+import { abbreviateLanguages, parseLanguages } from '../languages';
+import { StorageFileMetadata } from '../StorageFileMetadata';
 import { ContentDetails } from './ContentDetails';
-import { abbreviateLanguages, parseLanguages } from './languages';
-import { StorageFileMetadata } from './StorageFileMetadata';
 
 export function composeFileName(
   id: string,
