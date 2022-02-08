@@ -3,8 +3,7 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
-import instantsearch from 'instantsearch.js';
-import { connectSearchBox } from 'instantsearch.js/es/connectors';
+import instantsearch from 'instantsearch.js/es';
 import {
   configure,
   infiniteHits,
@@ -15,6 +14,7 @@ import {
   stats,
 } from 'instantsearch.js/es/widgets';
 import { formatDurationForHumans } from './duration';
+import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -46,17 +46,7 @@ search.addWidgets([
   configure({
     hitsPerPage: 30,
   }),
-  connectSearchBox((renderOptions, isFirstRender) => {
-    const { query, refine, widgetParams } = renderOptions;
-
-    const input = widgetParams.container.querySelector('input');
-    if (isFirstRender) {
-      input.addEventListener('input', (event) => {
-        refine(event.target.value);
-      });
-    }
-    input.value = query;
-  })({
+  searchBar({
     container: document.querySelector('#searchbox'),
   }),
   stats({
