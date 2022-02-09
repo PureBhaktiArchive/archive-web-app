@@ -76,7 +76,6 @@
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
-    /* @apply relative -mt-1 bg-teal-800 rounded-full appearance-none cursor-pointer; */
 
     width: var(--thumb-size);
     height: var(--thumb-size);
