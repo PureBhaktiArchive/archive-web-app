@@ -131,5 +131,6 @@ module.exports = {
     require('tailwindcss-children'),
     require('./tailwind-plugins/data-states'),
     require('@tailwindcss/aspect-ratio'),
+    require('@markusantonwolf/ta-youtube'),
   ],
 };

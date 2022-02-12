@@ -57,13 +57,83 @@
           <template id="item-template">
             <article class="items-center pb-4 pl-0 pr-0 max-w-screen-mobile-s sm:pl-8 sm:pr-0 md:pl-8 md:pr-0">
               <!-- Video player -->
-              <iframe
-                class="w-80 h-40 border-t-2 rounded-lg sm:w-72 md:w-72"
-                src="https://www.youtube.com/embed/{{{videoId}}}"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+              <div class="mx-auto flex items-center justify-center" x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
+                <img class="w-80 h-56 border-t-2 rounded-lg sm:w-80 md:w-80 sm:h-52 md:h-52" src="https://img.youtube.com/vi/{{{videoId}}}/sddefault.jpg" @click="showModal = true"></img>
+                <!--Overlay-->
+                <div class="overflow-auto" x-show="showModal" :class="{ 'absolute inset-0 flex items-center justify-center': showModal }">
+                  <!--Dialog-->
+                  <div id="dialog" class="div-float items-baseline bg-gray-900 max-w-md w-screen sm:max-w-screen-2xl md:max-w-md mx-auto rounded shadow-lg
+                  pb-6 text-left px-6 pt-2" x-show="showModal"
+                  x-transition:enter="ease-out duration-300"
+                  x-transition:enter-start="opacity-0 scale-90"
+                  x-transition:enter-end="opacity-100 scale-100">
+                  <!-- @click.away="showModal = false" -->
+                 <!--  Minimize, Close buttons Start -->
+                  <div class="text-right">
+                  <button id="btnMinimize" @click="showModal = false;document.getElementById('dialogStrip').style.display = 'block';">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 64 64" style=" fill:white;"
+                       enable-background="new 0 0 64 64" xml:space="preserve">
+                      <g>
+                        <line fill="none" stroke="white" stroke-width="6" stroke-miterlimit="10" x1="14" y1="31" x2="50" y2="31"/>
+                      </g>
+                    </svg>
+                  </button>
+                  &nbsp;
+                  <button id="btnCross" @click="showModal = false;">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 32 32" style=" fill:white;">
+                      <path d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z"></path>
+                    </svg>
+                  </button>
+                </div><!--  Minimize, Close buttons End -->
+                 <!--  Player Area Start -->
+                 <div class="flex items-center justify-center">
+                    <div class="w-full h-full max-w-3xl">
+                      <div class="ta-youtube ta-youtube--perspective border bg-gray-800 rounded-lg shadow-xl overflow-hidden max-w-3xl" style="max-height: 200px"
+                        x-data="taYoutube()" x-init="init()" data-id="{{{videoId}}}" data-remember="false" data-autoplay="false" data-start_at="200" data-end_at="220">
+                        <button href="play" class="absolute inset-0 w-full h-full flex items-center justify-center cursor-pointer" x-on:click.prevent="show()" x-show="!active">
+                          <!--  Background image -->
+                          <img class="ta-youtube-background ta-youtube-anim ta-youtube-anim-kenburns" src="https://img.youtube.com/vi/{{{videoId}}}/0.jpg" alt="Background Image" title="Background Image" />
+                          <!--  Darkening gradient -->
+                          <div class="ta-youtube-gradient ta-youtube-gradient-dark"></div>
+                          <!--  Play button -->
+                          <div class="ta-youtube-button flex items-center justify-center text-white transform duration-200 hover:scale-110" x-ref="button" alt="Show youtube video">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="fill-current w-full">
+                              <title>play-circle</title>
+                              <path d="M371.7 238l-176-107c-15.8-8.8-35.7 2.5-35.7 21v208c0 18.4 19.8 29.8 35.7 21l176-101c16.4-9.1 16.4-32.8.0-42zM504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-2e2 2e2-2e2s2e2 89.5 2e2 2e2-89.5 2e2-2e2 2e2S56 366.5 56 256z"></path>
+                            </svg>
+                          </div>
+                        </button>
+                        <!--  YouTube player -->
+                        <template x-if="active">
+                          <iframe class="absolute inset-0 w-full h-full" :src="url" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+                 <!--  Player Area end -->
+                 <!--Footer-->
+                 <!-- <button class="modal-close mt-3 px-4 bg-teal-800 p-3 rounded-lg text-white hover:bg-teal-400" @click="showModal = false;">Close</button> -->
+                  </div>
+                  <!--/Dialog -->
+                </div><!-- /Overlay -->
+              </div>
+              <span id="dialogStrip" class="div-float-strip hidden h-10 items-baseline bg-gray-900 max-w-md w-screen sm:max-w-screen-2xl
+              md:max-w-md mx-auto rounded shadow-lg pb-6 text-left px-6 pt-2">
+              <button id="btnMinimize" onclick="document.getElementById('dialog').style.display = 'block';document.getElementById('dialogStrip').style.display = 'none';">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 64 64" style=" fill:white;"
+                   enable-background="new 0 0 64 64" xml:space="preserve">
+                  <g>
+                    <line fill="none" stroke="white" stroke-width="6" stroke-miterlimit="10" x1="14" y1="31" x2="50" y2="31"/>
+                  </g>
+                </svg>
+              </button>
+              &nbsp;
+              <button id="btnCross" onclick="document.getElementById('dialogStrip').style.display = 'none';">
+                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 32 32" style=" fill:white;">
+                  <path d="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z"></path>
+                </svg>
+              </button>
+            </span>
               <h3 class="break-words font-semibold" title="Speaker name">
                 {{#helpers.highlight}} { "attribute": "speakerName" } {{/helpers.highlight}},
                 <span
@@ -126,5 +196,6 @@
   </block>
   <block name="scripts">
     <script type="module" src="./memories.js"></script>
+	  <script src="https://cdn.jsdelivr.net/gh/markusantonwolf/ta-youtube@2.x.x/dist/js/ta-youtube.min.js"></script>
   </block>
 </extends>
