@@ -1,11 +1,15 @@
 <extends src="layout.html">
   <block name="subscribe-menu-item">
-    <a href="/subscribe" class="text-white bg-teal-800 rounded-md">Subscribe</a>
+    <a href="/subscribe" class="text-white bg-red-400 rounded-md shadow-sm">Join</a>
   </block>
-  <block name="title">Subscribe</block>
+  <block name="title">JOIN</block>
   <block name="content">
     <!-- <div class="pb-1 pt-3 text-center text-teal-700 text-2xl uppercase">Let's get connected</div> -->
-    <div class="pb-3 pt-5 text-center text-black text-lg"><strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English</div>
+
+    <div class="flex flex-wrap items-center justify-center mx-auto px-4 py-2 w-full max-w-screen-xl text-teal-800 text-lg border-b space-x-2">
+      <span class="py-1 text-center"> <strong>Daily Harikatha &amp; Short Videos</strong> </span><span class="text-base"> in Hindi &amp; English </span>
+    </div>
+    <!-- <div class="pb-3 pt-5 text-center text-teal-800 text-xl"><strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English</div> -->
     <!-- <article class="items-start pb-4 pl-0 pr-0 pt-5"> -->
     <div
       class="flex flex-wrap items-start justify-center mx-auto px-4 py-2 w-full max-w-screen-xl text-sm children:border-8 children:border-white children:rounded-3xl sm:justify-start sm:ml-14 md:justify-start md:ml-14"
@@ -77,7 +81,7 @@
       <div class="py-1 w-96 h-48 text-center bg-submarine-200">
         <div class="py-1 w-full">
           <a class="inline-flex items-center -mt-3 mr-5 px-2 py-1" target="_blank" href="https://www.instagram.com/gaudiya.rasamrita/">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="110px" height="110px">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" width="108px" height="108px">
               <radialGradient id="yOrnnhliCrdS2gy~4tD8ma" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
                 <stop offset="0" stop-color="#fd5" />
                 <stop offset=".328" stop-color="#ff543f" />
@@ -193,8 +197,8 @@
               id="Livello_1"
               x="0px"
               y="0px"
-              width="90px"
-              height="90px"
+              width="94px"
+              height="94px"
               viewBox="0 0 300 300"
               enable-background="new 0 0 300 300"
               xml:space="preserve"
@@ -236,6 +240,55 @@
         <strong class="text-black">Listen to katha on Apple Podcasts</strong>
       </div>
       <!-- Apple Podcast Section End-->
+      <!-- Newsletter Section-->
+      <div class="py-1 w-96 h-48 text-center bg-submarine-200">
+        <div class="py-1 w-full">
+          <a class="inline-flex items-center px-2 py-1" target="_blank" href="http://eepurl.com/ddxX-T">
+            <svg
+              version="1.1"
+              id="newsletter"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              width="100px"
+              height="100px"
+              viewBox="0 0 1010 1010"
+              enable-background="new 0 0 1010 1010"
+              xml:space="preserve"
+            >
+              <g id="newsletter-newsletter">
+                <circle id="newsletter-label" fill="#F36360" cx="505" cy="505" r="505" />
+                <g id="newsletter-newsletter_1_">
+                  <polygon fill="#C3C4BB" points="775.5654,437.5977 507.9902,303.9551 234.4297,437.5977 244.334,787.9932 765.6602,787.9932 		" />
+                  <g>
+                    <rect x="287.0889" y="212.1021" fill="#F9F7F2" width="441.6103" height="427.059" />
+                    <rect x="330.6587" y="268.437" fill="#FBCD64" width="348.7036" height="67.4649" />
+                    <rect x="333.5762" y="381.8125" fill="#EAE8DD" width="348.6308" height="17.4116" />
+                    <rect x="333.5762" y="436.8496" fill="#EAE8DD" width="348.6308" height="17.4014" />
+                    <rect x="333.5762" y="491.8662" fill="#EAE8DD" width="348.6308" height="17.4014" />
+                    <rect x="333.5762" y="546.8926" fill="#EAE8DD" width="348.6308" height="17.4433" />
+                  </g>
+                  <g>
+                    <polygon
+                      fill="#DDD9C9"
+                      points="505.0205,609.8105 235.9712,796.8701 235.9712,797.8984 772.3672,797.8984 772.3672,795.79
+                 "
+                    />
+                    <polygon
+                      fill="#EFEBDE"
+                      points="505.0205,615.8008 234.4297,437.5977 234.4297,797.8984 235.9712,796.8701 505.0205,619.7051
+                 772.3672,795.79 775.5654,797.8984 775.5654,437.5977 			"
+                    />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </a>
+        </div>
+        <strong class="text-black">Subscribe to our newsletter</strong>
+      </div>
+      <!--Newsletter Section End-->
     </div>
     <!-- </article> -->
   </block>
