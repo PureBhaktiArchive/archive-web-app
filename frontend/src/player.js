@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { Alpine } from 'alpinejs';
+import Alpine from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
 Alpine.data('player', () => ({

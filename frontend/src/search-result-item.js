@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { Alpine } from 'alpinejs';
+import Alpine from 'alpinejs';
 import { search } from './search';
 
 Alpine.data('searchResultItem', (fileId) => {
