@@ -357,4 +357,8 @@
   .ais-InfiniteHits-list {
     @apply divide-y;
   }
+
+  .ais-Hits-list {
+    @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
+  }
 }

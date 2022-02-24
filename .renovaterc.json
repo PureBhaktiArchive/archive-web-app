@@ -27,9 +27,7 @@
     },
     {
       "matchSourceUrlPrefixes": ["https://github.com/parcel-bundler/parcel"],
-      "groupName": "parcel monorepo",
-      "schedule": ["at any time"],
-      "automerge": false
+      "groupName": "parcel monorepo"
     }
   ]
 }

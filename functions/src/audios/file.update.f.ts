@@ -4,9 +4,9 @@
 
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { Entry } from './Entry';
+import { shallowlyEqual } from '../shallowly-equal';
+import { AudiosEntry } from './AudiosEntry';
 import { composeMediaMetadata, composeStorageMetadata } from './metadata';
-import { shallowlyEqual } from './shallowly-equal';
 import { convertToMp3, copyCodec, transcode } from './transcode';
 
 if (!admin.apps.length) admin.initializeApp();
@@ -18,8 +18,8 @@ export default functions
     // Don't process deletions
     if (!change.after.exists()) return;
 
-    const entryBefore = change.before.val() as Entry;
-    const entry = change.after.val() as Entry;
+    const entryBefore = change.before.val() as AudiosEntry;
+    const entry = change.after.val() as AudiosEntry;
 
     if (!entry.contentDetails || !entry.file) {
       functions.logger.debug('Entry', id, 'is not complete');
