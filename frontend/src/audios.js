@@ -10,6 +10,9 @@ import './player';
 import { search } from './search';
 import './search-result-item';
 
+// This store keeps the currently playing file Id
+Alpine.store('player', { activeFileId: null });
+
 Alpine.start();
 
 search.start();
