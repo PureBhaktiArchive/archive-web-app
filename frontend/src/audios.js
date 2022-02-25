@@ -10,6 +10,11 @@ import './player';
 import { search } from './search';
 import './search-result-item';
 
+if (process.env.NODE_ENV !== 'production') {
+  // Making devtools detect ALpine on the page: https://github.com/alpine-collective/alpinejs-devtools/issues/327
+  window.Alpine = Alpine;
+}
+
 // This store keeps the currently playing file Id
 Alpine.store('player', { activeFileId: null });
 
