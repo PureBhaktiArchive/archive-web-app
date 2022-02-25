@@ -141,7 +141,7 @@ Alpine.data('player', () => ({
   togglePlay(value) {
     if (!this.fileId) return;
 
-    value ||= !this.isPlaying;
+    value = value || !this.isPlaying;
     if (value === this.isPlaying) return;
 
     this.isPlaying = value;
