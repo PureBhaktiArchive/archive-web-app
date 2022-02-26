@@ -20,7 +20,7 @@
     <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
       <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
         <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
-        <div class="flex-grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
+        <div class="grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
           <div id="language-list"></div>
           <div id="sound-quality-list"></div>
           <div id="duration-menu"></div>
@@ -33,7 +33,7 @@
           <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
         </div>
       </div>
-      <main class="flex-grow pb-40 px-2 w-full sm:px-4 sm:w-4/5 sm:overflow-y-auto">
+      <main class="grow pb-40 px-2 w-full sm:px-4 sm:w-4/5 sm:overflow-y-auto">
         <div class="flex items-center my-3">
           <!-- Filter button -->
           <button data-filter-toggle class="inline-flex items-center mr-4 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
@@ -54,7 +54,7 @@
           <template id="item-template">
             <article class="flex flex-col py-1 w-full sm:flex-row sm:py-2" x-data="searchResultItem({{objectID}})" x-id="Search Result {{objectID}}" x-spread="self">
               <!-- Main section -->
-              <div class="flex flex-grow items-start">
+              <div class="flex grow items-start">
                 <!-- Play button -->
                 <button class="flex-none w-7 focus:outline-none fill-current" title="Play" type="button" x-spread="playButton">
                   <!-- Material Icons: Play Arrow -->
@@ -66,11 +66,11 @@
                     <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
                   </svg>
                 </button>
-                <div class="flex-grow">
+                <div class="grow">
                   <!-- First line -->
                   <div class="flex items-start justify-between space-x-1">
                     <!-- Title -->
-                    <h3 class="flex-grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
+                    <h3 class="grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
                     <!-- Duration -->
                     <span class="flex-none" title="Duration">{{durationForHumans}}</span>
                   </div>
@@ -252,13 +252,13 @@
         </div>
       </div>
       <!-- Main block -->
-      <div class="overflow-hidden md:flex-grow">
+      <div class="overflow-hidden md:grow">
         <!-- Title -->
-        <div x-text="contentDetails.title" class="no-scrollbar flex-grow whitespace-nowrap font-semibold overflow-x-auto"></div>
+        <div x-text="contentDetails.title" class="no-scrollbar grow whitespace-nowrap font-semibold overflow-x-auto"></div>
         <!-- Second line with tags and actions -->
         <div class="flex mt-1 overflow-hidden space-x-2">
           <!-- Tags -->
-          <div class="no-scrollbar children:not-first:pl-1 flex children:flex-none flex-grow text-xs children:border-gray-300 divide-x overflow-x-auto space-x-1">
+          <div class="no-scrollbar children:not-first:pl-1 flex children:flex-none grow text-xs children:border-gray-300 divide-x overflow-x-auto space-x-1">
             <!-- ID -->
             <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
             <!-- Date -->
@@ -309,7 +309,7 @@
         <!-- Seek control with timings -->
         <div class="flex items-center h-6 space-x-2">
           <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
-          <input type="range" min="0" x-ref="seekSlider" x-spread="seekSlider" class="flex-grow h-1.5" />
+          <input type="range" min="0" x-ref="seekSlider" x-spread="seekSlider" class="grow h-1.5" />
           <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
         </div>
       </div>

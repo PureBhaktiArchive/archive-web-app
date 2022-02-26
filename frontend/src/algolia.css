@@ -2,363 +2,351 @@
  * sri sri guru gaurangau jayatah
  */
 
-@layer components {
-  /*
+/*
     Prevent InfiniteHits buttons from moving scroll position
     https://bugs.chromium.org/p/chromium/issues/detail?id=1110323
   */
-  .ais-InfiniteHits-loadPrevious,
-  .ais-InfiniteHits-loadMore,
-  .ais-HierarchicalMenu-showMore,
-  .ais-Menu-showMore,
-  .ais-RefinementList-showMore {
-    overflow-anchor: none;
+.ais-InfiniteHits-loadPrevious,
+.ais-InfiniteHits-loadMore,
+.ais-HierarchicalMenu-showMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  overflow-anchor: none;
+}
+
+.ais-InfiniteHits-loadMore {
+  @apply block mx-auto;
+}
+
+.ais-Breadcrumb-list,
+.ais-Breadcrumb-item,
+.ais-Pagination-list,
+.ais-RangeInput-form,
+.ais-RatingMenu-link,
+.ais-PoweredBy {
+  @apply inline-flex;
+}
+
+.ais-GeoSearch,
+.ais-GeoSearch-map {
+  @apply h-full;
+}
+
+.ais-HierarchicalMenu-list .ais-HierarchicalMenu-list {
+  @apply ml-4;
+}
+
+.ais-PoweredBy-logo {
+  @apply block w-auto h-3;
+}
+
+.ais-RatingMenu-starIcon {
+  @apply block w-4 h-4;
+}
+
+.ais-RangeSlider {
+  .rheostat {
+    @apply mb-10 mt-10 overflow-visible;
   }
 
-  .ais-InfiniteHits-loadMore {
-    @apply block mx-auto;
-  }
-
-  .ais-Breadcrumb-list,
-  .ais-Breadcrumb-item,
-  .ais-Pagination-list,
-  .ais-RangeInput-form,
-  .ais-RatingMenu-link,
-  .ais-PoweredBy {
-    @apply inline-flex;
-  }
-
-  .ais-GeoSearch,
-  .ais-GeoSearch-map {
-    @apply h-full;
-  }
-
-  .ais-HierarchicalMenu-list .ais-HierarchicalMenu-list {
-    @apply ml-4;
-  }
-
-  .ais-PoweredBy-logo {
-    @apply block w-auto h-3;
-  }
-
-  .ais-RatingMenu-starIcon {
-    @apply block w-4 h-4;
-  }
-
-  .ais-RangeSlider {
-    .rheostat {
-      @apply mb-10 mt-10 overflow-visible;
-    }
-
-    .rheostat-background {
-      @apply top-0 w-full h-2;
-    }
-
-    .rheostat-handle {
-      @apply -top-2 -ml-3;
-    }
-
-    .rheostat-background {
-      @apply relative bg-white border-gray-400;
-    }
-
-    .rheostat-progress {
-      @apply absolute top-px h-1 bg-gray-800;
-    }
+  .rheostat-background {
+    @apply top-0 w-full h-2;
   }
 
   .rheostat-handle {
-    @apply relative z-10 w-3 h-3 bg-white border-gray-800 rounded-3xl cursor-grab;
+    @apply -top-2 -ml-3;
   }
 
-  .rheostat-marker {
-    @apply absolute -ml-px w-px h-1 bg-gray-400;
+  .rheostat-background {
+    @apply relative bg-white border-gray-400;
   }
 
-  .rheostat-marker--large {
-    @apply h-2;
+  .rheostat-progress {
+    @apply absolute top-px h-1 bg-gray-800;
   }
+}
 
-  .rheostat-value {
-    @apply absolute ml-2 pt-4 text-center transform -translate-x-2;
-  }
+.rheostat-handle {
+  @apply relative z-10 w-3 h-3 bg-white border-gray-800 rounded-3xl cursor-grab;
+}
 
-  .rheostat-tooltip {
-    @apply absolute -top-6 ml-2 text-center transform -translate-x-2;
-  }
+.rheostat-marker {
+  @apply absolute -ml-px w-px h-1 bg-gray-400;
+}
 
-  a[class^='ais-'] {
-    @apply no-underline;
-  }
+.rheostat-marker--large {
+  @apply h-2;
+}
 
-  .ais-Breadcrumb-separator {
-    @apply mx-1 my-0 font-normal;
-  }
+.rheostat-value {
+  @apply absolute ml-2 pt-4 text-center -translate-x-2;
+}
 
-  .ais-Breadcrumb-link,
-  .ais-HierarchicalMenu-link,
-  .ais-Menu-link,
-  .ais-Pagination-link,
-  .ais-RatingMenu-link {
-    @apply transition-colors duration-200 ease-out;
-  }
+.rheostat-tooltip {
+  @apply absolute -top-6 ml-2 text-center -translate-x-2;
+}
 
-  .ais-Breadcrumb-item--selected,
-  .ais-HierarchicalMenu-item--selected,
-  .ais-Menu-item--selected {
-    @apply font-bold;
-  }
+a[class^='ais-'] {
+  @apply no-underline;
+}
 
-  .ais-Breadcrumb-separator {
-    @apply mx-1 my-0 font-normal;
-  }
+.ais-Breadcrumb-separator {
+  @apply mx-1 my-0 font-normal;
+}
 
-  .ais-ClearRefinements-button,
-  .ais-CurrentRefinements-reset,
-  .ais-GeoSearch-redo,
-  .ais-GeoSearch-reset,
-  .ais-HierarchicalMenu-showMore,
-  .ais-InfiniteHits-loadPrevious,
-  .ais-InfiniteHits-loadMore,
-  .ais-InfiniteResults-loadMore,
-  .ais-Menu-showMore,
-  .ais-RefinementList-showMore {
-    @apply px-2 py-1 text-white text-xs bg-teal-800 rounded outline-none transition-colors duration-200 ease-out;
-  }
+.ais-Breadcrumb-link,
+.ais-HierarchicalMenu-link,
+.ais-Menu-link,
+.ais-Pagination-link,
+.ais-RatingMenu-link {
+  @apply transition-colors duration-200 ease-out;
+}
 
-  .ais-ClearRefinements-button--disabled,
-  .ais-GeoSearch-redo--disabled,
-  .ais-GeoSearch-reset--disabled,
-  .ais-HierarchicalMenu-showMore--disabled,
-  .ais-InfiniteHits-loadMore--disabled,
-  .ais-InfiniteResults-loadMore--disabled,
-  .ais-Menu-showMore--disabled,
-  .ais-RefinementList-showMore--disabled {
-    @apply opacity-60 cursor-not-allowed;
-  }
-  .ais-InfiniteHits-loadPrevious--disabled {
-    @apply hidden;
-  }
+.ais-Breadcrumb-item--selected,
+.ais-HierarchicalMenu-item--selected,
+.ais-Menu-item--selected {
+  @apply font-bold;
+}
 
-  .ais-CurrentRefinements {
-    @apply flex flex-wrap -mt-1;
-  }
-  .ais-CurrentRefinements-list {
-    @apply flex flex-wrap;
-  }
+.ais-Breadcrumb-separator {
+  @apply mx-1 my-0 font-normal;
+}
 
-  .ais-CurrentRefinements-item {
-    @apply flex mr-1 mt-1 px-2 py-1 bg-peach rounded;
-  }
+.ais-ClearRefinements-button,
+.ais-CurrentRefinements-reset,
+.ais-GeoSearch-redo,
+.ais-GeoSearch-reset,
+.ais-HierarchicalMenu-showMore,
+.ais-InfiniteHits-loadPrevious,
+.ais-InfiniteHits-loadMore,
+.ais-InfiniteResults-loadMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  @apply px-2 py-1 text-white text-xs bg-teal-800 rounded outline-none transition-colors duration-200 ease-out;
+}
 
-  .ais-CurrentRefinements-category {
-    @apply flex ml-1;
-  }
+.ais-ClearRefinements-button--disabled,
+.ais-GeoSearch-redo--disabled,
+.ais-GeoSearch-reset--disabled,
+.ais-HierarchicalMenu-showMore--disabled,
+.ais-InfiniteHits-loadMore--disabled,
+.ais-InfiniteResults-loadMore--disabled,
+.ais-Menu-showMore--disabled,
+.ais-RefinementList-showMore--disabled {
+  @apply opacity-60 cursor-not-allowed;
+}
+.ais-InfiniteHits-loadPrevious--disabled {
+  @apply hidden;
+}
 
-  .ais-CurrentRefinements-delete {
+.ais-CurrentRefinements {
+  @apply flex flex-wrap -mt-1;
+}
+.ais-CurrentRefinements-list {
+  @apply flex flex-wrap;
+}
+
+.ais-CurrentRefinements-item {
+  @apply flex mr-1 mt-1 px-2 py-1 bg-peach rounded;
+}
+
+.ais-CurrentRefinements-category {
+  @apply flex ml-1;
+}
+
+.ais-CurrentRefinements-delete {
+  @apply ml-1;
+}
+
+.ais-CurrentRefinements-label,
+.ais-CurrentRefinements-categoryLabel,
+.ais-CurrentRefinements-delete {
+  @apply text-white whitespace-nowrap text-sm;
+}
+
+.ais-CurrentRefinements-reset {
+  @apply mt-1 whitespace-nowrap;
+
+  & + .ais-CurrentRefinements-list {
     @apply ml-1;
   }
+}
 
-  .ais-CurrentRefinements-label,
-  .ais-CurrentRefinements-categoryLabel,
-  .ais-CurrentRefinements-delete {
-    @apply text-white whitespace-nowrap text-sm;
-  }
+.ais-HierarchicalMenu-link,
+.ais-Menu-link {
+  @apply block leading-normal;
+}
 
-  .ais-CurrentRefinements-reset {
-    @apply mt-1 whitespace-nowrap;
+.ais-HierarchicalMenu-list,
+.ais-Menu-list,
+.ais-NumericMenu-list,
+.ais-RatingMenu-list,
+.ais-RefinementList-list {
+  @apply font-normal leading-normal;
+}
 
-    & + .ais-CurrentRefinements-list {
-      @apply ml-1;
+.ais-RefinementList-item {
+  @apply py-1;
+  break-inside: avoid;
+}
+
+.ais-RefinementList-label {
+  @apply flex items-baseline;
+}
+
+.ais-RefinementList-checkbox {
+  @apply flex-none;
+}
+
+.ais-RefinementList-labelText {
+  @apply grow px-1 break-words overflow-x-hidden;
+}
+
+.ais-HierarchicalMenu-count,
+.ais-Menu-count,
+.ais-RefinementList-count,
+.ais-ToggleRefinement-count {
+  @apply flex-none text-gray-400 text-xs;
+}
+
+.ais-HierarchicalMenu-showMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  @apply mt-2;
+}
+
+.ais-Highlight-highlighted,
+.ais-Snippet-highlighted {
+  @apply bg-yellow-300;
+}
+
+.ais-InfiniteHits-loadMore,
+.ais-InfiniteResults-loadMore {
+  @apply mt-4;
+}
+
+.ais-InfiniteHits-loadPrevious {
+  @apply mb-4;
+}
+
+.ais-Panel {
+  @apply pt-2;
+}
+
+.ais-Panel--collapsible {
+  @apply relative;
+
+  &.ais-Panel--collapsed {
+    & .ais-Panel-body,
+    & .ais-Panel-footer {
+      @apply hidden;
     }
   }
 
-  .ais-HierarchicalMenu-link,
-  .ais-Menu-link {
-    @apply block leading-normal;
+  & .ais-Panel-collapseButton {
+    @apply absolute right-0 top-0 p-0 bg-none border-none;
   }
+}
 
-  .ais-HierarchicalMenu-list,
-  .ais-Menu-list,
-  .ais-NumericMenu-list,
-  .ais-RatingMenu-list,
-  .ais-RefinementList-list {
-    @apply font-normal leading-normal;
+.ais-Panel-header {
+  @apply sticky top-0 py-1 text-xs font-bold bg-white uppercase;
+}
+
+.ais-Panel-footer {
+  @apply mt-2 text-xs;
+}
+
+.ais-Pagination {
+  @apply pb-2 text-center overflow-x-auto;
+}
+
+.ais-Pagination-item {
+  & + .ais-Pagination-item {
+    @apply ml-1.5;
   }
+}
 
-  .ais-HierarchicalMenu-link {
-    @nest .ais-HierarchicalMenu-item--parent > &:after {
-      @apply inline-block;
-    }
+.ais-Pagination-link {
+  @apply block px-3 py-1 border rounded focus:outline-none transition-colors duration-200 ease-out;
 
-    @nest .ais-HierarchicalMenu-item--selected > &:after {
-      @apply rotate-90;
-    }
-  }
-
-  .ais-RefinementList-item {
-    @apply py-1;
-    break-inside: avoid;
-  }
-
-  .ais-RefinementList-label {
-    @apply flex items-baseline;
-  }
-
-  .ais-RefinementList-checkbox {
-    @apply flex-none;
-  }
-
-  .ais-RefinementList-labelText {
-    @apply flex-grow px-1 break-words overflow-x-hidden;
-  }
-
-  .ais-HierarchicalMenu-count,
-  .ais-Menu-count,
-  .ais-RefinementList-count,
-  .ais-ToggleRefinement-count {
-    @apply flex-none text-gray-400 text-xs;
-  }
-
-  .ais-HierarchicalMenu-showMore,
-  .ais-Menu-showMore,
-  .ais-RefinementList-showMore {
-    @apply mt-2;
-  }
-
-  .ais-Highlight-highlighted,
-  .ais-Snippet-highlighted {
-    @apply bg-yellow-300;
-  }
-
-  .ais-InfiniteHits-loadMore,
-  .ais-InfiniteResults-loadMore {
-    @apply mt-4;
-  }
-
-  .ais-InfiniteHits-loadPrevious {
-    @apply mb-4;
-  }
-
-  .ais-Panel {
-    @apply pt-2;
-  }
-
-  .ais-Panel--collapsible {
-    @apply relative;
-
-    &.ais-Panel--collapsed {
-      & .ais-Panel-body,
-      & .ais-Panel-footer {
-        @apply hidden;
-      }
-    }
-
-    & .ais-Panel-collapseButton {
-      @apply absolute right-0 top-0 p-0 bg-none border-none;
-    }
-  }
-
-  .ais-Panel-header {
-    @apply sticky top-0 py-1 text-xs font-bold bg-white uppercase;
-  }
-
-  .ais-Panel-footer {
-    @apply mt-2 text-xs;
-  }
-
-  .ais-Pagination {
-    @apply pb-2 text-center overflow-x-auto;
-  }
-
-  .ais-Pagination-item {
-    & + .ais-Pagination-item {
-      @apply ml-1.5;
-    }
-  }
-
-  .ais-Pagination-link {
-    @apply block px-3 py-1 border rounded focus:outline-none transition-colors duration-200 ease-out;
-
-    @nest .ais-Pagination-item--disabled & {
+  /* @nest .ais-Pagination-item--disabled & {
       @apply text-gray-400 opacity-60 cursor-not-allowed;
     }
 
     @nest .ais-Pagination-item--selected & {
       @apply text-white bg-teal-800;
-    }
+  } */
+}
+
+.ais-PoweredBy-logo {
+  @apply ml-1;
+}
+
+.ais-HierarchicalMenu-searchBox,
+.ais-Menu-searchBox,
+.ais-RefinementList-searchBox {
+  & > * {
+    @apply mb-2;
   }
 
-  .ais-PoweredBy-logo {
-    @apply ml-1;
+  & .ais-SearchBox-input {
+    @apply px-8 h-8 text-sm;
   }
 
-  .ais-HierarchicalMenu-searchBox,
-  .ais-Menu-searchBox,
-  .ais-RefinementList-searchBox {
-    & > * {
-      @apply mb-2;
-    }
+  & .ais-SearchBox-submit,
+  & .ais-SearchBox-reset,
+  & .ais-SearchBox-loadingIndicator {
+    @apply w-6;
+  }
+}
 
-    & .ais-SearchBox-input {
-      @apply px-8 h-8 text-sm;
-    }
+.ais-SearchBox-form {
+  @apply relative block;
+}
 
-    & .ais-SearchBox-submit,
-    & .ais-SearchBox-reset,
-    & .ais-SearchBox-loadingIndicator {
-      @apply w-6;
-    }
+.ais-SearchBox-input {
+  @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
+
+  /* clears the 'X' from Internet Explorer */
+  &::-ms-clear,
+  &::-ms-reveal {
+    @apply hidden w-0 h-0;
   }
 
-  .ais-SearchBox-form {
-    @apply relative block;
+  /* clears the 'X' from Chrome */
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    @apply hidden;
   }
+}
 
-  .ais-SearchBox-input {
-    @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
+.ais-SearchBox-submit,
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  @apply absolute w-8 h-full;
+}
 
-    /* clears the 'X' from Internet Explorer */
-    &::-ms-clear,
-    &::-ms-reveal {
-      @apply hidden w-0 h-0;
-    }
+.ais-SearchBox-submit {
+  @apply left-0;
+}
 
-    /* clears the 'X' from Chrome */
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-decoration,
-    &::-webkit-search-results-button,
-    &::-webkit-search-results-decoration {
-      @apply hidden;
-    }
-  }
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  @apply right-0;
+}
 
-  .ais-SearchBox-submit,
-  .ais-SearchBox-reset,
-  .ais-SearchBox-loadingIndicator {
-    @apply absolute w-8 h-full;
-  }
+.ais-SearchBox-submitIcon,
+.ais-SearchBox-resetIcon,
+.ais-SearchBox-loadingIcon {
+  @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current -translate-x-1/2 -translate-y-1/2;
+}
 
-  .ais-SearchBox-submit {
-    @apply left-0;
-  }
+.ais-InfiniteHits-list {
+  @apply divide-y;
+}
 
-  .ais-SearchBox-reset,
-  .ais-SearchBox-loadingIndicator {
-    @apply right-0;
-  }
-
-  .ais-SearchBox-submitIcon,
-  .ais-SearchBox-resetIcon,
-  .ais-SearchBox-loadingIcon {
-    @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current transform -translate-x-1/2 -translate-y-1/2;
-  }
-
-  .ais-InfiniteHits-list {
-    @apply divide-y;
-  }
-
-  .ais-Hits-list {
-    @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
-  }
+.ais-Hits-list {
+  @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
 }
