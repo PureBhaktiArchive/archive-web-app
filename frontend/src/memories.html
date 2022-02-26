@@ -1,26 +1,26 @@
 <extends src="layout.html">
   <block name="memories-menu-item">
-    <a href="/memories" class="text-white bg-teal-800 rounded-md">Memories</a>
+    <a href="/memories" class="rounded-md bg-teal-800 text-white">Memories</a>
   </block>
   <block name="title">Memories</block>
   <block name="content">
-    <div id="searchbox" class="flex flex-none mx-auto p-4 w-full max-w-screen-xl border-b sm:pl-36 md:pl-56 lg:pl-72">
+    <div id="searchbox" class="mx-auto flex w-full max-w-screen-xl flex-none border-b p-4 sm:pl-36 md:pl-56 lg:pl-72">
       <input
         type="search"
         placeholder="Search for program, speaker, topics, dates etc."
-        class="placeholder-gray-300 block px-3 py-2 w-full leading-6 border border-r-0 border-gray-300 focus:border-gray-300 rounded-l-md rounded-none focus:outline-none appearance-none focus:ring-0"
+        class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
       />
-      <button type="submit" class="sm:px4 px-2 text-white font-semibold bg-teal-800 border-l-0 border-gray-300 rounded-r-md shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 sm:hidden">
+      <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-teal-800 px-2 font-semibold text-white shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
-    <div class="flex flex-1 mx-auto w-full max-w-screen-xl sm:overflow-y-hidden">
-      <div id="filter-panel" class="fixed z-20 top-0 open:flex hidden flex-col w-64 max-w-full h-full text-sm bg-white md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
-        <div class="flex-none p-2 text-center text-teal-800 font-bold bg-submarine-500 uppercase md:hidden">Filter</div>
-        <div class="grow p-2 pb-40 pt-0 overflow-x-hidden overflow-y-auto">
+    <div class="mx-auto flex w-full max-w-screen-xl flex-1 sm:overflow-y-hidden">
+      <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+        <div class="bg-submarine-500 flex-none p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
+        <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
           <div id="gurus-list">
             <template>
               <span>Initiating Guru(s)</span>
@@ -32,16 +32,16 @@
           <div id="speaker-country-list"></div>
           <div id="duration-menu"></div>
         </div>
-        <div class="flex-none p-2 border-t md:hidden">
-          <button data-filter-toggle class="p-2 w-full text-white font-semibold bg-teal-800 rounded-md shadow-sm uppercase">Close</button>
+        <div class="flex-none border-t p-2 md:hidden">
+          <button data-filter-toggle class="w-full rounded-md bg-teal-800 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
         </div>
       </div>
-      <main class="grow pb-40 px-2 w-full sm:px-4 sm:w-4/5 sm:overflow-y-auto">
-        <div class="flex items-center my-3">
+      <main class="w-full grow px-2 pb-40 sm:w-4/5 sm:overflow-y-auto sm:px-4">
+        <div class="my-3 flex items-center">
           <!-- Filter button -->
-          <button data-filter-toggle class="inline-flex items-center mr-4 px-4 py-2 w-24 text-white font-semibold bg-teal-800 border-gray-300 rounded-md shadow-sm space-x-1 md:hidden">
+          <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-teal-800 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
             <!-- Heroicon name: solid/filter -->
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
               <path
                 fill-rule="evenodd"
                 d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
@@ -51,14 +51,14 @@
             <span>Filter</span>
           </button>
           <span id="stats" class="whitespace-nowrap text-sm"></span>
-          <span id="loading" class="text-gray-500 text-sm">Loading…</span>
+          <span id="loading" class="text-sm text-gray-500">Loading…</span>
         </div>
         <div id="hits">
           <template id="item-template">
-            <article class="items-center pb-4 pl-0 pr-0 max-w-screen-mobile-s sm:pl-8 sm:pr-0 md:pl-8 md:pr-0">
+            <article class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0">
               <!-- Video player -->
               <iframe
-                class="w-80 h-40 border-t-2 rounded-lg sm:w-72 md:w-72"
+                class="h-40 w-80 rounded-lg border-t-2 sm:w-72 md:w-72"
                 src="https://www.youtube.com/embed/{{{videoId}}}"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -80,7 +80,7 @@
               </h3>
               <!-- Tag line -->
               <div
-                class="children:last:border-0 flex flex-wrap content-between align-baseline children:mr-1 children:mt-1 children:pr-1 w-80 text-xs children:border-r children:border-gray-300 sm:w-72 md:w-72"
+                class="children:last:border-0 children:mr-1 children:mt-1 children:pr-1 children:border-r children:border-gray-300 flex w-80 flex-wrap content-between align-baseline text-xs sm:w-72 md:w-72"
               >
                 <div title="Language">{{language}}</div>
                 <div title="Speaker's Country">{{speakerCountry}}</div>
@@ -88,7 +88,7 @@
                 <div title="Duration">{{durationForHumans}}</div>
                 <!-- Feedback -->
                 <a href="{{feedbackURL}}" target="_blank" class="inline-flex space-x-1" title="Help us improve! Give feedback about the Speaker’s Name or Introduction, etc of this video">
-                  <svg class="w-4 h-full stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <svg class="h-full w-4 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
@@ -100,18 +100,18 @@
               </div>
               <p class="text-xs font-bold">{{programName}}</p>
               <p
-                class="align-top w-80 text-justify text-xs sm:w-72 md:w-72"
+                class="w-80 text-justify align-top text-xs sm:w-72 md:w-72"
                 x-data="{ isCollapsed: false, maxLength: 170, originalContent: '', content: '' }"
                 x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
               >
                 <span x-text="isCollapsed ? originalContent : content"> {{{speakerIntro}}} </span>
-                <button class="text-teal-800 font-bold" @click="isCollapsed = !isCollapsed" x-show="originalContent.length > maxLength" x-text="isCollapsed ? 'Read less' : '...Read more'"></button>
+                <button class="font-bold text-teal-800" @click="isCollapsed = !isCollapsed" x-show="originalContent.length > maxLength" x-text="isCollapsed ? 'Read less' : '...Read more'"></button>
               </p>
             </article>
           </template>
         </div>
         <div id="pagination" class="my-2 w-full"></div>
-        <div id="results-footer" class="hidden p-2 text-center text-gray-500 text-sm">
+        <div id="results-footer" class="hidden p-2 text-center text-sm text-gray-500">
           <p>Please Note: The results displayed above are not in any particular order of seniority, date, etc.</p>
           <p>
             You can find more Memories recordings on the following YouTube channels, while we collate all of them here:<br />

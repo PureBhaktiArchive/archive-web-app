@@ -15,7 +15,7 @@
 }
 
 .ais-InfiniteHits-loadMore {
-  @apply block mx-auto;
+  @apply mx-auto block;
 }
 
 .ais-Breadcrumb-list,
@@ -37,11 +37,11 @@
 }
 
 .ais-PoweredBy-logo {
-  @apply block w-auto h-3;
+  @apply block h-3 w-auto;
 }
 
 .ais-RatingMenu-starIcon {
-  @apply block w-4 h-4;
+  @apply block h-4 w-4;
 }
 
 .ais-RangeSlider {
@@ -50,7 +50,7 @@
   }
 
   .rheostat-background {
-    @apply top-0 w-full h-2;
+    @apply top-0 h-2 w-full;
   }
 
   .rheostat-handle {
@@ -58,7 +58,7 @@
   }
 
   .rheostat-background {
-    @apply relative bg-white border-gray-400;
+    @apply relative border-gray-400 bg-white;
   }
 
   .rheostat-progress {
@@ -67,11 +67,11 @@
 }
 
 .rheostat-handle {
-  @apply relative z-10 w-3 h-3 bg-white border-gray-800 rounded-3xl cursor-grab;
+  @apply relative z-10 h-3 w-3 cursor-grab rounded-3xl border-gray-800 bg-white;
 }
 
 .rheostat-marker {
-  @apply absolute -ml-px w-px h-1 bg-gray-400;
+  @apply absolute -ml-px h-1 w-px bg-gray-400;
 }
 
 .rheostat-marker--large {
@@ -79,11 +79,11 @@
 }
 
 .rheostat-value {
-  @apply absolute ml-2 pt-4 text-center -translate-x-2;
+  @apply absolute ml-2 -translate-x-2 pt-4 text-center;
 }
 
 .rheostat-tooltip {
-  @apply absolute -top-6 ml-2 text-center -translate-x-2;
+  @apply absolute -top-6 ml-2 -translate-x-2 text-center;
 }
 
 a[class^='ais-'] {
@@ -122,7 +122,7 @@ a[class^='ais-'] {
 .ais-InfiniteResults-loadMore,
 .ais-Menu-showMore,
 .ais-RefinementList-showMore {
-  @apply px-2 py-1 text-white text-xs bg-teal-800 rounded outline-none transition-colors duration-200 ease-out;
+  @apply rounded bg-teal-800 px-2 py-1 text-xs text-white outline-none transition-colors duration-200 ease-out;
 }
 
 .ais-ClearRefinements-button--disabled,
@@ -133,25 +133,25 @@ a[class^='ais-'] {
 .ais-InfiniteResults-loadMore--disabled,
 .ais-Menu-showMore--disabled,
 .ais-RefinementList-showMore--disabled {
-  @apply opacity-60 cursor-not-allowed;
+  @apply cursor-not-allowed opacity-60;
 }
 .ais-InfiniteHits-loadPrevious--disabled {
   @apply hidden;
 }
 
 .ais-CurrentRefinements {
-  @apply flex flex-wrap -mt-1;
+  @apply -mt-1 flex flex-wrap;
 }
 .ais-CurrentRefinements-list {
   @apply flex flex-wrap;
 }
 
 .ais-CurrentRefinements-item {
-  @apply flex mr-1 mt-1 px-2 py-1 bg-peach rounded;
+  @apply bg-peach mr-1 mt-1 flex rounded px-2 py-1;
 }
 
 .ais-CurrentRefinements-category {
-  @apply flex ml-1;
+  @apply ml-1 flex;
 }
 
 .ais-CurrentRefinements-delete {
@@ -161,7 +161,7 @@ a[class^='ais-'] {
 .ais-CurrentRefinements-label,
 .ais-CurrentRefinements-categoryLabel,
 .ais-CurrentRefinements-delete {
-  @apply text-white whitespace-nowrap text-sm;
+  @apply whitespace-nowrap text-sm text-white;
 }
 
 .ais-CurrentRefinements-reset {
@@ -199,14 +199,14 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-labelText {
-  @apply grow px-1 break-words overflow-x-hidden;
+  @apply grow overflow-x-hidden break-words px-1;
 }
 
 .ais-HierarchicalMenu-count,
 .ais-Menu-count,
 .ais-RefinementList-count,
 .ais-ToggleRefinement-count {
-  @apply flex-none text-gray-400 text-xs;
+  @apply flex-none text-xs text-gray-400;
 }
 
 .ais-HierarchicalMenu-showMore,
@@ -244,12 +244,12 @@ a[class^='ais-'] {
   }
 
   & .ais-Panel-collapseButton {
-    @apply absolute right-0 top-0 p-0 bg-none border-none;
+    @apply absolute right-0 top-0 border-none bg-none p-0;
   }
 }
 
 .ais-Panel-header {
-  @apply sticky top-0 py-1 text-xs font-bold bg-white uppercase;
+  @apply sticky top-0 bg-white py-1 text-xs font-bold uppercase;
 }
 
 .ais-Panel-footer {
@@ -257,7 +257,7 @@ a[class^='ais-'] {
 }
 
 .ais-Pagination {
-  @apply pb-2 text-center overflow-x-auto;
+  @apply overflow-x-auto pb-2 text-center;
 }
 
 .ais-Pagination-item {
@@ -267,7 +267,7 @@ a[class^='ais-'] {
 }
 
 .ais-Pagination-link {
-  @apply block px-3 py-1 border rounded focus:outline-none transition-colors duration-200 ease-out;
+  @apply block rounded border px-3 py-1 transition-colors duration-200 ease-out focus:outline-none;
 
   /* @nest .ais-Pagination-item--disabled & {
       @apply text-gray-400 opacity-60 cursor-not-allowed;
@@ -290,7 +290,7 @@ a[class^='ais-'] {
   }
 
   & .ais-SearchBox-input {
-    @apply px-8 h-8 text-sm;
+    @apply h-8 px-8 text-sm;
   }
 
   & .ais-SearchBox-submit,
@@ -305,12 +305,12 @@ a[class^='ais-'] {
 }
 
 .ais-SearchBox-input {
-  @apply relative px-10 w-full h-10 bg-white border rounded focus:outline-none shadow;
+  @apply relative h-10 w-full rounded border bg-white px-10 shadow focus:outline-none;
 
   /* clears the 'X' from Internet Explorer */
   &::-ms-clear,
   &::-ms-reveal {
-    @apply hidden w-0 h-0;
+    @apply hidden h-0 w-0;
   }
 
   /* clears the 'X' from Chrome */
@@ -325,7 +325,7 @@ a[class^='ais-'] {
 .ais-SearchBox-submit,
 .ais-SearchBox-reset,
 .ais-SearchBox-loadingIndicator {
-  @apply absolute w-8 h-full;
+  @apply absolute h-full w-8;
 }
 
 .ais-SearchBox-submit {
@@ -340,7 +340,7 @@ a[class^='ais-'] {
 .ais-SearchBox-submitIcon,
 .ais-SearchBox-resetIcon,
 .ais-SearchBox-loadingIcon {
-  @apply absolute left-1/2 top-1/2 w-1/2 h-1/2 fill-current -translate-x-1/2 -translate-y-1/2;
+  @apply absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 fill-current;
 }
 
 .ais-InfiniteHits-list {

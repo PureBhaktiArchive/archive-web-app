@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="text-gray-600 font-sans">
+<html lang="en" class="font-sans text-gray-600">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -23,23 +23,23 @@
     </script>
   </head>
 
-  <body class="flex flex-col overlayed:overflow-hidden sm:h-screen">
-    <header class="bg-header pb-0.5 w-full bg-clip-content border-b-4 border-dotted border-peach-dark">
+  <body class="overlayed:overflow-hidden flex flex-col sm:h-screen">
+    <header class="bg-header border-peach-dark w-full border-b-4 border-dotted bg-clip-content pb-0.5">
       <div class="relative mx-auto max-w-screen-xl">
-        <div class="bg-header-decor absolute left-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-left-top bg-no-repeat mobile-s:opacity-100 opacity-25 md:top-0 md:w-24 md:h-20"></div>
+        <div class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute left-0 top-2 h-full w-11 bg-contain bg-left-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"></div>
         <div
-          class="bg-header-decor absolute right-0 top-2 w-11 mobile-m:w-12 mobile-l:w-14 h-full bg-contain bg-right-top bg-no-repeat mobile-s:opacity-100 opacity-25 -scale-x-100 md:top-0 md:w-24 md:h-20"
+          class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute right-0 top-2 h-full w-11 -scale-x-100 bg-contain bg-right-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"
         ></div>
         <div
-          class="relative z-10 px-1 py-3 text-center text-teal-800 font-header mobile-l:text-base mobile-m:text-sm text-xs font-semibold tracking-tighter sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
+          class="font-header mobile-l:text-base mobile-m:text-sm relative z-10 px-1 py-3 text-center text-xs font-semibold tracking-tighter text-teal-800 sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
         >
           <span class="sm:flex sm:justify-center sm:space-x-3">
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat sm:block"></span>
+            <span class="bg-lotus hidden w-7 flex-none bg-contain bg-right-top bg-no-repeat sm:block"></span>
             <span>
               <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
               <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
             </span>
-            <span class="bg-lotus hidden flex-none w-7 bg-contain bg-right-top bg-no-repeat -scale-x-100 sm:block"></span>
+            <span class="bg-lotus hidden w-7 flex-none -scale-x-100 bg-contain bg-right-top bg-no-repeat sm:block"></span>
           </span>
           <span class="lg:text-xl">
             <span class="whitespace-nowrap">Sri Srimad</span>
@@ -49,23 +49,23 @@
         <img
           src="images/gurudeva.png"
           alt="Srila Gurudeva"
-          class="absolute z-10 left-0 right-0 top-full mx-auto w-28 rounded-full -translate-y-3 sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
+          class="absolute left-0 right-0 top-full z-10 mx-auto w-28 -translate-y-3 rounded-full sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
         />
       </div>
     </header>
-    <nav class="relative mb-4 mt-0.5 p-4 bg-submarine-500 sm:mb-0 sm:p-0">
+    <nav class="bg-submarine-500 relative mb-4 mt-0.5 p-4 sm:mb-0 sm:p-0">
       <!-- Mobile menu button-->
       <div class="flex justify-end sm:hidden">
         <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <!-- Icon when menu is closed. -->
           <!-- Heroicon name: outline/menu -->
-          <svg data-menu-toggled class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg data-menu-toggled class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
           <!-- Icon when menu is open. -->
           <!-- Heroicon name: outline/x -->
-          <svg data-menu-toggled class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg data-menu-toggled class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -73,7 +73,7 @@
       <!-- Menu items -->
       <div data-menu-toggled class="hidden sm:block">
         <div
-          class="flex flex-col items-end justify-end pl-36 children:px-2 children:py-1 py-1 text-gray-600 font-header text-sm font-semibold space-y-4 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:pl-72 lg:pr-28 lg:text-base lg:space-x-3"
+          class="children:px-2 children:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
         >
           <!--
             Currently Parcel keeps html extension in the references.
@@ -98,15 +98,15 @@
         </div>
       </div>
     </nav>
-    <div class="flex flex-wrap items-center justify-center mx-auto px-4 py-2 w-full max-w-screen-xl text-sm border-b space-x-2 sm:pl-36 md:pl-56 lg:pl-72">
+    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-2 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
       <span class="py-1 text-center"> <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
       <div class="py-1">
-        <a class="inline-flex items-center px-2 py-1 text-white bg-red-400 rounded-md shadow-sm" target="_blank" href="https://chat.whatsapp.com/DW18pIRZDqH7PvXVaCQYLG">JOIN on WhatsApp</a>
+        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" target="_blank" href="https://chat.whatsapp.com/DW18pIRZDqH7PvXVaCQYLG">JOIN on WhatsApp</a>
         <a class="text-blue-600 underline" target="_blank" href="https://linktr.ee/gaudiya.rasamrita">or other platforms</a>
       </div>
     </div>
-    <div class="flex-1 mx-auto w-full max-w-screen-xl">
-      <div class="flex-none mt-4 text-center text-teal-800 font-header text-sm font-bold uppercase sm:hidden">
+    <div class="mx-auto w-full max-w-screen-xl flex-1">
+      <div class="font-header mt-4 flex-none text-center text-sm font-bold uppercase text-teal-800 sm:hidden">
         <block name="title"></block>
       </div>
       <block name="content"></block>
