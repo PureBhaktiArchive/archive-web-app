@@ -24,8 +24,8 @@
     "minBundles": 5
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "2.2.1",
-    "@parcel/transformer-webmanifest": "2.2.1",
+    "@parcel/packager-raw-url": "2.3.2",
+    "@parcel/transformer-webmanifest": "2.3.2",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/typography": "0.5.2",
     "autoprefixer": "10.4.2",
@@ -35,9 +35,9 @@
     "eslint-plugin-import": "2.25.4",
     "htmlhint": "1.1.2",
     "mdn-polyfills": "5.20.0",
-    "parcel": "2.2.1",
-    "postcss": "8.4.6",
-    "postcss-mixins": "9.0.1",
+    "parcel": "2.3.2",
+    "postcss": "8.4.7",
+    "postcss-mixins": "9.0.2",
     "postcss-nesting": "10.1.2",
     "posthtml-expressions": "1.9.0",
     "posthtml-extend": "0.6.2",
