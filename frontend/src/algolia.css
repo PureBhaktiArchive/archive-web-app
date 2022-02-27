@@ -185,6 +185,16 @@ a[class^='ais-'] {
   @apply font-normal leading-normal;
 }
 
+.ais-HierarchicalMenu-link {
+  .ais-HierarchicalMenu-item--parent > &:after {
+    @apply inline-block;
+  }
+
+  .ais-HierarchicalMenu-item--selected > &:after {
+    @apply rotate-90;
+  }
+}
+
 .ais-RefinementList-item {
   @apply py-1;
   break-inside: avoid;
@@ -269,13 +279,13 @@ a[class^='ais-'] {
 .ais-Pagination-link {
   @apply block rounded border px-3 py-1 transition-colors duration-200 ease-out focus:outline-none;
 
-  /* @nest .ais-Pagination-item--disabled & {
-      @apply text-gray-400 opacity-60 cursor-not-allowed;
-    }
+  .ais-Pagination-item--disabled & {
+    @apply cursor-not-allowed text-gray-400 opacity-60;
+  }
 
-    @nest .ais-Pagination-item--selected & {
-      @apply text-white bg-teal-800;
-  } */
+  .ais-Pagination-item--selected & {
+    @apply bg-teal-800 text-white;
+  }
 }
 
 .ais-PoweredBy-logo {
