@@ -140,6 +140,9 @@ search.addWidgets([
     attribute: 'year',
     limit: 100,
     sortBy: ['name:asc'],
+    cssClasses: {
+      list: 'columns-[5rem]',
+    },
   }),
   panel({
     templates: {
