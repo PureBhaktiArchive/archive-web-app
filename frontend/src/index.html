@@ -77,7 +77,9 @@
                   <!-- Second line -->
                   <div class="flex items-end justify-between">
                     <!-- Tags -->
-                    <div class="children:last:border-0 children:mr-1 children:mt-1 children:pr-1 children:border-r children:border-gray-300 flex flex-wrap content-between align-baseline text-xs">
+                    <div
+                      class="last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:border-gray-300 flex flex-wrap content-between align-baseline text-xs"
+                    >
                       <!-- ID -->
                       <div title="Unique file identifier">#{{idPadded}}</div>
                       <!-- Date -->
@@ -112,7 +114,7 @@
                       {{/_highlightResult.languages}}
                     </div>
                     <!-- Actions -->
-                    <div class="children:ml-1 children:pl-1 flex divide-x text-sm">
+                    <div class="child-a:ml-1 child-a:pl-1 flex divide-x text-sm">
                       <!-- Download -->
                       <a href="{{downloadURL}}" class="inline-flex space-x-1" title="Download file for listening offline">
                         <svg class="h-full w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -258,7 +260,9 @@
         <!-- Second line with tags and actions -->
         <div class="mt-1 flex space-x-2 overflow-hidden">
           <!-- Tags -->
-          <div class="no-scrollbar children:not-first:pl-1 children:flex-none children:border-gray-300 flex grow space-x-1 divide-x overflow-x-auto text-xs">
+          <div
+            class="no-scrollbar last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:flex-none child-div:border-gray-300 flex grow overflow-x-auto text-xs"
+          >
             <!-- ID -->
             <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
             <!-- Date -->
@@ -289,7 +293,7 @@
             </template>
           </div>
           <!-- Actions -->
-          <div class="children:not-first:pl-1 flex flex-none items-baseline space-x-1 divide-x text-xs">
+          <div class="child-a:ml-1 child-a:pl-1 flex flex-none items-baseline divide-x text-xs">
             <!-- Download -->
             <a :href="downloadURL" title="Download file for listening offline">
               <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

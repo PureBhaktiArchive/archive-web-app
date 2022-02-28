@@ -26,6 +26,7 @@
   "devDependencies": {
     "@parcel/packager-raw-url": "2.3.2",
     "@parcel/transformer-webmanifest": "2.3.2",
+    "@stefanracic/tailwind-child": "1.0.4",
     "@tailwindcss/aspect-ratio": "0.4.0",
     "@tailwindcss/typography": "0.5.2",
     "autoprefixer": "10.4.2",
