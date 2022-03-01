@@ -112,8 +112,7 @@
      we have to use the ::before pseudo-element to improvise the progress. */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       &::before {
-        @apply absolute left-0 h-full cursor-pointer rounded-full bg-teal-800;
-        content: '';
+        @apply absolute left-0 h-full cursor-pointer rounded-full bg-teal-800 content-[''];
         width: calc(
           100% * var(--progress) + var(--thumb-size) * (0.5 - var(--progress))
         );

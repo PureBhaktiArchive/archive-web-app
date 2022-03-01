@@ -196,8 +196,7 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-item {
-  @apply py-1;
-  break-inside: avoid;
+  @apply break-inside-avoid py-1;
 }
 
 .ais-RefinementList-label {
