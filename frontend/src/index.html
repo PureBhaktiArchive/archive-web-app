@@ -150,10 +150,7 @@
                 <!-- Percentage -->
                 {{#percentage}}
                 <div class="relative overflow-hidden rounded-lg border border-gray-300 text-xs" title="How much Srila Gurudeva is speaking in the recording">
-                  <!-- Changing delimiters to make interpolation in the `styles` attribute work -->
-                  {{=^% %^=}}
-                  <div class="absolute z-auto h-full bg-gray-300 shadow-none" style="width: ^%percentageRounded%^%"></div>
-                  ^%={{ }}=%^
+                  <div class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none" style="--percentage: {{percentageRounded}}%"></div>
                   <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
                     <span class="whitespace-nowrap">Srila Gurudeva</span>
                     <span>{{percentageRounded}}%</span>
