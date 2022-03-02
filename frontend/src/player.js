@@ -2,9 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+import Alpine from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
-window.player = () => ({
+Alpine.data('player', () => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -57,11 +58,8 @@ window.player = () => ({
   init() {
     // Syncing state between the player and the search result item
     this.$watch('isPlaying', (value) => {
-      window.dispatchEvent(
-        new CustomEvent(`archive:toggle-play-${this.fileId}`, {
-          detail: { isPlaying: value },
-        })
-      );
+      // Storing the currently played file id in the global store for search results
+      this.$store.player.activeFileId = value ? this.fileId : null;
     });
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
@@ -123,17 +121,17 @@ window.player = () => ({
       return;
     }
 
-    // Sending event to the previously played search result item
-    if (this.fileId) this.isPlaying = false;
+    // Turning off playback to send event to the previously played search result item
+    if (this.fileId && this.isPlaying) this.togglePlay(false);
 
     this.fileId = fileId;
     this.contentDetails = contentDetails;
     this.duration = contentDetails.duration;
     this.isOpen = true;
-    this.isPlaying = shouldPlay;
 
     this.audio.src = this.downloadURL;
-    if (shouldPlay) this.audio.play();
+    // After changing `src`, the playback does not continue, so we need to trigger it explicitly
+    this.togglePlay(shouldPlay);
   },
 
   /**
@@ -143,9 +141,19 @@ window.player = () => ({
   togglePlay(value) {
     if (!this.fileId) return;
 
-    this.isPlaying = value || !this.isPlaying;
+    value = value || !this.isPlaying;
+    if (value === this.isPlaying) return;
+
+    this.isPlaying = value;
     if (this.isPlaying) this.audio.play();
     else this.audio.pause();
+
+    // We cannot rely on the watcher on `isPlaying` due to https://github.com/alpinejs/alpine/discussions/2699
+    window.dispatchEvent(
+      new CustomEvent(`archive:player-status-${this.fileId}`, {
+        detail: { isPlaying: this.isPlaying },
+      })
+    );
   },
 
   /**
@@ -171,7 +179,6 @@ window.player = () => ({
    */
   seekRelative(e) {
     const element = e.currentTarget;
-    console.log(e, e.currentTarget);
     this.audio.currentTime += +element.dataset.seekAmount;
   },
 
@@ -195,9 +202,10 @@ window.player = () => ({
     return !(this.volume > 0);
   },
 
-  // For x-spread
+  // For x-bind
   self: {
-    'x-show.transition': 'isOpen',
+    'x-show': 'isOpen',
+    'x-transition': '',
     '@archive:toggle-play.window': 'loadFile',
   },
   playButton: {
@@ -226,4 +234,4 @@ window.player = () => ({
   unmutedIcon: {
     'x-show': '!isMuted',
   },
-});
+}));
