@@ -25,8 +25,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // Turning off styles validation for using mustache template inside style attribute without warning
-  "html.validate.styles": false,
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
     "other": true,
@@ -49,6 +47,7 @@
     "**/node_modules": true
   },
   "files.associations": {
-    ".htmlhintrc": "json"
+    ".htmlhintrc": "json",
+    ".postcssrc": "json"
   }
 }
