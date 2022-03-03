@@ -2,9 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+import Alpine from 'alpinejs';
 import { search } from './search';
 
-window.searchResultItem = (fileId) => {
+Alpine.data('searchResultItem', (fileId) => {
   const itemData = search.helper.lastResults.hits.find(
     // fileId has to be converted to string because the objectID is a string
     (hit) => hit.objectID === fileId.toString()
@@ -12,14 +13,9 @@ window.searchResultItem = (fileId) => {
   if (!itemData)
     throw new Error(`Cannot find search result item for ${fileId}`);
 
-  // Implemented using https://codewithhugo.com/alpinejs-inspect-component-data-from-js/
-  // We'll have to use another approach in Alpine v3: https://github.com/alpinejs/alpine/discussions/1543#discussioncomment-887031
-  const playerData = document.getElementById('player').__x.getUnobservedData();
-  const isPlaying = playerData.isPlaying && playerData.fileId === fileId;
-
   return {
     fileId,
-    isPlaying,
+    isPlaying: Alpine.store('player').activeFileId === fileId,
     itemData,
 
     togglePlay() {
@@ -43,16 +39,16 @@ window.searchResultItem = (fileId) => {
       );
     },
 
-    onTogglePlay({ detail: { isPlaying } }) {
+    onPlayerStatus({ detail: { isPlaying } }) {
       this.isPlaying = isPlaying;
     },
 
-    // For `x-spread`
+    // For `x-bind`
     self: {
-      [`@archive:toggle-play-${fileId}.window`]: 'onTogglePlay',
+      [`@archive:player-status-${fileId}.window`]: 'onPlayerStatus',
     },
     playButton: {
       '@click': 'togglePlay',
     },
   };
-};
+});
