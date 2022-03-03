@@ -10,6 +10,7 @@
 /dist
 /.parcel-cache
 /.serve
+/_site
 
 # misc
 .DS_Store
