@@ -6,11 +6,14 @@
  *  @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addPassthroughCopy('fonts');
-  eleventyConfig.addPassthroughCopy('images');
+  eleventyConfig.addWatchTarget('tailwind.config.js');
+
+  eleventyConfig.addPassthroughCopy('src/fonts');
+  eleventyConfig.addPassthroughCopy('src/images');
   eleventyConfig.addPassthroughCopy('src/**/*.js');
   eleventyConfig.addPassthroughCopy('src/**/*.css');
   eleventyConfig.addPassthroughCopy('src/*.webmanifest');
+  eleventyConfig.addPassthroughCopy('src/*.html');
 
   // Return your Object options:
   return {
