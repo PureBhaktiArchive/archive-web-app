@@ -5,6 +5,7 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { shallowlyEqual } from '../shallowly-equal';
+import { StorageFileMetadata } from '../StorageFileMetadata';
 import { AudiosEntry } from './AudiosEntry';
 import { composeMediaMetadata, composeStorageMetadata } from './metadata';
 import { convertToMp3, copyCodec, transcode } from './transcode';
@@ -31,15 +32,32 @@ export default functions
       .bucket(entry.file.bucket)
       .file(entry.file.name, { generation: entry.file.generation });
 
-    if (!(await sourceFile.exists()).shift()) {
-      functions.logger.warn('Source file', entry.file, 'does not exist.');
-      return;
-    }
-
     const mp3File = admin
       .storage()
       .bucket(functions.config().storage?.bucket)
       .file(`${id}.mp3`);
+
+    const durationRef = admin.database().ref('/audio/durations').child(id);
+
+    // This will populate objects' `metadata` property.
+    // For its structure, see https://googleapis.dev/nodejs/storage/latest/File.html#getMetadata-examples
+    await Promise.all([sourceFile.getMetadata(), mp3File.getMetadata()]);
+
+    const sourceFileMetadata = sourceFile.metadata as StorageFileMetadata;
+    const mp3FileMetadata = mp3File.metadata as StorageFileMetadata;
+
+    // This way we check for file existence to avoid second request with `exists()` method
+    if (!sourceFileMetadata.name) {
+      functions.logger.warn('Source file', entry.file, 'does not exist.');
+
+      // Deleting mp3 file if it exists
+      if (mp3FileMetadata.name) await mp3File.delete();
+
+      // And removing duration
+      durationRef.remove();
+      return;
+    }
+
     const mediaMetadata = composeMediaMetadata(id, entry.contentDetails);
     const storageMetadata = composeStorageMetadata(
       id,
@@ -52,10 +70,11 @@ export default functions
      * depending on what was changed in the entry
      */
 
-    // Transcoding from source if MP3 does not exist or the source file changed
+    // Transcoding from source if MP3 does not exist or is not matching the source file
     if (
-      !(await mp3File.exists()).shift() ||
-      mp3File.metadata.metadata?.sourceMd5Hash !== sourceFile.metadata.md5Hash
+      !mp3FileMetadata.name ||
+      mp3FileMetadata.size === 0 ||
+      mp3FileMetadata.metadata?.sourceMd5Hash !== sourceFileMetadata.md5Hash
     ) {
       functions.logger.debug(
         'Transcoding file',
@@ -72,9 +91,11 @@ export default functions
         storageMetadata
       );
 
-      if (Number.isFinite(duration))
-        await admin.database().ref('/audio/durations').child(id).set(duration);
-      else functions.logger.warn('Could not extract duration.');
+      if (Number.isFinite(duration)) await durationRef.set(duration);
+      else {
+        functions.logger.warn('Could not extract duration.');
+        await durationRef.remove();
+      }
     }
 
     // Updating media metadata if it changed

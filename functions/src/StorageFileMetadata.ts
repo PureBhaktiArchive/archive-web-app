@@ -21,5 +21,5 @@ export interface StorageFileMetadata {
   timeCreated: string;
   updated: string;
   timeStorageClassUpdated: string;
-  metadata: Record<string, string>;
+  metadata: Record<string, string> | undefined;
 }
