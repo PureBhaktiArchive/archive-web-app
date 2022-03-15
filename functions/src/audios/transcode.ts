@@ -92,9 +92,7 @@ export async function transcode(
     .input(sourceFile.createReadStream())
     .output(uploadStream, { end: true })
     .withOutputFormat('mp3')
-    // @ts-expect-error: There is an error in typing. See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/52550
     .usingPreset(converstionPreset)
-    // @ts-expect-error: There is an error in typing. See https://github.com/DefinitelyTyped/DefinitelyTyped/issues/52550
     .usingPreset(addMediaMetadata(mediaMetadata));
 
   const [duration] = await Promise.all([runCommandAsync(command), uploadTask]);
