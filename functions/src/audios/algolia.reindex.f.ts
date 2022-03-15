@@ -65,7 +65,8 @@ export default functions.pubsub
     const records = Object.entries(
       entriesSnapshot.val() as Record<string, AudiosEntry>
     )
-      .filter(([, entry]) => !entry.obsolete)
+      // Skipping entries which are obsolete or has no valid duration
+      .filter(([id, entry]) => !entry.obsolete && (durations.get(id) || 0) > 0)
       .map<AudiosAlgoliaRecord>(([id, entry]) => ({
         objectID: id,
         title: entry.contentDetails.title,
