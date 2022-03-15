@@ -4,12 +4,12 @@
 
 import { File } from '@google-cloud/storage';
 import * as functions from 'firebase-functions';
-import ffmpeg, { FfmpegCommand } from 'fluent-ffmpeg';
+import ffmpeg, { FfmpegCommand, PresetFunction } from 'fluent-ffmpeg';
 import { Duration } from 'luxon';
 import { Writable } from 'stream';
 import { StorageFileMetadata } from '../StorageFileMetadata';
 
-export const convertToMp3 = (command: FfmpegCommand): unknown =>
+export const convertToMp3: PresetFunction = (command) =>
   command
     .withAudioCodec('libmp3lame')
     .withAudioBitrate(64)
@@ -17,11 +17,12 @@ export const convertToMp3 = (command: FfmpegCommand): unknown =>
     // Using the best reasonable quality https://github.com/gypified/libmp3lame/blob/f416c19b3140a8610507ebb60ac7cd06e94472b8/USAGE#L491
     .withOutputOption('-compression_level 2');
 
-export const copyCodec = (command: FfmpegCommand): unknown =>
+export const copyCodec: PresetFunction = (command) =>
   command.withAudioCodec('copy');
 
 const addMediaMetadata =
-  (metadata: Record<string, string>) => (command: FfmpegCommand) =>
+  (metadata: Record<string, string>): PresetFunction =>
+  (command) =>
     command
       .withOutputOptions([
         // Required because Windows only supports version up to 3 of ID3v2 tags
@@ -75,7 +76,7 @@ const promisifyStream = (stream: Writable): Promise<void> =>
 export async function transcode(
   sourceFile: File,
   destinationFile: File,
-  converstionPreset: (command: FfmpegCommand) => void,
+  converstionPreset: PresetFunction,
   mediaMetadata: Record<string, string>,
   storageMetadata: Partial<StorageFileMetadata>
 ): Promise<number> {
