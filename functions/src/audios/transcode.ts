@@ -33,7 +33,11 @@ const addMediaMetadata =
         '-map_metadata -1',
       ])
       .withOutputOptions(
-        Object.entries(metadata).flatMap(([name, value]) => [
+        // Spreading array to make whitespaces work properly, due to issue in ffmpeg-fluent
+        // It splits each item with the space character as a separator, perhaps, to support legacy options format '-option value'
+        // This logic is applied only if one argument is passed (array)
+        // https://github.com/fluent-ffmpeg/node-fluent-ffmpeg/blob/master/lib/options/custom.js#L113
+        ...Object.entries(metadata).flatMap(([name, value]) => [
           '-metadata',
           `${name}=${value || ''}`,
         ])
