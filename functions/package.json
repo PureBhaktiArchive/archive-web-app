@@ -29,7 +29,7 @@
     "luxon": "2.3.0"
   },
   "devDependencies": {
-    "@types/fluent-ffmpeg": "2.1.18",
+    "@types/fluent-ffmpeg": "2.1.20",
     "@types/glob": "7.2.0",
     "@types/jest": "27.4.0",
     "@types/luxon": "2.0.9",
