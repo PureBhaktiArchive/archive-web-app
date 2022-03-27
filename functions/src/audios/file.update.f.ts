@@ -4,7 +4,7 @@
 
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { shallowlyEqual } from '../shallowly-equal';
+import { shallowlyEqual } from '../objects-comparison';
 import { StorageFileMetadata } from '../StorageFileMetadata';
 import { AudiosEntry } from './AudiosEntry';
 import { composeMediaMetadata, composeStorageMetadata } from './metadata';
