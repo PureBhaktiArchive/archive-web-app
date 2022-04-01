@@ -19,7 +19,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "algoliasearch": "4.12.1",
-    "express": "4.17.2",
+    "express": "4.17.3",
     "firebase-admin": "10.0.2",
     "firebase-functions": "3.16.0",
     "fluent-ffmpeg": "2.1.2",
