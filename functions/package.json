@@ -26,13 +26,13 @@
     "glob": "7.2.0",
     "googleapis": "92.0.0",
     "iso-639-2": "2.0.0",
-    "luxon": "2.3.0"
+    "luxon": "2.3.1"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "2.1.20",
     "@types/glob": "7.2.0",
     "@types/jest": "27.4.0",
-    "@types/luxon": "2.0.9",
+    "@types/luxon": "2.3.1",
     "@typescript-eslint/eslint-plugin": "5.15.0",
     "@typescript-eslint/parser": "5.15.0",
     "eslint": "8.11.0",
