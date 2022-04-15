@@ -57,6 +57,14 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+  .join-section-left {
+    height: 574px !important;
+    /* width: 40%; */
+    /*  height: 254px !important; */
+  }
+  .join-section-right {
+    width: 142px !important;
+  }
 }
 
 @layer components {
