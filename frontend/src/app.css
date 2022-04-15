@@ -1,4 +1,6 @@
-@import './tailwind.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   @font-face {
@@ -68,10 +70,6 @@
 }
 
 @layer components {
-  #year-list .ais-RefinementList-list {
-    columns: 5rem auto;
-  }
-
   /* Sliders styling borrowed from https://css-tricks.com/lets-create-a-custom-audio-player/ */
 
   @define-mixin slider-thumb {
@@ -104,7 +102,7 @@
   }
 
   input[type='range'] {
-    @apply relative bg-transparent outline-none focus:outline-none appearance-none;
+    @apply relative appearance-none bg-transparent outline-none focus:outline-none;
 
     --buffered: 0;
     --thumb-size: theme('spacing[3.5]');
@@ -122,8 +120,7 @@
      we have to use the ::before pseudo-element to improvise the progress. */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       &::before {
-        @apply absolute left-0 h-full bg-teal-800 rounded-full cursor-pointer;
-        content: '';
+        @apply absolute left-0 h-full cursor-pointer rounded-full bg-teal-800 content-[''];
         width: calc(
           100% * var(--progress) + var(--thumb-size) * (0.5 - var(--progress))
         );
@@ -148,7 +145,7 @@
     }
     &::-ms-track {
       @mixin slider-track;
-      @apply text-transparent bg-transparent border-transparent;
+      @apply border-transparent bg-transparent text-transparent;
     }
     &::-ms-fill-lower {
       @apply bg-teal-800;
