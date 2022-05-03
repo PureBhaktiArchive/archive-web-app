@@ -41,7 +41,7 @@ export default functions
 
     // This will populate objects' `metadata` property.
     // For its structure, see https://googleapis.dev/nodejs/storage/latest/File.html#getMetadata-examples
-    await Promise.all([sourceFile.getMetadata(), mp3File.getMetadata()]);
+    await Promise.all([sourceFile.exists(), mp3File.exists()]);
 
     const sourceFileMetadata = sourceFile.metadata as StorageFileMetadata;
     const mp3FileMetadata = mp3File.metadata as StorageFileMetadata;
