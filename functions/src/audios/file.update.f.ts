@@ -73,7 +73,7 @@ export default functions
     // Transcoding from source if MP3 does not exist or is not matching the source file
     if (
       !mp3FileMetadata.name ||
-      mp3FileMetadata.size === 0 ||
+      +mp3FileMetadata.size === 0 ||
       mp3FileMetadata.metadata?.sourceMd5Hash !== sourceFileMetadata.md5Hash
     ) {
       functions.logger.debug(

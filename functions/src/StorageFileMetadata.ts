@@ -14,7 +14,7 @@ export interface StorageFileMetadata {
   contentType: string;
   contentDisposition: string;
   storageClass: 'STANDARD' | 'NEARLINE' | 'COLDLINE';
-  size: number;
+  size: string; // This is how storage provides the size, as a string
   md5Hash: string;
   crc32c: string;
   etag: string;
