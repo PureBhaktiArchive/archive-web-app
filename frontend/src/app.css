@@ -60,12 +60,13 @@
     display: none;
   }
   .join-section-left {
-    height: 574px !important;
+    /* height: 574px !important; */
     /* width: 40%; */
-    /*  height: 254px !important; */
+    height: 560px !important;
+    padding: 1px;
   }
   .join-section-right {
-    width: 142px !important;
+    /* width: 640px !important; */
   }
 }
 
