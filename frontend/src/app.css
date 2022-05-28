@@ -59,10 +59,6 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
-  .join-section-left {
-    height: 560px !important;
-    padding: 1px;
-  }
 }
 
 @layer components {
