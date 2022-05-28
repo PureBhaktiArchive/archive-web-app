@@ -2,7 +2,7 @@
   "id-unique": true,
   "src-not-empty": false,
   "alt-require": true,
-  "tagname-lowercase": true,
+  "tagname-lowercase": ["linearGradient"],
   "attr-value-double-quotes": true,
   "attr-lowercase": [
     "allowReorder",
