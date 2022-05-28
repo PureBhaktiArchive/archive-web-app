@@ -4,6 +4,7 @@
     ":automergeMinor",
     ":dependencyDashboard",
     ":enableVulnerabilityAlertsWithLabel(security)",
+    ":maintainLockFilesMonthly",
     ":prHourlyLimit2",
     ":prConcurrentLimit10",
     "group:googleapis",

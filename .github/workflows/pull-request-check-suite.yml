@@ -17,7 +17,7 @@ jobs:
       functions: ${{ steps.filter.outputs.functions == 'true' || steps.filter.outputs.workflows == 'true' }}
     steps:
       # Checkout to use filters from file
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -36,7 +36,7 @@ jobs:
     if: needs.changes.outputs.frontend == 'true'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v2
         with:
@@ -71,7 +71,7 @@ jobs:
     if: needs.changes.outputs.functions == 'true'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: actions/setup-node@v2
         with:
