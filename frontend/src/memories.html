@@ -100,7 +100,7 @@
                   </a>
                 </div>
               </div>
-              <p class="text-xs font-bold" data-bs-toggle="tooltip" data-bs-placement="top" title="{{programName}}">{{programName}}</p>
+              <p class="text-xs font-bold">{{programName}}</p>
               <p
                 class="w-80 text-justify align-top text-xs sm:w-72 md:w-72"
                 x-data="{ isCollapsed: false, maxLength: 170, originalContent: '', content: '' }"
@@ -128,13 +128,5 @@
   </block>
   <block name="scripts">
     <script type="module" src="./memories.js"></script>
-    <!-- Required popper.js -->
-    <script src="https://unpkg.com/@popperjs/core@2.9.1/dist/umd/popper.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new Tooltip(tooltipTriggerEl);
-      });
-    </script>
   </block>
 </extends>
