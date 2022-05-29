@@ -94,17 +94,18 @@
           <block name="about-menu-item">
             <a href="/about">About</a>
           </block>
-          <a href="http://eepurl.com/ddxX-T" target="_blank">Subscribe</a>
+          <block name="join-menu-item">
+            <a href="/join">Join</a>
+          </block>
         </div>
       </div>
     </nav>
-    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-2 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
-      <span class="py-1 text-center"> <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
-      <div class="py-1">
-        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" target="_blank" href="https://chat.whatsapp.com/DW18pIRZDqH7PvXVaCQYLG">JOIN on WhatsApp</a>
-        <a class="text-blue-600 underline" target="_blank" href="https://linktr.ee/gaudiya.rasamrita">or other platforms</a>
+    <block name="banner">
+      <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
+        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
+        <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
       </div>
-    </div>
+    </block>
     <div class="mx-auto w-full max-w-screen-xl flex-1">
       <div class="font-header mt-4 flex-none text-center text-sm font-bold uppercase text-teal-800 sm:hidden">
         <block name="title"></block>
