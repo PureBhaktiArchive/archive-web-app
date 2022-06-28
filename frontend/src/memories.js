@@ -17,7 +17,6 @@ import {
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
 import { formatDurationForHumans } from './duration';
-import './menu';
 import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(

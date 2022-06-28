@@ -112,6 +112,8 @@
       </div>
       <block name="content"></block>
     </div>
+    <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
+    <script type="module" src="./menu.js"></script>
     <block name="scripts"></block>
   </body>
 </html>
