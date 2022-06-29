@@ -38,18 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
-
-      - name: Cache NPM modules
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-npm-${{ github.job }}-${{ hashFiles(format('{0}/package-lock.json', github.job)) }}
-          restore-keys: |
-            ${{ runner.os }}-npm-${{ github.job }}-
+          cache: 'npm'
+          cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
       - run: npm run lint
@@ -73,18 +66,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 12
-
-      - name: Cache NPM modules
-        id: cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
-          key: ${{ runner.os }}-npm-${{ github.job }}-${{ hashFiles(format('{0}/package-lock.json', github.job)) }}
-          restore-keys: |
-            ${{ runner.os }}-npm-${{ github.job }}-
+          cache: 'npm'
+          cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
       - run: npm run lint
