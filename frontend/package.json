@@ -45,7 +45,7 @@
     "tailwindcss": "3.0.23"
   },
   "dependencies": {
-    "algoliasearch": "4.13.0",
+    "algoliasearch": "4.13.1",
     "alpinejs": "3.9.5",
     "instantsearch.js": "4.40.2",
     "tippy.js": "6.3.7"
