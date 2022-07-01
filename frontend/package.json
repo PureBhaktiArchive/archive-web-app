@@ -39,7 +39,7 @@
     "postcss": "8.4.14",
     "postcss-mixins": "9.0.3",
     "posthtml-expressions": "1.9.0",
-    "posthtml-extend": "0.6.2",
+    "posthtml-extend": "0.6.3",
     "prettier": "2.6.1",
     "prettier-plugin-tailwindcss": "0.1.8",
     "tailwindcss": "3.0.23"
