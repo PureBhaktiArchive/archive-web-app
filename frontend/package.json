@@ -36,7 +36,7 @@
     "htmlhint": "1.1.4",
     "mdn-polyfills": "5.20.0",
     "parcel": "2.6.2",
-    "postcss": "8.4.12",
+    "postcss": "8.4.14",
     "postcss-mixins": "9.0.2",
     "posthtml-expressions": "1.9.0",
     "posthtml-extend": "0.6.2",
