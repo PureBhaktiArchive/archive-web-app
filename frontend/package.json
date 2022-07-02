@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "parcel serve src/!(layout).html --port 3000 --dist-dir .serve",
+    "dev:11ty": "npx @11ty/eleventy --watch",
+    "dev:parcel": "parcel serve \"_site/**/*.html\" --port 3000",
     "build": "parcel build \"src/!(layout).html\"",
     "lint": "eslint ."
   },
