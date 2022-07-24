@@ -30,3 +30,14 @@ Environment variables should be added to an `.env` file according to the [Parcel
 - Create `.env.development.local` file in the `frontend` folder and enter variables according to [Environment variables](#environment-variables) section.
 - Run `npm start` to start the Parcel development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
 - Open the local website URL using the link shown by the previous command. Note that for pages other than `index.html` the extension has to be added manually, like this: http://localhost:3000/about.html.
+
+## Deployment in firebase previw channel and live deployment.
+
+- Make sure firebase cli is installed, otherwise Run `npm install -g firebase-tools` to install firbase tools.
+- After pull request is merged to main branch, check `.env.development.local` file and `.env.production.local` file in the `frontend` folder and enter variables according to [Environment variables](#environment-variables) section.
+- Log into Firebase using your Google account by running the following command: `firebase login` and confirm authentication in firebase console.
+- Run `firebase use --add` to select the active project alias, give an alias name.
+- For preview channel deployment Run `firebase hosting:channel:deploy <channel-name>` ([channel-name e,g, Production]).
+- After channel deployment reviewed and approved go for live deployment
+- For Live deployment Run `firebase deploy --only hosting`.
+- Congratulations.
