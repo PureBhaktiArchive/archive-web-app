@@ -2,19 +2,14 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "config": {
-    "input": "src/",
-    "intermediate": "tmp/",
-    "output": "dist/"
-  },
   "scripts": {
-    "11ty:build": "eleventy --input=src/ --output=tmp/",
-    "11ty:watch": "eleventy --input=src/ --output=tmp/ --watch",
+    "11ty:build": "eleventy",
+    "11ty:watch": "eleventy --watch",
     "build": "run-s -l clean 11ty:build parcel:build",
-    "clean": "rimraf dist/ tmp/; mkdir -p dist/ tmp/",
-    "dev": "run-p -l 11ty:watch parcel:serve",
-    "parcel:build": "parcel build \"./tmp/**/*.html\" --dist-dir dist/",
-    "parcel:serve": "parcel serve \"./tmp/**/*.html\" --dist-dir dist/",
+    "clean": "rimraf dist/ _site/; mkdir -p dist/ _site/",
+    "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
+    "parcel:serve": "parcel serve \"./_site/**/*.html\" --dist-dir dist/",
+    "start": "run-p -l 11ty:watch parcel:serve",
     "predev": "run-s clean"
   },
   "browserslist": {
