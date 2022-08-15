@@ -7,7 +7,7 @@
     "11ty:build": "npx @11ty/eleventy",
     "11ty:watch": "npx @11ty/eleventy --watch",
     "build": "run-s -l clean 11ty:build parcel:build",
-    "clean": "rm -rf dist/ _site/",
+    "clean": "rm -rf  _site/",
     "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
     "parcel:serve": "parcel serve \"./_site/**/*.html\" --dist-dir dist/",
     "prestart": "run-s clean"
