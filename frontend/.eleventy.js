@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('src/**/*.js');
   eleventyConfig.addPassthroughCopy('src/**/*.css');
   eleventyConfig.addPassthroughCopy('src/*.webmanifest');
+  eleventyConfig.ignores.add('src/*.html');
 
   // Return your Object options:
   return {

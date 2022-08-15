@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "11ty:build": "eleventy",
-    "11ty:watch": "eleventy --watch",
+    "start": "run-p -l 11ty:watch parcel:serve",
+    "11ty:build": "npx @11ty/eleventy",
+    "11ty:watch": "npx @11ty/eleventy --watch",
     "build": "run-s -l clean 11ty:build parcel:build",
-    "clean": "rimraf dist/ _site/; mkdir -p dist/ _site/",
+    "clean": "rm -rf dist/ _site/",
     "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
     "parcel:serve": "parcel serve \"./_site/**/*.html\" --dist-dir dist/",
-    "start": "run-p -l 11ty:watch parcel:serve",
-    "predev": "run-s clean"
+    "prestart": "run-s clean"
   },
   "browserslist": {
     "production": [
