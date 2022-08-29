@@ -82,6 +82,11 @@
         <div
           class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
         >
+          {% for item in navigation.items %}
+          <block name="{{ item.text }}-menu-item">
+            <a href="{{ item.url }}" {% if item.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if item.text == "donate" %} target="_blank" {% endif %}  {% if item.text == "contact" %} target="_blank" {% endif %} > {{ item.text }} </a>
+          </block>
+          {% endfor %}
           <!--
             Currently Parcel keeps html extension in the references.
             https://github.com/parcel-bundler/parcel/discussions/6903
@@ -90,7 +95,7 @@
           <!-- Currently it is not possible to pass data from page to the layout: https://github.com/posthtml/posthtml-extend/issues/21 -->
           <!-- Therefore override corresponding *-menu-item block in a page to make it styled active -->
           <!-- In the future we can leverage PUG: https://stackoverflow.com/a/29089926/3082178 -->
-          <block name="audios-menu-item">
+          <!-- <block name="audios-menu-item">
             <a href="/">Audios</a>
           </block>
           <block name="memories-menu-item">
@@ -103,7 +108,7 @@
           </block>
           <block name="join-menu-item">
             <a href="/join">Join</a>
-          </block>
+          </block> -->
         </div>
       </div>
     </nav>
@@ -125,6 +130,5 @@
         <a href="/privacy">Privacy Policy</a>
       </div>
     </footer>
-    {% block scripts %} {{ content }} {% endblock %}
   </body>
 </html>
