@@ -79,48 +79,23 @@
       </div>
       <!-- Menu items -->
       <div data-menu-toggled class="hidden sm:block">
-        <div
-          class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
+        <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
         >
-          {% for item in navigation.items %}
-          <block name="{{ item.text }}-menu-item">
-            <a href="{{ item.url }}" {% if item.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if item.text == "donate" %} target="_blank" {% endif %}  {% if item.text == "contact" %} target="_blank" {% endif %} > {{ item.text }} </a>
-          </block>
+          {% assign navPages = collections.all | eleventyNavigation %}
+          {% for entry in navPages %}
+            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.title == "donate" %} target="_blank" {% endif %}  {% if entry.title == "contact" %} target="_blank" {% endif %} > {{ entry.title }} </a>
           {% endfor %}
-          <!--
-            Currently Parcel keeps html extension in the references.
-            https://github.com/parcel-bundler/parcel/discussions/6903
-            Possible solution: https://v2.parceljs.org/languages/html/#:~:text=This%20example%20uses%20posthtml-shorten%20to%20shorten%20URLs%20using%20a%20custom%20shortening%20function.
-          -->
-          <!-- Currently it is not possible to pass data from page to the layout: https://github.com/posthtml/posthtml-extend/issues/21 -->
-          <!-- Therefore override corresponding *-menu-item block in a page to make it styled active -->
-          <!-- In the future we can leverage PUG: https://stackoverflow.com/a/29089926/3082178 -->
-          <!-- <block name="audios-menu-item">
-            <a href="/">Audios</a>
-          </block>
-          <block name="memories-menu-item">
-            <a href="/memories">Memories</a>
-          </block>
-          <a href="https://www.audioseva.com/donate" target="_blank">Donate</a>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjwP_n5uJPD-BxwE_Ta-tbaf2aWNWZqe-YOOoUzjcPw209Uw/viewform" target="_blank">Contact</a>
-          <block name="about-menu-item">
-            <a href="/about">About</a>
-          </block>
-          <block name="join-menu-item">
-            <a href="/join">Join</a>
-          </block> -->
-        </div>
+       </div>
       </div>
     </nav>
-    <block name="banner">
-      <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
-        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
-        <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
-      </div>
-    </block>
+    <!-- banner -->
+    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
+      <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
+      <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
+    </div>
     <div class="mx-auto w-full max-w-screen-xl flex-1">
       <div class="font-header mt-4 flex-none text-center text-sm font-bold uppercase text-teal-800 sm:hidden">{{ title }}</div>
-      {% block content %} {{ content }} {% endblock %}
+      {{ content }}
     </div>
     <footer class="border-t pt-7 pb-40">
       <div class="child-a:px-2 flex justify-center space-x-1 text-xs text-gray-600 lg:space-x-3">
@@ -130,5 +105,12 @@
         <a href="/privacy">Privacy Policy</a>
       </div>
     </footer>
+    <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
+       <script type="module" src="~/src/menu.js"></script>
+    {% if page.url == "/" %}
+       <script type="module" src="~/src/{{jsFile}}"></script>
+    {% elsif page.url == "/memories/" %}
+       <script type="module" src="~/src/{{jsFile}}"></script>
+    {% endif %}
   </body>
 </html>
