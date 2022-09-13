@@ -10,7 +10,7 @@
     <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png" />
     <link rel="stylesheet" href="~/src/app.css" />
 
-    <title>{{ title }}</title>
+    <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
     <!-- Google Tag Manager -->
     <script>
       (function (w, d, s, l, i) {
@@ -83,17 +83,18 @@
         >
           {% assign navPages = collections.all | eleventyNavigation %}
           {% for entry in navPages %}
-            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.title == "donate" %} target="_blank" {% endif %}  {% if entry.title == "contact" %} target="_blank" {% endif %} > {{ entry.title }} </a>
+            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
           {% endfor %}
        </div>
       </div>
     </nav>
     <!-- banner -->
-    <!-- will use alpine x-show directive to hide the banner element later -->
-    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72 {% if bannerShow == false %} hidden {% endif %}">
-      <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
-      <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
-    </div>
+    {% if bannerShow != false %}
+      <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
+        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
+        <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
+      </div>
+    {% endif %}
     <div class="mx-auto w-full max-w-screen-xl flex-1">
       <div class="font-header mt-4 flex-none text-center text-sm font-bold uppercase text-teal-800 sm:hidden">{{ title }}</div>
       {{ content }}
