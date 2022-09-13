@@ -10,11 +10,7 @@ const pluginNavigation = require('@11ty/eleventy-navigation');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
-  eleventyConfig.addPassthroughCopy('src/fonts');
-  eleventyConfig.addPassthroughCopy('src/images');
-  eleventyConfig.addPassthroughCopy('src/**/*.js');
-  eleventyConfig.addPassthroughCopy('src/**/*.css');
-  eleventyConfig.addPassthroughCopy('src/*.webmanifest');
+
   //eleventyConfig.ignores.add('src/*.html');
 
   eleventyConfig.addPlugin(pluginNavigation);
