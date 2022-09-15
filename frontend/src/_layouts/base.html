@@ -12,18 +12,8 @@
 
     <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
     <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-PNC4S5J');
-    </script>
+    {%- assign gtag-id = 'GTM-PNC4S5J' -%}
+    {%- render 'partials/_gtm.html', tag-id: gtag-id -%}
     <!-- End Google Tag Manager -->
   </head>
 
@@ -81,10 +71,10 @@
       <div data-menu-toggled class="hidden sm:block">
         <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
         >
-          {% assign navPages = collections.all | eleventyNavigation %}
-          {% for entry in navPages %}
+          {%- assign navtop = collections.topnav | eleventyNavigation -%}
+          {%- for entry in navtop -%}
             <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
-          {% endfor %}
+          {%- endfor -%}
        </div>
       </div>
     </nav>
@@ -101,16 +91,16 @@
     </div>
     <footer class="border-t pt-7 pb-40">
       <div class="child-a:px-2 flex justify-center space-x-1 text-xs text-gray-600 lg:space-x-3">
-        <a href="https://www.audioseva.com/donate" target="_blank">Donate</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjwP_n5uJPD-BxwE_Ta-tbaf2aWNWZqe-YOOoUzjcPw209Uw/viewform" target="_blank">Contact</a>
-        <a href="/about">About</a>
-        <a href="/privacy">Privacy Policy</a>
+          {%- assign navbtm = collections.bottomnav | eleventyNavigation -%}
+          {%- for entrybtm in navbtm -%}
+            <a href="{{ entrybtm.url }}" {% if entrybtm.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entrybtm.target == "external" %} target="_blank" {% endif %}> {{ entrybtm.title }} </a>
+          {%- endfor -%}
       </div>
     </footer>
     <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
        <script type="module" src="~/src/menu.js"></script>
-    {% if jsFile %}
+    {%- if jsFile -%}
        <script type="module" src="~/src/{{jsFile}}"></script>
-    {% endif %}
+    {%- endif -%}
   </body>
 </html>
