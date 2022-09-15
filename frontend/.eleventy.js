@@ -5,14 +5,9 @@
  *  @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
  *  @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
-
 const pluginNavigation = require('@11ty/eleventy-navigation');
-
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
-
-  //eleventyConfig.ignores.add('src/*.html');
-
   eleventyConfig.addPlugin(pluginNavigation);
 
   // Return your Object options:
@@ -20,6 +15,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: 'src',
       layouts: '_layouts',
+      includes: '_includes',
     },
   };
 };
