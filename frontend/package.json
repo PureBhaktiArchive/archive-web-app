@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "run-p -l 11ty:watch parcel:serve",
-    "11ty:build": "npx @11ty/eleventy",
+    "start": "npm-run-all --print-label 11ty:clean --parallel 11ty:watch parcel:serve",
+    "build": "npm-run-all --print-label 11ty:clean 11ty:build parcel:build",
+    "11ty:clean": "rm -rf _site/",
     "11ty:watch": "npx @11ty/eleventy --watch",
-    "build": "run-s -l clean 11ty:build parcel:build",
-    "clean": "rm -rf  _site/",
-    "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
+    "11ty:build": "npx @11ty/eleventy",
     "parcel:serve": "parcel serve \"./_site/**/*.html\" --dist-dir dist/",
-    "prestart": "run-s clean"
+    "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
+    "lint": "eslint ."
   },
   "browserslist": {
     "production": [
