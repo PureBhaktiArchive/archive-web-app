@@ -47,7 +47,6 @@
     "**/node_modules": true
   },
   "files.associations": {
-    ".htmlhintrc": "json",
     ".postcssrc": "json"
   }
 }

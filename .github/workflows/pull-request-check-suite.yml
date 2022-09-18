@@ -46,7 +46,6 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
-      - run: npx htmlhint
       - run: npm run build
       - run: npm test
       - run: npx prettier --check .
