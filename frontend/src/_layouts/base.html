@@ -70,8 +70,8 @@ gtm-tag-id: GTM-PNC4S5J
       <div data-menu-toggled class="hidden sm:block">
         <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
         >
-          {%- assign navtop = collections.topnav | eleventyNavigation -%}
-          {%- for entry in navtop -%}
+          {%- assign menu = collections.topnav | eleventyNavigation -%}
+          {%- for entry in menu -%}
             <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
           {%- endfor -%}
        </div>
@@ -90,9 +90,9 @@ gtm-tag-id: GTM-PNC4S5J
     </div>
     <footer class="border-t pt-7 pb-40">
       <div class="child-a:px-2 flex justify-center space-x-1 text-xs text-gray-600 lg:space-x-3">
-          {%- assign navbtm = collections.bottomnav | eleventyNavigation -%}
-          {%- for entrybtm in navbtm -%}
-            <a href="{{ entrybtm.url }}" {% if entrybtm.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entrybtm.target == "external" %} target="_blank" {% endif %}> {{ entrybtm.title }} </a>
+          {%- assign menu = collections.bottomnav | eleventyNavigation -%}
+          {%- for entry in menu -%}
+            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
           {%- endfor -%}
       </div>
     </footer>
