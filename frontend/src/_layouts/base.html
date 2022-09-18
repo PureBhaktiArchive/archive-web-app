@@ -1,3 +1,7 @@
+---
+gtm-tag-id: GTM-PNC4S5J
+---
+
 <!DOCTYPE html>
 <html class="font-sans text-gray-600" lang="en">
   <head>
@@ -11,15 +15,11 @@
     <link rel="stylesheet" href="~/src/app.css" />
 
     <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
-    <!-- Google Tag Manager -->
-      {%- render 'partials/_gtm.html', tag-id: 'GTM-PNC4S5J' -%}
-    <!-- End Google Tag Manager -->
+    {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
   <body class="overlayed:overflow-hidden flex flex-col sm:h-screen">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PNC4S5J" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+    {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
     <header class="bg-header border-peach-dark w-full border-b-4 border-dotted bg-clip-content pb-0.5">
       <div class="relative mx-auto max-w-screen-xl">
         <div class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute left-0 top-2 h-full w-11 bg-contain bg-left-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"></div>
