@@ -1,18 +1,17 @@
 ---
 gtm-tag-id: GTM-PNC4S5J
 ---
-
 <!DOCTYPE html>
 <html class="font-sans text-gray-600" lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="theme-color" content="#115E59" />
-    <meta name="msapplication-navbutton-color" content="#115E59 " />
-    <link rel="manifest" href="~/src/manifest.webmanifest" />
-    <link rel="icon" sizes="32x32" type="image/png" href="~/src/images/favicon-32x32.png" />
-    <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png" />
-    <link rel="stylesheet" href="~/src/app.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#115E59">
+    <meta name="msapplication-navbutton-color" content="#115E59 ">
+    <link rel="manifest" href="~/src/manifest.webmanifest">
+    <link rel="icon" sizes="32x32" type="image/png" href="~/src/images/favicon-32x32.png">
+    <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png">
+    <link rel="stylesheet" href="~/src/app.css">
 
     <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
@@ -26,9 +25,7 @@ gtm-tag-id: GTM-PNC4S5J
         <div
           class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute right-0 top-2 h-full w-11 -scale-x-100 bg-contain bg-right-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"
         ></div>
-        <div
-          class="font-header mobile-l:text-base mobile-m:text-sm relative z-10 px-1 py-3 text-center text-xs font-semibold tracking-tighter text-teal-800 sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28"
-        >
+        <div class="font-header mobile-l:text-base mobile-m:text-sm relative z-10 px-1 py-3 text-center text-xs font-semibold tracking-tighter text-teal-800 sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28">
           <span class="sm:flex sm:justify-center sm:space-x-3">
             <span class="bg-lotus hidden w-7 flex-none bg-contain bg-right-top bg-no-repeat sm:block"></span>
             <span>
@@ -46,11 +43,11 @@ gtm-tag-id: GTM-PNC4S5J
           src="~/src/images/gurudeva.png"
           alt="Srila Gurudeva"
           class="absolute left-0 right-0 top-full z-10 mx-auto w-28 -translate-y-3 rounded-full sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
-        />
+        >
       </div>
     </header>
     <nav class="bg-submarine-500 relative mb-4 mt-0.5 p-4 sm:mb-0 sm:p-0">
-      <!-- Mobile menu button-->
+      <!-- Mobile menu button -->
       <div class="flex justify-end sm:hidden">
         <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -68,13 +65,22 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
       <!-- Menu items -->
       <div data-menu-toggled class="hidden sm:block">
-        <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base"
-        >
+        <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base">
           {%- assign menu = collections.topnav | eleventyNavigation -%}
           {%- for entry in menu -%}
-            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
+            <a
+              href="{{ entry.url }}"
+              {% if entry.url == page.url %}
+                class="rounded-md bg-teal-800 text-white"
+              {% endif %}
+              {% if entry.target == 'external' %}
+                target="_blank"
+              {% endif %}
+            >
+              {{ entry.title }}
+            </a>
           {%- endfor -%}
-       </div>
+        </div>
       </div>
     </nav>
     <!-- banner -->
@@ -90,16 +96,26 @@ gtm-tag-id: GTM-PNC4S5J
     </div>
     <footer class="border-t pt-7 pb-40">
       <div class="child-a:px-2 flex justify-center space-x-1 text-xs text-gray-600 lg:space-x-3">
-          {%- assign menu = collections.bottomnav | eleventyNavigation -%}
-          {%- for entry in menu -%}
-            <a href="{{ entry.url }}" {% if entry.url == page.url %} class="rounded-md bg-teal-800 text-white"{% endif %}  {% if entry.target == "external" %} target="_blank" {% endif %}> {{ entry.title }} </a>
-          {%- endfor -%}
+        {%- assign menu = collections.bottomnav | eleventyNavigation -%}
+        {%- for entry in menu -%}
+          <a
+            href="{{ entry.url }}"
+            {% if entry.url == page.url %}
+              class="rounded-md bg-teal-800 text-white"
+            {% endif %}
+            {% if entry.target == 'external' %}
+              target="_blank"
+            {% endif %}
+          >
+            {{ entry.title }}
+          </a>
+        {%- endfor -%}
       </div>
     </footer>
     <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
-       <script type="module" src="~/src/menu.js"></script>
+    <script type="module" src="~/src/menu.js"></script>
     {%- if jsFile -%}
-       <script type="module" src="~/src/{{jsFile}}"></script>
+      <script type="module" src="~/src/{{jsFile}}"></script>
     {%- endif -%}
   </body>
 </html>
