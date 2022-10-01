@@ -38,7 +38,7 @@
     "parcel": "2.7.0",
     "postcss": "8.4.17",
     "postcss-mixins": "9.0.4",
-    "posthtml-expressions": "1.9.0",
+    "posthtml-expressions": "1.10.0",
     "posthtml-extend": "0.6.3",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",
