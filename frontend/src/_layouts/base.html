@@ -100,9 +100,6 @@ gtm-tag-id: GTM-PNC4S5J
         {%- for entry in menu -%}
           <a
             href="{{ entry.url }}"
-            {% if entry.url == page.url %}
-              class="rounded-md bg-teal-800 text-white"
-            {% endif %}
             {% if entry.target == 'external' %}
               target="_blank"
             {% endif %}
