@@ -31,13 +31,11 @@ Environment variables should be added to an `.env` file according to the [Parcel
 - Run `npm start` to start the Parcel development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
 - Open the local website URL using the link shown by the previous command. Note that for pages other than `index.html` the extension has to be added manually, like this: http://localhost:3000/about.html.
 
-## Deployment in firebase preview channel and live deployment.
+## Deployment
 
-- Make sure firebase cli is installed, otherwise Run `npm install -g firebase-tools` to install firbase tools.
-- After pull request is merged to main branch, make sure both `.env.development.local` file and `.env.production.local` file in the `frontend` folder and enter variables according to [Environment variables](#environment-variables) section.
-- Log into Firebase using your Google account by running the following command: `firebase login` and confirm authentication in firebase console.
-- Run `firebase use --add` to select the active project alias, give an alias name.
-- For preview channel deployment Run `firebase hosting:channel:deploy <channel-name>`.
-- After channel deployment reviewed and approved go for live deployment.
-- For Live deployment Run `firebase deploy --only hosting`.
-- Congratulations.
+- Make sure Firebase CLI is installed, otherwise run `npm install -g firebase-tools`.
+- Make sure `.env.production.local` file in the `frontend` folder contains variables according to [Environment variables](#environment-variables) section.
+- Log into Firebase CLI using your Google account by running the `firebase login` command.
+- Run `firebase use --add` to select the active project andprovide an alias for it.
+- For preview channel deployment, run `firebase hosting:channel:deploy <channel-name>`.
+- For live deployment, run `firebase deploy --only hosting`.
