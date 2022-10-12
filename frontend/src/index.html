@@ -1,324 +1,310 @@
-<extends src="layout.html">
-  <block name="audios-menu-item">
-    <a href="/" class="rounded-md bg-teal-800 text-white">Audios</a>
-  </block>
-  <block name="title">Audios</block>
-  <block name="content">
-    <div id="searchbox" class="mx-auto flex w-full max-w-screen-xl flex-none border-b p-4 sm:pl-36 md:pl-56 lg:pl-72">
-      <input
-        type="search"
-        placeholder="Search for title, topics, locations, dates, etc."
-        class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
-      />
-      <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-teal-800 px-2 font-semibold text-white shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+---
+layout: base
+title: Audios
+eleventyNavigation:
+  key: Audios
+  order: 1
+tags:
+  - topnav
+jsFile: audios.js
+---
+<div id="searchbox" class="mx-auto flex w-full max-w-screen-xl flex-none border-b p-4 sm:pl-36 md:pl-56 lg:pl-72">
+  <input
+    type="search"
+    placeholder="Search for title, topics, locations, dates, etc."
+    class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
+  >
+  <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-teal-800 px-2 font-semibold text-white shadow-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+    <span class="hidden sm:inline">Search</span>
+  </button>
+</div>
+<div class="mx-auto flex w-full max-w-screen-xl flex-1 sm:overflow-y-hidden">
+  <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+    <div class="bg-submarine-500 flex-none p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
+    <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
+      <div id="language-list"></div>
+      <div id="sound-quality-list"></div>
+      <div id="duration-menu"></div>
+      <div id="percentage-menu"></div>
+      <div id="category-list"></div>
+      <div id="year-list"></div>
+      <div id="location-list"></div>
+    </div>
+    <div class="flex-none border-t p-2 md:hidden">
+      <button data-filter-toggle class="w-full rounded-md bg-teal-800 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
+    </div>
+  </div>
+  <main class="w-full grow px-2 sm:w-4/5 sm:overflow-y-auto sm:px-4">
+    <div class="my-3 flex items-center">
+      <!-- Filter button -->
+      <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-teal-800 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
+        <!-- Heroicon name: solid/filter -->
+        <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
         </svg>
-        <span class="hidden sm:inline">Search</span>
+        <span>Filter</span>
+      </button>
+      <span id="stats" class="whitespace-nowrap text-sm"></span>
+      <span id="loading" class="text-sm text-gray-500">Loading…</span>
+    </div>
+    <div id="hits">
+      {% raw %}
+      <template id="item-template">
+        <article class="flex w-full flex-col py-1 sm:flex-row sm:py-2" x-data="searchResultItem({{objectID}})" x-bind="self">
+          <!-- Main section -->
+          <div class="flex grow items-start">
+            <!-- Play button -->
+            <button class="w-7 flex-none fill-current focus:outline-none" title="Play" type="button" x-bind="playButton">
+              <!-- Material Icons: Play Arrow -->
+              <svg x-show="!isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
+              </svg>
+              <!-- Material Icons: Pause -->
+              <svg x-show="isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x-cloak>
+                <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
+              </svg>
+            </button>
+            <div class="grow">
+              <!-- First line -->
+              <div class="flex items-start justify-between space-x-1">
+                <!-- Title -->
+                <h3 class="grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
+                <!-- Duration -->
+                <span class="flex-none" title="Duration">{{durationForHumans}}</span>
+              </div>
+              <!-- Second line -->
+              <div class="flex items-end justify-between">
+                <!-- Tags -->
+                <div class="last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:border-gray-300 flex flex-wrap content-between align-baseline text-xs">
+                  <!-- ID -->
+                  <div title="Unique file identifier">#{{idPadded}}</div>
+                  <!-- Date -->
+                  {{#_highlightResult.dateForHumans}}
+                  <div title="Date">
+                    {{{value}}} {{#dateUncertain}}
+                    <span title="Date is uncertain">(?)</span>
+                    {{/dateUncertain}} {{#timeOfDay}}
+                    <span title="Time of day">{{timeOfDay}}</span>
+                    {{/timeOfDay}}
+                  </div>
+                  {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
+                  <div>Date unknown</div>
+                  {{/_highlightResult.dateForHumans}}
+                  <!-- Location -->
+                  {{#_highlightResult.location}}
+                  <div title="Location">
+                    {{{value}}} {{#locationUncertain}}
+                    <span title="Location is uncertain">(?)</span>
+                    {{/locationUncertain}}
+                  </div>
+                  {{/_highlightResult.location}} {{^_highlightResult.location}}
+                  <div>Location unknown</div>
+                  {{/_highlightResult.location}}
+                  <!-- Category -->
+                  {{#_highlightResult.category}}
+                  <div title="Category">{{{value}}}</div>
+                  {{/_highlightResult.category}}
+                  <!-- Languages -->
+                  {{#_highlightResult.languages}}
+                  <div title="Language spoken in the recording">{{{value}}}</div>
+                  {{/_highlightResult.languages}}
+                </div>
+                <!-- Actions -->
+                <div class="child-a:ml-1 child-a:pl-1 flex divide-x text-sm">
+                  <!-- Download -->
+                  <a href="{{downloadURL}}" class="inline-flex space-x-1" title="Download file for listening offline">
+                    <svg class="h-full w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    <span class="hidden lg:inline">Download</span>
+                  </a>
+                  <!-- Feedback -->
+                  <a href="{{feedbackURL}}" target="_blank" class="inline-flex space-x-1" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
+                    <svg class="h-full w-4 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                      />
+                    </svg>
+                    <span class="hidden lg:inline">Feedback</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Complimentary section -->
+          <div class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0">
+            <!-- Percentage -->
+            {{#percentage}}
+            <div class="relative overflow-hidden rounded-lg border border-gray-300 text-xs" title="How much Srila Gurudeva is speaking in the recording">
+              <div class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none" style="--percentage: {{percentageRounded}}%"></div>
+              <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
+                <span class="whitespace-nowrap">Srila Gurudeva</span>
+                <span>{{percentageRounded}}%</span>
+              </div>
+            </div>
+            {{/percentage}}
+            <!-- Sound Quality Rating -->
+            {{#soundQualityRating}}
+            <div class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
+              <svg class="h-4 w-4 flex-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="32"
+                />
+                <path
+                  d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                />
+              </svg>
+              <span>{{soundQualityRatingLabel}}</span>
+            </div>
+            {{/soundQualityRating}}
+          </div>
+        </article>
+      </template>
+      {% endraw %}
+    </div>
+    <div id="pagination" class="my-2 w-full"></div>
+    <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
+      This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
+      again later.
+    </p>
+  </main>
+</div>
+<!-- Player UI -->
+<div
+  id="player"
+  x-cloak
+  x-data="player()"
+  x-bind="self"
+  class="shadow-xl-around fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 md:flex-row md:space-x-6"
+>
+  <!-- Controls -->
+  <div class="flex flex-col justify-between fill-current">
+    <!-- Buttons -->
+    <div class="mb-1 flex items-center justify-center space-x-2 sm:mb-0 md:justify-between">
+      <button x-bind="seekButton" data-seek-amount="-10" class="w-7">
+        <!-- Material icons: Replay 10 -->
+        <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.1 11h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm4.28-1.76c0 .32-.03.6-.1.82s-.17.42-.29.57-.28.26-.45.33-.37.1-.59.1-.41-.03-.59-.1-.33-.18-.46-.33-.23-.34-.3-.57-.11-.5-.11-.82v-.74c0-.32.03-.6.1-.82s.17-.42.29-.57.28-.26.45-.33.37-.1.59-.1.41.03.59.1.33.18.46.33.23.34.3.57.11.5.11.82v.74zm-.85-.86c0-.19-.01-.35-.04-.48s-.07-.23-.12-.31-.11-.14-.19-.17-.16-.05-.25-.05-.18.02-.25.05-.14.09-.19.17-.09.18-.12.31-.04.29-.04.48v.97c0 .19.01.35.04.48s.07.24.12.32.11.14.19.17.16.05.25.05.18-.02.25-.05.14-.09.19-.17.09-.19.11-.32.04-.29.04-.48v-.97z"
+          />
+        </svg>
+      </button>
+      <button x-bind="playButton" class="w-10">
+        <svg x-show="!isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+        </svg>
+        <svg x-show="isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
+        </svg>
+      </button>
+      <button x-bind="seekButton" data-seek-amount="10" class="w-7">
+        <!-- Material icons: Forward 10 -->
+        <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M18,13c0,3.31-2.69,6-6,6s-6-2.69-6-6s2.69-6,6-6v4l5-5l-5-5v4c-4.42,0-8,3.58-8,8c0,4.42,3.58,8,8,8s8-3.58,8-8H18z" />
+          <polygon points="10.9,16 10.9,11.73 10.81,11.73 9.04,12.36 9.04,13.05 10.05,12.74 10.05,16" />
+          <path
+            d="M14.32,11.78c-0.18-0.07-0.37-0.1-0.59-0.1s-0.41,0.03-0.59,0.1s-0.33,0.18-0.45,0.33s-0.23,0.34-0.29,0.57 s-0.1,0.5-0.1,0.82v0.74c0,0.32,0.04,0.6,0.11,0.82s0.17,0.42,0.3,0.57s0.28,0.26,0.46,0.33s0.37,0.1,0.59,0.1s0.41-0.03,0.59-0.1 s0.33-0.18,0.45-0.33s0.22-0.34,0.29-0.57s0.1-0.5,0.1-0.82V13.5c0-0.32-0.04-0.6-0.11-0.82s-0.17-0.42-0.3-0.57 S14.49,11.85,14.32,11.78z M14.33,14.35c0,0.19-0.01,0.35-0.04,0.48s-0.06,0.24-0.11,0.32s-0.11,0.14-0.19,0.17 s-0.16,0.05-0.25,0.05s-0.18-0.02-0.25-0.05s-0.14-0.09-0.19-0.17s-0.09-0.19-0.12-0.32s-0.04-0.29-0.04-0.48v-0.97 c0-0.19,0.01-0.35,0.04-0.48s0.06-0.23,0.12-0.31s0.11-0.14,0.19-0.17s0.16-0.05,0.25-0.05s0.18,0.02,0.25,0.05 s0.14,0.09,0.19,0.17s0.09,0.18,0.12,0.31s0.04,0.29,0.04,0.48V14.35z"
+          />
+        </svg>
       </button>
     </div>
-    <div class="mx-auto flex w-full max-w-screen-xl flex-1 sm:overflow-y-hidden">
-      <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
-        <div class="bg-submarine-500 flex-none p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
-        <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
-          <div id="language-list"></div>
-          <div id="sound-quality-list"></div>
-          <div id="duration-menu"></div>
-          <div id="percentage-menu"></div>
-          <div id="category-list"></div>
-          <div id="year-list"></div>
-          <div id="location-list"></div>
-        </div>
-        <div class="flex-none border-t p-2 md:hidden">
-          <button data-filter-toggle class="w-full rounded-md bg-teal-800 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
-        </div>
-      </div>
-      <main class="w-full grow px-2 sm:w-4/5 sm:overflow-y-auto sm:px-4">
-        <div class="my-3 flex items-center">
-          <!-- Filter button -->
-          <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-teal-800 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
-            <!-- Heroicon name: solid/filter -->
-            <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path
-                fill-rule="evenodd"
-                d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span>Filter</span>
-          </button>
-          <span id="stats" class="whitespace-nowrap text-sm"></span>
-          <span id="loading" class="text-sm text-gray-500">Loading…</span>
-        </div>
-        <div id="hits">
-          <template id="item-template">
-            <article class="flex w-full flex-col py-1 sm:flex-row sm:py-2" x-data="searchResultItem({{objectID}})" x-bind="self">
-              <!-- Main section -->
-              <div class="flex grow items-start">
-                <!-- Play button -->
-                <button class="w-7 flex-none fill-current focus:outline-none" title="Play" type="button" x-bind="playButton">
-                  <!-- Material Icons: Play Arrow -->
-                  <svg x-show="!isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z" />
-                  </svg>
-                  <!-- Material Icons: Pause -->
-                  <svg x-show="isPlaying" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" x-cloak>
-                    <path d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z" />
-                  </svg>
-                </button>
-                <div class="grow">
-                  <!-- First line -->
-                  <div class="flex items-start justify-between space-x-1">
-                    <!-- Title -->
-                    <h3 class="grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
-                    <!-- Duration -->
-                    <span class="flex-none" title="Duration">{{durationForHumans}}</span>
-                  </div>
-                  <!-- Second line -->
-                  <div class="flex items-end justify-between">
-                    <!-- Tags -->
-                    <div
-                      class="last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:border-gray-300 flex flex-wrap content-between align-baseline text-xs"
-                    >
-                      <!-- ID -->
-                      <div title="Unique file identifier">#{{idPadded}}</div>
-                      <!-- Date -->
-                      {{#_highlightResult.dateForHumans}}
-                      <div title="Date">
-                        {{{value}}} {{#dateUncertain}}
-                        <span title="Date is uncertain">(?)</span>
-                        {{/dateUncertain}} {{#timeOfDay}}
-                        <span title="Time of day">{{timeOfDay}}</span>
-                        {{/timeOfDay}}
-                      </div>
-                      {{/_highlightResult.dateForHumans}} {{^_highlightResult.dateForHumans}}
-                      <div>Date unknown</div>
-                      {{/_highlightResult.dateForHumans}}
-                      <!-- Location -->
-                      {{#_highlightResult.location}}
-                      <div title="Location">
-                        {{{value}}} {{#locationUncertain}}
-                        <span title="Location is uncertain">(?)</span>
-                        {{/locationUncertain}}
-                      </div>
-                      {{/_highlightResult.location}} {{^_highlightResult.location}}
-                      <div>Location unknown</div>
-                      {{/_highlightResult.location}}
-                      <!-- Category -->
-                      {{#_highlightResult.category}}
-                      <div title="Category">{{{value}}}</div>
-                      {{/_highlightResult.category}}
-                      <!-- Languages -->
-                      {{#_highlightResult.languages}}
-                      <div title="Language spoken in the recording">{{{value}}}</div>
-                      {{/_highlightResult.languages}}
-                    </div>
-                    <!-- Actions -->
-                    <div class="child-a:ml-1 child-a:pl-1 flex divide-x text-sm">
-                      <!-- Download -->
-                      <a href="{{downloadURL}}" class="inline-flex space-x-1" title="Download file for listening offline">
-                        <svg class="h-full w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        <span class="hidden lg:inline">Download</span>
-                      </a>
-                      <!-- Feedback -->
-                      <a
-                        href="{{feedbackURL}}"
-                        target="_blank"
-                        class="inline-flex space-x-1"
-                        title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
-                      >
-                        <svg class="h-full w-4 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                          />
-                        </svg>
-                        <span class="hidden lg:inline">Feedback</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Complimentary section -->
-              <div
-                class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0"
-              >
-                <!-- Percentage -->
-                {{#percentage}}
-                <div class="relative overflow-hidden rounded-lg border border-gray-300 text-xs" title="How much Srila Gurudeva is speaking in the recording">
-                  <div class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none" style="--percentage: {{percentageRounded}}%"></div>
-                  <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
-                    <span class="whitespace-nowrap">Srila Gurudeva</span>
-                    <span>{{percentageRounded}}%</span>
-                  </div>
-                </div>
-                {{/percentage}}
-                <!-- Sound Quality Rating -->
-                {{#soundQualityRating}}
-                <div class="{{soundQualityRatingColor}} flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
-                  <svg class="h-4 w-4 flex-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <path
-                      d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="32"
-                    />
-                    <path
-                      d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-miterlimit="10"
-                      stroke-width="32"
-                    />
-                  </svg>
-                  <span>{{soundQualityRatingLabel}}</span>
-                </div>
-                {{/soundQualityRating}}
-              </div>
-            </article>
-          </template>
-        </div>
-        <div id="pagination" class="my-2 w-full"></div>
-        <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
-          This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
-          again later.
-        </p>
-      </main>
+    <!-- Volume control -->
+    <div class="hidden h-6 flex-none items-center md:flex">
+      <button x-bind="muteButton">
+        <svg x-bind="unmutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"
+          />
+        </svg>
+        <svg x-bind="mutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M4.34 2.93L2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18c-.65.49-1.38.88-2.18 1.11v2.06c1.34-.3 2.57-.92 3.61-1.75l2.05 2.05 1.41-1.41L4.34 2.93zM10 15.17L7.83 13H5v-2h2.83l.88-.88L10 11.41v3.76zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-1.88 1.88L12 7.76zm4.5 8c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"
+          />
+        </svg>
+      </button>
+      <input type="range" min="0" max="1" step="any" x-ref="volumeSlider" x-bind="volumeSlider" class="w-24 flex-none">
     </div>
-    <!-- Player UI -->
-    <div
-      id="player"
-      x-cloak
-      x-data="player()"
-      x-bind="self"
-      class="shadow-xl-around fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 md:flex-row md:space-x-6"
-    >
-      <!-- Controls -->
-      <div class="flex flex-col justify-between fill-current">
-        <!-- Buttons -->
-        <div class="mb-1 flex items-center justify-center space-x-2 sm:mb-0 md:justify-between">
-          <button x-bind="seekButton" data-seek-amount="-10" class="w-7">
-            <!-- Material icons: Replay 10 -->
-            <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.1 11h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm4.28-1.76c0 .32-.03.6-.1.82s-.17.42-.29.57-.28.26-.45.33-.37.1-.59.1-.41-.03-.59-.1-.33-.18-.46-.33-.23-.34-.3-.57-.11-.5-.11-.82v-.74c0-.32.03-.6.1-.82s.17-.42.29-.57.28-.26.45-.33.37-.1.59-.1.41.03.59.1.33.18.46.33.23.34.3.57.11.5.11.82v.74zm-.85-.86c0-.19-.01-.35-.04-.48s-.07-.23-.12-.31-.11-.14-.19-.17-.16-.05-.25-.05-.18.02-.25.05-.14.09-.19.17-.09.18-.12.31-.04.29-.04.48v.97c0 .19.01.35.04.48s.07.24.12.32.11.14.19.17.16.05.25.05.18-.02.25-.05.14-.09.19-.17.09-.19.11-.32.04-.29.04-.48v-.97z"
-              />
-            </svg>
-          </button>
-          <button x-bind="playButton" class="w-10">
-            <svg x-show="!isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-            </svg>
-            <svg x-show="isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
-            </svg>
-          </button>
-          <button x-bind="seekButton" data-seek-amount="10" class="w-7">
-            <!-- Material icons: Forward 10 -->
-            <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path d="M18,13c0,3.31-2.69,6-6,6s-6-2.69-6-6s2.69-6,6-6v4l5-5l-5-5v4c-4.42,0-8,3.58-8,8c0,4.42,3.58,8,8,8s8-3.58,8-8H18z" />
-              <polygon points="10.9,16 10.9,11.73 10.81,11.73 9.04,12.36 9.04,13.05 10.05,12.74 10.05,16" />
-              <path
-                d="M14.32,11.78c-0.18-0.07-0.37-0.1-0.59-0.1s-0.41,0.03-0.59,0.1s-0.33,0.18-0.45,0.33s-0.23,0.34-0.29,0.57 s-0.1,0.5-0.1,0.82v0.74c0,0.32,0.04,0.6,0.11,0.82s0.17,0.42,0.3,0.57s0.28,0.26,0.46,0.33s0.37,0.1,0.59,0.1s0.41-0.03,0.59-0.1 s0.33-0.18,0.45-0.33s0.22-0.34,0.29-0.57s0.1-0.5,0.1-0.82V13.5c0-0.32-0.04-0.6-0.11-0.82s-0.17-0.42-0.3-0.57 S14.49,11.85,14.32,11.78z M14.33,14.35c0,0.19-0.01,0.35-0.04,0.48s-0.06,0.24-0.11,0.32s-0.11,0.14-0.19,0.17 s-0.16,0.05-0.25,0.05s-0.18-0.02-0.25-0.05s-0.14-0.09-0.19-0.17s-0.09-0.19-0.12-0.32s-0.04-0.29-0.04-0.48v-0.97 c0-0.19,0.01-0.35,0.04-0.48s0.06-0.23,0.12-0.31s0.11-0.14,0.19-0.17s0.16-0.05,0.25-0.05s0.18,0.02,0.25,0.05 s0.14,0.09,0.19,0.17s0.09,0.18,0.12,0.31s0.04,0.29,0.04,0.48V14.35z"
-              />
-            </svg>
-          </button>
-        </div>
-        <!-- Volume control -->
-        <div class="hidden h-6 flex-none items-center md:flex">
-          <button x-bind="muteButton">
-            <svg x-bind="unmutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"
-              />
-            </svg>
-            <svg x-bind="mutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
-              <path d="M0 0h24v24H0V0z" fill="none" />
-              <path
-                d="M4.34 2.93L2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18c-.65.49-1.38.88-2.18 1.11v2.06c1.34-.3 2.57-.92 3.61-1.75l2.05 2.05 1.41-1.41L4.34 2.93zM10 15.17L7.83 13H5v-2h2.83l.88-.88L10 11.41v3.76zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-1.88 1.88L12 7.76zm4.5 8c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"
-              />
-            </svg>
-          </button>
-          <input type="range" min="0" max="1" step="any" x-ref="volumeSlider" x-bind="volumeSlider" class="w-24 flex-none" />
-        </div>
-      </div>
-      <!-- Main block -->
-      <div class="overflow-hidden md:grow">
-        <!-- Title -->
-        <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
-        <!-- Second line with tags and actions -->
-        <div class="mt-1 flex space-x-2 overflow-hidden">
-          <!-- Tags -->
-          <div
-            class="no-scrollbar last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:flex-none child-div:border-gray-300 flex grow overflow-x-auto text-xs"
-          >
-            <!-- ID -->
-            <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
-            <!-- Date -->
-            <template x-if="contentDetails.dateForHumans">
-              <div title="Date">
-                <span x-text="contentDetails.dateForHumans"></span>
-                <template x-if="contentDetails.dateUncertain">
-                  <span title="Date is uncertain">(?)</span>
-                </template>
-              </div>
-            </template>
-            <!-- Location -->
-            <template x-if="contentDetails.location">
-              <div title="Location">
-                <span x-text="contentDetails.location"></span>
-                <template x-if="contentDetails.locationUncertain">
-                  <span title="Location is uncertain">(?)</span>
-                </template>
-              </div>
-            </template>
-            <!-- Category -->
-            <template x-if="contentDetails.category">
-              <div x-text="contentDetails.category" title="Category"></div>
-            </template>
-            <!-- Languages -->
-            <template x-for="language in contentDetails.languages" :key="language">
-              <div x-text="language" title="Language spoken in the recording"></div>
+  </div>
+  <!-- Main block -->
+  <div class="overflow-hidden md:grow">
+    <!-- Title -->
+    <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
+    <!-- Second line with tags and actions -->
+    <div class="mt-1 flex space-x-2 overflow-hidden">
+      <!-- Tags -->
+      <div class="no-scrollbar last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:flex-none child-div:border-gray-300 flex grow overflow-x-auto text-xs">
+        <!-- ID -->
+        <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
+        <!-- Date -->
+        <template x-if="contentDetails.dateForHumans">
+          <div title="Date">
+            <span x-text="contentDetails.dateForHumans"></span>
+            <template x-if="contentDetails.dateUncertain">
+              <span title="Date is uncertain">(?)</span>
             </template>
           </div>
-          <!-- Actions -->
-          <div class="child-a:ml-1 child-a:pl-1 flex flex-none items-baseline divide-x text-xs">
-            <!-- Download -->
-            <a :href="downloadURL" title="Download file for listening offline">
-              <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              <span class="hidden align-text-bottom lg:inline">Download</span>
-            </a>
-            <!-- Feedback -->
-            <a :href="feedbackURL" target="_blank" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
-              <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-              <span class="hidden align-text-bottom lg:inline">Feedback</span>
-            </a>
+        </template>
+        <!-- Location -->
+        <template x-if="contentDetails.location">
+          <div title="Location">
+            <span x-text="contentDetails.location"></span>
+            <template x-if="contentDetails.locationUncertain">
+              <span title="Location is uncertain">(?)</span>
+            </template>
           </div>
-        </div>
-        <!-- Seek control with timings -->
-        <div class="flex h-6 items-center space-x-2">
-          <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
-          <input type="range" min="0" x-ref="seekSlider" x-bind="seekSlider" class="h-1.5 grow" />
-          <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
-        </div>
+        </template>
+        <!-- Category -->
+        <template x-if="contentDetails.category">
+          <div x-text="contentDetails.category" title="Category"></div>
+        </template>
+        <!-- Languages -->
+        <template x-for="language in contentDetails.languages" :key="language">
+          <div x-text="language" title="Language spoken in the recording"></div>
+        </template>
+      </div>
+      <!-- Actions -->
+      <div class="child-a:ml-1 child-a:pl-1 flex flex-none items-baseline divide-x text-xs">
+        <!-- Download -->
+        <a :href="downloadURL" title="Download file for listening offline">
+          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span class="hidden align-text-bottom lg:inline">Download</span>
+        </a>
+        <!-- Feedback -->
+        <a :href="feedbackURL" target="_blank" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
+          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+          <span class="hidden align-text-bottom lg:inline">Feedback</span>
+        </a>
       </div>
     </div>
-  </block>
-  <block name="scripts">
-    <script type="module" src="./audios.js"></script>
-  </block>
-</extends>
+    <!-- Seek control with timings -->
+    <div class="flex h-6 items-center space-x-2">
+      <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
+      <input type="range" min="0" x-ref="seekSlider" x-bind="seekSlider" class="h-1.5 grow">
+      <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
+    </div>
+  </div>
+</div>

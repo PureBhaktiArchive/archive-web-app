@@ -9,7 +9,7 @@
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode",
     "mikestead.dotenv",
-    "mkaufman.htmlhint"
+    "sissel.shopify-liquid"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []
