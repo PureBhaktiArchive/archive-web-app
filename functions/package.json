@@ -24,7 +24,7 @@
     "firebase-functions": "3.24.1",
     "fluent-ffmpeg": "2.1.2",
     "glob": "8.0.3",
-    "googleapis": "92.0.0",
+    "googleapis": "108.0.1",
     "iso-639-2": "2.0.0",
     "luxon": "2.5.0"
   },
