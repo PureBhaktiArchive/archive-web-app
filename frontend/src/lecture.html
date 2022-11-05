@@ -1,0 +1,37 @@
+---
+pagination:
+  data: browse
+  size: 1
+  alias: lecture
+permalink: "/lecture/{{ lecture.objectID | slug }}/"
+layout: base
+templateEngineOverride: md, njk, html
+eleventyComputed:
+  title: "{{ lecture.objectID }}"
+---
+<article class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mobile-m:px-10 mx-auto mb-10 mt-2 px-2 text-justify">
+  <p>
+    <h3>Title</h3>
+    {{ lecture.title }}
+  </p>
+  <p>
+    <h3>Languages</h3>
+    {{ lecture.languages }}
+  </p>
+  <p>
+    <h3>Location</h3>
+    {{ lecture.location }}
+  </p>
+  <p>
+    <h3>Date</h3>
+    {{ lecture.dateForHumans }}
+  </p>
+  <p>
+    <h3>Sound Quality</h3>
+    {{ lecture.soundQualityRating }}
+  </p>
+  <p>
+    <h3>Topics</h3>
+    {{ lecture.topics }}
+  </p>
+</article>
