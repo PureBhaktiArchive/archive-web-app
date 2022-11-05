@@ -71,7 +71,8 @@ jsFile: audios.js
               <!-- First line -->
               <div class="flex items-start justify-between space-x-1">
                 <!-- Title -->
-                <h3 class="grow break-words font-semibold" title="{{title}}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</h3>
+                <h3 class="grow break-words font-semibold" title="{{title}}"><a
+                  href="/lecture/{{ objectID }}">{{#helpers.highlight}} { "attribute": "title" } {{/helpers.highlight}}</a></h3>
                 <!-- Duration -->
                 <span class="flex-none" title="Duration">{{durationForHumans}}</span>
               </div>
