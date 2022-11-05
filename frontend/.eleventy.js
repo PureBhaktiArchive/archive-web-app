@@ -2,6 +2,10 @@
  * sri sri guru gaurangau jayatah
  */
 
+require('dotenv').config({
+  path: `${__dirname}/.env.${process.env.NODE_ENV}.local`,
+});
+
 /**
  * Eleventy config function.
  *
@@ -9,6 +13,7 @@
  *  @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
  *  @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
