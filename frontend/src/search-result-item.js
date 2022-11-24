@@ -3,10 +3,9 @@
  */
 
 import Alpine from 'alpinejs';
-import { search } from './search';
 
 Alpine.data('searchResultItem', (fileId) => {
-  const itemData = search.helper.lastResults.hits.find(
+  const itemData = Alpine.store('search').lastResults.hits.find(
     // fileId has to be converted to string because the objectID is a string
     (hit) => hit.objectID === fileId.toString()
   );
