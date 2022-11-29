@@ -18,14 +18,13 @@ See [Firebase Environment configuration](https://firebase.google.com/docs/functi
 | ------------------------- | --------------------------------------- |
 | `algolia.appid`           | Algolia’s App ID                        |
 | `algolia.apikey`          | Algolia’s API key                       |
-| `algolia.index.audios`    | Algolia’s audios index name             |
 | `algolia.index.memories`  | Algolia’s memories index name           |
 | `storage.bucket`          | Google Storage bucket for the MP3 files |
 | `memories.spreadsheet.id` | Spreadsheet ID of the Memories sheet    |
 
 ## Tests
 
-Crucial code should be tested. Jest is used for testing. Tests should be in the `spec` folder and have name `*.spec.ts`.
+Crucial code should be tested. Jest is used for testing. Tests should have name `*.spec.ts`.
 
 ## Linting
 

@@ -2,7 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { categorizeLanguages, parseLanguages } from '../languages';
@@ -84,14 +83,5 @@ export default functions.pubsub
         duration: durations.get(id) || null,
       }));
 
-    const client = algoliasearch(
-      functions.config().algolia.appid,
-      functions.config().algolia.apikey
-    );
-    const index = client.initIndex(functions.config().algolia.index.audios);
-
-    if (records.length > 0) await index.replaceAllObjects(records);
-    else await index.clearObjects();
-
-    console.log('Indexing has been successfully queued.');
+    await admin.database().ref('/audio/records').set(records);
   });
