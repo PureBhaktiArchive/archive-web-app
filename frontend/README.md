@@ -12,6 +12,14 @@ This sub-project contains the frontend part of the Archive.
 
 HTML files are processed by Eleventy first, then by Parcel.
 
+### InstantSearch Templates
+
+New function-based templates with an `html` function as tagged template. Large templates should be moved to a separate JS file. See `audio-item-template.js` as an example.
+
+In order to get syntax highlighting and intellisense of HTML inside javascript template literals, the `tobermory.es6-string-html` VSCode extension is recommended in the workspace settings.
+
+Prettier [supports](https://prettier.io/blog/2018/11/07/1.15.0.html#html-template-literal-in-javascript) `html` template tags out of the box.
+
 ## Environment variables
 
 Environment variables should be added to an `.env` file according to the [Parcel's documentation](https://parceljs.org/features/node-emulation/#.env-files). Use `.env.development.local` for local development.

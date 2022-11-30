@@ -16,7 +16,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import './algolia.css';
-import { formatDurationForHumans } from './duration';
+import { itemTemplate } from './memories-item-template';
 import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(
@@ -38,11 +38,12 @@ search.addWidgets([
   stats({
     container: '#stats',
     templates: {
-      text: `
-  {{#hasNoResults}}No results{{/hasNoResults}}
-  {{#hasOneResult}}1 result{{/hasOneResult}}
-  {{#hasManyResults}}{{#helpers.formatNumber}}{{nbHits}}{{/helpers.formatNumber}} results{{/hasManyResults}}
-`,
+      text: (data) =>
+        data.hasManyResults
+          ? `${data.nbHits} results`
+          : data.hasOneResult
+          ? '1 result'
+          : 'No results',
     },
   }),
   // Loading indicator
@@ -61,7 +62,7 @@ search.addWidgets([
   },
   panel({
     templates: {
-      header: 'Program Name',
+      header: () => 'Program Name',
     },
   })(refinementList)({
     container: '#program-name-list',
@@ -70,7 +71,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Speaker Country',
+      header: () => 'Speaker Country',
     },
   })(refinementList)({
     container: '#speaker-country-list',
@@ -79,7 +80,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Languages',
+      header: () => 'Languages',
     },
   })(refinementList)({
     container: '#language-list',
@@ -88,7 +89,7 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: 'Duration',
+      header: () => 'Duration',
     },
   })(numericMenu)({
     container: '#duration-menu',
@@ -102,7 +103,12 @@ search.addWidgets([
   }),
   panel({
     templates: {
-      header: document.querySelector('#gurus-list > template').innerHTML,
+      header: (options, { html }) => html`
+        <span>Initiating Guru(s)</span>
+        <p class="text-xs font-normal lowercase">
+          [Sorted by decreasing count of matching records]
+        </p>
+      `,
     },
   })(refinementList)({
     container: '#gurus-list',
@@ -114,16 +120,9 @@ search.addWidgets([
   hits({
     container: '#hits',
     templates: {
-      item: document.getElementById('item-template').innerHTML,
-      empty: '',
+      item: itemTemplate,
+      empty: () => '',
     },
-    transformItems: (items) =>
-      items.map((item) => ({
-        ...item,
-        idPadded: item.objectID.padStart(4, '0'),
-        durationForHumans: formatDurationForHumans(item.duration),
-        feedbackURL: process.env.MEMORIES_FEEDBACK_FORM + item.objectID,
-      })),
   }),
   pagination({
     container: '#pagination',
