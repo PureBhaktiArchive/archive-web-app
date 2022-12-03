@@ -47,7 +47,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run build
-      - run: npm test
+      - run: npm test --if-present
       - run: npx prettier --check .
 
   # Job id should match the folder name because it's used in the expressions
