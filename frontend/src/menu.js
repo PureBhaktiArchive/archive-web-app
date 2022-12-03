@@ -8,8 +8,8 @@ import 'tippy.js/dist/tippy.css';
 document
   .querySelectorAll('[data-menu-toggle]')
   .forEach(
-    (toggle) =>
-      (toggle.onclick = () =>
+    (/** @type {HTMLElement} */ element) =>
+      (element.onclick = () =>
         document
           .querySelectorAll('[data-menu-toggled]')
           .forEach((target) => target.classList.toggle('hidden')))

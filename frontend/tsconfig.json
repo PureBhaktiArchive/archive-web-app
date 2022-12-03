@@ -1,0 +1,16 @@
+{
+  // jsconfig does not work properly with CLI `tsc`, that is why using tsconfig.
+  // Namely, tsc starts looking into node_modules which are imported
+  // https://github.com/microsoft/TypeScript/issues/50862
+  // https://github.com/microsoft/TypeScript/issues/43043
+  // https://github.com/microsoft/TypeScript/issues/41350
+  // https://github.com/microsoft/TypeScript/issues/6671
+  "compilerOptions": {
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "allowJs": true,
+    "checkJs": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "dist"]
+}

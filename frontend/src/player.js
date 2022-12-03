@@ -5,7 +5,8 @@
 import Alpine from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
-Alpine.data('player', () => ({
+// Decalring this intermediate function to avoid type inference as Record<string, any>
+const createNewPlayer = () => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -59,7 +60,7 @@ Alpine.data('player', () => ({
     // Syncing state between the player and the search result item
     this.$watch('isPlaying', (value) => {
       // Storing the currently played file id in the global store for search results
-      this.$store.player.activeFileId = value ? this.fileId : null;
+      this.$store['activeFileId'] = value ? this.fileId : null;
     });
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
@@ -67,7 +68,7 @@ Alpine.data('player', () => ({
     this.$watch('currentTime', () => {
       this.$refs.seekSlider.style.setProperty(
         '--progress',
-        this.currentTime / this.duration
+        (this.currentTime / this.duration).toString()
       );
     });
     this.$watch('volume', (/** @type {Number} */ value) => {
@@ -84,17 +85,19 @@ Alpine.data('player', () => ({
       this.$refs.seekSlider.style.setProperty(
         '--buffered',
         // Finding the last buffered range which begins before the current time
-        [...Array(this.audio.buffered.length)]
-          // Extracting buffered ranges as [start, end] couple to avoid depending on the original index
-          .map((value, index) => [
-            this.audio.buffered.start(index),
-            this.audio.buffered.end(index),
-          ])
-          // Picking only those ranges which start before current time
-          .filter(([start]) => start <= this.audio.currentTime)
-          // Getting the end of the rightmost of such ranges, hopefully it is after the current time
-          .map(([, end]) => end)
-          .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
+        (
+          [...Array(this.audio.buffered.length)]
+            // Extracting buffered ranges as [start, end] couple to avoid depending on the original index
+            .map((value, index) => [
+              this.audio.buffered.start(index),
+              this.audio.buffered.end(index),
+            ])
+            // Picking only those ranges which start before current time
+            .filter(([start]) => start <= this.audio.currentTime)
+            // Getting the end of the rightmost of such ranges, hopefully it is after the current time
+            .map(([, end]) => end)
+            .reduce((a, b) => Math.max(a, b), 0) / this.audio.duration
+        ).toString()
       );
     });
 
@@ -186,7 +189,7 @@ Alpine.data('player', () => ({
    * @param {InputEvent & { target: HTMLInputElement }} e
    */
   setVolume(e) {
-    this.volume = e.target.value / e.target.max;
+    this.volume = +e.target.value / +e.target.max;
   },
 
   commitVolume() {
@@ -234,4 +237,6 @@ Alpine.data('player', () => ({
   unmutedIcon: {
     'x-show': '!isMuted',
   },
-}));
+});
+
+Alpine.data('player', createNewPlayer);

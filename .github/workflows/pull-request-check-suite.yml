@@ -46,6 +46,7 @@ jobs:
 
       - run: npm ci
       - run: npm run lint
+      - run: npm run check-js-typing
       - run: npm run build
       - run: npm test
       - run: npx prettier --check .
