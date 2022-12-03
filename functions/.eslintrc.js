@@ -11,7 +11,7 @@ module.exports = {
   parserOptions: {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
-    ecmaVersion: 2018,
+    ecmaVersion: 'latest',
   },
   plugins: ['@typescript-eslint', 'import', 'header'],
   settings: {
