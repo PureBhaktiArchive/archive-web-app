@@ -62,6 +62,7 @@ search.addWidgets([
   }),
   // Loading indicator
   {
+    $$type: 'Loading indicator',
     render: ({ searchMetadata = {} }) => {
       const { isSearchStalled } = searchMetadata;
       document
@@ -186,17 +187,18 @@ search.addWidgets([
 
 if (process.env.NODE_ENV !== 'production') {
   // Making devtools detect ALpine on the page: https://github.com/alpine-collective/alpinejs-devtools/issues/327
-  window.Alpine = Alpine;
+  window['Alpine'] = Alpine;
 }
 
 search.start();
 
 // This store keeps the currently playing file Id
-Alpine.store('player', { activeFileId: null });
+// Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
+Alpine.store('activeFileId', 0);
 
 // This store provides access to the search helper from the search result item component
 // Search should be already started for the helper to be defined
-Alpine.store('search', search.helper);
+Alpine.store('searchHelper', search.helper);
 
 Alpine.start();
 
@@ -213,7 +215,7 @@ const toggleFilter = (isOpen) => {
 };
 
 document.querySelectorAll('[data-filter-toggle]').forEach(
-  (element) =>
+  (/** @type {HTMLElement} */ element) =>
     (element.onclick = () => {
       const isOpen = filterPanel.hasAttribute('data-state-open');
       toggleFilter(!isOpen);

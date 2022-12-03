@@ -5,7 +5,7 @@
 /**
  * Formats duration in human-readable format
  * @param {number} durationInSeconds
- * @param {boolean} referenceDuration Another duration in seconds to align the formatted string length to
+ * @param {number} [referenceDuration] Another duration in seconds to align the formatted string length to
  * @returns {string} Duration in hh:mm:ss format
  */
 export const formatDurationForHumans = (durationInSeconds, referenceDuration) =>

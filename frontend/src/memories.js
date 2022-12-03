@@ -48,6 +48,7 @@ search.addWidgets([
   }),
   // Loading indicator
   {
+    $$type: 'Loading indicator',
     render: ({ searchMetadata = {} }) => {
       const { isSearchStalled } = searchMetadata;
       document
@@ -146,7 +147,7 @@ const toggleFilter = (isOpen) => {
 };
 
 document.querySelectorAll('[data-filter-toggle]').forEach(
-  (element) =>
+  (/** @type {HTMLElement} */ element) =>
     (element.onclick = () => {
       const isOpen = filterPanel.hasAttribute('data-state-open');
       toggleFilter(!isOpen);

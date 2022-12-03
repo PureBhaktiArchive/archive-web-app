@@ -4,8 +4,12 @@
 
 import Alpine from 'alpinejs';
 
-Alpine.data('searchResultItem', (fileId) => {
-  const itemData = Alpine.store('search').lastResults.hits.find(
+Alpine.data('searchResultItem', (/** @type {string} */ fileId) => {
+  const helper =
+    /** @type {import('algoliasearch-helper').AlgoliaSearchHelper} */ (
+      Alpine.store('searchHelper')
+    );
+  const itemData = helper.lastResults.hits.find(
     // fileId has to be converted to string because the objectID is a string
     (hit) => hit.objectID === fileId.toString()
   );
@@ -14,7 +18,7 @@ Alpine.data('searchResultItem', (fileId) => {
 
   return {
     fileId,
-    isPlaying: Alpine.store('player').activeFileId === fileId,
+    isPlaying: Alpine.store('activeFileId') === fileId,
     itemData,
 
     togglePlay() {
