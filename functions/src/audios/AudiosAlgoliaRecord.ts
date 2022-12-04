@@ -10,14 +10,14 @@ export interface AudiosAlgoliaRecord {
   dateISO?: string;
   dateForHumans?: string;
   year?: number;
-  dateUncertain: boolean;
-  timeOfDay: string;
-  location: string;
-  locationUncertain: boolean;
+  dateUncertain: boolean | null;
+  timeOfDay: string | null;
+  location: string | null;
+  locationUncertain: boolean | null;
   category: string;
   languages: string[];
   languageCategory?: string;
   percentage: number;
   soundQualityRating: string;
-  duration: number | null;
+  duration: number;
 }

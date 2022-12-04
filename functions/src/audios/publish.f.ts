@@ -65,22 +65,27 @@ export default functions.pubsub
       entriesSnapshot.val() as Record<string, AudiosEntry>
     )
       // Skipping entries which are obsolete or has no valid duration
-      .filter(([id, entry]) => !entry.obsolete && (durations.get(id) || 0) > 0)
+      .filter(
+        ([id, entry]) =>
+          !entry.obsolete &&
+          (durations.get(id) || 0) > 0 &&
+          entry.contentDetails.title
+      )
       .map<AudiosAlgoliaRecord>(([id, entry]) => ({
         objectID: id,
         title: entry.contentDetails.title,
         topics: entry.contentDetails.topics,
         topicsReady: entry.contentDetails.topicsReady,
         ...getDateAttributes(entry.contentDetails.date),
-        dateUncertain: entry.contentDetails.dateUncertain,
-        timeOfDay: entry.contentDetails.timeOfDay,
-        location: entry.contentDetails.location,
-        locationUncertain: entry.contentDetails.locationUncertain,
+        dateUncertain: entry.contentDetails.dateUncertain || null,
+        timeOfDay: entry.contentDetails.timeOfDay || null,
+        location: entry.contentDetails.location || null,
+        locationUncertain: entry.contentDetails.locationUncertain || null,
         category: entry.contentDetails.category,
         ...getLanguageAttributes(entry.contentDetails.languages),
         percentage: entry.contentDetails.percentage,
         soundQualityRating: entry.contentDetails.soundQualityRating,
-        duration: durations.get(id) || null,
+        duration: durations.get(id) as number, // We filtered out undefined values above
       }));
 
     await admin.database().ref('/audio/records').set(records);
