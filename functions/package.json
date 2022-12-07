@@ -7,7 +7,7 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "test:coverage": "jest --coverage",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
@@ -33,6 +33,7 @@
     "@types/glob": "7.2.0",
     "@types/jest": "28.1.8",
     "@types/luxon": "2.4.0",
+    "cross-env": "7.0.3",
     "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-header": "3.1.1",
