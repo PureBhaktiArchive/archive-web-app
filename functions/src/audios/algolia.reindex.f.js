@@ -101,6 +101,8 @@ export default functions.pubsub
           duration: durations.get(id) || null,
         })
       );
+
+    // @ts-expect-error
     const client = algoliasearch(
       functions.config().algolia.appid,
       functions.config().algolia.apikey

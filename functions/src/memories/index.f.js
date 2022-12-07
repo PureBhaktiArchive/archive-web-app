@@ -105,6 +105,7 @@ export default functions.pubsub
         }
       );
 
+    // @ts-expect-error
     const client = algoliasearch(
       functions.config().algolia.appid,
       functions.config().algolia.apikey
