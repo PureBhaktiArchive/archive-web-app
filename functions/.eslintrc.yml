@@ -18,6 +18,12 @@ rules:
     - block
     - ['!', ' * sri sri guru gaurangau jayatah', ' ']
     - 2
+  import/extensions:
+    - error
+    - ignorePackages
+  import/no-commonjs:
+    - error
+    - allowConditionalRequire: false
 overrides:
   - files: '**/*.spec.js'
     plugins: [jest]

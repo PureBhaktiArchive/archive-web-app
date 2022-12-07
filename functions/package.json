@@ -16,6 +16,7 @@
     "node": "16"
   },
   "main": "./src/index.js",
+  "type": "module",
   "dependencies": {
     "algoliasearch": "4.14.2",
     "firebase-admin": "11.3.0",
