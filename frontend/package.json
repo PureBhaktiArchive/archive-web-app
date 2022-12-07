@@ -30,7 +30,7 @@
     "minBundles": 5
   },
   "devDependencies": {
-    "@11ty/eleventy": "1.0.0",
+    "@11ty/eleventy": "1.0.2",
     "@11ty/eleventy-navigation": "0.3.5",
     "@parcel/packager-raw-url": "2.8.0",
     "@parcel/transformer-webmanifest": "2.8.0",
