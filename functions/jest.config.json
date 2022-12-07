@@ -1,0 +1,4 @@
+{
+  "testEnvironment": "node",
+  "testPathIgnorePatterns": ["/lib/", "/node_modules/"]
+}
