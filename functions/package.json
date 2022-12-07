@@ -6,9 +6,9 @@
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
-    "test": "jest",
-    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
