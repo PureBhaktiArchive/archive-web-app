@@ -2,13 +2,16 @@
  * sri sri guru gaurangau jayatah
  */
 
-import * as admin from 'firebase-admin';
+/* eslint-disable import/no-unresolved -- due to https://github.com/import-js/eslint-plugin-import/issues/1810 */
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getDatabase } from 'firebase-admin/database';
+/* eslint-enable import/no-unresolved */
 import * as functions from 'firebase-functions';
 import { splitToChunks } from '../split-chunks.js';
 
 /** @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry */
 
-if (!admin.apps.length) admin.initializeApp();
+if (!getApps().length) initializeApp();
 
 /**
  * This function imports entries from the `import` hive of the database into the working `entries` hive.
@@ -26,17 +29,13 @@ export default functions
      */
     const imported = Object.entries(
       /** @type {Record<string, AudiosEntry>} */
-      (
-        (
-          await admin.database().ref('/audio/import/entries').once('value')
-        ).val()
-      )
+      ((await getDatabase().ref('/audio/import/entries').once('value')).val())
     );
 
     const newIds = new Set(imported.map(([id]) => id));
     const oldIds = Object.entries(
       /** @type {Record<string, AudiosEntry>} */
-      ((await admin.database().ref('/audio/entries').once('value')).val())
+      ((await getDatabase().ref('/audio/entries').once('value')).val())
     ).map(([id]) => id);
 
     const deletions = oldIds
@@ -55,7 +54,7 @@ export default functions
        * See https://firebase.google.com/docs/database/usage/limits
        */
       splitToChunks([...imported, ...deletions], 500).map((chunk) =>
-        admin.database().ref('/audio/entries').update(Object.fromEntries(chunk))
+        getDatabase().ref('/audio/entries').update(Object.fromEntries(chunk))
       )
     );
   });

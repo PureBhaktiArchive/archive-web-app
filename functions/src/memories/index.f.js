@@ -3,7 +3,8 @@
  */
 
 import algoliasearch from 'algoliasearch';
-import * as admin from 'firebase-admin';
+// eslint-disable-next-line import/no-unresolved -- due to https://github.com/import-js/eslint-plugin-import/issues/1810
+import { getApps, initializeApp } from 'firebase-admin/app';
 import * as functions from 'firebase-functions';
 import { DateTime } from 'luxon';
 import { fromSerialDate } from '../date-conversion.js';
@@ -15,7 +16,7 @@ import { Spreadsheet } from '../Spreadsheet.js';
  * @typedef {import('./MemoriesRow.js').MemoriesRow} MemoriesRow
  */
 
-if (!admin.apps.length) admin.initializeApp();
+if (!getApps().length) initializeApp();
 
 const YouTubeIdRegex =
   /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;

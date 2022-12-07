@@ -3,7 +3,10 @@
  */
 
 import algoliasearch from 'algoliasearch';
-import * as admin from 'firebase-admin';
+/* eslint-disable import/no-unresolved -- due to https://github.com/import-js/eslint-plugin-import/issues/1810 */
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getDatabase } from 'firebase-admin/database';
+/* eslint-enable import/no-unresolved */
 import * as functions from 'firebase-functions';
 import { categorizeLanguages, parseLanguages } from '../languages.js';
 import {
@@ -16,7 +19,7 @@ import {
  * @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry
  */
 
-if (!admin.apps.length) admin.initializeApp();
+if (!getApps().length) initializeApp();
 
 /**
  * @param {string} input
@@ -61,8 +64,8 @@ export default functions.pubsub
   .timeZone('Asia/Calcutta')
   .onRun(async () => {
     const [entriesSnapshot, durationsSnapshot] = await Promise.all([
-      admin.database().ref('/audio/entries').once('value'),
-      admin.database().ref('/audio/durations').once('value'),
+      getDatabase().ref('/audio/entries').once('value'),
+      getDatabase().ref('/audio/durations').once('value'),
     ]);
     const durations = new Map(
       Object.entries(
