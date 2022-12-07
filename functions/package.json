@@ -1,7 +1,7 @@
 {
   "name": "functions",
   "scripts": {
-    "lint": "eslint \"src/**/*\"",
+    "lint": "eslint .",
     "type-check": "tsc",
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
