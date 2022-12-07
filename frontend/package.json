@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm-run-all --print-label 11ty:clean --parallel 11ty:watch parcel:serve",
-    "build": "cross-env NODE_ENV=production npm-run-all --print-label 11ty:clean 11ty:build parcel:build",
+    "start": "npm-run-all --print-label 11ty:clean --parallel 11ty:watch parcel:serve",
+    "build": "npm-run-all --print-label 11ty:clean 11ty:build parcel:build",
     "11ty:clean": "rm -rf _site/",
     "11ty:watch": "npx @11ty/eleventy --watch",
     "11ty:build": "npx @11ty/eleventy",
@@ -54,7 +54,6 @@
     "@11ty/eleventy-fetch": "3.0.0",
     "algoliasearch": "4.14.2",
     "alpinejs": "3.10.3",
-    "cross-env": "7.0.3",
     "dotenv": "16.0.3",
     "instantsearch.js": "4.46.3",
     "tippy.js": "6.3.7"
