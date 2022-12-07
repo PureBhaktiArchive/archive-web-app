@@ -3,7 +3,7 @@
  */
 
 import { DateTime } from 'luxon';
-import { fromSerialDate, toSerialDate } from './date-conversion';
+import { fromSerialDate, toSerialDate } from './date-conversion.js';
 
 describe.each`
   serialDate          | iso

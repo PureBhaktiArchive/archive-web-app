@@ -6,11 +6,14 @@ import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 import { DateTime } from 'luxon';
-import { fromSerialDate } from '../date-conversion';
-import { Spreadsheet } from '../Spreadsheet';
-import { GuruRow } from './GuruRow';
-import { MemoriesAlgoliaRecord } from './MemoriesAlgoliaRecord';
-import { MemoriesRow } from './MemoriesRow';
+import { fromSerialDate } from '../date-conversion.js';
+import { Spreadsheet } from '../Spreadsheet.js';
+
+/**
+ * @typedef {import('./GuruRow.js').GuruRow} GuruRow
+ * @typedef {import('./MemoriesAlgoliaRecord.js').MemoriesAlgoliaRecord} MemoriesAlgoliaRecord
+ * @typedef {import('./MemoriesRow.js').MemoriesRow} MemoriesRow
+ */
 
 if (!admin.apps.length) admin.initializeApp();
 
@@ -18,7 +21,8 @@ const YouTubeIdRegex =
   /(?:https?:\/\/)?(?:(?:www\.)?(?:youtube(?:-nocookie)?|youtube.googleapis)\.com.*(?:v\/|v=|vi=|vi\/|e\/|embed\/|user\/.*\/u\/\d+\/)|youtu\.be\/)([_0-9a-z-]+)/i;
 
 const getGurusMap = async () => {
-  const sheet = await Spreadsheet.open<GuruRow>(
+  /** @type {Spreadsheet<GuruRow>} */
+  const sheet = await Spreadsheet.open(
     functions.config().memories.spreadsheet.id,
     'Gurus'
   );
@@ -31,8 +35,8 @@ export default functions.pubsub
   .timeZone('Asia/Calcutta')
   .onRun(async () => {
     const gurus = await getGurusMap();
-
-    const sheet = await Spreadsheet.open<MemoriesRow>(
+    /** @type {Spreadsheet<MemoriesRow>} */
+    const sheet = await Spreadsheet.open(
       functions.config().memories.spreadsheet.id,
       'Master'
     );
@@ -43,7 +47,11 @@ export default functions.pubsub
       // Using flatMap to filter and map array in one function
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#for_adding_and_removing_items_during_a_map
       .flatMap(
-        (row): MemoriesAlgoliaRecord | readonly MemoriesAlgoliaRecord[] => {
+        /**
+         * @prettierignore because it adds extra pipe in front of the first type: https://github.com/homer0/packages/issues/60
+         * @returns {MemoriesAlgoliaRecord | readonly MemoriesAlgoliaRecord[]}
+         */
+        (row) => {
           // Only ready for launch are considered
           if (!row['Ready for Launch']) return [];
 
@@ -105,5 +113,5 @@ export default functions.pubsub
     if (records.length > 0) await index.replaceAllObjects(records);
     else await index.clearObjects();
 
-    console.log('Indexing has been successfully queued.');
+    functions.logger.info('Indexing has been successfully queued.');
   });

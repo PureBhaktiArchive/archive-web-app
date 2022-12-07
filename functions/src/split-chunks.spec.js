@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { splitToChunks } from './split-chunks';
+import { splitToChunks } from './split-chunks.js';
 
 describe('Splitting array into chunks', () => {
   test('evenly', () => {

@@ -5,19 +5,24 @@
 import algoliasearch from 'algoliasearch';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import { categorizeLanguages, parseLanguages } from '../languages';
+import { categorizeLanguages, parseLanguages } from '../languages.js';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from '../reducedPrecisionDate';
-import { AudiosAlgoliaRecord } from './AudiosAlgoliaRecord';
-import { AudiosEntry } from './AudiosEntry';
+} from '../reducedPrecisionDate.js';
+
+/**
+ * @typedef {import('./AudiosAlgoliaRecord.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
+ * @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry
+ */
 
 if (!admin.apps.length) admin.initializeApp();
 
-function getLanguageAttributes(
-  input: string
-): Pick<AudiosAlgoliaRecord, 'languageCategory' | 'languages'> {
+/**
+ * @param {string} input
+ * @returns {Pick<AudiosAlgoliaRecord, 'languageCategory' | 'languages'>}
+ */
+function getLanguageAttributes(input) {
   const languages = parseLanguages(input);
   return {
     languages,
@@ -25,9 +30,14 @@ function getLanguageAttributes(
   };
 }
 
-function getDateAttributes(
-  source: string
-): Pick<AudiosAlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null {
+/**
+ * @param {string} source
+ * @returns {Pick<
+ *   AudiosAlgoliaRecord,
+ *   'dateForHumans' | 'dateISO' | 'year'
+ * > | null}
+ */
+function getDateAttributes(source) {
   if (!source) return null;
 
   const date = parseReducedPrecisionIsoDate(source);
@@ -35,7 +45,7 @@ function getDateAttributes(
 
   return {
     dateISO: source,
-    /**
+    /*
      * Formatting date for free-text search according to precision.
      * - Full date: April 22, 1996
      * - Month: April 1996
@@ -55,35 +65,39 @@ export default functions.pubsub
       admin.database().ref('/audio/durations').once('value'),
     ]);
     const durations = new Map(
-      Object.entries(durationsSnapshot.val() as Record<string, number>)
+      Object.entries(
+        /** @type {Record<string, number>} */ (durationsSnapshot.val())
+      )
     );
-    /**
+    /*
      * Since we are using integer keys, Firebase can return either array or map:
      * https://firebase.googleblog.com/2014/04/best-practices-arrays-in-firebase.html
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
     const records = Object.entries(
-      entriesSnapshot.val() as Record<string, AudiosEntry>
+      /** @type {Record<string, AudiosEntry>} */ (entriesSnapshot.val())
     )
       // Skipping entries which are obsolete or has no valid duration
       .filter(([id, entry]) => !entry.obsolete && (durations.get(id) || 0) > 0)
-      .map<AudiosAlgoliaRecord>(([id, entry]) => ({
-        objectID: id,
-        title: entry.contentDetails.title,
-        topics: entry.contentDetails.topics,
-        topicsReady: entry.contentDetails.topicsReady,
-        ...getDateAttributes(entry.contentDetails.date),
-        dateUncertain: entry.contentDetails.dateUncertain,
-        timeOfDay: entry.contentDetails.timeOfDay,
-        location: entry.contentDetails.location,
-        locationUncertain: entry.contentDetails.locationUncertain,
-        category: entry.contentDetails.category,
-        ...getLanguageAttributes(entry.contentDetails.languages),
-        percentage: entry.contentDetails.percentage,
-        soundQualityRating: entry.contentDetails.soundQualityRating,
-        duration: durations.get(id) || null,
-      }));
-
+      .map(
+        /** @returns {AudiosAlgoliaRecord} */
+        ([id, entry]) => ({
+          objectID: id,
+          title: entry.contentDetails.title,
+          topics: entry.contentDetails.topics,
+          topicsReady: entry.contentDetails.topicsReady,
+          ...getDateAttributes(entry.contentDetails.date),
+          dateUncertain: entry.contentDetails.dateUncertain,
+          timeOfDay: entry.contentDetails.timeOfDay,
+          location: entry.contentDetails.location,
+          locationUncertain: entry.contentDetails.locationUncertain,
+          category: entry.contentDetails.category,
+          ...getLanguageAttributes(entry.contentDetails.languages),
+          percentage: entry.contentDetails.percentage,
+          soundQualityRating: entry.contentDetails.soundQualityRating,
+          duration: durations.get(id) || null,
+        })
+      );
     const client = algoliasearch(
       functions.config().algolia.appid,
       functions.config().algolia.apikey

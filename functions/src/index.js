@@ -2,11 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
-// Using compatibility logging: https://firebase.google.com/docs/functions/writing-and-viewing-logs#console-log
-import 'firebase-functions/lib/logger/compat';
 import { glob } from 'glob';
 
-/**
+/*
  * Enumerating and exporting all functions for deployment.
  * Inspired by https://github.com/firebase/functions-samples/issues/170
  *
@@ -23,7 +21,7 @@ glob
     cwd: __dirname,
     ignore: './node_modules/**',
   })
-  .forEach((filePath: string) => {
+  .forEach((filePath) => {
     const modulePathSegments = filePath
       .slice(2, -5) // Removing ./ and .f.js suffix
       .split(/[/.]/g);
@@ -37,10 +35,9 @@ glob
     )
       return;
 
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const exported = require(filePath);
 
-    // Pupolating `exports` with the module exports, with nesting.
+    // Populating `exports` with the module exports, with nesting.
     modulePathSegments.reduce((accum, segment, i, segments) => {
       return (accum[segment] =
         i === segments.length - 1
