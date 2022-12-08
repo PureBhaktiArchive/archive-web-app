@@ -29,7 +29,6 @@
   "devDependencies": {
     "@homer0/prettier-plugin-jsdoc": "5.1.5",
     "@types/fluent-ffmpeg": "2.1.20",
-    "@types/glob": "7.2.0",
     "@types/jest": "28.1.8",
     "@types/luxon": "2.4.0",
     "cross-env": "7.0.3",
