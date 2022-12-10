@@ -2,14 +2,19 @@
  * sri sri guru gaurangau jayatah
  */
 
-import * as admin from 'firebase-admin';
+/* eslint-disable import/no-unresolved -- due to https://github.com/import-js/eslint-plugin-import/issues/1810 */
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getDatabase } from 'firebase-admin/database';
+import { getStorage } from 'firebase-admin/storage';
+/* eslint-enable import/no-unresolved */
 import * as functions from 'firebase-functions';
-import { shallowlyEqual } from '../shallowly-equal';
-import { AudiosEntry } from './AudiosEntry';
-import { composeMediaMetadata, composeStorageMetadata } from './metadata';
-import { convertToMp3, copyCodec, transcode } from './transcode';
+import { shallowlyEqual } from '../shallowly-equal.js';
+import { composeMediaMetadata, composeStorageMetadata } from './metadata.js';
+import { convertToMp3, copyCodec, transcode } from './transcode.js';
 
-if (!admin.apps.length) admin.initializeApp();
+/** @typedef {import('./entry.js').AudiosEntry} AudiosEntry */
+
+if (!getApps().length) initializeApp();
 
 export default functions
   .runWith({ timeoutSeconds: 540, memory: '1GB' })
@@ -17,17 +22,17 @@ export default functions
   .onWrite(async (change, { params: { id } }) => {
     // Don't process deletions
     if (!change.after.exists()) return;
-
-    const entryBefore = change.before.val() as AudiosEntry;
-    const entry = change.after.val() as AudiosEntry;
+    /** @type {AudiosEntry} */
+    const entryBefore = change.before.val();
+    /** @type {AudiosEntry} */
+    const entry = change.after.val();
 
     if (!entry.contentDetails || !entry.file) {
       functions.logger.debug('Entry', id, 'is not complete');
       return;
     }
 
-    const sourceFile = admin
-      .storage()
+    const sourceFile = getStorage()
       .bucket(entry.file.bucket)
       .file(entry.file.name, { generation: entry.file.generation });
 
@@ -36,8 +41,7 @@ export default functions
       return;
     }
 
-    const mp3File = admin
-      .storage()
+    const mp3File = getStorage()
       .bucket(functions.config().storage?.bucket)
       .file(`${id}.mp3`);
     const mediaMetadata = composeMediaMetadata(id, entry.contentDetails);
@@ -73,7 +77,7 @@ export default functions
       );
 
       if (Number.isFinite(duration))
-        await admin.database().ref('/audio/durations').child(id).set(duration);
+        await getDatabase().ref('/audio/durations').child(id).set(duration);
       else functions.logger.warn('Could not extract duration.');
     }
 

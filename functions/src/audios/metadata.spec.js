@@ -2,8 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { ContentDetails } from './ContentDetails';
-import { composeFileName, composeMediaMetadata } from './metadata';
+import { composeFileName, composeMediaMetadata } from './metadata.js';
+
+/** @typedef {import('./content-details.js').ContentDetails} ContentDetails */
 
 describe('File', () => {
   it.each`
@@ -15,7 +16,8 @@ describe('File', () => {
   `(
     '$id should have file name "$filename"',
     ({ id, date, timeOfDay, languages, title, location, filename }) => {
-      const contentDetails: ContentDetails = {
+      /** @type {ContentDetails} */
+      const contentDetails = {
         date,
         timeOfDay,
         dateUncertain: false,
@@ -41,7 +43,8 @@ describe('File', () => {
     ${'3'} | ${'1991'}       | ${'Ragavartma Candrika'}
     ${'4'} | ${null}         | ${'Another lecture'}
   `('$id should have proper metadata', ({ id, date, title }) => {
-    const contentDetails: ContentDetails = {
+    /** @type {ContentDetails} */
+    const contentDetails = {
       date,
       dateUncertain: false,
       timeOfDay: '',

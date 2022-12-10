@@ -2,13 +2,18 @@
 
 This sub-project provides serverless backend for the Archive in the form of Cloud Functions for Firebase.
 
-## Naming conventions
+Project is written in pure JavaScript without any transpilation.
 
-- Functions are detected and exported automatically in the `index.ts`. It scans the folder for `*.f.ts` files and exports them for the Firebase platform.
-- Directories will become segments in the resulting function name, i.e. `dir/another/function1.f.ts` file will become `dir.another.function1` function.
-- If the file name itself contains segments, they will be preserved, i.e. `group.function1.f.ts` file will become `group.function1` function.
-- The file can either have ES6 default export, CommonJS `module.exports` or named exports. In the latter case the file name will become a group of functions, i.e. `dir/filename.f.ts` with two exports will become `dir.filename.export1` and `dir.filename.export2` functions.
-- Firebase console shows grouped functions with hyphens instead of dots, i.e. `dir-another-function1`.
+ES Modules format is used instead of CommonJS. This format is now supported by Cloud Functions and Firebase CLI:
+
+- https://cloud.google.com/functions/docs/concepts/nodejs-runtime#using_es_modules
+- https://github.com/firebase/firebase-tools/pull/3485.
+
+## Cloud Functions detection
+
+- Functions should be re-exported in the root `index.js` file.
+- Exported functions can be grouped in an hierarchy if needed.
+- Firebase console shows grouped functions with hyphens instead of dots, i.e. `group-another-function1`.
 
 ## Environment configuration
 
@@ -25,10 +30,20 @@ See [Firebase Environment configuration](https://firebase.google.com/docs/functi
 
 ## Tests
 
-Crucial code should be tested. Jest is used for testing. Tests should be in the `spec` folder and have name `*.spec.ts`.
+Crucial code should be tested. Jest is used for testing. Tests should have name format `*.spec.js`.
 
 ## Linting
 
-All the code is linted with `ESLint`.
+All the code is linted with `ESLint`, both in the VS Code using a recommended extension and in the CI workflow.
 
-- Common header is automatically added to all the JS/TS files using `header-eslint-plugin`.
+- Common header is automatically added to all the JS files using `header-eslint-plugin`.
+
+## Type Checking
+
+TypeScript is used for type checking the JavaScript files. No transpilation takes place, only type checking. This is built-in in VS Code, and also running the type check is integrated into the CI workflow.
+
+References:
+
+- https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html
+- https://www.scraggo.com/type-check-jsdocs-typescript/
+- https://docs.joshuatz.com/cheatsheets/js/jsdoc/

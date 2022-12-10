@@ -6,7 +6,7 @@ import {
   abbreviateLanguages,
   categorizeLanguages,
   parseLanguages,
-} from './languages';
+} from './languages.js';
 
 describe('Languages', () => {
   it.each`
@@ -39,7 +39,7 @@ describe('Languages', () => {
     ${['English', 'Bengali']}          | ${'EB'}
     ${['Bengali', 'English']}          | ${'EB'}
     ${['English', 'Russian']}          | ${'O'}
-    ${['None', 'English']}             | ${'O'}
+    ${['None', 'English']}             | ${'E'}
     ${['Other', 'English']}            | ${'O'}
     ${['Bengali', 'Hindi', 'English']} | ${'EHB'}
     ${['English', 'Hindi', 'Spanish']} | ${'O'}
