@@ -6,7 +6,7 @@ import { DateTime } from 'luxon';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from './reducedPrecisionDate.js';
+} from './reduced-precision-date.js';
 
 describe('ISO date', () => {
   it.each`
@@ -64,7 +64,7 @@ describe('ISO date', () => {
   `(
     '"$isoDate" with $precision precision should be formatted as “$formatted”',
     ({ isoDate, precision, formatted }) => {
-      /** @type {import('./reducedPrecisionDate.js').ReducedPrecisionDate} */
+      /** @type {import('./reduced-precision-date.js').ReducedPrecisionDate} */
       const date = {
         date: DateTime.fromISO(isoDate, { zone: 'utc', locale: 'en-US' }),
         precision: precision,

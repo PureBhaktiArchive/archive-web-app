@@ -5,8 +5,8 @@
 import { abbreviateLanguages, parseLanguages } from '../languages.js';
 
 /**
- * @typedef {import('./ContentDetails.js').ContentDetails} ContentDetails
- * @typedef {import('../StorageFileMetadata.js').StorageFileMetadata} StorageFileMetadata
+ * @typedef {import('./content-details.js').ContentDetails} ContentDetails
+ * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
  * @typedef {import('@google-cloud/storage').File} File
  */
 

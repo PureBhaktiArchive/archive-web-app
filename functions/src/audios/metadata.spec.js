@@ -4,7 +4,7 @@
 
 import { composeFileName, composeMediaMetadata } from './metadata.js';
 
-/** @typedef {import('./ContentDetails.js').ContentDetails} ContentDetails */
+/** @typedef {import('./content-details.js').ContentDetails} ContentDetails */
 
 describe('File', () => {
   it.each`

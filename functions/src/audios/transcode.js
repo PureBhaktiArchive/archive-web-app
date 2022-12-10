@@ -10,7 +10,7 @@ import { Duration } from 'luxon';
  * @typedef {import('fluent-ffmpeg').PresetFunction} PresetFunction
  * @typedef {import('fluent-ffmpeg').FfmpegCommand} FfmpegCommand
  * @typedef {import('@google-cloud/storage').File} File
- * @typedef {import('../StorageFileMetadata.js').StorageFileMetadata} StorageFileMetadata
+ * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
  */
 
 /** @type {PresetFunction} */

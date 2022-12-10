@@ -12,11 +12,11 @@ import { categorizeLanguages, parseLanguages } from '../languages.js';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
-} from '../reducedPrecisionDate.js';
+} from '../reduced-precision-date.js';
 
 /**
- * @typedef {import('./AudiosAlgoliaRecord.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
- * @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry
+ * @typedef {import('./algolia-record.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
+ * @typedef {import('./entry.js').AudiosEntry}                  AudiosEntry
  */
 
 if (!getApps().length) initializeApp();

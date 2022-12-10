@@ -12,7 +12,7 @@ import { shallowlyEqual } from '../shallowly-equal.js';
 import { composeMediaMetadata, composeStorageMetadata } from './metadata.js';
 import { convertToMp3, copyCodec, transcode } from './transcode.js';
 
-/** @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry */
+/** @typedef {import('./entry.js').AudiosEntry} AudiosEntry */
 
 if (!getApps().length) initializeApp();
 

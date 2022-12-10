@@ -2,15 +2,15 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { default as audiosReindex } from './audios/algolia.reindex.f.js';
-import { default as updateFile } from './audios/file.update.f.js';
-import { default as audiosImport } from './audios/import.f.js';
-import { default as memoriesIndex } from './memories/index.f.js';
+import { default as importAudioEntries } from './audios/import.js';
+import { default as updateFile } from './audios/update-file.js';
+import { default as updateAudiosIndex } from './audios/update-search-index.js';
+import { default as updateMemoriesIndex } from './memories/update-search-index.js';
 
 export const audios = {
-  import: audiosImport,
+  import: importAudioEntries,
   algolia: {
-    reindex: audiosReindex,
+    reindex: updateAudiosIndex,
   },
   file: {
     update: updateFile,
@@ -18,5 +18,5 @@ export const audios = {
 };
 
 export const memories = {
-  index: memoriesIndex,
+  index: updateMemoriesIndex,
 };

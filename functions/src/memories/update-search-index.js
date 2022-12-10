@@ -8,12 +8,12 @@ import { getApps, initializeApp } from 'firebase-admin/app';
 import * as functions from 'firebase-functions';
 import { DateTime } from 'luxon';
 import { fromSerialDate } from '../date-conversion.js';
-import { Spreadsheet } from '../Spreadsheet.js';
+import { Spreadsheet } from '../spreadsheet.js';
 
 /**
- * @typedef {import('./GuruRow.js').GuruRow} GuruRow
- * @typedef {import('./MemoriesAlgoliaRecord.js').MemoriesAlgoliaRecord} MemoriesAlgoliaRecord
- * @typedef {import('./MemoriesRow.js').MemoriesRow} MemoriesRow
+ * @typedef {import('./guru-row.js').GuruRow} GuruRow
+ * @typedef {import('./algolia-record.js').MemoriesAlgoliaRecord} MemoriesAlgoliaRecord
+ * @typedef {import('./memories-row.js').MemoriesRow} MemoriesRow
  */
 
 if (!getApps().length) initializeApp();

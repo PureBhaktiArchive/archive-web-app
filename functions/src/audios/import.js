@@ -9,7 +9,7 @@ import { getDatabase } from 'firebase-admin/database';
 import * as functions from 'firebase-functions';
 import { splitToChunks } from '../split-chunks.js';
 
-/** @typedef {import('./AudiosEntry.js').AudiosEntry} AudiosEntry */
+/** @typedef {import('./entry.js').AudiosEntry} AudiosEntry */
 
 if (!getApps().length) initializeApp();
 
