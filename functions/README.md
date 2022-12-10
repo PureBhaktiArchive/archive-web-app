@@ -2,7 +2,12 @@
 
 This sub-project provides serverless backend for the Archive in the form of Cloud Functions for Firebase.
 
-Project is written in pure JavaScript without any transpilation. ES Modules format is used instead of CommonJS.
+Project is written in pure JavaScript without any transpilation.
+
+ES Modules format is used instead of CommonJS. This format is now supported by Cloud Functions and Firebase CLI:
+
+- https://cloud.google.com/functions/docs/concepts/nodejs-runtime#using_es_modules
+- https://github.com/firebase/firebase-tools/pull/3485.
 
 ## Cloud Functions detection
 
