@@ -51,7 +51,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         <div class="flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
-            <a href="/lecture/${hit.objectID}/"
+            <a href="/audios/${hit.objectID}/"
               >${components.Highlight({ hit, attribute: 'title' })}</a
             >
           </h3>
