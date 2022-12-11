@@ -20,6 +20,10 @@ In order to get syntax highlighting and intellisense of HTML inside javascript t
 
 Prettier [supports](https://prettier.io/blog/2018/11/07/1.15.0.html#html-template-literal-in-javascript) `html` template tags out of the box.
 
+### JavaScript Type Checking
+
+VS Code has built-in [intellisense and type checking for JavaScript](https://code.visualstudio.com/docs/nodejs/working-with-javascript). In order to improve it, `tsconfig.json` is present in the project to enable JS checking across all the files. Type checking step is included in the CI workflow to prevent buggy code to be merged. `tsc` command-line TypeScript compiler does not work well with `jsconfig.json` ([issue 50862](https://github.com/microsoft/TypeScript/issues/50862), [issue 43043](https://github.com/microsoft/TypeScript/issues/43043), [issue 41350](https://github.com/microsoft/TypeScript/issues/41350), [issue 6671](https://github.com/microsoft/TypeScript/issues/6671)), that is why `tsconfig.json` is used.
+
 ## Environment variables
 
 Environment variables should be added to an `.env` file according to the [Parcel's documentation](https://parceljs.org/features/node-emulation/#.env-files). Use `.env.development.local` for local development.

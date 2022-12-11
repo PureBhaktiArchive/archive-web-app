@@ -2,15 +2,20 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { File } from '@google-cloud/storage';
-import { abbreviateLanguages, parseLanguages } from '../languages';
-import { StorageFileMetadata } from '../StorageFileMetadata';
-import { ContentDetails } from './ContentDetails';
+import { abbreviateLanguages, parseLanguages } from '../languages.js';
 
-export function composeFileName(
-  id: string,
-  contentDetails: ContentDetails
-): string {
+/**
+ * @typedef {import('./content-details.js').ContentDetails} ContentDetails
+ * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
+ * @typedef {import('@google-cloud/storage').File} File
+ */
+
+/**
+ * @param {string}         id
+ * @param {ContentDetails} contentDetails
+ * @returns {string}
+ */
+export function composeFileName(id, contentDetails) {
   return [
     contentDetails.date ?? 'UNDATED',
     contentDetails.timeOfDay?.toUpperCase(),
@@ -26,10 +31,12 @@ export function composeFileName(
     .join(' ');
 }
 
-export function composeMediaMetadata(
-  id: string,
-  contentDetails: ContentDetails
-): Record<string, string> {
+/**
+ * @param {string}         id
+ * @param {ContentDetails} contentDetails
+ * @returns {Record<string, string>}
+ */
+export function composeMediaMetadata(id, contentDetails) {
   return {
     'BVNM Archive ID': id,
     title: contentDetails.title,
@@ -37,11 +44,13 @@ export function composeMediaMetadata(
   };
 }
 
-export function composeStorageMetadata(
-  id: string,
-  sourceFile: File,
-  contentDetails: ContentDetails
-): Partial<StorageFileMetadata> {
+/**
+ * @param {string}         id
+ * @param {File}           sourceFile
+ * @param {ContentDetails} contentDetails
+ * @returns {any}
+ */
+export function composeStorageMetadata(id, sourceFile, contentDetails) {
   return {
     /*
      * File name may need encoding according to RFC 5987 as we have non-ASCII characters.

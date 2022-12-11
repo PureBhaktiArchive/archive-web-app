@@ -40,14 +40,15 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
           cache: 'npm'
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
       - run: npm run lint
+      - run: npm run check-js-typing
       - run: npm run build
-      - run: npm test
+      - run: npm test --if-present
       - run: npx prettier --check .
 
   # Job id should match the folder name because it's used in the expressions
@@ -67,12 +68,12 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 12
+          node-version: 16
           cache: 'npm'
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
       - run: npm run lint
-      - run: npm run build -- --noEmit
+      - run: npm run type-check
       - run: npm test -- --passWithNoTests
       - run: npx prettier --check .

@@ -48,5 +48,6 @@
   },
   "files.associations": {
     ".postcssrc": "json"
-  }
+  },
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

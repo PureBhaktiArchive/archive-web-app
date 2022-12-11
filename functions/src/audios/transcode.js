@@ -2,45 +2,59 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { File } from '@google-cloud/storage';
 import * as functions from 'firebase-functions';
-import ffmpeg, { FfmpegCommand, PresetFunction } from 'fluent-ffmpeg';
+import ffmpeg from 'fluent-ffmpeg';
 import { Duration } from 'luxon';
-import { Writable } from 'stream';
-import { StorageFileMetadata } from '../StorageFileMetadata';
 
-export const convertToMp3: PresetFunction = (command) =>
+/**
+ * @typedef {import('fluent-ffmpeg').PresetFunction} PresetFunction
+ * @typedef {import('fluent-ffmpeg').FfmpegCommand} FfmpegCommand
+ * @typedef {import('@google-cloud/storage').File} File
+ * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
+ */
+
+/** @type {PresetFunction} */
+export const convertToMp3 = (command) => {
   command
     .withAudioCodec('libmp3lame')
     .withAudioBitrate(64)
     .withAudioFrequency(22050)
     // Using the best reasonable quality https://github.com/gypified/libmp3lame/blob/f416c19b3140a8610507ebb60ac7cd06e94472b8/USAGE#L491
     .withOutputOption('-compression_level 2');
+};
 
-export const copyCodec: PresetFunction = (command) =>
+/** @type {PresetFunction} */
+export const copyCodec = (command) => {
   command.withAudioCodec('copy');
+};
 
-const addMediaMetadata =
-  (metadata: Record<string, string>): PresetFunction =>
-  (command) =>
-    command
-      .withOutputOptions([
-        // Required because Windows only supports version up to 3 of ID3v2 tags
-        '-id3v2_version 3',
-        // the ID3v1 version to create legacy v1.1 tags
-        '-write_id3v1 1',
-        // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
-        '-map_metadata -1',
+/**
+ * @param {Record<string, string>} metadata
+ * @returns {PresetFunction}
+ */
+const addMediaMetadata = (metadata) => (command) =>
+  command
+    .withOutputOptions([
+      // Required because Windows only supports version up to 3 of ID3v2 tags
+      '-id3v2_version 3',
+      // the ID3v1 version to create legacy v1.1 tags
+      '-write_id3v1 1',
+      // Clearing all existing metadata, see https://gist.github.com/eyecatchup/0757b3d8b989fe433979db2ea7d95a01#3-cleardelete-id3-metadata
+      '-map_metadata -1',
+    ])
+    .withOutputOptions(
+      Object.entries(metadata).flatMap(([name, value]) => [
+        '-metadata',
+        `${name}=${value || ''}`,
       ])
-      .withOutputOptions(
-        Object.entries(metadata).flatMap(([name, value]) => [
-          '-metadata',
-          `${name}=${value || ''}`,
-        ])
-      );
+    );
 
-const runCommandAsync = (command: FfmpegCommand): Promise<number> =>
-  new Promise<number>((resolve, reject) =>
+/**
+ * @param {FfmpegCommand} command
+ * @returns {Promise<number>}
+ */
+const runCommandAsync = (command) =>
+  new Promise((resolve, reject) =>
     command
       .on('start', (commandLine) =>
         functions.logger.debug('Spawned ffmpeg with command', commandLine)
@@ -68,18 +82,27 @@ const runCommandAsync = (command: FfmpegCommand): Promise<number> =>
       .run()
   );
 
-const promisifyStream = (stream: Writable): Promise<void> =>
+/** @param {import('node:stream').Writable} stream */
+const promisifyStream = (stream) =>
   new Promise((resolve, reject) =>
     stream.once('finish', resolve).once('error', reject)
   );
 
+/**
+ * @param {File}                         sourceFile
+ * @param {File}                         destinationFile
+ * @param {PresetFunction}               converstionPreset
+ * @param {Record<string, string>}       mediaMetadata
+ * @param {Partial<StorageFileMetadata>} storageMetadata
+ * @returns {Promise<number>}
+ */
 export async function transcode(
-  sourceFile: File,
-  destinationFile: File,
-  converstionPreset: PresetFunction,
-  mediaMetadata: Record<string, string>,
-  storageMetadata: Partial<StorageFileMetadata>
-): Promise<number> {
+  sourceFile,
+  destinationFile,
+  converstionPreset,
+  mediaMetadata,
+  storageMetadata
+) {
   const uploadStream = destinationFile.createWriteStream({
     resumable: false,
     metadata: storageMetadata,
