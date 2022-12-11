@@ -2,10 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-require('dotenv').config({
-  path: `${__dirname}/.env.local`,
-});
-
 /**
  * Eleventy config function.
  *
