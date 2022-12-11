@@ -23,7 +23,7 @@ jsFile: audios.js
 </div>
 <div class="mx-auto flex w-full max-w-screen-xl flex-1 sm:overflow-y-hidden">
   <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
-    <div class="bg-submarine-500 flex-none p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
+    <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
     <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
       <div id="language-list"></div>
       <div id="sound-quality-list"></div>
@@ -64,7 +64,7 @@ jsFile: audios.js
   x-cloak
   x-data="player()"
   x-bind="self"
-  class="shadow-xl-around fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 md:flex-row md:space-x-6"
+  class="fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 shadow-xl-around md:flex-row md:space-x-6"
 >
   <!-- Controls -->
   <div class="flex flex-col justify-between fill-current">
@@ -126,7 +126,7 @@ jsFile: audios.js
     <!-- Second line with tags and actions -->
     <div class="mt-1 flex space-x-2 overflow-hidden">
       <!-- Tags -->
-      <div class="no-scrollbar last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:flex-none child-div:border-gray-300 flex grow overflow-x-auto text-xs">
+      <div class="no-scrollbar flex grow overflow-x-auto text-xs child-div:mr-1 child-div:mt-1 child-div:flex-none child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
         <!-- ID -->
         <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
         <!-- Date -->
@@ -157,7 +157,7 @@ jsFile: audios.js
         </template>
       </div>
       <!-- Actions -->
-      <div class="child-a:ml-1 child-a:pl-1 flex flex-none items-baseline divide-x text-xs">
+      <div class="flex flex-none items-baseline divide-x text-xs child-a:ml-1 child-a:pl-1">
         <!-- Download -->
         <a :href="downloadURL" title="Download file for listening offline">
           <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
