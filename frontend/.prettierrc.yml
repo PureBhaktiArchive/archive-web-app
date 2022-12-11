@@ -1,6 +1,10 @@
 trailingComma: 'es5'
 semi: true
 singleQuote: true
+pluginSearchDirs: false
+plugins:
+  - '@shopify/prettier-plugin-liquid'
+  - prettier-plugin-tailwindcss
 overrides:
   - files: '*.html'
     options:
