@@ -16,7 +16,8 @@ import {
 
 /**
  * @typedef {import('./algolia-record.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
- * @typedef {import('./entry.js').AudiosEntry}                  AudiosEntry
+ *
+ * @typedef {import('./entry.js').AudiosEntry} AudiosEntry
  */
 
 if (!getApps().length) initializeApp();

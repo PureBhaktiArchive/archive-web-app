@@ -5,7 +5,6 @@
 export {};
 
 /**
- * @prettierignore because jsdoc plugin corrupts properties in double quotes with apostrophe: https://github.com/homer0/packages/issues/58
  * @typedef {{
  *   'Sr No': number;
  *   'Program name': string;

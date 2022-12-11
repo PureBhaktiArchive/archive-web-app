@@ -8,8 +8,11 @@ import { Duration } from 'luxon';
 
 /**
  * @typedef {import('fluent-ffmpeg').PresetFunction} PresetFunction
+ *
  * @typedef {import('fluent-ffmpeg').FfmpegCommand} FfmpegCommand
+ *
  * @typedef {import('@google-cloud/storage').File} File
+ *
  * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
  */
 
@@ -89,10 +92,10 @@ const promisifyStream = (stream) =>
   );
 
 /**
- * @param {File}                         sourceFile
- * @param {File}                         destinationFile
- * @param {PresetFunction}               converstionPreset
- * @param {Record<string, string>}       mediaMetadata
+ * @param {File} sourceFile
+ * @param {File} destinationFile
+ * @param {PresetFunction} converstionPreset
+ * @param {Record<string, string>} mediaMetadata
  * @param {Partial<StorageFileMetadata>} storageMetadata
  * @returns {Promise<number>}
  */
