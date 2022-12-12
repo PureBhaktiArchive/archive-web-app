@@ -2,6 +2,4 @@
  * sri sri guru gaurangau jayatah
  */
 
-module.exports = async function () {
-  return require('../../../data/audios.json');
-};
+module.exports = require('../../../data/audios.json');

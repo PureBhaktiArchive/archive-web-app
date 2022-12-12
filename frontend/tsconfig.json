@@ -8,6 +8,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "noEmit": true,
     "allowJs": true,
     "checkJs": true
