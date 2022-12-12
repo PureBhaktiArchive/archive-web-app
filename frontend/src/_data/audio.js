@@ -3,6 +3,5 @@
  */
 
 module.exports = async function () {
-  const audiosdata = require('../../../data/audios.json');
-  return audiosdata;
+  return require('../../../data/audios.json');
 };

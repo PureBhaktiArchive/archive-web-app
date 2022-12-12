@@ -1,37 +1,37 @@
 ---
 pagination:
-  data: audios
+  data: audio
   size: 1
-  alias: audios
-permalink: "/audios/{{ audios.objectID | slug }}/"
+  alias: audio
+permalink: "/audio/{{ audio.objectID | slug }}/"
 layout: base
 templateEngineOverride: md, njk, html
 eleventyComputed:
-  title: "{{ audios.objectID }}"
+  title: "{{ audio.objectID }}"
 ---
 <article class="prose prose-sm sm:prose lg:prose-lg xl:prose-xl mobile-m:px-10 mx-auto mb-10 mt-2 px-2 text-justify">
   <p>
     <h3>Title</h3>
-    {{ audios.title }}
+    {{ audio.title }}
   </p>
   <p>
     <h3>Languages</h3>
-    {{ audios.languages }}
+    {{ audio.languages }}
   </p>
   <p>
     <h3>Location</h3>
-    {{ audios.location }}
+    {{ audio.location }}
   </p>
   <p>
     <h3>Date</h3>
-    {{ lecture.dateForHumans }}
+    {{ audio.dateForHumans }}
   </p>
   <p>
     <h3>Sound Quality</h3>
-    {{ audios.soundQualityRating }}
+    {{ audio.soundQualityRating }}
   </p>
   <p>
     <h3>Topics</h3>
-    {{ audios.topics }}
+    {{ audio.topics }}
   </p>
 </article>
