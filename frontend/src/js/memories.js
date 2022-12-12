@@ -48,8 +48,8 @@ search.addWidgets([
   // Loading indicator
   {
     $$type: 'Loading indicator',
-    render: ({ searchMetadata = {} }) => {
-      const { isSearchStalled } = searchMetadata;
+    render: ({ status }) => {
+      const isSearchStalled = status === 'stalled';
       document
         .getElementById('loading')
         .classList.toggle('hidden', !isSearchStalled);
