@@ -14,9 +14,10 @@ import { splitToChunks } from '../split-chunks.js';
 if (!getApps().length) initializeApp();
 
 /**
- * This function imports entries from the `import` hive of the database into the working `entries` hive.
- * It does so in batches, so that number of Cloud Function invocations would not hit the limits.
- * Function is triggered by the adjacent database key.
+ * This function imports entries from the `import` hive of the database into the
+ * working `entries` hive. It does so in batches, so that number of Cloud
+ * Function invocations would not hit the limits. Function is triggered by the
+ * adjacent database key.
  */
 export default functions
   .runWith({ timeoutSeconds: 540 })

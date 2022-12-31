@@ -6,12 +6,14 @@ import { abbreviateLanguages, parseLanguages } from '../languages.js';
 
 /**
  * @typedef {import('./content-details.js').ContentDetails} ContentDetails
+ *
  * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
+ *
  * @typedef {import('@google-cloud/storage').File} File
  */
 
 /**
- * @param {string}         id
+ * @param {string} id
  * @param {ContentDetails} contentDetails
  * @returns {string}
  */
@@ -32,7 +34,7 @@ export function composeFileName(id, contentDetails) {
 }
 
 /**
- * @param {string}         id
+ * @param {string} id
  * @param {ContentDetails} contentDetails
  * @returns {Record<string, string>}
  */
@@ -45,8 +47,8 @@ export function composeMediaMetadata(id, contentDetails) {
 }
 
 /**
- * @param {string}         id
- * @param {File}           sourceFile
+ * @param {string} id
+ * @param {File} sourceFile
  * @param {ContentDetails} contentDetails
  * @returns {any}
  */

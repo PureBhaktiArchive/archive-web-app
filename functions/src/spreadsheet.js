@@ -13,7 +13,7 @@ const IValueInputOption = {
 /**
  * Converts undefined to null and null to empty string.
  *
- * @param {unknown} value  Value to encode.
+ * @param {unknown} value Value to encode.
  * @returns {unknown}
  */
 const encodeSheetsValue = (value) =>
@@ -22,15 +22,15 @@ const encodeSheetsValue = (value) =>
 /**
  * Convert empty string to null.
  *
- * @param {unknown} value  Value from Sheets API to decode.
+ * @param {unknown} value Value from Sheets API to decode.
  * @returns {unknown}
  */
 const decodeSheetsValue = (value) => (value === '' ? null : value ?? null);
 
 /**
  * @template T
- * @param {Iterable<T>}       xs  Sequence.
- * @param {(x: T) => boolean} fn  Predicate.
+ * @param {Iterable<T>} xs Sequence.
+ * @param {(x: T) => boolean} fn Predicate.
  * @returns {Generator<T, void, unknown>}
  */
 function* takeWhile(xs, fn) {
@@ -75,8 +75,8 @@ export class Spreadsheet {
   #sheet;
 
   /**
-   * @param {import('googleapis').sheets_v4.Sheets}       api
-   * @param {string}                                      spreadsheetId
+   * @param {import('googleapis').sheets_v4.Sheets} api
+   * @param {string} spreadsheetId
    * @param {import('googleapis').sheets_v4.Schema$Sheet} sheet
    */
   constructor(api, spreadsheetId, sheet) {
@@ -111,10 +111,10 @@ export class Spreadsheet {
    * Constructs an A1 notation of the range. For example: 'Sheet 1'!A3:D5.
    *
    * @param {string} sheetName
-   * @param {string} [firstColumnLetter]  First column letter, optional.
-   * @param {number} [firstRowNumber]     First row number, optional.
-   * @param {string} [lastColumnLetter]   Last column letter, optional.
-   * @param {number} [lastRowNumber]      Last row number, optional.
+   * @param {string} [firstColumnLetter] First column letter, optional.
+   * @param {number} [firstRowNumber] First row number, optional.
+   * @param {string} [lastColumnLetter] Last column letter, optional.
+   * @param {number} [lastRowNumber] Last row number, optional.
    * @returns {string}
    */
   static toA1Notation(
@@ -159,11 +159,11 @@ export class Spreadsheet {
   }
 
   /**
-   * Returns A1 notation for a row span. For example: A1:H5.
-   * Columns within header are included only.
+   * Returns A1 notation for a row span. For example: A1:H5. Columns within
+   * header are included only.
    *
-   * @param {number} firstRowNumber   First row number.
-   * @param {number} [lastRowNumber]  Last row number.
+   * @param {number} firstRowNumber First row number.
+   * @param {number} [lastRowNumber] Last row number.
    * @returns {string}
    */
   #rowsToA1Notation(firstRowNumber, lastRowNumber) {
@@ -176,10 +176,10 @@ export class Spreadsheet {
   }
 
   /**
-   * Returns A1 notation for the row. For example: A1:H1.
-   * Columns within header are included only.
+   * Returns A1 notation for the row. For example: A1:H1. Columns within header
+   * are included only.
    *
-   * @param {number} rowNumber  Row number on the sheet.
+   * @param {number} rowNumber Row number on the sheet.
    * @returns {string}
    */
   #rowToA1Notation(rowNumber) {
@@ -187,8 +187,8 @@ export class Spreadsheet {
   }
 
   /**
-   * Returns A1 notation for the column. For example: A2:A.
-   * Only data is included, without header.
+   * Returns A1 notation for the column. For example: A2:A. Only data is
+   * included, without header.
    *
    * @param {string} columnName
    * @returns {string}
@@ -225,7 +225,8 @@ export class Spreadsheet {
   /**
    * Converts data row number into the sheet row number.
    *
-   * @param {number} dataRowNumber  Number of the row in the data section, 1-based.
+   * @param {number} dataRowNumber Number of the row in the data section,
+   *   1-based.
    * @returns {number}
    */
   #fromDataRowNumber(dataRowNumber) {
@@ -262,8 +263,8 @@ export class Spreadsheet {
   /**
    * Gets values using Google Sheets API.
    *
-   * @param {string}             range           Range to get values for.
-   * @param {'COLUMNS' | 'ROWS'} majorDimension  Columns or Rows.
+   * @param {string} range Range to get values for.
+   * @param {'COLUMNS' | 'ROWS'} majorDimension Columns or Rows.
    * @returns {Promise<unknown[][]>}
    */
   async #getValues(range, majorDimension = 'ROWS') {
@@ -282,9 +283,11 @@ export class Spreadsheet {
 
   /**
    * Transforms the values array into an object.
+   *
    * - Empty string in the array transforms into `null` in the object.
    *
-   * @param {unknown[]} values  The values array to be transformed into an object.
+   * @param {unknown[]} values The values array to be transformed into an
+   *   object.
    * @returns {T}
    */
   #arrayToObject(values) {
@@ -305,12 +308,13 @@ export class Spreadsheet {
 
   /**
    * Transforms the object into a values array.
-   * https://developers.google.com/sheets/api/guides/values says,
-   * > When updating, values with no data are skipped. To clear data, use an empty string ("").
+   * https://developers.google.com/sheets/api/guides/values says,> When
+   * updating, values with no data are skipped. To clear data, use an empty> String ("").
+   *
    * - `undefined` in the object transforms into `null` in the array.
    * - `null` in the object transforms into empty string in the array.
    *
-   * @param {T} object  Source object to be transformed into an array.
+   * @param {T} object Source object to be transformed into an array.
    * @returns {unknown[]}
    */
   objectToArray(object) {
@@ -322,7 +326,8 @@ export class Spreadsheet {
   /**
    * Gets row at specified row number.
    *
-   * @param {number} dataRowNumber  Number of the row in the data section, 1-based.
+   * @param {number} dataRowNumber Number of the row in the data section,
+   *   1-based.
    * @returns {Promise<T>}
    */
   async getRow(dataRowNumber) {
@@ -350,9 +355,10 @@ export class Spreadsheet {
   /**
    * Updates row at specified row number.
    *
-   * @param {number} dataRowNumber  Number of the row in the data section, 1-based.
-   * @param {T}      object         Object to be saved into the row Nulls are skipped. To clear data, use an empty
-   *                                string ("") in the property value.
+   * @param {number} dataRowNumber Number of the row in the data section,
+   *   1-based.
+   * @param {T} object Object to be saved into the row Nulls are skipped. To
+   *   clear data, use an empty string ("") in the property value.
    */
   async updateRow(dataRowNumber, object) {
     Spreadsheet.#getResponse(
@@ -370,7 +376,7 @@ export class Spreadsheet {
   /**
    * Update rows at specified row numbers.
    *
-   * @param {Map<number, T>} objects  Map of objects by data row number.
+   * @param {Map<number, T>} objects Map of objects by data row number.
    */
   async updateRows(objects) {
     if (objects.size === 0) return;
@@ -393,7 +399,7 @@ export class Spreadsheet {
   /**
    * Appends new rows.
    *
-   * @param {T[]} objects  Data values to add to Google Sheets.
+   * @param {T[]} objects Data values to add to Google Sheets.
    */
   async appendRows(objects) {
     Spreadsheet.#getResponse(

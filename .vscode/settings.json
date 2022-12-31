@@ -4,6 +4,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[liquid]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -47,7 +50,10 @@
     "**/node_modules": true
   },
   "files.associations": {
-    ".postcssrc": "json"
+    ".postcssrc": "json",
+    "*.html": "liquid"
   },
+  "liquid.format.enable": false,
+  "liquid.engine": "standard",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }
