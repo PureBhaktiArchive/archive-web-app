@@ -27,7 +27,7 @@
     "luxon": "3.1.1"
   },
   "devDependencies": {
-    "@homer0/prettier-plugin-jsdoc": "5.1.5",
+    "@homer0/prettier-plugin-jsdoc": "6.0.0",
     "@types/fluent-ffmpeg": "2.1.20",
     "@types/jest": "28.1.8",
     "@types/luxon": "3.1.0",
