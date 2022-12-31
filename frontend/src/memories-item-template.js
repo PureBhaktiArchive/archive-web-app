@@ -33,7 +33,7 @@ export const itemTemplate = (hit, { html, components }) => html`
     </h3>
     <!-- Tag line -->
     <div
-      class="last:child-div:border-0 child-div:mr-1 child-div:mt-1 child-div:pr-1 child-div:border-r child-div:border-gray-300 flex w-80 flex-wrap content-between align-baseline text-xs sm:w-72 md:w-72"
+      class="flex w-80 flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0 sm:w-72 md:w-72"
     >
       <div title="Language">${hit.language}</div>
       <div title="Speaker's Country">${hit.speakerCountry}</div>

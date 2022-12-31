@@ -26,10 +26,11 @@ export function fromSerialDate(serialDate, timezone) {
 }
 
 /**
- * Converts particular date/time into Excel/Sheets serial date value.
- * Because Excel/Sheets do not track the time zone, the local time of @datetime is converted.
+ * Converts particular date/time into Excel/Sheets serial date value. Because
+ * Excel/Sheets do not track the time zone, the local time of @datetime is
+ * converted.
  *
- * @param {DateTime} datetime  Luxon date/time object.
+ * @param {DateTime} datetime Luxon date/time object.
  * @returns {number}
  */
 export function toSerialDate(datetime) {

@@ -17,15 +17,15 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="overlayed:overflow-hidden flex flex-col sm:h-screen">
+  <body class="flex flex-col overlayed:overflow-hidden sm:h-screen">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
-    <header class="bg-header border-peach-dark w-full border-b-4 border-dotted bg-clip-content pb-0.5">
+    <header class="bg-header w-full border-b-4 border-dotted border-peach-dark bg-clip-content pb-0.5">
       <div class="relative mx-auto max-w-screen-xl">
-        <div class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute left-0 top-2 h-full w-11 bg-contain bg-left-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"></div>
+        <div class="bg-header-decor absolute left-0 top-2 h-full w-11 bg-contain bg-left-top bg-no-repeat opacity-25 mobile-s:opacity-100 mobile-m:w-12 mobile-l:w-14 md:top-0 md:h-20 md:w-24"></div>
         <div
-          class="bg-header-decor mobile-m:w-12 mobile-l:w-14 mobile-s:opacity-100 absolute right-0 top-2 h-full w-11 -scale-x-100 bg-contain bg-right-top bg-no-repeat opacity-25 md:top-0 md:h-20 md:w-24"
+          class="bg-header-decor absolute right-0 top-2 h-full w-11 -scale-x-100 bg-contain bg-right-top bg-no-repeat opacity-25 mobile-s:opacity-100 mobile-m:w-12 mobile-l:w-14 md:top-0 md:h-20 md:w-24"
         ></div>
-        <div class="font-header mobile-l:text-base mobile-m:text-sm relative z-10 px-1 py-3 text-center text-xs font-semibold tracking-tighter text-teal-800 sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28">
+        <div class="relative z-10 px-1 py-3 text-center font-header text-xs font-semibold tracking-tighter text-teal-800 mobile-m:text-sm mobile-l:text-base sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28">
           <span class="sm:flex sm:justify-center sm:space-x-3">
             <span class="bg-lotus hidden w-7 flex-none bg-contain bg-right-top bg-no-repeat sm:block"></span>
             <span>
@@ -46,7 +46,7 @@ gtm-tag-id: GTM-PNC4S5J
         >
       </div>
     </header>
-    <nav class="bg-submarine-500 relative mb-4 mt-0.5 p-4 sm:mb-0 sm:p-0">
+    <nav class="relative mb-4 mt-0.5 bg-submarine-500 p-4 sm:mb-0 sm:p-0">
       <!-- Mobile menu button -->
       <div class="flex justify-end sm:hidden">
         <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
@@ -65,7 +65,7 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
       <!-- Menu items -->
       <div data-menu-toggled class="hidden sm:block">
-        <div class="child-a:px-2 child-a:py-1 font-header flex flex-col items-end justify-end space-y-4 py-1 pl-36 text-sm font-semibold text-gray-600 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base">
+        <div class="flex flex-col items-end justify-end space-y-4 py-1 pl-36 font-header text-sm font-semibold text-gray-600 child-a:px-2 child-a:py-1 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base">
           {%- assign menu = collections.topnav | eleventyNavigation -%}
           {%- for entry in menu -%}
             <a
@@ -91,11 +91,11 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
     {% endif %}
     <div class="mx-auto w-full max-w-screen-xl flex-1">
-      <div class="font-header mt-4 flex-none text-center text-sm font-bold uppercase text-teal-800 sm:hidden">{{ title }}</div>
+      <div class="mt-4 flex-none text-center font-header text-sm font-bold uppercase text-teal-800 sm:hidden">{{ title }}</div>
       {{ content }}
     </div>
     <footer class="border-t pt-7 pb-40">
-      <div class="child-a:px-2 flex justify-center space-x-1 text-xs text-gray-600 lg:space-x-3">
+      <div class="flex justify-center space-x-1 text-xs text-gray-600 child-a:px-2 lg:space-x-3">
         {%- assign menu = collections.bottomnav | eleventyNavigation -%}
         {%- for entry in menu -%}
           <a

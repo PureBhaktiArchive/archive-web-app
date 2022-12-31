@@ -12,7 +12,9 @@ import { Spreadsheet } from '../spreadsheet.js';
 
 /**
  * @typedef {import('./guru-row.js').GuruRow} GuruRow
+ *
  * @typedef {import('./algolia-record.js').MemoriesAlgoliaRecord} MemoriesAlgoliaRecord
+ *
  * @typedef {import('./memories-row.js').MemoriesRow} MemoriesRow
  */
 
@@ -48,10 +50,7 @@ export default functions.pubsub
       // Using flatMap to filter and map array in one function
       // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap#for_adding_and_removing_items_during_a_map
       .flatMap(
-        /**
-         * @prettierignore because it adds extra pipe in front of the first type: https://github.com/homer0/packages/issues/60
-         * @returns {MemoriesAlgoliaRecord | readonly MemoriesAlgoliaRecord[]}
-         */
+        /** @returns {MemoriesAlgoliaRecord | readonly MemoriesAlgoliaRecord[]} */
         (row) => {
           // Only ready for launch are considered
           if (!row['Ready for Launch']) return [];
