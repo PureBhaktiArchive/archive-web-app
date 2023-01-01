@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "algoliasearch": "4.14.3",
-    "alpinejs": "3.10.3",
+    "alpinejs": "3.10.5",
     "instantsearch.js": "4.49.1",
     "tippy.js": "6.3.7"
   }
