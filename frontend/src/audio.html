@@ -5,33 +5,26 @@ pagination:
   alias: audio
 permalink: "/audios/{{ audio.objectID | slug }}/"
 layout: base
-templateEngineOverride: md, njk, html
-eleventyComputed:
-  title: "{{ audio.objectID }}"
 ---
 <section class="flex flex-col m-10">
   <div class="flex flex-col">
     <div class="flex align-baseline justify-between">
-      <div>
-        <p class="font-bold text-lg">{{ audio.title }}</p>
-      </div>
-      <div>39:46</div>
+      <!-- Title -->
+      <span class="font-bold text-lg">{{ audio.title }}</span>
+      <!-- Duration -->
+      <span>39:46</span>
     </div>
     <div class="flex flex-col md:flex-row justify-between mt-1">
-      <div class="flex self-start font-semibold text-xs">{{ audio.objectID }} | {{ audio.dateForHumans }} | {{ audio.location }} | Lecture | {{ audio.languages }}</div>
+      <div class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
+        <div>#{{ audio.objectID }}</div>
+        <div>{{ audio.dateForHumans }}</div>
+        <div>{{ audio.location }}</div>
+        <div>Lecture</div>
+        <div>{{ audio.languages }}</div>
+      </div>
       <div class="flex justify-end pt-1 md:pt-0">
         <div class="flex">
           <div class="flex self-stretch">
-            <span class="p-1">
-              <!-- Percentage -->
-              <div class="relative overflow-hidden rounded-lg border border-gray-300 text-xs" title="How much Srila Gurudeva is speaking in the recording">
-                <div class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none" style="--percentage: 100%"></div>
-                <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
-                  <span class="whitespace-nowrap">Srila Gurudeva</span>
-                  <span>100%</span>
-                </div>
-              </div>
-            </span>
             <span class="p-1">
               <div class="bg-emerald-200 flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
                 <svg class="h-4 w-4 flex-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -52,6 +45,16 @@ eleventyComputed:
                   />
                 </svg>
                 <span>Good</span>
+              </div>
+            </span>
+            <span class="p-1">
+              <!-- Percentage -->
+              <div class="relative overflow-hidden rounded-lg border border-gray-300 text-xs" title="How much Srila Gurudeva is speaking in the recording">
+                <div class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none" style="--percentage: 100%"></div>
+                <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
+                  <span class="whitespace-nowrap">Srila Gurudeva</span>
+                  <span>100%</span>
+                </div>
               </div>
             </span>
           </div>
