@@ -5,16 +5,18 @@ pagination:
   alias: audio
 permalink: "/audios/{{ audio.objectID | slug }}/"
 layout: base
+topicsData:
+  topics: {{audio.topics}}
 ---
-<section class="flex flex-col m-10">
+<section class="m-10 flex flex-col">
   <div class="flex flex-col">
-    <div class="flex align-baseline justify-between">
+    <div class="flex justify-between align-baseline">
       <!-- Title -->
-      <span class="font-bold text-lg">{{ audio.title }}</span>
+      <span class="text-lg font-bold">{{ audio.title }}</span>
       <!-- Duration -->
       <span>39:46</span>
     </div>
-    <div class="flex flex-col md:flex-row justify-between mt-1">
+    <div class="mt-1 flex flex-col justify-between md:flex-row">
       <div class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
         <div>#{{ audio.objectID }}</div>
         <div>{{ audio.dateForHumans }}</div>
@@ -26,7 +28,7 @@ layout: base
         <div class="flex">
           <div class="flex self-stretch">
             <span class="p-1">
-              <div class="bg-emerald-200 flex flex-none px-1.5 text-xs border rounded-lg space-x-1" title="Sound quality of the recording">
+              <div class="flex flex-none space-x-1 rounded-lg border bg-emerald-200 px-1.5 text-xs" title="Sound quality of the recording">
                 <svg class="h-4 w-4 flex-none stroke-current stroke-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                   <path
                     d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
@@ -80,8 +82,12 @@ layout: base
     </div>
   </div>
   <div class="mt-6">
-    <h1 class="font-bold text-lg">Topics</h1>
-    <p>{{ audio.topics }}</p>
+    <p class="text-lg font-bold">Topics</p>
+    <p>
+      {% renderTemplate "md", topicsData %}
+      {{ topics }}
+      {% endrenderTemplate %}
+    </p>
   </div>
-  <div class="mt-6 bg-gray-300 h-10">box-audio-player</div>
+  <div class="mt-6 h-10 bg-gray-300">box-audio-player</div>
 </section>
