@@ -24,7 +24,7 @@
     "fluent-ffmpeg": "2.1.2",
     "googleapis": "109.0.1",
     "iso-639-2": "3.0.2",
-    "luxon": "3.2.0"
+    "luxon": "3.2.1"
   },
   "devDependencies": {
     "@types/fluent-ffmpeg": "2.1.20",
