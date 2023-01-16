@@ -5,8 +5,6 @@ pagination:
   alias: audio
 permalink: "/audios/{{ audio.objectID | slug }}/"
 layout: base
-topicsData:
-  topics: {{audio.topics}}
 ---
 <section class="m-10 flex flex-col">
   <div class="flex flex-col">
@@ -17,13 +15,7 @@ topicsData:
       <span>39:46</span>
     </div>
     <div class="mt-1 flex flex-col justify-between md:flex-row">
-      <div class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
-        <div>#{{ audio.objectID }}</div>
-        <div>{{ audio.dateForHumans }}</div>
-        <div>{{ audio.location }}</div>
-        <div>Lecture</div>
-        <div>{{ audio.languages }}</div>
-      </div>
+      {% render 'partials/tagline.html', audio-id: audio.objectID, audio-date: audio.dateForHumans, audio-location: audio.location, audio-category: audio.category, audio-languages: audio.languages -%}
       <div class="flex justify-end pt-1 md:pt-0">
         <div class="flex">
           <div class="flex self-stretch">
@@ -81,12 +73,12 @@ topicsData:
       </div>
     </div>
   </div>
-  <div class="mt-6">
+  <div class="prose mt-6 dark:prose-invert">
     <p class="text-lg font-bold">Topics</p>
     <p>
-      {% renderTemplate "md", topicsData %}
-      {{ topics }}
-      {% endrenderTemplate %}
+      {% renderTemplate "liquid,md", audio -%}
+      {{- topics -}}
+      {%- endrenderTemplate %}
     </p>
   </div>
   <div class="mt-6 h-10 bg-gray-300">box-audio-player</div>
