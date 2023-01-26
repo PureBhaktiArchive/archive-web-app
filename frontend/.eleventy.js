@@ -18,10 +18,26 @@ module.exports = function (eleventyConfig) {
 
   //Filter for duration calculation
   eleventyConfig.addFilter('duration', function (durationInSeconds) {
-    const formatDurationForHumans = new Date(1000 * durationInSeconds)
+    const formatDuration = new Date(1000 * durationInSeconds)
       .toISOString()
       .substring(Math.max(durationInSeconds || 0) >= 3600 ? 11 : 14, 19);
-    return formatDurationForHumans;
+    return formatDuration;
+  });
+
+  //Filter for Gurudev percentage calculation
+  eleventyConfig.addFilter('percentage', function (audioPercentage) {
+    const formatPercentage = `${Math.ceil(audioPercentage * 20) * 5}%`;
+    return formatPercentage;
+  });
+
+  //Filter for Sound Quality Rating color
+  eleventyConfig.addFilter('soundquality', function (soundquality) {
+    const SoundQualityRating = {
+      Good: { label: 'Good', order: 1, color: 'bg-emerald-100' },
+      Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
+      Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
+    };
+    return `${SoundQualityRating[soundquality].color}`;
   });
 
   // Return your Object options:
