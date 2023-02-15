@@ -40,6 +40,12 @@ module.exports = function (eleventyConfig) {
     return `${SoundQualityRating[soundquality].color}`;
   });
 
+  //Filter for language arry
+  eleventyConfig.addFilter('toarray', function (languages) {
+    let addpipe = languages.join(' | ');
+    return addpipe;
+  });
+
   // Return your Object options:
   return {
     dir: {
