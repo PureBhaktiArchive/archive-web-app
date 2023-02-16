@@ -41,9 +41,12 @@ module.exports = function (eleventyConfig) {
   });
 
   //Filter for language arry
-  eleventyConfig.addFilter('toarray', function (languages) {
-    let addpipe = languages.join(' | ');
-    return addpipe;
+  eleventyConfig.addFilter('languagediv', function (languages) {
+    let langdiv = '';
+    languages.forEach(function myFunction(value) {
+      langdiv += '<div>' + value + '</div>';
+    });
+    return langdiv;
   });
 
   // Return your Object options:
