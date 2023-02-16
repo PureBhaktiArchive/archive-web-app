@@ -41,7 +41,7 @@ module.exports = function (eleventyConfig) {
   });
 
   //Filter for language arry
-  eleventyConfig.addFilter('languagediv', function (languages) {
+  eleventyConfig.addFilter('toarray', function (languages) {
     let langdiv = '';
     languages.forEach(function myFunction(value) {
       langdiv += '<div>' + value + '</div>';
