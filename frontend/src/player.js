@@ -142,10 +142,9 @@ const createNewPlayer = () => ({
    * @param {boolean} value Optional state: playing or not
    */
   togglePlay(value) {
-    // if (!this.fileId) return;
-    if (value === this.isPlaying) return;
+    if (!this.fileId) return;
 
-    value = value || !this.isPlaying;
+    value = value ?? !this.isPlaying;
     if (value === this.isPlaying) return;
 
     this.isPlaying = value;
