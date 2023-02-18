@@ -4,22 +4,11 @@
 
 import Alpine from 'alpinejs';
 import './player';
-
 Alpine.start();
-//Alpine.on('initialized')
 
 let article = document.querySelector('#audio-page');
-
 /** type @{HTMLElement} */ // JSDoc types
 if (article instanceof HTMLElement) {
-  //let languages = JSON.parse(article.dataset.languages);
-  //}
-
-  //if (languages instanceof Array);
-  //let languageJson = article.dataset.languages;
-  //let langarry = JSON.parse(languageJson);
-  //console.log(langarry);
-
   window.dispatchEvent(
     new CustomEvent('archive:toggle-play', {
       detail: {
