@@ -28,7 +28,16 @@ jsFile: audio.js
       <span>{{ audio.duration | duration }}</span>
     </div>
     <div class="mt-1 flex flex-col justify-between md:flex-row">
-      {% render 'partials/tagline.html', audio-id: audio.objectID, audio-date: audio.dateForHumans, audio-location: audio.location, audio-category: audio.category, audio-languages: audio.languages -%}
+      <div class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
+        <div>#{{ audio.objectID }}</div>
+        <div>{{ audio.dateForHumans }}</div>
+        <div>{{ audio.location }}</div>
+        <div>{{ audio.category }}</div>
+        {% for language in audio.languages %}
+          <div>{{ language }}</div>
+        {% endfor %}
+      </div>
+
       <div class="flex justify-end pt-1 md:pt-0">
         <div class="flex">
           <div class="flex self-stretch">
