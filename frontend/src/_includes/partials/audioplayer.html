@@ -1,0 +1,123 @@
+<div
+  id="player"
+  x-cloak
+  x-data="player()"
+  x-bind="self"
+  class="fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 shadow-xl-around md:flex-row md:space-x-6"
+>
+  <!-- Controls -->
+  <div class="flex flex-col justify-between fill-current">
+    <!-- Buttons -->
+    <div class="mb-1 flex items-center justify-center space-x-2 sm:mb-0 md:justify-between">
+      <button x-bind="seekButton" data-seek-amount="-10" class="w-7">
+        <!-- Material icons: Replay 10 -->
+        <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M11.99 5V1l-5 5 5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6h-2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8zm-1.1 11h-.85v-3.26l-1.01.31v-.69l1.77-.63h.09V16zm4.28-1.76c0 .32-.03.6-.1.82s-.17.42-.29.57-.28.26-.45.33-.37.1-.59.1-.41-.03-.59-.1-.33-.18-.46-.33-.23-.34-.3-.57-.11-.5-.11-.82v-.74c0-.32.03-.6.1-.82s.17-.42.29-.57.28-.26.45-.33.37-.1.59-.1.41.03.59.1.33.18.46.33.23.34.3.57.11.5.11.82v.74zm-.85-.86c0-.19-.01-.35-.04-.48s-.07-.23-.12-.31-.11-.14-.19-.17-.16-.05-.25-.05-.18.02-.25.05-.14.09-.19.17-.09.18-.12.31-.04.29-.04.48v.97c0 .19.01.35.04.48s.07.24.12.32.11.14.19.17.16.05.25.05.18-.02.25-.05.14-.09.19-.17.09-.19.11-.32.04-.29.04-.48v-.97z"
+          />
+        </svg>
+      </button>
+      <button x-bind="playButton" class="w-10">
+        <svg x-show="!isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M10 16.5l6-4.5-6-4.5zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+        </svg>
+        <svg x-show="isPlaying" class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
+        </svg>
+      </button>
+      <button x-bind="seekButton" data-seek-amount="10" class="w-7">
+        <!-- Material icons: Forward 10 -->
+        <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M18,13c0,3.31-2.69,6-6,6s-6-2.69-6-6s2.69-6,6-6v4l5-5l-5-5v4c-4.42,0-8,3.58-8,8c0,4.42,3.58,8,8,8s8-3.58,8-8H18z" />
+          <polygon points="10.9,16 10.9,11.73 10.81,11.73 9.04,12.36 9.04,13.05 10.05,12.74 10.05,16" />
+          <path
+            d="M14.32,11.78c-0.18-0.07-0.37-0.1-0.59-0.1s-0.41,0.03-0.59,0.1s-0.33,0.18-0.45,0.33s-0.23,0.34-0.29,0.57 s-0.1,0.5-0.1,0.82v0.74c0,0.32,0.04,0.6,0.11,0.82s0.17,0.42,0.3,0.57s0.28,0.26,0.46,0.33s0.37,0.1,0.59,0.1s0.41-0.03,0.59-0.1 s0.33-0.18,0.45-0.33s0.22-0.34,0.29-0.57s0.1-0.5,0.1-0.82V13.5c0-0.32-0.04-0.6-0.11-0.82s-0.17-0.42-0.3-0.57 S14.49,11.85,14.32,11.78z M14.33,14.35c0,0.19-0.01,0.35-0.04,0.48s-0.06,0.24-0.11,0.32s-0.11,0.14-0.19,0.17 s-0.16,0.05-0.25,0.05s-0.18-0.02-0.25-0.05s-0.14-0.09-0.19-0.17s-0.09-0.19-0.12-0.32s-0.04-0.29-0.04-0.48v-0.97 c0-0.19,0.01-0.35,0.04-0.48s0.06-0.23,0.12-0.31s0.11-0.14,0.19-0.17s0.16-0.05,0.25-0.05s0.18,0.02,0.25,0.05 s0.14,0.09,0.19,0.17s0.09,0.18,0.12,0.31s0.04,0.29,0.04,0.48V14.35z"
+          />
+        </svg>
+      </button>
+    </div>
+    <!-- Volume control -->
+    <div class="hidden h-6 flex-none items-center md:flex">
+      <button x-bind="muteButton">
+        <svg x-bind="unmutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M3 9v6h4l5 5V4L7 9H3zm7-.17v6.34L7.83 13H5v-2h2.83L10 8.83zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77 0-4.28-2.99-7.86-7-8.77z"
+          />
+        </svg>
+        <svg x-bind="mutedIcon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px">
+          <path d="M0 0h24v24H0V0z" fill="none" />
+          <path
+            d="M4.34 2.93L2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18c-.65.49-1.38.88-2.18 1.11v2.06c1.34-.3 2.57-.92 3.61-1.75l2.05 2.05 1.41-1.41L4.34 2.93zM10 15.17L7.83 13H5v-2h2.83l.88-.88L10 11.41v3.76zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-1.88 1.88L12 7.76zm4.5 8c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24z"
+          />
+        </svg>
+      </button>
+      <input type="range" min="0" max="1" step="any" x-ref="volumeSlider" x-bind="volumeSlider" class="w-24 flex-none">
+    </div>
+  </div>
+  <!-- Main block -->
+  <div class="overflow-hidden md:grow">
+    <!-- Title -->
+    <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
+    <!-- Second line with tags and actions -->
+    <div class="mt-1 flex space-x-2 overflow-hidden">
+      <!-- Tags -->
+      <div class="no-scrollbar flex grow overflow-x-auto text-xs child-div:mr-1 child-div:mt-1 child-div:flex-none child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
+        <!-- ID -->
+        <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
+        <!-- Date -->
+        <template x-if="contentDetails.dateForHumans">
+          <div title="Date">
+            <span x-text="contentDetails.dateForHumans"></span>
+            <template x-if="contentDetails.dateUncertain">
+              <span title="Date is uncertain">(?)</span>
+            </template>
+          </div>
+        </template>
+        <!-- Location -->
+        <template x-if="contentDetails.location">
+          <div title="Location">
+            <span x-text="contentDetails.location"></span>
+            <template x-if="contentDetails.locationUncertain">
+              <span title="Location is uncertain">(?)</span>
+            </template>
+          </div>
+        </template>
+        <!-- Category -->
+        <template x-if="contentDetails.category">
+          <div x-text="contentDetails.category" title="Category"></div>
+        </template>
+        <!-- Languages -->
+        <template x-for="language in contentDetails.languages" :key="language">
+          <div x-text="language" title="Language spoken in the recording"></div>
+        </template>
+      </div>
+      <!-- Actions -->
+      <div class="flex flex-none items-baseline divide-x text-xs child-a:ml-1 child-a:pl-1">
+        <!-- Download -->
+        <a :href="downloadURL" title="Download file for listening offline">
+          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span class="hidden align-text-bottom lg:inline">Download</span>
+        </a>
+        <!-- Feedback -->
+        <a :href="feedbackURL" target="_blank" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
+          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+          </svg>
+          <span class="hidden align-text-bottom lg:inline">Feedback</span>
+        </a>
+      </div>
+    </div>
+    <!-- Seek control with timings -->
+    <div class="flex h-6 items-center space-x-2">
+      <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
+      <input type="range" min="0" x-ref="seekSlider" x-bind="seekSlider" class="h-1.5 grow">
+      <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
+    </div>
+  </div>
+</div>
