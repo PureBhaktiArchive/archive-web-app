@@ -4,6 +4,7 @@
 
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const { formatDurationForHumans } = require('./src/duration');
+const { soundQualityRatingMapping } = require('./src/sound-quality-rating');
 
 /**
  * Eleventy config function.
@@ -30,22 +31,12 @@ module.exports = function (eleventyConfig) {
 
   //Filter for Sound Quality Rating color
   eleventyConfig.addFilter('sound_quality_color', function (soundqualitycolor) {
-    const SoundQualityRatingColor = {
-      Good: { label: 'Good', order: 1, color: 'bg-emerald-100' },
-      Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
-      Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
-    };
-    return `${SoundQualityRatingColor[soundqualitycolor].color}`;
+    return `${soundQualityRatingMapping[soundqualitycolor].color}`;
   });
 
   //Filter for Sound Quality Rating label
   eleventyConfig.addFilter('sound_quality_label', function (soundqualitylabel) {
-    const SoundQualityRatinglabel = {
-      Good: { label: 'Good', order: 1, color: 'bg-emerald-100' },
-      Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
-      Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
-    };
-    return `${SoundQualityRatinglabel[soundqualitylabel].label}`;
+    return `${soundQualityRatingMapping[soundqualitylabel].label}`;
   });
 
   // Return your Object options:

@@ -43,7 +43,7 @@ jsFile: audio.js
           <div class="flex self-stretch">
             <span class="p-1">
               <div
-                class="{{ audio.soundQualityRating | soundquality }} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
+                class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
                 title="Sound quality of the recording"
               >
                 <svg
@@ -67,7 +67,7 @@ jsFile: audio.js
                     stroke-width="32"
                   />
                 </svg>
-                <span>{{ audio.soundQualityRating }}</span>
+                <span>{{ audio.soundQualityRating | sound_quality_label }}</span>
               </div>
             </span>
             <span class="p-1">
