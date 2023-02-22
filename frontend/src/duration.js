@@ -8,7 +8,10 @@
  * @param {number} [referenceDuration] Another duration in seconds to align the formatted string length to
  * @returns {string} Duration in hh:mm:ss format
  */
-export const formatDurationForHumans = (durationInSeconds, referenceDuration) =>
+module.exports.formatDurationForHumans = (
+  durationInSeconds,
+  referenceDuration
+) =>
   new Date(1000 * durationInSeconds)
     .toISOString()
     .substring(

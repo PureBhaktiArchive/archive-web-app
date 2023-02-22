@@ -3,6 +3,7 @@
  */
 
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const { formatDurationForHumans } = require('./src/duration');
 
 /**
  * Eleventy config function.
@@ -18,10 +19,7 @@ module.exports = function (eleventyConfig) {
 
   //Filter for duration calculation
   eleventyConfig.addFilter('duration', function (durationInSeconds) {
-    const formatDuration = new Date(1000 * durationInSeconds)
-      .toISOString()
-      .substring(Math.max(durationInSeconds || 0) >= 3600 ? 11 : 14, 19);
-    return formatDuration;
+    return `${formatDurationForHumans(durationInSeconds)}`;
   });
 
   //Filter for Gurudev percentage calculation
@@ -31,13 +29,23 @@ module.exports = function (eleventyConfig) {
   });
 
   //Filter for Sound Quality Rating color
-  eleventyConfig.addFilter('soundquality', function (soundquality) {
-    const SoundQualityRating = {
+  eleventyConfig.addFilter('sound_quality_color', function (soundqualitycolor) {
+    const SoundQualityRatingColor = {
       Good: { label: 'Good', order: 1, color: 'bg-emerald-100' },
       Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
       Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
     };
-    return `${SoundQualityRating[soundquality].color}`;
+    return `${SoundQualityRatingColor[soundqualitycolor].color}`;
+  });
+
+  //Filter for Sound Quality Rating label
+  eleventyConfig.addFilter('sound_quality_label', function (soundqualitylabel) {
+    const SoundQualityRatinglabel = {
+      Good: { label: 'Good', order: 1, color: 'bg-emerald-100' },
+      Average: { label: 'Average', order: 2, color: 'bg-yellow-100' },
+      Low: { label: 'Barely Audible', order: 3, color: 'bg-red-100' },
+    };
+    return `${SoundQualityRatinglabel[soundqualitylabel].label}`;
   });
 
   // Return your Object options:
