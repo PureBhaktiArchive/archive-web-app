@@ -23,10 +23,10 @@ module.exports = function (eleventyConfig) {
   });
 
   //Filter for Gurudev percentage calculation
-  eleventyConfig.addFilter('percentage', function (audioPercentage) {
-    const formatPercentage = `${Math.ceil(audioPercentage * 20) * 5}%`;
-    return formatPercentage;
-  });
+  eleventyConfig.addFilter(
+    'percentage',
+    (audioPercentage) => `${Math.ceil(audioPercentage * 20) * 5}%`
+  );
 
   //Filter for Sound Quality Rating color
   eleventyConfig.addFilter('sound_quality_color', function (soundqualitycolor) {
