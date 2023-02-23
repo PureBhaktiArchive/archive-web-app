@@ -91,7 +91,7 @@ jsFile: audio.js
             <span class="p-1">
               <!-- Download -->
               <a
-                href="https://srila-gurudeva-archive.storage.googleapis.com/{{ audio.objectID }}.mp3"
+                href="https://{{ env.STORAGE_BUCKET }}.storage.googleapis.com/{{ audio.objectID }}.mp3"
                 class="inline-flex space-x-1"
                 title="Download file for listening offline"
               >
@@ -115,7 +115,7 @@ jsFile: audio.js
             <span class="p-1">
               <!-- Feedback -->
               <a
-                href=""
+                href="{{ env.FEEDBACK_FORM }}{{ audio.objectID }}"
                 target="_blank"
                 class="inline-flex space-x-1"
                 title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
