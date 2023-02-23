@@ -2,6 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
+require('dotenv').config({
+  path: `${__dirname}/.env.local`,
+});
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const { formatDurationForHumans } = require('./src/duration');
 const { soundQualityRatingMapping } = require('./src/sound-quality-rating');
@@ -17,6 +20,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
+  eleventyConfig.addGlobalData('env', process.env);
 
   //Filter for duration calculation
   eleventyConfig.addFilter('duration', function (durationInSeconds) {
