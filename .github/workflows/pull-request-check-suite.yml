@@ -44,7 +44,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
@@ -82,7 +82,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: 'npm'
+          cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
       - run: npm ci
