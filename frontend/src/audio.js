@@ -4,10 +4,12 @@
 
 import Alpine from 'alpinejs';
 import './player';
+import './webshare';
 
 document.addEventListener('alpine:initialized', () => {
   let article = document.querySelector('#audio-page');
   if (!(article instanceof HTMLElement)) return;
+
   window.dispatchEvent(
     new CustomEvent('archive:toggle-play', {
       detail: {
