@@ -48,10 +48,12 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run check-js-typing
+      - run: sudo apt-get install -y jq
       - name: build
         run: |
           echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
-          npx firebase-tools database:get /audio/records --output $AUDIOS_DATA_PATH
+          export PROJECT_ID=$(echo $SERVICE_ACCOUNT | jq -r '.project_id')
+          npx firebase-tools database:get /audio/records --output $AUDIOS_DATA_PATH --project $PROJECT_ID
           npm run build
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
