@@ -49,9 +49,14 @@ jobs:
       - run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > $GOOGLE_APPLICATION_CREDENTIALS
       # The build command expects this variable
       - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
+
+      - run: npx firebase
+        continue-on-error: true
+      - run: npx firebase database:get /audio/records --output $AUDIOS_DATA_PATH
+        continue-on-error: true
       - run: npm i -g firebase-tools
       - run: firebase database:get
-      - run: npx firebase database:get /audio/records --output $AUDIOS_DATA_PATH
+        continue-on-error: true
 
       - run: npm ci
       - run: npm run lint
