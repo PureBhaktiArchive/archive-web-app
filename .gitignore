@@ -66,5 +66,4 @@ node_modules/
 .env
 .DS_Store
 
-# data files that are placed manually or by the deployment workflow
-data
+.tmp/

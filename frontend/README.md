@@ -28,15 +28,16 @@ VS Code has built-in [intellisense and type checking for JavaScript](https://cod
 
 Environment variables should be added to an `.env` file according to the [Parcel's documentation](https://parceljs.org/features/node-emulation/#.env-files). Use `.env.development.local` for local development.
 
-| Variable                 | Description                                                                        |
-| ------------------------ | ---------------------------------------------------------------------------------- |
-| `ALGOLIA_API_KEY`        | Algolia API key                                                                    |
-| `ALGOLIA_APPLICATION_ID` | Algolia application ID                                                             |
-| `ALGOLIA_INDEX`          | Algolia index name                                                                 |
-| `ALGOLIA_INDEX_MEMORIES` | Algolia memories index name                                                        |
-| `STORAGE_BUCKET`         | The Google Cloud Storage bucket containing the transcoded mp3 files.               |
-| `FEEDBACK_FORM`          | The base URL of the Audios Feedback Form, file ID will be appended in the end.     |
-| `MEMORIES_FEEDBACK_FORM` | The base URL of the Memories Feedback Form, memory ID will be appended in the end. |
+| Variable                 | Description                                                                                                                                                                      |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ALGOLIA_API_KEY`        | Algolia API key                                                                                                                                                                  |
+| `ALGOLIA_APPLICATION_ID` | Algolia application ID                                                                                                                                                           |
+| `ALGOLIA_INDEX`          | Algolia index name                                                                                                                                                               |
+| `ALGOLIA_INDEX_MEMORIES` | Algolia memories index name                                                                                                                                                      |
+| `STORAGE_BUCKET`         | The Google Cloud Storage bucket containing the transcoded mp3 files.                                                                                                             |
+| `FEEDBACK_FORM`          | The base URL of the Audios Feedback Form, file ID will be appended in the end.                                                                                                   |
+| `MEMORIES_FEEDBACK_FORM` | The base URL of the Memories Feedback Form, memory ID will be appended in the end.                                                                                               |
+| `AUDIOS_DATA_PATH`       | Path to a file containing JSON data for audio pages generation. Should be absolute or relative to the `frontend` folder. This file can be downloaded from the Realtime Database. |
 
 ## Running locally
 

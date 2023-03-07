@@ -2,4 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
-module.exports = { audios: require('../../data/audios.json') };
+const path = require('path');
+
+module.exports = {
+  audios: require(path.resolve(__dirname, '../', process.env.AUDIOS_DATA_PATH)),
+};
