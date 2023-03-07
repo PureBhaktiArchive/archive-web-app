@@ -31,11 +31,6 @@ jobs:
     defaults:
       run:
         working-directory: ${{ github.job }}
-    env:
-      # The build command expects this variable
-      AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
-      SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/servce-account.json
 
     # It is not possible to use `github.job` inside `if` expression
     # Comparing to string, because the job output is a strings, not boolean
@@ -53,9 +48,17 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run check-js-typing
-      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+      - run: |
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/servce-account.json" >> $GITHUB_ENV
+          echo ${{ secrets.GCP_SERVICE_ACCOUNT }} > $GOOGLE_APPLICATION_CREDENTIALS
       - run: npx firebase database:get /audio/records --output $AUDIOS_DATA_PATH
+        env:
+          # The build command expects this variable
+          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
       - run: npm run build
+        env:
+          # The build command expects this variable
+          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
       - run: npm test --if-present
       - run: npx prettier --check .
 
