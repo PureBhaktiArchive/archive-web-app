@@ -58,7 +58,7 @@ jobs:
           npx firebase database:get /audio/records --output $AUDIOS_DATA_PATH
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-          GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/servce-account.json
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/servce-account.json
 
       - run: npm run build
       - run: npm test --if-present
