@@ -45,22 +45,22 @@ jobs:
           cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
-      - run: echo $RUNNER_TEMP
-      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/servce-account.json"
-      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=${RUNNER_TEMP}"
       - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/servce-account.json" >> $GITHUB_ENV
       - run: echo $GOOGLE_APPLICATION_CREDENTIALS
+      - run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > $GOOGLE_APPLICATION_CREDENTIALS
+      - run: cat $GOOGLE_APPLICATION_CREDENTIALS
       - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - run: cat $GOOGLE_APPLICATION_CREDENTIALS
+      # The build command expects this variable
+      - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
+      - run: npx firebase database:get /audio/records --output $AUDIOS_DATA_PATH
+
       - run: npm ci
       - run: npm run lint
       - run: npm run check-js-typing
-      - run: npx firebase database:get /audio/records --output ${{ runner.temp }}/audios.json
       - run: npm run build
-        env:
-          # The build command expects this variable
-          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
       - run: npm test --if-present
       - run: npx prettier --check .
 
