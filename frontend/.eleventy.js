@@ -2,12 +2,13 @@
  * sri sri guru gaurangau jayatah
  */
 
-require('dotenv').config({
-  path: `${__dirname}/.env.local`,
-});
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const { formatDurationForHumans } = require('./src/duration');
 const { soundQualityRatingMapping } = require('./src/sound-quality-rating');
+
+require('dotenv').config({
+  path: `${__dirname}/.env.local`,
+});
 
 /**
  * Eleventy config function.
