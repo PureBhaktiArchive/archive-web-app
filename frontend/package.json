@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "start": "npm-run-all --print-label 11ty:clean --parallel 11ty:watch parcel:serve",
-    "build": "npm-run-all --print-label 11ty:clean 11ty:build parcel:build",
+    "build": "npm-run-all --print-label 11ty:clean 11ty:build parcel:clean parcel:build",
     "11ty:clean": "rm -rf _site/",
     "11ty:watch": "npx @11ty/eleventy --watch",
     "11ty:build": "npx @11ty/eleventy",
+    "parcel:clean": "rm -rf dist/",
     "parcel:serve": "parcel serve \"./_site/**/*.html\" --dist-dir dist/",
     "parcel:build": "parcel build \"./_site/**/*.html\" --dist-dir dist/",
     "lint": "eslint .",
