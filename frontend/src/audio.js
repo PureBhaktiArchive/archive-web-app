@@ -18,9 +18,9 @@ document.addEventListener('alpine:initialized', () => {
         contentDetails: {
           title: article.dataset.audioTitle,
           dateForHumans: article.dataset.dateForHumans,
-          dateUncertain: article.dataset.dateUncertain,
+          dateUncertain: JSON.parse(article.dataset.dateUncertain),
           location: article.dataset.location,
-          locationUncertain: article.dataset.locationUncertain,
+          locationUncertain: JSON.parse(article.dataset.locationUncertain),
           category: article.dataset.category,
           languages: JSON.parse(article.dataset.languages),
           duration: article.dataset.duration,
