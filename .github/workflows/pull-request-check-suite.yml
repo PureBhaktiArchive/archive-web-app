@@ -125,7 +125,7 @@ jobs:
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
           npx firebase-tools hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.${{ vars.GCP_PROJECT_ID }}.url' |\
+          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' |\
           (echo -n "channel_url=" && cat) >> $GITHUB_OUTPUT
         id: deploy
         env:
