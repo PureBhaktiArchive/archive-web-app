@@ -49,7 +49,9 @@ jobs:
       - run: npm run lint
       - run: npm run check-js-typing
 
-      - run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > ${{ runner.temp }}/service-account.json
+      - run: |
+          cat > ${{ runner.temp }}/service-account.json <<EOF ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          EOF
       - run: cat ${{ runner.temp }}/service-account.json
       - run: npx firebase-tools database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
         env:
