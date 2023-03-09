@@ -121,7 +121,12 @@ jobs:
       - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - run: npx firebase-tools hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }} | tee >(echo "channel_url=$(awk '/Hosting URL:/{print $NF}')" >> $GITHUB_OUTPUT)
+      - run: apt-get install jq
+      # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
+      - run: |
+          npx firebase-tools hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }} |\
+          jq '.result.${{ vars.GCP_PROJECT_ID }}.url' |\
+          (echo -n "channel_url=" && cat) >> $GITHUB_OUTPUT
         id: deploy
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
