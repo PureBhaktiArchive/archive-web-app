@@ -95,7 +95,7 @@ jobs:
       - run: npx prettier --check .
 
   deployment:
-    name: Deployment to Firebase Hosting Preview Channel
+    name: Deploy to Firebase Hosting Preview Channel
     runs-on: ubuntu-latest
     needs: frontend
     environment: preview
@@ -119,7 +119,6 @@ jobs:
       - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - name: Deploy to hosting preview channel
-        run: npx firebase-tools hosting:channel:deploy ${{ github.ref_name }} --project ${{ vars.GCP_PROJECT_ID }}
+      - run: npx firebase-tools hosting:channel:deploy ${{ github.ref_name }} --project ${{ vars.GCP_PROJECT_ID }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
