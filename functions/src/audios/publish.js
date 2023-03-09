@@ -56,6 +56,26 @@ function getDateAttributes(source) {
   };
 }
 
+/**
+ * Fixes common human mistakes in topics formatting so that it renders correctly
+ * as Markdown
+ *
+ * @param {string} topics
+ * @returns {string}
+ */
+function sanitizeTopics(topics) {
+  return (
+    topics
+      .replaceAll('\r\n', '\n')
+      // Remove spaces in the beginning of the line
+      .replaceAll(/^ -/gm, '-')
+      // Add space after hyphen in the beginning of the line
+      .replaceAll(/^-(?!\s)/gm, '- ')
+      // Remove original text kept in the end of the cell
+      .replace(/\n*\s*ORIGINAL.*$/s, '')
+  );
+}
+
 export default functions.pubsub
   .schedule('every monday 00:00')
   .timeZone('Asia/Calcutta')
@@ -89,7 +109,7 @@ export default functions.pubsub
         ([id, entry]) => ({
           objectID: id,
           title: entry.contentDetails.title,
-          topics: entry.contentDetails.topics,
+          topics: sanitizeTopics(entry.contentDetails.topics),
           topicsReady: entry.contentDetails.topicsReady,
           ...getDateAttributes(entry.contentDetails.date),
           dateUncertain: entry.contentDetails.dateUncertain || null,
