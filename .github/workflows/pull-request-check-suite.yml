@@ -65,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frontend
-          path: dist
+          path: frontend/dist
 
   # Job id should match the folder name because it's used in the expressions
   functions:
