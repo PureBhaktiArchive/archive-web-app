@@ -69,11 +69,12 @@ jobs:
 
       - run: npm test --if-present
       - run: npx prettier --check .
+      - run: tar -cvf ${{ runner.temp }}/dist.tar dist
       - name: Upload dist folder for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: frontend
-          path: frontend/dist
+          path: ${{ runner.temp }}/dist.tar
 
   # Job id should match the folder name because it's used in the expressions
   functions:
@@ -121,11 +122,13 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Download artifact from build job
+        id: download
         uses: actions/download-artifact@v3
         with:
           name: frontend
-          path: frontend/dist
+          path: ${{ runner.temp }}/dist.tar
 
+      - run: tar -xvf ${{ steps.download.outputs.download-path }}
       - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
