@@ -52,6 +52,7 @@ jobs:
       - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - run: cat ${{ runner.temp }}/servce-account.json
       - run: npx firebase-tools database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/servce-account.json
