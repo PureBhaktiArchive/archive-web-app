@@ -49,9 +49,9 @@ jobs:
       - run: npm run lint
       - run: npm run check-js-typing
 
-      - run: |
-          cat > ${{ runner.temp }}/service-account.json <<EOF ${{ secrets.GCP_SERVICE_ACCOUNT }}
-          EOF
+      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: cat ${{ runner.temp }}/service-account.json
       - run: npx firebase-tools database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
         env:
@@ -116,7 +116,9 @@ jobs:
           name: frontend
           path: frontend/dist
 
-      - run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > ${{ runner.temp }}/service-account.json
+      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - name: Deploy to hosting preview channel
         run: npx firebase-tools hosting:channel:deploy ${{ github.ref_name }} --project ${{ vars.GCP_PROJECT_ID }}
         env:
