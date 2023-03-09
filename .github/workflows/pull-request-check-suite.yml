@@ -59,6 +59,14 @@ jobs:
       - run: npm run build
         env:
           AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_INDEX: ${{ vars.ALGOLIA_INDEX }}
+          ALGOLIA_INDEX_MEMORIES: ${{ vars.ALGOLIA_INDEX_MEMORIES}}
+          STORAGE_BUCKET: ${{ vars.STORAGE_BUCKET}}
+          DONATION_URL: ${{ vars.DONATION_URL}}
+          FEEDBACK_FORM: ${{ vars.FEEDBACK_FORM}}
+
       - run: npm test --if-present
       - run: npx prettier --check .
       - name: Upload dist folder for deployment job
