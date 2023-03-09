@@ -124,5 +124,5 @@ jobs:
       - run: npx firebase-tools hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
-      - run: echo "url=$(npx firebase-tools hosting:channel:open)" >> $GITHUB_OUTPUT
+      - run: echo "url=$(npx firebase-tools hosting:channel:open --project ${{ vars.GCP_PROJECT_ID }})" >> $GITHUB_OUTPUT
         id: get-url
