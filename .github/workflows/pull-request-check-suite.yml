@@ -123,7 +123,7 @@ jobs:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: |
           npx firebase-tools hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }}
-          echo "channel_url=$(npx firebase-tools hosting:channel:open --project ${{ vars.GCP_PROJECT_ID }})" >> $GITHUB_OUTPUT
+          echo "channel_url=$(npx firebase-tools hosting:channel:open ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }})" >> $GITHUB_OUTPUT
         id: deploy
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
