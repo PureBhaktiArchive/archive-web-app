@@ -50,6 +50,7 @@ jobs:
       - run: npm run check-js-typing
 
       - run: echo "${{ secrets.GCP_SERVICE_ACCOUNT }}" > ${{ runner.temp }}/service-account.json
+      - run: cat ${{ runner.temp }}/service-account.json
       - run: npx firebase-tools database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
