@@ -25,6 +25,7 @@ jobs:
 
   audio_data:
     name: Download audios data
+    needs: changes
     if: needs.changes.outputs.frontend == 'true'
     uses: ./.github/workflows/download-audios-data.yaml
     secrets: inherit
