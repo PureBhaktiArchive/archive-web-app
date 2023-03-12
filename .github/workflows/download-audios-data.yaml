@@ -19,4 +19,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: audios-data
-          path: $DATA_FILE_PATH
+          path: ${{ env.DATA_FILE_PATH }}
+          if-no-files-found: error
