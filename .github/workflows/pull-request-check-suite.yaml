@@ -26,7 +26,7 @@ jobs:
   audio_data:
     name: Download audios data
     if: needs.changes.outputs.frontend == 'true'
-    uses: ./.github/workflows/download-audios-data.yml
+    uses: ./.github/workflows/download-audios-data.yaml
     secrets: inherit
 
   # Job id should match the folder name because it's used in the expressions
