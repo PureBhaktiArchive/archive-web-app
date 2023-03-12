@@ -21,7 +21,7 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: filter
         with:
-          filters: .github/path-filters.yml
+          filters: .github/path-filters.yaml
 
   audio_data:
     name: Download audios data
