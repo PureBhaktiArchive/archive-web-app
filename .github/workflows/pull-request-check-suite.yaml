@@ -47,7 +47,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: audios-data
-          path: ${{ runner.temp }}/audios.json
+          path: ${{ runner.temp }}
 
       - uses: actions/checkout@v3
 
