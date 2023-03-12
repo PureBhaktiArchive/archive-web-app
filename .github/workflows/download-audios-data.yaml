@@ -1,13 +1,17 @@
 name: Download audios data
 on:
   workflow_call:
-
+    outputs:
+      artifact-name:
+        value: ${{ jobs.download.outputs.artifact-name }}
 jobs:
   download:
     runs-on: ubuntu-latest
-
+    outputs:
+      artifact-name: ${{ env.ARTIFACT_NAME }}
     env:
       DATA_FILE_PATH: audios.json
+      ARTIFACT_NAME: audios-data
     steps:
       - run: echo $SERVICE_ACCOUNT > service-account.json
         env:
@@ -18,6 +22,6 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: service-account.json
       - uses: actions/upload-artifact@v3
         with:
-          name: audios-data
+          name: ${{ env.ARTIFACT_NAME }}
           path: ${{ env.DATA_FILE_PATH }}
           if-no-files-found: error
