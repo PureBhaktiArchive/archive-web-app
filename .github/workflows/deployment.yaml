@@ -36,12 +36,13 @@ jobs:
 
       # Updating Algolia index
       # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
+      # For pipefail: https://stackoverflow.com/a/19804002
       - run: |
           set -o pipefail
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
+          jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
