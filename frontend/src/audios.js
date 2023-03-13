@@ -27,7 +27,7 @@ const searchClient = algoliasearch(
   process.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
-  indexName: process.env.ALGOLIA_INDEX,
+  indexName: process.env.ALGOLIA_INDEX_AUDIOS,
   searchClient,
 });
 

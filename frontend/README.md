@@ -32,7 +32,7 @@ Environment variables should be added to an `.env` file according to the [Parcel
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ALGOLIA_API_KEY`        | Algolia API key                                                                                                                                                                  |
 | `ALGOLIA_APPLICATION_ID` | Algolia application ID                                                                                                                                                           |
-| `ALGOLIA_INDEX`          | Algolia index name                                                                                                                                                               |
+| `ALGOLIA_INDEX_AUDIOS`   | Algolia index name                                                                                                                                                               |
 | `ALGOLIA_INDEX_MEMORIES` | Algolia memories index name                                                                                                                                                      |
 | `STORAGE_BUCKET`         | The Google Cloud Storage bucket containing the transcoded mp3 files.                                                                                                             |
 | `FEEDBACK_FORM`          | The base URL of the Audios Feedback Form, file ID will be appended in the end.                                                                                                   |
