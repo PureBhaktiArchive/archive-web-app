@@ -45,7 +45,7 @@ const createNewPlayer = () => ({
   },
 
   get feedbackURL() {
-    return process.env.FEEDBACK_FORM + this.fileId;
+    return process.env.FEEDBACK_FORM_AUDIOS + this.fileId;
   },
 
   get durationForHumans() {
