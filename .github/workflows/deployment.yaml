@@ -82,7 +82,7 @@ jobs:
       - run: curl -sL firebase.tools | analytics=false bash
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
-          firebase hosting:channel:deploy ${{ github.head_ref }} --project ${{ vars.GCP_PROJECT_ID }}
+          firebase deploy --project ${{ vars.GCP_PROJECT_ID }}
           firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
           jq '.result.sites[] | select(.type == "DEFAULT_SITE) | .defaultUrl' --raw-output |\
           (echo -n "channel_url=" && cat) >> $GITHUB_OUTPUT
