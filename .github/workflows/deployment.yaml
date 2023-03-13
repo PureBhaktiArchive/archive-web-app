@@ -14,7 +14,9 @@ jobs:
   deployment:
     name: Deploy to ${{ github.ref_name }}
     runs-on: ubuntu-latest
-    environment: ${{ github.ref_name }}
+    environment:
+      name: ${{ github.ref_name }}
+      url: ${{ steps.get-site-url.outputs.channel-url}}
 
     steps:
       # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
@@ -83,11 +85,11 @@ jobs:
         working-directory: functions
 
       # Deploying
+      - run: firebase deploy --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
-          firebase deploy --project ${{ vars.GCP_PROJECT_ID }}
+          set -o pipefail
           firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.sites[] | select(.type == "DEFAULT_SITE) | .defaultUrl' --raw-output |\
-          (echo -n "channel_url=" && cat) >> $GITHUB_OUTPUT
-        id: deploy-production
-        if: github.ref_name
+          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
+          (echo -n "channel-url=" && cat) >> $GITHUB_OUTPUT
+        id: get-site-url
