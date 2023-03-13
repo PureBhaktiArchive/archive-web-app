@@ -11,27 +11,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  download-audio-data:
-    name: Download audios data
-    uses: ./.github/workflows/download-audios-data.yaml
-    secrets: inherit
-
   deployment:
     name: Deploy to ${{ github.ref_name }}
     runs-on: ubuntu-latest
-    needs: download-audio-data
     environment: ${{ github.ref_name }}
 
     steps:
-      # 1. Updating Algolia index
+      # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+      - run: echo "AUDIOS_DATA_PATH=${{ runner.temp }}/audios.json" >> $GITHUB_ENV
+      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=${{ runner.temp }}/service-account.json" >> $GITHUB_ENV
 
-      - uses: actions/download-artifact@v3
-        with:
-          name: ${{ needs.download-audio-data.outputs.artifact-name }}
-          path: ${{ runner.temp }}
+      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - run: curl -sL firebase.tools | analytics=false bash
+
+      # Downloading audios data file from Firebase RTDB
+      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project ${{ vars.GCP_PROJECT_ID }}
 
       # Pinning the commit SHA because this action does not maintain semver refs yet: https://github.com/algolia/setup-algolia-cli/issues/1#issuecomment-1465535303
       - uses: algolia/setup-algolia-cli@0af6968e098cc0526e22871fe46abe9a34e43e8d
+
+      # Updating Algolia index
       # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
       - run: |
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
@@ -47,9 +48,7 @@ jobs:
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
-          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
 
-      # 2. Deploying the website
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -66,7 +65,6 @@ jobs:
         name: Build frontend
         working-directory: frontend
         env:
-          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
           ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_INDEX_AUDIOS: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
@@ -76,10 +74,7 @@ jobs:
           FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES }}
 
-      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
-        env:
-          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - run: curl -sL firebase.tools | analytics=false bash
+      # Deploying the website
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
           firebase deploy --project ${{ vars.GCP_PROJECT_ID }}
@@ -88,5 +83,3 @@ jobs:
           (echo -n "channel_url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-production
         if: github.ref_name
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
