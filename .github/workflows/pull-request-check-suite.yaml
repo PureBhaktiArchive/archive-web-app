@@ -46,7 +46,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v3
         with:
-          name: ${{ needs.audio-data.outputs.artifact-name}}
+          name: ${{ needs.audio-data.outputs.artifact-name }}
           path: ${{ runner.temp }}
 
       - uses: actions/checkout@v3
