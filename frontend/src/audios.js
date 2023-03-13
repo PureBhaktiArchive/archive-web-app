@@ -23,7 +23,7 @@ import './search-result-item';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_APPLICATION_ID,
   process.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({

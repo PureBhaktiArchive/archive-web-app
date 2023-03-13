@@ -20,7 +20,7 @@ import { itemTemplate } from './memories-item-template';
 import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_APPLICATION_ID,
   process.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
