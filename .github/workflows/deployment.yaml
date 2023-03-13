@@ -37,6 +37,7 @@ jobs:
       # Updating Algolia index
       # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
       - run: |
+          set -o pipefail
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
