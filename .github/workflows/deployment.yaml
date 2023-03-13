@@ -34,10 +34,10 @@ jobs:
       # Pinning the commit SHA because this action does not maintain semver refs yet: https://github.com/algolia/setup-algolia-cli/issues/1#issuecomment-1465535303
       - uses: algolia/setup-algolia-cli@0af6968e098cc0526e22871fe46abe9a34e43e8d
 
-      # Updating Algolia index
       # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
       # For pipefail: https://stackoverflow.com/a/19804002
-      - run: |
+      - name: Update Algolia index
+        run: |
           set -o pipefail
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
@@ -89,7 +89,8 @@ jobs:
       # Deploying
       - run: firebase deploy --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-      - run: |
+      - name: Get site URL
+        run: |
           set -o pipefail
           firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
           jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
