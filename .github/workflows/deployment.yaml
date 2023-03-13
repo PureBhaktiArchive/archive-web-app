@@ -18,6 +18,9 @@ jobs:
       name: ${{ github.ref_name }}
       url: ${{ steps.get-site-url.outputs.channel-url}}
 
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+
     steps:
       # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
       - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
@@ -29,7 +32,7 @@ jobs:
       - run: curl -sL firebase.tools | analytics=false bash
 
       # Downloading audios data file from Firebase RTDB
-      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project ${{ vars.GCP_PROJECT_ID }}
+      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project $GCP_PROJECT_ID
 
       # Pinning the commit SHA because this action does not maintain semver refs yet: https://github.com/algolia/setup-algolia-cli/issues/1#issuecomment-1465535303
       - uses: algolia/setup-algolia-cli@0af6968e098cc0526e22871fe46abe9a34e43e8d
@@ -87,12 +90,12 @@ jobs:
         working-directory: functions
 
       # Deploying
-      - run: firebase deploy --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+      - run: firebase deploy --project $GCP_PROJECT_ID --force --non-interactive
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - name: Get site URL
         run: |
           set -o pipefail
-          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
+          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
           jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
           (echo -n "channel-url=" && cat) >> $GITHUB_OUTPUT
         id: get-site-url
