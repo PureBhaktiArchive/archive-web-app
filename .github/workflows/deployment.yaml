@@ -62,7 +62,7 @@ jobs:
           npm run check-js-typing
           npm test --if-present
           npm run build
-        name: Build frontend
+        name: Prepare frontend
         working-directory: frontend
         env:
           ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
@@ -74,7 +74,15 @@ jobs:
           FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES }}
 
-      # Deploying the website
+      - run: |
+          npm ci
+          npm run lint
+          npm run check-js-typing
+          npm test --if-present
+        name: Prepare functions
+        working-directory: functions
+
+      # Deploying
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
           firebase deploy --project ${{ vars.GCP_PROJECT_ID }}
