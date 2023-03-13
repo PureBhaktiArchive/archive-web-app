@@ -63,6 +63,7 @@ jobs:
           npm run check-js-typing
           npm test --if-present
           npm run build
+        name: Build frontend
         working-directory: frontend
         env:
           AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
