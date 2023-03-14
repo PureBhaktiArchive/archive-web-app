@@ -1,7 +1,7 @@
 <div
   id="player"
   x-cloak
-  x-data="player()"
+  x-data="player({% if fileId and contentDetails %}{{ fileId }}, JSON.parse('{{ contentDetails | json | escape }}'){% endif %})"
   x-bind="self"
   class="fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 shadow-xl-around md:flex-row md:space-x-6"
 >
@@ -59,65 +59,68 @@
     </div>
   </div>
   <!-- Main block -->
-  <div class="overflow-hidden md:grow">
-    <!-- Title -->
-    <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
-    <!-- Second line with tags and actions -->
-    <div class="mt-1 flex space-x-2 overflow-hidden">
-      <!-- Tags -->
-      <div class="no-scrollbar flex grow overflow-x-auto text-xs child-div:mr-1 child-div:mt-1 child-div:flex-none child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
-        <!-- ID -->
-        <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
-        <!-- Date -->
-        <template x-if="contentDetails.dateForHumans">
-          <div title="Date">
-            <span x-text="contentDetails.dateForHumans"></span>
-            <template x-if="contentDetails.dateUncertain">
-              <span title="Date is uncertain">(?)</span>
-            </template>
-          </div>
-        </template>
-        <!-- Location -->
-        <template x-if="contentDetails.location">
-          <div title="Location">
-            <span x-text="contentDetails.location"></span>
-            <template x-if="contentDetails.locationUncertain">
-              <span title="Location is uncertain">(?)</span>
-            </template>
-          </div>
-        </template>
-        <!-- Category -->
-        <template x-if="contentDetails.category">
-          <div x-text="contentDetails.category" title="Category"></div>
-        </template>
-        <!-- Languages -->
-        <template x-for="language in contentDetails.languages" :key="language">
-          <div x-text="language" title="Language spoken in the recording"></div>
-        </template>
+  <!-- template and x-if are needed to remove the block from DOM until the content details is assigned -->
+  <template x-if="contentDetails !== null">
+    <div class="overflow-hidden md:grow">
+      <!-- Title -->
+      <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
+      <!-- Second line with tags and actions -->
+      <div class="mt-1 flex space-x-2 overflow-hidden">
+        <!-- Tags -->
+        <div class="no-scrollbar flex grow overflow-x-auto text-xs child-div:mr-1 child-div:mt-1 child-div:flex-none child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
+          <!-- ID -->
+          <div title="Unique file identifier">#<span x-text="idPadded"></span></div>
+          <!-- Date -->
+          <template x-if="contentDetails.dateForHumans">
+            <div title="Date">
+              <span x-text="contentDetails.dateForHumans"></span>
+              <template x-if="contentDetails.dateUncertain">
+                <span title="Date is uncertain">(?)</span>
+              </template>
+            </div>
+          </template>
+          <!-- Location -->
+          <template x-if="contentDetails.location">
+            <div title="Location">
+              <span x-text="contentDetails.location"></span>
+              <template x-if="contentDetails.locationUncertain">
+                <span title="Location is uncertain">(?)</span>
+              </template>
+            </div>
+          </template>
+          <!-- Category -->
+          <template x-if="contentDetails.category">
+            <div x-text="contentDetails.category" title="Category"></div>
+          </template>
+          <!-- Languages -->
+          <template x-for="language in contentDetails.languages" :key="language">
+            <div x-text="language" title="Language spoken in the recording"></div>
+          </template>
+        </div>
+        <!-- Actions -->
+        <div class="flex flex-none items-baseline divide-x text-xs child-a:ml-1 child-a:pl-1">
+          <!-- Download -->
+          <a :href="downloadURL" title="Download file for listening offline">
+            <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span class="hidden align-text-bottom lg:inline">Download</span>
+          </a>
+          <!-- Feedback -->
+          <a :href="feedbackURL" target="_blank" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
+            <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            <span class="hidden align-text-bottom lg:inline">Feedback</span>
+          </a>
+        </div>
       </div>
-      <!-- Actions -->
-      <div class="flex flex-none items-baseline divide-x text-xs child-a:ml-1 child-a:pl-1">
-        <!-- Download -->
-        <a :href="downloadURL" title="Download file for listening offline">
-          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
-          <span class="hidden align-text-bottom lg:inline">Download</span>
-        </a>
-        <!-- Feedback -->
-        <a :href="feedbackURL" target="_blank" title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file">
-          <svg class="inline w-4 align-bottom" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-          </svg>
-          <span class="hidden align-text-bottom lg:inline">Feedback</span>
-        </a>
+      <!-- Seek control with timings -->
+      <div class="flex h-6 items-center space-x-2">
+        <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
+        <input type="range" min="0" x-ref="seekSlider" x-bind="seekSlider" class="h-1.5 grow">
+        <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
       </div>
     </div>
-    <!-- Seek control with timings -->
-    <div class="flex h-6 items-center space-x-2">
-      <span x-text="currentTimeForHumans" class="flex-none text-xs tabular-nums"></span>
-      <input type="range" min="0" x-ref="seekSlider" x-bind="seekSlider" class="h-1.5 grow">
-      <span x-text="durationForHumans" class="flex-none text-xs tabular-nums"></span>
-    </div>
-  </div>
+  </template>
 </div>

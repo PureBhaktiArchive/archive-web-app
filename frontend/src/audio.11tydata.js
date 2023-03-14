@@ -23,6 +23,7 @@ module.exports = {
         locationUncertain,
         category,
         languages,
+        duration,
       },
     }) => ({
       title,
@@ -32,6 +33,7 @@ module.exports = {
       locationUncertain,
       category,
       languages,
+      duration,
     }),
   },
 };

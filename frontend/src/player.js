@@ -5,8 +5,26 @@
 import Alpine from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
-// Decalring this intermediate function to avoid type inference as Record<string, any>
-const createNewPlayer = () => ({
+/**
+ * @typedef ContentDetails
+   @property {string} title
+   @property {string} dateForHumans
+   @property {boolean} dateUncertain
+   @property {string} location
+   @property {boolean} locationUncertain
+   @property {string} category
+   @property {string[]} languages
+   @property {number} duration
+ */
+
+/**
+ * Creates new audio player Alpine component
+ * Decalring this intermediate function to avoid type inference as Record<string, any>
+ * @param {number} fileId Audio file ID
+ * @param {ContentDetails} contentDetails Title and other content details to initialise the player
+ * @returns An Lpine component data object
+ */
+const createNewPlayer = (fileId, contentDetails) => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -18,22 +36,8 @@ const createNewPlayer = () => ({
 
   /** @type {number} */
   fileId: null,
-  contentDetails: {
-    /** @type {string} */
-    title: null,
-    /** @type {string} */
-    dateForHumans: null,
-    /** @type {boolean} */
-    dateUncertain: null,
-    /** @type {string} */
-    location: null,
-    /** @type {boolean} */
-    locationUncertain: null,
-    /** @type {string} */
-    category: null,
-    /** @type {string[]} */
-    languages: [],
-  },
+  /** @type {ContentDetails} */
+  contentDetails: null,
   audio: new Audio(),
 
   get idPadded() {
@@ -49,7 +53,9 @@ const createNewPlayer = () => ({
   },
 
   get durationForHumans() {
-    return formatDurationForHumans(this.duration);
+    return this.duration !== undefined
+      ? formatDurationForHumans(this.duration)
+      : '?';
   },
 
   get currentTimeForHumans() {
@@ -112,13 +118,25 @@ const createNewPlayer = () => ({
 
     // Triggering all updates for the volume slider
     this.$nextTick(() => (this.volume = 1));
+    if (fileId) this.loadFile(fileId, contentDetails, false);
   },
 
   /**
    * Handles `archive:toggle-play` event from the search result item
    * @param {CustomEvent} $event
    */
-  loadFile({ detail: { fileId, contentDetails, shouldPlay } }) {
+  handleTogglePlayEvent({ detail: { fileId, contentDetails, shouldPlay } }) {
+    this.loadFile(fileId, contentDetails, shouldPlay);
+  },
+
+  /**
+   * Loads a new file into the player
+   * @param {number} fileId ID of the audio file
+   * @param {ContentDetails} contentDetails All the content details to initialise the UI
+   * @param {boolean} [shouldPlay] Whether to start playback or not
+   * @returns {void}
+   */
+  loadFile(fileId, contentDetails, shouldPlay) {
     if (fileId === this.fileId) {
       this.togglePlay(shouldPlay);
       return;
@@ -209,7 +227,7 @@ const createNewPlayer = () => ({
   self: {
     'x-show': 'isOpen',
     'x-transition': '',
-    '@archive:toggle-play.window': 'loadFile',
+    '@archive:toggle-play.window': 'handleTogglePlayEvent',
   },
   playButton: {
     '@click': 'togglePlay()',

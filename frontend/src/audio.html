@@ -3,19 +3,7 @@ permalink: "/audios/{{ audio.objectID | slug }}/"
 layout: base
 jsFile: audio.js
 ---
-<article
-  class="m-10 flex flex-col"
-  id="audio-page"
-  data-audio-number="{{ audio.objectID }}"
-  data-audio-title="{{ audio.title }}"
-  data-date-for-humans="{{ audio.dateForHumans }}"
-  data-date-uncertain="{{ audio.dateUncertain }}"
-  data-location="{{ audio.location }}"
-  data-location-uncertain="{{ audio.locationUncertain }}"
-  data-category="{{ audio.category }}"
-  data-languages="{{ audio.languages | json | escape }}"
-  data-duration="{{ audio.duration }}"
->
+<article class="m-10 flex flex-col">
   <div class="flex flex-col">
     <div class="flex justify-between align-baseline">
       <!-- Title -->
@@ -174,4 +162,4 @@ jsFile: audio.js
   </div>
 </article>
 <!-- Player UI -->
-{% render 'partials/audio-player.html' -%}
+{% render 'partials/audio-player.html', fileId: audio.objectID, contentDetails: contentDetails -%}
