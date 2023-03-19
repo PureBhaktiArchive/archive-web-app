@@ -21,6 +21,7 @@ import './player';
 import { searchBar } from './search-bar';
 import './search-result-item';
 import { soundQualityRatingMapping } from './sound-quality-rating';
+import './webshare';
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APPLICATION_ID,

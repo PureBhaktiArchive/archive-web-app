@@ -152,6 +152,32 @@ export const itemTemplate = (hit, { html, components }) => html`
               </svg>
               <span class="hidden lg:inline">Feedback</span>
             </a>
+            <!-- Share -->
+            <span
+              class="ml-1 inline-flex cursor-pointer pl-1"
+              x-data="webshare(JSON.parse(JSON.stringify('${hit.title}')), '/audios/${hit.objectID}/')"
+              x-bind="self"
+              data-tippy-content="Link copied to clipboard"
+              data-tippy-trigger="manual"
+              data-tippy-placement="top"
+              title="Share this audio"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="h-full w-3.5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
+                />
+              </svg>
+              <span class="hidden lg:ml-1 lg:inline">Share</span>
+            </span>
           </div>
         </div>
       </div>

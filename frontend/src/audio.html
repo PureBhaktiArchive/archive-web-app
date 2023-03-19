@@ -26,15 +26,15 @@ jsFile: audio.js
             {%- endif %}
           </div>
         {%- endif %}
-        {% if audio.location != blank %}
+        {% if audio.location != null %}
           <div>
             {{ audio.location -}}
-            {%- if audio.locationUncertain != false %}
+            {%- if audio.locationUncertain == true %}
               <span title="Location is uncertain">(?)</span>
             {%- endif %}
           </div>
         {%- endif %}
-        {% if audio.category != blank %}
+        {% if audio.category != null %}
           <div>{{ audio.category }}</div>
         {%- endif %}
         {% for language in audio.languages %}
@@ -141,7 +141,7 @@ jsFile: audio.js
           <!-- Share -->
           <span
             class="ml-1 inline-flex cursor-pointer pl-1"
-            x-data="webshare('{{ audio.title }}', '/audios/{{ audio.objectID }}/')"
+            x-data="webshare(JSON.parse('{{ audio.title | json | escape }}'), '/audios/{{ audio.objectID }}/')"
             x-bind="self"
             data-tippy-content="Link copied to clipboard"
             data-tippy-trigger="manual"
