@@ -136,7 +136,7 @@ jsFile: audio.js
       <!-- Share -->
       <a
         class="inline-flex cursor-pointer items-center space-x-1"
-        x-data="webshare(JSON.parse('{{ audio.title | json | escape }}'), '/audios/{{ audio.objectID }}/')"
+        x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.objectID }}/')"
         x-bind="self"
         data-tippy-content="Link copied to clipboard"
         data-tippy-trigger="manual"
