@@ -2,6 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
+import { escape } from 'instantsearch.js/es/lib/utils';
 import { formatDurationForHumans } from './duration';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 
@@ -155,7 +156,9 @@ export const itemTemplate = (hit, { html, components }) => html`
             <!-- Share -->
             <span
               class="ml-1 inline-flex cursor-pointer pl-1"
-              x-data="webshare(JSON.parse(JSON.stringify('${hit.title}')), '/audios/${hit.objectID}/')"
+              x-data="webshare('${escape(
+                hit.title
+              )}', '/audios/${hit.objectID}/')"
               x-bind="self"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"
