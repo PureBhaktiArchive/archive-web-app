@@ -16,7 +16,8 @@ jsFile: audio.js
       <span class="mt-1">{{ audio.duration | duration }}</span>
     </div>
     <div class="mt-1 flex flex-col justify-between md:flex-row">
-      <div class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
+      <!-- Tags -->
+      <div class="flex flex-wrap content-between items-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0">
         <div>#{{ audio.objectID }}</div>
         {% if audio.dateForHumans != blank %}
           <div>
@@ -41,8 +42,9 @@ jsFile: audio.js
           <div>{{ language }}</div>
         {% endfor %}
       </div>
-      <div class="flex items-end justify-between md:pt-0">
-        <div class="flex self-stretch">
+      <div class="flex items-center justify-between md:pt-0">
+        <!-- Colored badges -->
+        <div class="flex">
           <span class="p-1">
             <div
               class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
@@ -89,58 +91,54 @@ jsFile: audio.js
             </div>
           </span>
         </div>
-        <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1 child-a:pr-1">
+        <!-- Actions -->
+        <div class="flex divide-x text-sm child-a:ml-1 child-a:space-x-1 child-a:pl-1 child-a:pr-1">
           <!-- Download -->
-          <span>
-            <a
-              href="https://{{ env.STORAGE_BUCKET }}.storage.googleapis.com/{{ audio.objectID }}.mp3"
-              class="inline-flex space-x-1"
-              title="Download file for listening offline"
+          <a
+            href="https://{{ env.STORAGE_BUCKET }}.storage.googleapis.com/{{ audio.objectID }}.mp3"
+            class="inline-flex"
+            title="Download file for listening offline"
+          >
+            <svg
+              class="h-full w-4 stroke-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
             >
-              <svg
-                class="mt-1 h-full w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                />
-              </svg>
-              <span class="hidden lg:inline">Download</span>
-            </a>
-          </span>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+            <span class="hidden lg:inline">Download</span>
+          </a>
           <!-- Feedback -->
-          <span>
-            <a
-              href="{{ env.FEEDBACK_FORM_AUDIOS }}{{ audio.objectID }}"
-              target="_blank"
-              class="inline-flex space-x-1"
-              title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
+          <a
+            href="{{ env.FEEDBACK_FORM_AUDIOS }}{{ audio.objectID }}"
+            target="_blank"
+            class="inline-flex"
+            title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
+          >
+            <svg
+              class="h-full w-4 stroke-current"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
             >
-              <svg
-                class="mt-1 h-full w-4 stroke-current"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                />
-              </svg>
-              <span class="hidden lg:inline">Feedback</span>
-            </a>
-          </span>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+              />
+            </svg>
+            <span class="hidden lg:inline">Feedback</span>
+          </a>
           <!-- Share -->
-          <span
-            class="ml-1 inline-flex cursor-pointer pl-1"
+          <a
+            class="inline-flex cursor-pointer"
             x-data="webshare(JSON.parse('{{ audio.title | json | escape }}'), '/audios/{{ audio.objectID }}/')"
             x-bind="self"
             data-tippy-content="Link copied to clipboard"
@@ -153,8 +151,7 @@ jsFile: audio.js
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="2"
-              stroke="currentColor"
-              class="h-full w-3.5"
+              class="h-full w-4 stroke-current"
             >
               <path
                 stroke-linecap="round"
@@ -162,8 +159,8 @@ jsFile: audio.js
                 d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
               />
             </svg>
-            <span class="hidden lg:ml-1 lg:inline">Share</span>
-          </span>
+            <span class="hidden lg:inline">Share</span>
+          </a>
         </div>
       </div>
     </div>
