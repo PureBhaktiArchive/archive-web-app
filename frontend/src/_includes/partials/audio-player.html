@@ -116,8 +116,10 @@
           <!-- Share -->
           <span
             class="ml-1 inline-flex cursor-pointer pl-1"
-            x-data="webshare(JSON.parse('{{ audio-title | json | escape }}'), '/audios/{{ fileId }}/')"
+            x-data="webshare"
             x-bind="self"
+            :data-webshare-title="contentDetails.title"
+            :data-webshare-url="'/audios/' + fileId + '/'"
             data-tippy-content="Link coied to clipboard"
             data-tippy-trigger="manual"
             data-tippy-placement="auto"
