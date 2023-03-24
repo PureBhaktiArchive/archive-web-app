@@ -6,15 +6,15 @@ jsFile: audio.js
 <article class="mx-auto mt-10 flex max-w-screen-md flex-col px-2 sm:px-4">
   <div class="flex justify-between align-baseline">
     <!-- Title -->
-    <span class="text-lg font-bold">{{ audio.title }}</span>
+    <h1 class="text-xl font-bold">{{ audio.title }}</h1>
     <!-- Duration -->
     <span class="mt-1">{{ audio.duration | duration }}</span>
   </div>
   <!-- Second line -->
-  <div class="mt-1 flex items-start justify-between space-x-2">
+  <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
-      <div class="mb-1 flex flex-wrap content-between items-baseline text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+      <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
         <div>#{{ audio.objectID }}</div>
         {% if audio.dateForHumans != blank %}
           <div>
@@ -43,7 +43,7 @@ jsFile: audio.js
       <div class="mb-1 flex items-center space-x-1">
         <!-- Percentage -->
         <div
-          class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
+          class="relative overflow-hidden rounded-lg border border-gray-300"
           title="How much Srila Gurudeva is speaking in the recording"
         >
           <div
@@ -57,7 +57,7 @@ jsFile: audio.js
         </div>
         <!-- Sound Quality -->
         <div
-          class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
+          class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5"
           title="Sound quality of the recording"
         >
           <svg
@@ -86,7 +86,7 @@ jsFile: audio.js
       </div>
     </div>
     <!-- Actions -->
-    <div class="mb-1 flex space-x-1 text-xs">
+    <div class="mb-1 flex space-x-1">
       <!-- Download -->
       <a
         href="https://{{ env.STORAGE_BUCKET }}.storage.googleapis.com/{{ audio.objectID }}.mp3"
@@ -158,8 +158,8 @@ jsFile: audio.js
       </a>
     </div>
   </div>
-  <div class="prose mt-6 dark:prose-invert">
-    <p class="text-lg font-bold">Topics</p>
+  <div class="prose-sm prose mt-6 dark:prose-invert sm:prose">
+    <h4>Topics</h4>
     {% renderTemplate "liquid,md", audio -%}
     {{- topics -}}
     {%- endrenderTemplate %}
