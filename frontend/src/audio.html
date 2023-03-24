@@ -16,28 +16,28 @@ jsFile: audio.js
       <!-- Tags -->
       <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
         <div>#{{ audio.objectID }}</div>
-        {% if audio.dateForHumans != null %}
+        {% if audio.dateForHumans -%}
           <div>
             {{ audio.dateForHumans }}
-            {% if audio.dateUncertain != false %}
+            {% if audio.dateUncertain -%}
               <span title="Date is uncertain">(?)</span>
             {%- endif %}
           </div>
         {%- endif %}
-        {% if audio.location != null %}
+        {% if audio.location -%}
           <div>
-            {{ audio.location -}}
-            {%- if audio.locationUncertain == true %}
+            {{ audio.location }}
+            {% if audio.locationUncertain -%}
               <span title="Location is uncertain">(?)</span>
             {%- endif %}
           </div>
         {%- endif %}
-        {% if audio.category != null %}
+        {% if audio.category -%}
           <div>{{ audio.category }}</div>
         {%- endif %}
-        {% for language in audio.languages %}
+        {% for language in audio.languages -%}
           <div>{{ language }}</div>
-        {% endfor %}
+        {%- endfor %}
       </div>
       <!-- Colored badges -->
       <div class="mb-1 flex items-center space-x-1">
