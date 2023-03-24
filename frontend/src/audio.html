@@ -16,7 +16,7 @@ jsFile: audio.js
       <!-- Tags -->
       <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
         <div>#{{ audio.objectID }}</div>
-        {% if audio.dateForHumans != blank %}
+        {% if audio.dateForHumans != null %}
           <div>
             {{ audio.dateForHumans }}
             {% if audio.dateUncertain != false %}
