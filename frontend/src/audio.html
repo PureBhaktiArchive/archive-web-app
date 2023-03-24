@@ -45,6 +45,21 @@ jsFile: audio.js
       </div>
       <!-- Colored badges -->
       <div class="mb-1 flex items-center space-x-1">
+        <!-- Percentage -->
+        <div
+          class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
+          title="How much Srila Gurudeva is speaking in the recording"
+        >
+          <div
+            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+            style="--percentage: {{ audio.percentage | percentage }}"
+          ></div>
+          <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
+            <span class="whitespace-nowrap">Srila Gurudeva</span>
+            <span>{{ audio.percentage | percentage }}</span>
+          </div>
+        </div>
+        <!-- Sound Quality -->
         <div
           class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
           title="Sound quality of the recording"
@@ -71,20 +86,6 @@ jsFile: audio.js
             />
           </svg>
           <span>{{ audio.soundQualityRating | sound_quality_label }}</span>
-        </div>
-        <!-- Percentage -->
-        <div
-          class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
-          title="How much Srila Gurudeva is speaking in the recording"
-        >
-          <div
-            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
-            style="--percentage: {{ audio.percentage | percentage }}"
-          ></div>
-          <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
-            <span class="whitespace-nowrap">Srila Gurudeva</span>
-            <span>{{ audio.percentage | percentage }}</span>
-          </div>
         </div>
       </div>
     </div>
