@@ -111,7 +111,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             <!-- Download -->
             <a
               href="https://${process.env
-                .STORAGE_BUCKET}.storage.googleapis.com/${hit.objectID}.mp3}"
+                .STORAGE_BUCKET}.storage.googleapis.com/${hit.objectID}.mp3"
               class="inline-flex space-x-1"
               title="Download file for listening offline"
             >
