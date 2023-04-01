@@ -1,105 +1,142 @@
 ---
 gtm-tag-id: GTM-PNC4S5J
 ---
-<!doctype html>
-<html class="font-sans text-gray-600" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#115E59">
-    <meta name="msapplication-navbutton-color" content="#115E59 ">
-    <link rel="manifest" href="~/src/manifest.webmanifest">
-    <link rel="icon" sizes="32x32" type="image/png" href="~/src/images/favicon-32x32.png">
-    <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png">
-    <link rel="stylesheet" href="~/src/app.css">
-
-    <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
-    {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
-  </head>
-
-  <body class="flex flex-col overlayed:overflow-hidden sm:h-screen">
-    {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
-    <header class="bg-header w-full border-b-4 border-dotted border-peach-dark bg-clip-content pb-0.5">
-      <div class="relative mx-auto max-w-screen-xl">
-        <div class="bg-header-decor absolute left-0 top-2 h-full w-11 bg-contain bg-left-top bg-no-repeat opacity-25 mobile-s:opacity-100 mobile-m:w-12 mobile-l:w-14 md:top-0 md:h-20 md:w-24"></div>
-        <div
-          class="bg-header-decor absolute right-0 top-2 h-full w-11 -scale-x-100 bg-contain bg-right-top bg-no-repeat opacity-25 mobile-s:opacity-100 mobile-m:w-12 mobile-l:w-14 md:top-0 md:h-20 md:w-24"
-        ></div>
-        <div class="relative z-10 px-1 py-3 text-center font-header text-xs font-semibold tracking-tighter text-teal-800 mobile-m:text-sm mobile-l:text-base sm:text-lg md:tracking-normal lg:ml-60 lg:mr-28">
-          <span class="sm:flex sm:justify-center sm:space-x-3">
-            <span class="bg-lotus hidden w-7 flex-none bg-contain bg-right-top bg-no-repeat sm:block"></span>
-            <span>
-              <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">The Official Archive of</span>
-              <span class="mobile-s:whitespace-nowrap">His Divine Grace</span>
-            </span>
-            <span class="bg-lotus hidden w-7 flex-none -scale-x-100 bg-contain bg-right-top bg-no-repeat sm:block"></span>
-          </span>
-          <span class="lg:text-xl">
-            <span class="whitespace-nowrap">Sri Srimad</span>
-            <span class="mobile-s:block mobile-s:whitespace-nowrap sm:inline">Bhaktivedanta Narayana Gosvami Maharaja</span>
-          </span>
-        </div>
-        <img
-          src="~/src/images/gurudeva.png"
-          alt="Srila Gurudeva"
-          class="absolute left-0 right-0 top-full z-10 mx-auto w-28 -translate-y-3 rounded-full sm:left-4 sm:right-auto md:left-20 lg:left-20 lg:w-44 lg:-translate-y-16"
-        >
-      </div>
-    </header>
-    <nav class="relative mb-4 mt-0.5 bg-submarine-500 p-4 sm:mb-0 sm:p-0">
-      <!-- Mobile menu button -->
-      <div class="flex justify-end sm:hidden">
-        <button type="button" data-menu-toggle class="p-2 text-teal-800 focus:outline-none lg:hidden" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <!-- Icon when menu is closed. -->
-          <!-- Heroicon name: outline/menu -->
-          <svg data-menu-toggled class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <!-- Icon when menu is open. -->
-          <!-- Heroicon name: outline/x -->
-          <svg data-menu-toggled class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <!-- Menu items -->
-      <div data-menu-toggled class="hidden sm:block">
-        <div class="flex flex-col items-end justify-end space-y-4 py-1 pl-36 font-header text-sm font-semibold text-gray-600 child-a:px-2 child-a:py-1 sm:flex-row sm:items-stretch sm:justify-start sm:space-x-1 sm:space-y-0 md:pl-56 lg:justify-center lg:space-x-3 lg:pl-72 lg:pr-28 lg:text-base">
-          {%- assign menu = collections.topnav | eleventyNavigation -%}
-          {%- for entry in menu -%}
-            <a
-              href="{{ entry.url }}"
-              {% if entry.url == page.url %}
-                class="rounded-md bg-teal-800 text-white"
-              {% endif %}
-              {% if entry.target == 'external' %}
-                target="_blank"
-              {% endif %}
-            >
-              {{ entry.title }}
-            </a>
-          {%- endfor -%}
-        </div>
-      </div>
-    </nav>
-    <!-- banner -->
-    {% if bannerShow != false %}
-      <div class="mx-auto flex w-full max-w-screen-xl flex-wrap items-center justify-center space-x-1 border-b px-4 py-2 text-sm sm:pl-36 md:pl-56 lg:pl-72">
-        <a class="inline-flex items-center rounded-md bg-red-400 px-2 py-1 text-white shadow-sm" href="/join">JOIN US</a>
-        <span class="py-1 text-center">for <strong>Daily Harikatha &amp; Short Videos</strong> in Hindi &amp; English </span>
-      </div>
-    {% endif %}
-    <div class="mx-auto w-full max-w-screen-xl flex-1">
-      <div class="mt-4 flex-none text-center font-header text-sm font-bold uppercase text-teal-800 sm:hidden">{{ title }}</div>
-      {{ content }}
+  <!doctype html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="theme-color" content="#115E59">
+      <meta name="msapplication-navbutton-color" content="#115E59 ">
+      <link rel="manifest" href="~/src/manifest.webmanifest">
+      <link rel="icon" sizes="32x32" type="image/png" href="~/src/images/favicon-32x32.png">
+      <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png">
+      <link rel="stylesheet" href="~/src/app.css">
+      <!-- <link href="output.css" rel="stylesheet">-->
+  <!--<script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+  <script src="node_modules/flowbite/dist/flowbite.min.js"></script>-->
+  <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
+  {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
+</head>
+<body>
+  {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
+  <!--Top section Join us now-->
+  {% if bannerShow != false %}
+  <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar"
+  aria-controls="sidebar-multi-level-sidebar" type="button"
+  class="inline-flex items-center p-3 border-b border-b-white text-sm text-gray-900 !bg-pink-100 !w-full font-extrabold md:hidden
+   hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+  <span class="sr-only">Open sidebar</span>
+  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+    xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" fill-rule="evenodd"
+      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+    </path>
+  </svg>
+</button>
+{% endif %}
+  <aside id="sidebar-multi-level-sidebar"
+        class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 md:w-auto md:relative md:h-auto md:bg-none md:top-auto "
+        aria-label="Sidebar">
+        <div class=" h-full overflow-y-auto bg-white ">
+  <section class="!w-full  md:!border-b !border-t !border-gray-300 md:!bg-emerald-700/10 mx-auto h-15 md:!h-12 items-center justify-center
+  space-x-2 md:flex  px-4 md:!px-0 md:!text-left pt-4 md:!pt-0 absolute left-0 bottom-4 md:!left-auto md:!bottom-auto md:!relative ">
+    <div class="font-normal md:!text-sm text-xs"><span class="md:!text-sm text-xs font-bold">JOIN US&nbsp;</span> for Daily Harikatha & Short
+      Videos in Hindi & English @ Gaudiya Rasamrita</div>
+    <div class="flex md:justify-center items-center md:!space-x-2 text-gray-700 mt-1 !space-x-1 !justify-start ">
+      <!--Using the below icons from https://iconify.design which is open source and all are easily customizable.-->
+      <a href="https://chat.whatsapp.com/DVLt0xX4yab3acLQRUBoBv" target="_blank">
+        <iconify-icon icon="ic:twotone-whatsapp" class="text-xl -ml-2 md:!-ml-0"></iconify-icon>
+      </a>
+      <!--Whatsapp Icon-->
+      <a href="https://www.youtube.com/channel/UCc9ms4F-PWpkUDct7OcuqMQ" target="_blank">
+        <iconify-icon icon="ri:youtube-fill" class="text-xl"></iconify-icon>
+      </a>
+      <!--Youtube Icon-->
+      <a href="https://www.facebook.com/GaudiyaRasamrita/" target="_blank">
+        <iconify-icon icon="ic:baseline-facebook" class="text-xl"></iconify-icon>
+      </a>
+      <!--Facebook Icon-->
+      <a href="https://t.me/gaudiyarasamrita" target="_blank">
+        <iconify-icon icon="ic:baseline-telegram" class="text-xl"></iconify-icon>
+      </a>
+      <!--Telegram Icon-->
+      <a href="https://www.instagram.com/gaudiya.rasamrita/" target="_blank">
+        <iconify-icon icon="ph:instagram-logo-fill" class="text-xl"></iconify-icon>
+      </a>
+      <!--Instagram Icon-->
+      <a href="https://podcasts.apple.com/us/podcast/gaudiya-rasamrita-english/id1537314210?uo=4" target="_blank">
+        <iconify-icon icon="ph:apple-podcasts-logo-thin" class="text-xl font-extrabold"></iconify-icon>
+      </a>
+      <!--Apple Podocast Icon-->
+      <a href="https://open.spotify.com/show/2YcWMvVkZXYMgfXOq907Bm?si=cOkhRfbISxe6_38OYMCA8w&nd=1" target="_blank">
+        <iconify-icon icon="ph:spotify-logo-bold" class="text-xl"></iconify-icon>
+      </a>
+      <!--Spotify Icon-->
+      <a href="https://podcasts.google.com/feed/aHR0cHM6Ly9hbmNob3IuZm0vcy8zY2Y4ZDRmMC9wb2RjYXN0L3Jzcw=="
+        target="_blank">
+        <iconify-icon icon="mdi:google-podcast" class="text-xl"></iconify-icon>
+      </a>
+      <!--Google Podocast Icon-->
+      <a href="https://purebhakti.us2.list-manage.com/subscribe?u=cff0da0dff6847d2469bdff2b&id=b2107d9953"
+        target="_blank">
+        <iconify-icon icon="quill:inbox-newsletter" class="text-xl"></iconify-icon>
+      </a>
+      <!--Subscribe Newsletter Icon-->
+      <!--Closed Icons.-->
     </div>
-    <footer class="border-t pt-7 pb-40">
-      <div class="flex justify-center space-x-1 text-xs text-gray-600 child-a:px-2 lg:space-x-3">
-        {%- assign menu = collections.bottomnav | eleventyNavigation -%}
+  </section>
+  <!--Top section Join us now-->
+  <!--Navigation Bar and Logo-->
+  <section class="w-full border-b px-4 bg-white border-b-white md:border-b-gray-200">
+    <nav class=" flex items-center xl:container lg:w-full justify-between flex-wrap py-4 mx-auto ">
+      <!--Logo-->
+      <div><img src="~/src/images/logo.png" alt="" class="w-2/3 md:w-full"> </div>
+      <!--Logo-->
+      <!--Menu-->
+          <nav
+            class="md:space-x-8 text-sm text-stone-900 font-semibold uppercase !mt-10 md:!mt-0 !space-y-3 md:!space-y-0">
+            {%- assign menu = collections.topnav | eleventyNavigation -%}
+            {%- for entry in menu -%}
+              <a
+                href="{{ entry.url }}"
+                {% if entry.url == page.url %}
+                class="border-b-4 h-8 md:inline block  justify-center border-b-white hover:text-green opacity-100 hover:border-b-4 hover:border-b-green active [&.active]:text-green active [&.active]:border-b-green"
+                {% endif %}
+                {% if entry.target == 'external' %}
+                  target="_blank"
+                {% endif %}
+              >
+                {{ entry.title }}
+              </a>
+            {%- endfor -%}
+        </nav>
+        </div>
+      </aside>
+      <!--Menu-->
+    </nav>
+  </section>
+  <!--Navigation Bar and Logo-->
+
+   <!--Main body section-->
+  <div class="xl:container w-full mx-auto md:my-6 ">
+    <div class="md:flex">
+       {{ content }}
+    </div>
+  </div>
+  <!--Main body section-->
+
+  <!--Footer-->
+  <div class="bg-emerald-900 !w-full mx-auto justify-center md:flex px-4 mt-0">
+    <div class="!w-full py-4 md:flex items-center xl:!container">
+      <div class="grow w-40 mx-auto pb-2 md:pb-0"><img src="~/src/images/logo-white.png"></div>
+      <div class="flex flex-col text-center md:!text-right">
+        <div>
+          {%- assign menu = collections.bottomnav | eleventyNavigation -%}
         {%- for entry in menu -%}
           <a
-            href="{{ entry.url }}"
+            href="{{ entry.url }}" class=" text-white text-sm px-1 hover:underline"
             {% if entry.target == 'external' %}
               target="_blank"
             {% endif %}
@@ -107,12 +144,18 @@ gtm-tag-id: GTM-PNC4S5J
             {{ entry.title }}
           </a>
         {%- endfor -%}
+        </div>
+        <div class=" text-white text-sm px-1">
+          <p>Copyright &copy;2022 Harikatha.com</p>
+        </div>
       </div>
-    </footer>
-    <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
-    <script type="module" src="~/src/menu.js"></script>
-    {%- if jsFile -%}
-      <script type="module" src="~/src/{{jsFile}}"></script>
-    {%- endif -%}
-  </body>
+    </div>
+  </div>
+  <!--Footer-->
+     <!-- Menu script should go above other scripts to aboid strange parcel issue "Cannot find module 'xxxxx'" -->
+     <script type="module" src="~/src/menu.js"></script>
+     {%- if jsFile -%}
+       <script type="module" src="~/src/{{jsFile}}"></script>
+     {%- endif -%}
+</body>
 </html>
