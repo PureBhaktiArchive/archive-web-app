@@ -47,7 +47,7 @@ Alpine.data(
     },
 
     self: {
-      '@click': 'share',
+      '@click.prevent': 'share',
     },
   })
 );

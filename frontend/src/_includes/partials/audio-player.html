@@ -114,7 +114,8 @@
             <span class="hidden align-text-bottom lg:inline">Feedback</span>
           </a>
           <!-- Share -->
-          <span
+          <a
+            :href="'/audios/' + fileId + '/'"
             class="ml-1 inline-flex cursor-pointer items-start pl-1"
             x-data="webshare"
             x-bind="self"
@@ -140,7 +141,7 @@
               />
             </svg>
             <span class="hidden lg:ml-1 lg:inline">Share</span>
-          </span>
+          </a>
         </div>
       </div>
       <!-- Seek control with timings -->

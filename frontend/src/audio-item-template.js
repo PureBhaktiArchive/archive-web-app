@@ -154,7 +154,8 @@ export const itemTemplate = (hit, { html, components }) => html`
               <span class="hidden lg:inline">Feedback</span>
             </a>
             <!-- Share -->
-            <span
+            <a
+              href="/audios/${hit.objectID}/"
               class="ml-1 inline-flex cursor-pointer pl-1"
               x-data="webshare('${escape(
                 hit.title
@@ -180,7 +181,7 @@ export const itemTemplate = (hit, { html, components }) => html`
                 />
               </svg>
               <span class="hidden lg:ml-1 lg:inline">Share</span>
-            </span>
+            </a>
           </div>
         </div>
       </div>
