@@ -5,8 +5,8 @@
 # Used in GitHub Actions workflows for detecting which paths were changed
 # https://github.com/dorny/paths-filter#advanced-options
 frontend:
-  - 'frontend/**'
+  - frontend/**
 functions:
-  - 'functions/**'
+  - functions/**
 workflows:
-  - '.github/workflows/*.yml'
+  - .github/workflows/*.*

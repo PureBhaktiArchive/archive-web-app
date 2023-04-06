@@ -3,7 +3,9 @@ eleventyNavigation:
   key: Donate
   order: 3
   target: external
-  url: https://www.audioseva.com/donate
+eleventyComputed:
+  eleventyNavigation:
+    url: "{{ env.DONATION_URL }}"
 tags:
   - topnav
   - bottomnav

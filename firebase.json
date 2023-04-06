@@ -1,9 +1,5 @@
 {
   "functions": {
-    "predeploy": [
-      "npm --prefix \"$RESOURCE_DIR\" run lint",
-      "npm --prefix \"$RESOURCE_DIR\" run type-check"
-    ],
     "source": "functions"
   },
   "hosting": {
@@ -21,12 +17,6 @@
           }
         ]
       }
-    ],
-    "predeploy": [
-      "rm -rf frontend/.cache",
-      "rm -rf \"$RESOURCE_DIR\"",
-      "npm --prefix \"$RESOURCE_DIR/..\" run lint",
-      "npm --prefix \"$RESOURCE_DIR/..\" run build"
     ]
   },
   "emulators": {

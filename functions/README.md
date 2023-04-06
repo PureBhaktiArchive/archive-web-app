@@ -23,7 +23,6 @@ See [Firebase Environment configuration](https://firebase.google.com/docs/functi
 | ------------------------- | --------------------------------------- |
 | `algolia.appid`           | Algolia’s App ID                        |
 | `algolia.apikey`          | Algolia’s API key                       |
-| `algolia.index.audios`    | Algolia’s audios index name             |
 | `algolia.index.memories`  | Algolia’s memories index name           |
 | `storage.bucket`          | Google Storage bucket for the MP3 files |
 | `memories.spreadsheet.id` | Spreadsheet ID of the Memories sheet    |

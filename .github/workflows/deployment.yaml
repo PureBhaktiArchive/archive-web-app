@@ -1,0 +1,101 @@
+name: Deployment
+on:
+  push:
+    branches:
+      - production
+      - test
+  workflow_dispatch:
+
+concurrency:
+  group: deployment-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deployment:
+    name: Deploy to ${{ github.ref_name }}
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref_name }}
+      url: ${{ steps.get-site-url.outputs.channel-url}}
+
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+
+    steps:
+      # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+      - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
+      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
+
+      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+        env:
+          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - run: curl -sL firebase.tools | analytics=false bash
+
+      # Downloading audios data file from Firebase RTDB
+      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project $GCP_PROJECT_ID
+
+      # Pinning the commit SHA because this action does not maintain semver refs yet: https://github.com/algolia/setup-algolia-cli/issues/1#issuecomment-1465535303
+      - uses: algolia/setup-algolia-cli@0af6968e098cc0526e22871fe46abe9a34e43e8d
+
+      # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
+      # For pipefail: https://stackoverflow.com/a/19804002
+      - name: Update Algolia index
+        run: |
+          set -o pipefail
+          algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
+
+          # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
+          jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
+
+          algolia indices move $TEMP_INDEX $INDEX --confirm
+        env:
+          ALGOLIA_CLI_TELEMETRY: 0
+          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
+          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
+          TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - run: |
+          npm ci
+          npm run lint
+          npm run check-js-typing
+          npm test --if-present
+          npm run build
+        name: Prepare frontend
+        working-directory: frontend
+        env:
+          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          ALGOLIA_INDEX_AUDIOS: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
+          ALGOLIA_INDEX_MEMORIES: ${{ vars.ALGOLIA_INDEX_MEMORIES}}
+          STORAGE_BUCKET: ${{ vars.STORAGE_BUCKET}}
+          DONATION_URL: ${{ vars.DONATION_URL}}
+          FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
+          FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES }}
+
+      - run: |
+          npm ci
+          npm run lint
+          npm run check-js-typing
+          npm test --if-present
+        name: Prepare functions
+        working-directory: functions
+
+      # Deploying
+      - run: firebase deploy --project $GCP_PROJECT_ID --force --non-interactive
+      # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
+      - name: Get site URL
+        run: |
+          set -o pipefail
+          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
+          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
+          (echo -n "channel-url=" && cat) >> $GITHUB_OUTPUT
+        id: get-site-url
