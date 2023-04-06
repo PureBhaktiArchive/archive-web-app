@@ -13,10 +13,10 @@ export {};
  * @property {string} [dateISO]
  * @property {string} [dateForHumans]
  * @property {number} [year]
- * @property {boolean} dateUncertain
- * @property {string} timeOfDay
- * @property {string} location
- * @property {boolean} locationUncertain
+ * @property {boolean | null} dateUncertain
+ * @property {string | null} timeOfDay
+ * @property {string | null} location
+ * @property {boolean | null} locationUncertain
  * @property {string} category
  * @property {string[]} languages
  * @property {string} [languageCategory]

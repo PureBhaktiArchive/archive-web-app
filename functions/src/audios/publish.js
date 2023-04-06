@@ -2,7 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-import algoliasearch from 'algoliasearch';
 /* eslint-disable import/no-unresolved -- due to https://github.com/import-js/eslint-plugin-import/issues/1810 */
 import { getApps, initializeApp } from 'firebase-admin/app';
 import { getDatabase } from 'firebase-admin/database';
@@ -36,10 +35,7 @@ function getLanguageAttributes(input) {
 
 /**
  * @param {string} source
- * @returns {Pick<
- *   AudiosAlgoliaRecord,
- *   'dateForHumans' | 'dateISO' | 'year'
- * > | null}
+ * @returns {Pick<AudiosAlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null}
  */
 function getDateAttributes(source) {
   if (!source) return null;
@@ -58,6 +54,26 @@ function getDateAttributes(source) {
     dateForHumans: formatReducedPrecisionDateForHumans(date),
     year: date.date.year,
   };
+}
+
+/**
+ * Fixes common human mistakes in topics formatting so that it renders correctly
+ * as Markdown
+ *
+ * @param {string} topics
+ * @returns {string}
+ */
+function sanitizeTopics(topics) {
+  return (
+    topics
+      .replaceAll('\r\n', '\n')
+      // Remove spaces in the beginning of the line
+      .replaceAll(/^ -/gm, '-')
+      // Add space after hyphen in the beginning of the line
+      .replaceAll(/^-(?!\s)/gm, '- ')
+      // Remove original text kept in the end of the cell
+      .replace(/\n*\s*ORIGINAL.*$/s, '')
+  );
 }
 
 export default functions.pubsub
@@ -82,36 +98,33 @@ export default functions.pubsub
       /** @type {Record<string, AudiosEntry>} */ (entriesSnapshot.val())
     )
       // Skipping entries which are obsolete or has no valid duration
-      .filter(([id, entry]) => !entry.obsolete && (durations.get(id) || 0) > 0)
+      .filter(
+        ([id, entry]) =>
+          !entry.obsolete &&
+          (durations.get(id) || 0) > 0 &&
+          entry.contentDetails.title
+      )
       .map(
         /** @returns {AudiosAlgoliaRecord} */
         ([id, entry]) => ({
           objectID: id,
           title: entry.contentDetails.title,
-          topics: entry.contentDetails.topics,
+          topics: sanitizeTopics(entry.contentDetails.topics),
           topicsReady: entry.contentDetails.topicsReady,
           ...getDateAttributes(entry.contentDetails.date),
-          dateUncertain: entry.contentDetails.dateUncertain,
-          timeOfDay: entry.contentDetails.timeOfDay,
-          location: entry.contentDetails.location,
-          locationUncertain: entry.contentDetails.locationUncertain,
+          dateUncertain: entry.contentDetails.dateUncertain || null,
+          timeOfDay: entry.contentDetails.timeOfDay || null,
+          location: entry.contentDetails.location || null,
+          locationUncertain: entry.contentDetails.locationUncertain || null,
           category: entry.contentDetails.category,
           ...getLanguageAttributes(entry.contentDetails.languages),
           percentage: entry.contentDetails.percentage,
           soundQualityRating: entry.contentDetails.soundQualityRating,
-          duration: durations.get(id) || null,
+          duration:
+            /** @type {number} We Filtered out undefined values above */
+            (durations.get(id)),
         })
       );
 
-    // @ts-expect-error
-    const client = algoliasearch(
-      functions.config().algolia.appid,
-      functions.config().algolia.apikey
-    );
-    const index = client.initIndex(functions.config().algolia.index.audios);
-
-    if (records.length > 0) await index.replaceAllObjects(records);
-    else await index.clearObjects();
-
-    console.log('Indexing has been successfully queued.');
+    await getDatabase().ref('/audio/records').set(records);
   });
