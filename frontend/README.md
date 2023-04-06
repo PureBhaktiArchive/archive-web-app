@@ -38,6 +38,7 @@ Environment variables should be added to an `.env` file according to the [Parcel
 | `FEEDBACK_FORM_AUDIOS`   | The base URL of the Audios Feedback Form, file ID will be appended in the end.                                                                                                   |
 | `FEEDBACK_FORM_MEMORIES` | The base URL of the Memories Feedback Form, memory ID will be appended in the end.                                                                                               |
 | `AUDIOS_DATA_PATH`       | Path to a file containing JSON data for audio pages generation. Should be absolute or relative to the `frontend` folder. This file can be downloaded from the Realtime Database. |
+| `DONATION_URL`           | The URL of the external donation page.                                                                                                                                           |
 
 ## Running locally
 
