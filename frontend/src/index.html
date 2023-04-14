@@ -54,15 +54,15 @@ tags:
         <div class="mt-4 grid grid-cols-1  gap-x-2 gap-y-2 p-1 md:grid-cols-2">
           {% for audio in homeaudios limit: 8 %}
             <a href="./audios/{{ audio.objectID }}/">
-              <div class="grid h-14 grid-cols-6 content-center rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50">
-                <div class="col-span-1 ml-4 h-8 w-8 content-baseline rounded-full bg-green-800">
+              <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
+                <div class="col-span-1 ml-2 h-8 w-8 content-baseline rounded-full bg-green-800">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8">
                     <path fill="white" d="m15 12.33l-6 4.33V8l6 4.33Z" />
                   </svg>
                 </div>
-                <div class="col-span-5 content-center pl-2">
+                <div class="col-span-5 content-center">
                   <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-                  <div class="mb-1 flex flex-wrap text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                  <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
                     <div>#{{ audio.objectID }}</div>
                     {% if audio.dateForHumans -%}
                       <div>
