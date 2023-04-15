@@ -11,45 +11,35 @@ tags:
     <div class="w-full sm:!px-0 md:!px-4">
       <div class="flex w-full items-start border border-gray-200 bg-pink-100 px-4 text-center md:space-x-6 md:rounded-lg md:p-6 md:px-0 md:!text-left md:shadow-lg md:shadow-gray-400/30">
         <img src="~/src/images/srila-gurudev.jpg" alt="" class="hidden rounded-lg md:block">
-        <div class="">
-          <span class="mt-4 block text-sm font-semibold uppercase md:mt-8 md:text-base">Harey Krishna!</span>
-          <span class="text-green block py-2 font-semibold tracking-tight md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja,</span>
-          <p class=" mb-4 text-sm md:!text-base ">
-            His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja, henceforth referred as Srila Gurudeva. (To know more about Srila Gurudeva, and to access his books and transcripts please
+        <div>
+          <p class="mt-4 text-sm font-semibold uppercase md:mt-8 md:text-base">Hare Krsna!</p>
+          <p class="py-2 font-semibold tracking-tight text-emerald-800 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja,</p>
+          <p class="mb-4 text-sm md:text-base ">
+            henceforth referred as ‘Srila Gurudeva’. To know more about Srila Gurudeva and to access his books and transcripts please visit the
             <a
               href="https://www.purebhakti.com/"
               class="font-semibold hover:underline"
               target="_blank"
-              >click here</a
+              >PureBhakti website</a
             >.
           </p>
           <p class="hidden md:block">
-            Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day,
-            he gave 3-4 classes and darsanas. So, as per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
+            Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual
+            day, he gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
           </p>
-          <a href="./about/"
-            ><button
-              type="button"
-              class="!mb-2 rounded-lg border-2 border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800 md:!mt-3"
-            >
-              Read More
-            </button></a
-          >
+          <a href="./about/" class="mb-2 inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50 md:mt-3">Read More</a>
         </div>
       </div>
-      <!-- Audio Player -->
-      <div class=" my-6 w-full px-2 md:!px-0">
-        <div class="justify-between md:flex md:space-x-5">
+      <!-- Audio Recordings -->
+      <div class="my-6 w-full px-2 md:!px-0">
+        <div class="items-end justify-between md:flex md:space-x-5">
           <div>
-            <h4 class="!text-sm font-semibold uppercase text-black md:!text-base">Gurudev's Audio</h4>
-            <p class="text-sm italic md:text-base">Illuminations on Pristine Gaudiya Conceptions, in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+            <h4 class="text-lg font-semibold uppercase text-black">Audio Recordings</h4>
+            <p class="text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
           </div>
-          <div class="mt-2">
-            <a href="./audios/"><button class="rounded-lg bg-green-700 py-2.5 px-5 text-sm font-medium text-white hover:bg-emerald-600">Browse All</button></a>
-          </div>
+          <a href="./audios/" class="rounded-md bg-emerald-800 py-2 px-5 text-sm font-semibold text-white hover:bg-emerald-600">Browse All</a>
         </div>
-        <!-- home page audios -->
-        <div class="mt-4 grid grid-cols-1  gap-x-2 gap-y-2 p-1 md:grid-cols-2">
+        <div class="mt-4 grid grid-cols-1 gap-x-2 gap-y-2 p-1 md:grid-cols-2">
           {% for audio in homeaudios limit: 8 %}
             <a href="./audios/{{ audio.objectID }}/">
               <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
@@ -91,19 +81,16 @@ tags:
           {% endfor %}
         </div>
       </div>
-      <!-- Audio Player -->
     </div>
   </div>
-  <!-- Slider of memories -->
-  <div class="w-full bg-yellow-100 px-4 py-4 md:bg-white md:py-0">
-    <div class="justify-between md:flex md:space-x-5">
+  <!-- Memories -->
+  <div class="px-4 py-4 md:py-0">
+    <div class="items-end justify-between md:flex md:space-x-5">
       <div>
-        <h4 class=" !text-sm font-semibold uppercase text-black md:!text-base">Srila Gurudev's Memories</h4>
-        <p class="text-sm italic md:text-base">Hear the memories of followers and contemporaries of Srila Gurudeva. It is truely heart melting.</p>
+        <h4 class="text-lg font-semibold uppercase text-black">Memories of Srila Gurudeva</h4>
+        <p class="text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truely heart melting!</p>
       </div>
-      <div class="mt-2">
-        <a href="./memories/"><button class="rounded-lg bg-green-700 py-2.5 px-5 text-sm font-medium text-white hover:bg-emerald-600">Browse All</button></a>
-      </div>
+      <a href="./memories/" class="rounded-md bg-emerald-800 py-2 px-5 text-sm font-semibold text-white hover:bg-emerald-600">Browse All</a>
     </div>
     <div class="mt-4 flex grow flex-nowrap space-x-6">
       <div class="grow">
