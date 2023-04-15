@@ -6,133 +6,97 @@ eleventyNavigation:
 tags:
   - topnav
 ---
-<div class="mx-auto w-full md:my-6 xl:container ">
-  <div class="md:flex">
-    <div class="w-full sm:!px-0 md:!px-4">
-      <div class="flex w-full items-start border border-gray-200 bg-pink-100 px-4 text-center md:space-x-6 md:rounded-lg md:p-6 md:px-0 md:!text-left md:shadow-lg md:shadow-gray-400/30">
-        <img src="~/src/images/srila-gurudev.jpg" alt="" class="hidden rounded-lg md:block">
-        <div>
-          <p class="mt-4 text-sm font-semibold uppercase md:mt-8 md:text-base">Hare Krsna!</p>
-        <p class="py-2 font-semibold tracking-tight text-teal-800 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja,</p>
-          <p class="mb-4 text-sm md:text-base ">
-            henceforth referred as ‘Srila Gurudeva’. To know more about Srila Gurudeva and to access his books and transcripts please visit the
-            <a
-              href="https://www.purebhakti.com/"
-              class="font-semibold hover:underline"
-              target="_blank"
-              >PureBhakti website</a
-            >.
-          </p>
-          <p class="hidden md:block">
-            Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual
-            day, he gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
-          </p>
-          <a href="./about/" class="mb-2 inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50 md:mt-3">Read More</a>
-        </div>
-      </div>
-      <!-- Audio Recordings -->
-      <div class="my-6 w-full px-2 md:!px-0">
-        <div class="items-end justify-between md:flex md:space-x-5">
-          <div>
-            <h4 class="text-lg font-semibold uppercase text-black">Audio Recordings</h4>
-            <p class="text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
-          </div>
-        <a href="./audios/" class="rounded-md bg-teal-800 py-2 px-5 text-sm font-semibold text-white hover:bg-teal-600">Browse All</a>
-        </div>
-        <div class="mt-4 grid grid-cols-1 gap-x-2 gap-y-2 p-1 md:grid-cols-2">
-          {% for audio in homeaudios limit: 8 %}
-            <a href="./audios/{{ audio.objectID }}/">
-              <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
-              <div class="col-span-1 ml-2 h-8 w-8 content-baseline rounded-full bg-teal-800">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8">
-                    <path fill="white" d="m15 12.33l-6 4.33V8l6 4.33Z" />
-                  </svg>
-                </div>
-                <div class="col-span-5 content-center">
-                  <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-                  <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-                    <div>#{{ audio.objectID }}</div>
-                    {% if audio.dateForHumans -%}
-                      <div>
-                        {{ audio.dateForHumans }}
-                        {% if audio.dateUncertain -%}
-                          <span title="Date is uncertain">(?)</span>
-                        {%- endif %}
-                      </div>
-                    {%- endif %}
-                    {% if audio.location -%}
-                      <div>
-                        {{ audio.location }}
-                        {% if audio.locationUncertain -%}
-                          <span title="Location is uncertain">(?)</span>
-                        {%- endif %}
-                      </div>
-                    {%- endif %}
-                    {% if audio.category -%}
-                      <div>{{ audio.category }}</div>
-                    {%- endif %}
-                    {% for language in audio.languages -%}
-                      <div>{{ language }}</div>
-                    {%- endfor %}
-                  </div>
-                </div>
-              </div>
-            </a>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
+<div class="flex items-start bg-pink-100 p-2 text-center md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
+  <img src="~/src/images/srila-gurudev.jpg" alt="" class="hidden rounded-lg md:block">
+  <div class="space-y-4 md:mt-8">
+    <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
+    <p class="font-semibold tracking-tight text-teal-800 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja,</p>
+    <p class="text-sm md:text-base ">
+      henceforth referred as ‘Srila Gurudeva’. To know more about Srila Gurudeva and to access his books and transcripts please visit the
+      <a
+        href="https://www.purebhakti.com/"
+        class="font-semibold hover:underline"
+        target="_blank"
+        >PureBhakti website</a
+      >.
+    </p>
+    <p class="hidden md:block">
+      Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
+      gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
+    </p>
+    <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
   </div>
-  <!-- Memories -->
-  <div class="px-4 py-4 md:py-0">
-    <div class="items-end justify-between md:flex md:space-x-5">
-      <div>
-        <h4 class="text-lg font-semibold uppercase text-black">Memories of Srila Gurudeva</h4>
-        <p class="text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truely heart melting!</p>
-      </div>
-    <a href="./memories/" class="rounded-md bg-teal-800 py-2 px-5 text-sm font-semibold text-white hover:bg-teal-600">Browse All</a>
+</div>
+<!-- Audio Recordings -->
+<div class="my-6 mx-2 md:mx-0">
+  <div class="items-start justify-between md:flex md:space-x-4">
+    <div>
+      <h4 class="text-lg font-semibold uppercase text-black">Audio Recordings</h4>
+      <p class="text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
     </div>
-    <div class="mt-4 flex grow flex-nowrap space-x-6">
-      <div class="grow">
-        <iframe
-          class="aspect-[4/3] w-full rounded-md"
-          src="https://www.youtube.com/embed/0-CbEqUL_eg"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="grow">
-        <iframe
-          class="aspect-[4/3] w-full rounded-md "
-          src="https://www.youtube.com/embed/uXDjdkwTZKI"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="grow">
-        <iframe
-          class="aspect-[4/3] w-full rounded-md"
-          src="https://www.youtube.com/embed/NYkQuRDVOlw"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <div class="grow">
-        <iframe
-          class="aspect-[4/3] w-full rounded-md"
-          src="https://www.youtube.com/embed/mBmsCTQFMtI"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
+    <a href="./audios/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-x-2 gap-y-2 p-1 md:grid-cols-2">
+    {% for audio in homeaudios limit: 8 %}
+      <a href="./audios/{{ audio.objectID }}/">
+        <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
+          <div class="col-span-1 ml-2 h-8 w-8 content-baseline rounded-full bg-teal-800">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8">
+              <path fill="white" d="m15 12.33l-6 4.33V8l6 4.33Z" />
+            </svg>
+          </div>
+          <div class="col-span-5 content-center">
+            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+            <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+              <div>#{{ audio.objectID }}</div>
+              {% if audio.dateForHumans -%}
+                <div>
+                  {{ audio.dateForHumans }}
+                  {% if audio.dateUncertain -%}
+                    <span title="Date is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.location -%}
+                <div>
+                  {{ audio.location }}
+                  {% if audio.locationUncertain -%}
+                    <span title="Location is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.category -%}
+                <div>{{ audio.category }}</div>
+              {%- endif %}
+              {% for language in audio.languages -%}
+                <div>{{ language }}</div>
+              {%- endfor %}
+            </div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+<!-- Memories -->
+<div class="mx-2 mb-4 md:mx-0">
+  <div class="items-start justify-between md:flex md:space-x-4">
+    <div>
+      <h4 class="text-lg font-semibold uppercase text-black">Memories of Srila Gurudeva</h4>
+      <p class="text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truely heart melting!</p>
     </div>
+    <a href="./memories/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
+  </div>
+  <div class="mt-4 flex flex-wrap items-start justify-between gap-4 sm:flex-nowrap">
+    {% for videoId in memories limit: 4 %}
+      <iframe
+        src="https://www.youtube.com/embed/{{videoId}}"
+        class="aspect-[16/9] w-full"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    {% endfor %}
   </div>
 </div>
