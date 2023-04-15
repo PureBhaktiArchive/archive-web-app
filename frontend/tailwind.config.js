@@ -38,9 +38,6 @@ module.exports = {
         },
         gray: colors.slate,
       },
-      fontFamily: {
-        header: ['capitals', ...defaultTheme.fontFamily.serif],
-      },
     },
   },
   dataStates: ['open', 'overlayed'],
