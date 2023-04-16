@@ -2,17 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
+import Alpine from 'alpinejs';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css';
 
-document
-  .querySelectorAll('[data-menu-toggle]')
-  .forEach(
-    (/** @type {HTMLElement} */ element) =>
-      (element.onclick = () =>
-        document
-          .querySelectorAll('[data-menu-toggled]')
-          .forEach((target) => target.classList.toggle('hidden')))
-  );
-
+Alpine.start();
 tippy('[data-tippy-content]');
