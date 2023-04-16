@@ -10,7 +10,7 @@ import { formatDurationForHumans } from './duration';
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
-    class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0"
+    class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 hover:!bg-yellow-200 hover:!bg-opacity-50 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0"
   >
     <!-- Video player -->
     <iframe
