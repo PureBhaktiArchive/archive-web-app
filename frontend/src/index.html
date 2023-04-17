@@ -7,8 +7,8 @@ tags:
   - topnav
 ---
 <div class="flex items-start bg-pink-100 p-2 text-center md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
-  <img src="~/src/images/srila-gurudev.jpg" alt="" class="hidden rounded-lg md:block">
-  <div class="space-y-4 md:mt-8">
+  <img src="~/src/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
+  <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
     <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
     <p class="font-semibold tracking-tight text-teal-800 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja,</p>
     <p class="text-sm md:text-base ">
@@ -87,16 +87,18 @@ tags:
     </div>
     <a href="./memories/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
   </div>
-  <div class="mt-4 flex flex-wrap items-start justify-between gap-4 sm:flex-nowrap">
+  <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
     {% for videoId in memories limit: 4 %}
-      <iframe
-        src="https://www.youtube.com/embed/{{videoId}}"
-        class="aspect-[16/9] w-full"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
+      <div class="grow">
+        <iframe
+          src="https://www.youtube.com/embed/{{videoId}}"
+          class="aspect-[16/9] w-full rounded-md"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     {% endfor %}
   </div>
 </div>
