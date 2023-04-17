@@ -239,7 +239,7 @@ a[class^='ais-'] {
 }
 
 .ais-Panel {
-  @apply pt-2;
+  @apply pt-2 pr-2;
 }
 
 .ais-Panel--collapsible {
@@ -358,4 +358,12 @@ a[class^='ais-'] {
 
 .ais-Hits-list {
   @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
+}
+
+.ais-NumericMenu-labelText {
+  @apply pl-1;
+}
+
+.ais-Stats-text {
+  @apply font-bold italic text-green-800;
 }
