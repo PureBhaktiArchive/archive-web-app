@@ -5,6 +5,10 @@
 name: CI
 on:
   pull_request:
+    types:
+      - synchronize
+      - opened
+      - labeled
     branches:
       - main
 
