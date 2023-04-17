@@ -201,8 +201,6 @@ Alpine.store('activeFileId', 0);
 // Search should be already started for the helper to be defined
 Alpine.store('searchHelper', search.helper);
 
-Alpine.start();
-
 //TODO: Filter panel to be migrated to Alpine.js: https://trello.com/c/lesy1wNY/182-use-alpine-for-menu-and-filter-panel
 const filterPanel = document.getElementById('filter-panel');
 const backdrop = document.getElementById('backdrop');
