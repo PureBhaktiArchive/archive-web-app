@@ -37,7 +37,7 @@ tags:
     <a href="./audios/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
   </div>
   <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-    {% for audio in audios limit: 8 %}
+    {% for audio in audios offset: 50 limit: 8 %}
       <a href="./audios/{{ audio.objectID }}/">
         <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
           <div class="col-span-1 ml-2 h-8 w-8 content-baseline rounded-full bg-teal-800">
