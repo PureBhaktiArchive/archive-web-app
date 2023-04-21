@@ -38,6 +38,9 @@ module.exports = {
         },
         gray: colors.slate,
       },
+      fontFamily: {
+        erasDemi: ['ITC Eras'],
+      },
     },
   },
   dataStates: ['open', 'overlayed'],
