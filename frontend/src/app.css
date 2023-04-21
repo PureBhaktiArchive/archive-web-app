@@ -1,23 +1,9 @@
+@import url(//db.onlinewebfonts.com/c/457055c70a9c98aa64002f05d6652edc?family=ITC+Eras);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  @font-face {
-    font-family: 'ITC Eras';
-    src: url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.eot');
-    src: url('//db.onlinewebfonnts.com/t/457055c70a9c98aa64002f05d6652edc.eot?#iefix')
-        format('embedded-opentype'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.woff2')
-        format('woff2'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.woff')
-        format('woff'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.ttf')
-        format('truetype'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.svg#ITC Eras')
-        format('svg');
-  }
-
   button {
     @apply focus:outline-none;
   }
