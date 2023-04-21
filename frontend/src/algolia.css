@@ -122,7 +122,7 @@ a[class^='ais-'] {
 .ais-InfiniteResults-loadMore,
 .ais-Menu-showMore,
 .ais-RefinementList-showMore {
-  @apply rounded bg-teal-800 px-2 py-1 text-xs text-white outline-none transition-colors duration-200 ease-out;
+  @apply rounded bg-neutral-600 px-2 py-1 text-xs text-white outline-none transition-colors duration-200 ease-out;
 }
 
 .ais-ClearRefinements-button--disabled,
@@ -283,7 +283,7 @@ a[class^='ais-'] {
   }
 
   .ais-Pagination-item--selected & {
-    @apply bg-teal-800 text-white;
+    @apply bg-neutral-600 text-white;
   }
 }
 

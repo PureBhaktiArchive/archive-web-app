@@ -12,7 +12,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
-    class="flex w-full flex-col py-1 hover:!bg-yellow-200 hover:!bg-opacity-50 sm:flex-row sm:py-2"
+    class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
     x-data="searchResultItem(${hit.objectID})"
     x-bind="self"
   >
@@ -20,7 +20,7 @@ export const itemTemplate = (hit, { html, components }) => html`
     <div class="flex grow items-start">
       <!-- Play button -->
       <button
-        class="mt-2 w-8 flex-none rounded-full bg-green-800 fill-current focus:outline-none"
+        class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
         title="Play"
         type="button"
         x-bind="playButton"

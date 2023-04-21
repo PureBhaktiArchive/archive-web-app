@@ -17,11 +17,11 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="data-[overlayed]:overflow-hidden">
+  <body class="overflow-y-scroll data-[overlayed]:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
 
     <!-- Top section Join us now -->
-    <section class="flex flex-wrap items-center justify-center gap-2 border-t border-b border-gray-300 bg-teal-700/10 px-4 py-2 sm:flex-nowrap">
+    <section class="flex flex-wrap items-center justify-center gap-2 border-t border-b border-gray-300 bg-neutral-100 px-4 py-2 sm:flex-nowrap">
       {% render 'partials/join-us.html' -%}
     </section>
 
@@ -31,7 +31,7 @@ gtm-tag-id: GTM-PNC4S5J
         <a href="/" class="mr-auto"><img src="~/src/images/logo.svg" class="h-10 md:h-16"></a>
 
         <!-- Mobile title -->
-        <span class="border-b-4 border-b-teal-800 pb-2 text-sm font-bold uppercase text-teal-800 md:hidden">{{ title }}</span>
+        <span class="border-b-4 border-b-neutral-600 pb-2 text-sm font-bold uppercase text-neutral-600 md:hidden">{{ title }}</span>
 
         <!-- Hamburger menu button -->
         <button
@@ -69,7 +69,7 @@ gtm-tag-id: GTM-PNC4S5J
           {%- for entry in menu -%}
             <a
               href="{{ entry.url }}"
-              class="border-b-4 border-b-white pb-1 hover:border-b-teal-800 hover:text-teal-800 data-[active]:border-b-teal-800 data-[active]:text-teal-800"
+              class="border-b-4 border-b-white pb-1 hover:border-b-neutral-500 hover:text-neutral-500 data-[active]:border-b-neutral-600 data-[active]:text-neutral-600"
               {% if entry.url == page.url %}
                 data-active
               {% endif %}
@@ -90,9 +90,9 @@ gtm-tag-id: GTM-PNC4S5J
     </div>
 
     <!-- Footer -->
-    <footer class=" bg-teal-900 p-4 pb-40 text-sm text-white">
+    <footer class=" bg-neutral-600 p-4 pb-40 text-sm text-white">
       <div class="mx-auto flex max-w-screen-xl grow flex-col gap-y-4 md:flex-row md:justify-between">
-        <img src="~/src/images/logo-white.svg" class="mx-auto h-8 md:mx-0 md:h-14">
+        <img src="~/src/images/logo-white.svg" class="mx-auto h-7 md:mx-0 md:h-10">
         <div class="text-center md:text-right">
           <div class="mb-1 inline-flex flex-wrap content-between items-baseline [&>*]:mr-2 [&>*]:mb-1 [&>*]:border-r [&>*]:border-white [&>*]:pr-2 last:[&>*]:mr-0 last:[&>*]:border-0 last:[&>*]:pr-0">
             {%- assign menu = collections.bottomnav | eleventyNavigation -%}

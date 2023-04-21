@@ -10,7 +10,7 @@ tags:
   <img src="~/src/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
   <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
     <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
-    <p class="font-semibold tracking-tight text-teal-800 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
+    <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
     <p class="text-sm md:text-base ">
       To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
       <a
@@ -34,18 +34,32 @@ tags:
       <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
       <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
     </div>
-    <a href="./audios/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
+    <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
   </div>
   <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-    {% for audio in audios offset: 50 limit: 8 %}
+    {% for audio in audios offset: 25 limit: 8 %}
       <a href="./audios/{{ audio.objectID }}/">
-        <div class="grid  grid-cols-6 content-center rounded-md border border-indigo-300 pt-2 hover:!bg-yellow-100 hover:!bg-opacity-50">
-          <div class="col-span-1 ml-2 h-8 w-8 content-baseline rounded-full bg-teal-800">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8">
-              <path fill="white" d="m15 12.33l-6 4.33V8l6 4.33Z" />
-            </svg>
+        <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
+          <div class="col-span-1 ml-2">
+            <button
+              class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+              title="Play"
+              type="button"
+            >
+              <!-- Material Icons: Play Arrow -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="ml-1 h-8 w-6"
+              >
+                <path
+                  fill="white"
+                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                />
+              </svg>
+            </button>
           </div>
-          <div class="col-span-5 content-center">
+          <div class="col-span-5 content-center pt-1 md:col-span-7">
             <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
             <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
               <div>#{{ audio.objectID }}</div>
@@ -85,7 +99,7 @@ tags:
       <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
       <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
     </div>
-    <a href="./memories/" class="inline-block flex-none rounded-md bg-teal-800 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-teal-600 md:text-sm">Browse All</a>
+    <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
   </div>
   <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
     {% for videoId in memories limit: 4 %}
