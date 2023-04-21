@@ -365,5 +365,5 @@ a[class^='ais-'] {
 }
 
 .ais-Stats-text {
-  @apply font-bold italic text-green-800;
+  @apply font-bold italic text-neutral-600;
 }
