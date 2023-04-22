@@ -39,7 +39,7 @@ module.exports = {
         gray: colors.slate,
       },
       fontFamily: {
-        erasDemi: ['ITC Eras'],
+        erasDemi: ['ITC Eras Demi'],
       },
     },
   },

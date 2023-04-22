@@ -4,18 +4,11 @@
 
 @layer base {
   @font-face {
-    font-family: 'ITC Eras';
-    src: url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.eot');
-    src: url('//db.onlinewebfonnts.com/t/457055c70a9c98aa64002f05d6652edc.eot?#iefix')
-        format('embedded-opentype'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.woff2')
-        format('woff2'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.woff')
-        format('woff'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.ttf')
-        format('truetype'),
-      url('//db.onlinewebfonts.com/t/457055c70a9c98aa64002f05d6652edc.svg#ITC Eras')
-        format('svg');
+    font-family: 'ITC Eras Demi';
+    src: url('fonts/ITC Eras Demi.ttf') format('ttf'),
+      url('fonts/ITC Eras Demi.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
   }
 
   button {
