@@ -61,7 +61,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             >
           </h3>
           <!-- Duration -->
-          <span class="inline-flex flex-none" title="Duration">
+          <span class="inline-flex flex-none items-center" title="Duration">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
