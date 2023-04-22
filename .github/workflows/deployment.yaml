@@ -81,16 +81,8 @@ jobs:
           FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES }}
 
-      - run: |
-          npm ci
-          npm run lint
-          npm run check-js-typing
-          npm test --if-present
-        name: Prepare functions
-        working-directory: functions
-
       # Deploying
-      - run: firebase deploy --project $GCP_PROJECT_ID --force --non-interactive
+      - run: firebase deploy --only hosting --project $GCP_PROJECT_ID --force --non-interactive
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - name: Get site URL
         run: |
