@@ -26,9 +26,9 @@ gtm-tag-id: GTM-PNC4S5J
     </section>
 
     <header class="border-b border-gray-200 py-4">
-      <div x-data="{open: false}" class="mx-auto flex max-w-screen-xl items-center gap-5 px-4">
+      <div x-data="{open: false}" class="mx-auto flex max-w-screen-xl px-4">
         <!-- Logo -->
-        <a href="/" class="mr-auto"><img src="~/src/images/logo.svg" class="h-10 md:h-16"></a>
+        <a href="/" class="mr-auto items-center"><div class="mx-auto h-10 items-center font-erasDemi md:mx-0 md:h-16 md:text-2xl">PURE BHAKTI ARCHIVE</div></a>
 
         <!-- Mobile title -->
         <span class="border-b-4 border-b-neutral-600 pb-2 text-sm font-bold uppercase text-neutral-600 md:hidden">{{ title }}</span>
@@ -92,7 +92,7 @@ gtm-tag-id: GTM-PNC4S5J
     <!-- Footer -->
     <footer class=" bg-neutral-600 p-4 pb-40 text-sm text-white">
       <div class="mx-auto flex max-w-screen-xl grow flex-col gap-y-4 md:flex-row md:justify-between">
-        <div class="mx-auto h-6 font-erasDemi md:mx-0 md:h-10 md:text-lg">PURE BHAKTI ARCHIVE INC.</div>
+        <div class="mx-auto h-6 font-erasDemi md:mx-0 md:h-10 md:text-lg">PURE BHAKTI ARCHIVE</div>
         <div class="text-center md:text-right">
           <div class="mb-1 inline-flex flex-wrap content-between items-baseline [&>*]:mr-2 [&>*]:mb-1 [&>*]:border-r [&>*]:border-white [&>*]:pr-2 last:[&>*]:mr-0 last:[&>*]:border-0 last:[&>*]:pr-0">
             {%- assign menu = collections.bottomnav | eleventyNavigation -%}
