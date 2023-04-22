@@ -12,7 +12,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
-    class="flex w-full flex-col py-1 sm:flex-row sm:py-2"
+    class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
     x-data="searchResultItem(${hit.objectID})"
     x-bind="self"
   >
@@ -20,7 +20,7 @@ export const itemTemplate = (hit, { html, components }) => html`
     <div class="flex grow items-start">
       <!-- Play button -->
       <button
-        class="w-7 flex-none fill-current focus:outline-none"
+        class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
         title="Play"
         type="button"
         x-bind="playButton"
@@ -30,26 +30,30 @@ export const itemTemplate = (hit, { html, components }) => html`
           x-show="!isPlaying"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
+          class="ml-1 h-8 w-6"
         >
           <path
+            fill="white"
             d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
           />
         </svg>
         <!-- Material Icons: Pause -->
         <svg
+          class="ml-1 h-8 w-6"
           x-show="isPlaying"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           x-cloak
         >
           <path
+            fill="white"
             d="M8 19c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2v10c0 1.1.9 2 2 2zm6-12v10c0 1.1.9 2 2 2s2-.9 2-2V7c0-1.1-.9-2-2-2s-2 .9-2 2z"
           />
         </svg>
       </button>
       <div class="grow">
         <!-- First line -->
-        <div class="flex items-start justify-between space-x-1">
+        <div class="ml-2 flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
             <a href="/audios/${hit.objectID}/"
@@ -57,12 +61,23 @@ export const itemTemplate = (hit, { html, components }) => html`
             >
           </h3>
           <!-- Duration -->
-          <span class="flex-none" title="Duration"
-            >${formatDurationForHumans(hit.duration)}</span
+          <span class="inline-flex flex-none items-center" title="Duration">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="mx-1 mt-0.5 w-4 stroke-current"
+              stroke-width="0.2"
+            >
+              <path
+                fill="currentColor"
+                d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z"
+              />
+            </svg>
+            ${formatDurationForHumans(hit.duration)}</span
           >
         </div>
         <!-- Second line -->
-        <div class="flex items-end justify-between">
+        <div class="ml-2 flex items-end justify-between">
           <!-- Tags -->
           <div
             class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0"

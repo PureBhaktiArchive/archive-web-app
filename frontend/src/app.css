@@ -4,9 +4,9 @@
 
 @layer base {
   @font-face {
-    font-family: 'Capitals';
-    src: url('fonts/capitals.woff2') format('woff2'),
-      url('fonts/capitals.woff') format('woff');
+    font-family: 'ITC Eras Demi';
+    src: url('fonts/ITC Eras Demi.ttf') format('ttf'),
+      url('fonts/ITC Eras Demi.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
@@ -26,28 +26,6 @@
 }
 
 @layer utilities {
-  /**
-    Cannot use Tailwind's facility for background image (https://tailwindcss.com/docs/background-image#background-images)
-    because parcel does not look into tailwind config file and does not pick up the image asset from there.
-    Also, we need multiple background images which is not supported by Tailwind CSS.
-  */
-  .bg-header {
-    background: url('./images/header-left.png') no-repeat left top / auto 100%
-        content-box,
-      url('./images/header-right.png') no-repeat right top / auto 100%
-        content-box,
-      url('./images/header-center.png') repeat-x left top / auto 100%
-        content-box;
-  }
-
-  .bg-header-decor {
-    background-image: url('images/header-decor.png');
-  }
-
-  .bg-lotus {
-    background-image: url('images/lotus.png');
-  }
-
   /* Hide scrollbars, inspired by https://stackoverflow.com/a/66436651/3082178 */
   .no-scrollbar {
     -ms-overflow-style: none; /* IE and Edge */
@@ -112,7 +90,7 @@
      we have to use the ::before pseudo-element to improvise the progress. */
     @media screen and (-webkit-min-device-pixel-ratio: 0) {
       &::before {
-        @apply absolute left-0 h-full cursor-pointer rounded-full bg-teal-800 content-[''];
+        @apply absolute left-0 h-full cursor-pointer rounded-full bg-neutral-600 content-[''];
         width: calc(
           100% * var(--progress) + var(--thumb-size) * (0.5 - var(--progress))
         );
@@ -126,7 +104,7 @@
       @mixin slider-track;
     }
     &::-moz-range-progress {
-      @apply bg-teal-800;
+      @apply bg-neutral-600;
     }
     &::-moz-focus-outer {
       @apply border-none;
@@ -140,7 +118,7 @@
       @apply border-transparent bg-transparent text-transparent;
     }
     &::-ms-fill-lower {
-      @apply bg-teal-800;
+      @apply bg-neutral-600;
     }
   }
 }

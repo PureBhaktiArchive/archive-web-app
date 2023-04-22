@@ -1,62 +1,118 @@
 ---
 layout: base
-title: Audios
 eleventyNavigation:
-  key: Audios
+  key: Home
   order: 1
 tags:
   - topnav
-jsFile: audios.js
 ---
-<div id="searchbox" class="mx-auto flex w-full max-w-screen-xl flex-none border-b p-4 sm:pl-36 md:pl-56 lg:pl-72">
-  <input
-    type="search"
-    placeholder="Search for title, topics, locations, dates, etc."
-    class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
-  >
-  <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-teal-800 px-2 font-semibold text-white shadow-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-    </svg>
-    <span class="hidden sm:inline">Search</span>
-  </button>
-</div>
-<div class="mx-auto flex w-full max-w-screen-xl flex-1 sm:overflow-y-hidden">
-  <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
-    <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-teal-800 md:hidden">Filter</div>
-    <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
-      <div id="language-list"></div>
-      <div id="sound-quality-list"></div>
-      <div id="duration-menu"></div>
-      <div id="percentage-menu"></div>
-      <div id="category-list"></div>
-      <div id="year-list"></div>
-      <div id="location-list"></div>
-    </div>
-    <div class="flex-none border-t p-2 md:hidden">
-      <button data-filter-toggle class="w-full rounded-md bg-teal-800 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
-    </div>
-  </div>
-  <main class="w-full grow px-2 sm:w-4/5 sm:overflow-y-auto sm:px-4">
-    <div class="my-3 flex items-center">
-      <!-- Filter button -->
-      <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-teal-800 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
-        <!-- Heroicon name: solid/filter -->
-        <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
-        </svg>
-        <span>Filter</span>
-      </button>
-      <span id="stats" class="whitespace-nowrap text-sm"></span>
-      <span id="loading" class="text-sm text-gray-500">Loading…</span>
-    </div>
-    <div id="hits"></div>
-    <div id="pagination" class="my-2 w-full"></div>
-    <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
-      This Archive is under progress and will be completed by 2023. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check
-      again later.
+<div class="flex items-start bg-pink-100 p-2 text-center md:m-4 md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
+  <img src="~/src/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
+  <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
+    <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
+    <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
+    <p class="text-sm md:text-base ">
+      To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
+      <a
+        href="https://www.purebhakti.com/"
+        class="font-semibold hover:underline"
+        target="_blank"
+        >PureBhakti website</a
+      >.
     </p>
-  </main>
+    <p class="hidden md:block">
+      Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
+      gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
+    </p>
+    <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
+  </div>
 </div>
-<!-- Player UI -->
-{% render 'partials/audio-player.html' -%}
+<!-- Audio Recordings -->
+<div class="mx-2 mb-4 md:mx-4">
+  <div class="items-start justify-between pt-4 md:flex md:space-x-4">
+    <div>
+      <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
+      <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+    </div>
+    <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
+  </div>
+  <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+    {% for audio in audios offset: 25 limit: 8 %}
+      <a href="./audios/{{ audio.objectID }}/">
+        <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
+          <div class="col-span-1 ml-2">
+            <button
+              class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+              title="Play"
+              type="button"
+            >
+              <!-- Material Icons: Play Arrow -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="ml-1 h-8 w-6"
+              >
+                <path
+                  fill="white"
+                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="col-span-5 content-center pt-1 md:col-span-7">
+            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+            <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+              <div>#{{ audio.objectID }}</div>
+              {% if audio.dateForHumans -%}
+                <div>
+                  {{ audio.dateForHumans }}
+                  {% if audio.dateUncertain -%}
+                    <span title="Date is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.location -%}
+                <div>
+                  {{ audio.location }}
+                  {% if audio.locationUncertain -%}
+                    <span title="Location is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.category -%}
+                <div>{{ audio.category }}</div>
+              {%- endif %}
+              {% for language in audio.languages -%}
+                <div>{{ language }}</div>
+              {%- endfor %}
+            </div>
+          </div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+<!-- Memories -->
+<div class="mx-2 mb-4 md:mx-4">
+  <div class="items-start justify-between md:flex md:space-x-4">
+    <div>
+      <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
+      <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
+    </div>
+    <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 py-2 px-5 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
+  </div>
+  <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+    {% for videoId in memories limit: 4 %}
+      <div class="grow">
+        <iframe
+          src="https://www.youtube.com/embed/{{videoId}}"
+          class="aspect-[16/9] w-full rounded-md"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    {% endfor %}
+  </div>
+</div>

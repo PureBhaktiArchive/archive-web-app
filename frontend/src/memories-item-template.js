@@ -10,7 +10,7 @@ import { formatDurationForHumans } from './duration';
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
-    class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0"
+    class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0"
   >
     <!-- Video player -->
     <iframe
@@ -74,7 +74,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         ${hit.speakerIntro}
       </span>
       <button
-        class="font-bold text-teal-800"
+        class="font-bold text-neutral-600"
         x-on:click="isCollapsed = !isCollapsed"
         x-show="originalContent.length > maxLength"
         x-text="isCollapsed ? 'Read less' : '...Read more'"

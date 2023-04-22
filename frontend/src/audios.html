@@ -1,22 +1,24 @@
 ---
 layout: base
-title: Memories
+title: Audios
 eleventyNavigation:
-  key: Memories
-  order: 3
+  key: Audios
+  order: 2
 tags:
   - topnav
-jsFile: memories.js
+jsFile: audios.js
 ---
 <div class="mt-4 flex">
   <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
-    <div class="grow overflow-y-auto overflow-x-hidden p-2 pt-0">
-      <div id="gurus-list"></div>
+    <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
       <div id="language-list"></div>
-      <div id="program-name-list"></div>
-      <div id="speaker-country-list"></div>
+      <div id="sound-quality-list"></div>
       <div id="duration-menu"></div>
+      <div id="percentage-menu"></div>
+      <div id="category-list"></div>
+      <div id="year-list"></div>
+      <div id="location-list"></div>
     </div>
     <div class="flex-none border-t p-2 md:hidden">
       <button data-filter-toggle class="w-full rounded-md bg-neutral-600 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
@@ -26,7 +28,7 @@ jsFile: memories.js
     <div id="searchbox" class="flex flex-none">
       <input
         type="search"
-        placeholder="Search for program, speaker, topics, dates etc."
+        placeholder="Search for title, topics, locations, dates, etc."
         class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
       >
       <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-neutral-600 px-2 font-semibold text-white shadow-sm">
@@ -40,7 +42,7 @@ jsFile: memories.js
       <!-- Filter button -->
       <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
         <!-- Heroicon name: solid/filter -->
-        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <svg class="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
         </svg>
         <span>Filter</span>
@@ -50,15 +52,10 @@ jsFile: memories.js
     </div>
     <div id="hits"></div>
     <div id="pagination" class="my-2 w-full"></div>
-    <div id="results-footer" class="hidden p-2 text-center text-sm text-gray-500">
-      <p>Please Note: The results displayed above are not in any particular order of seniority, date, etc.</p>
-      <p>
-        You can find more Memories recordings on the following YouTube channels, while we collate all of them here:<br>
-        <a href="https://www.youtube.com/channel/UCfYqnuIc-NjbX1LfGFxCvYg" target="_blank" class="text-blue-900 underline">Remembering Srila Gurudeva</a>,
-        <a href="https://www.youtube.com/playlist?list=PLpNgpvUJOl86QK8Yvx7pzvb8a1aQaM4j9" target="_blank" class="text-blue-900 underline">Gurudeva Memories 2021</a>,
-        <a href="https://www.youtube.com/channel/UCWioFce4v7kjGfTfHUwvN0Q" target="_blank" class="text-blue-900 underline">Fond Memories of Srila Gurudeva</a>.
-      </p>
-      <p>Progressively, newer Memories videos will be added here regularly. So we welcome you to come back to hear some more!</p>
-    </div>
+    <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
+      This Archive is under progress. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check again later.
+    </p>
   </main>
 </div>
+<!-- Player UI -->
+{% render 'partials/audio-player.html' -%}
