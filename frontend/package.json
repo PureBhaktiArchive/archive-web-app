@@ -28,7 +28,7 @@
     ]
   },
   "devDependencies": {
-    "@11ty/eleventy": "1.0.2",
+    "@11ty/eleventy": "2.0.1",
     "@11ty/eleventy-navigation": "0.3.5",
     "@parcel/packager-raw-url": "2.8.3",
     "@parcel/transformer-webmanifest": "2.8.3",
@@ -37,6 +37,7 @@
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.7",
     "@types/alpinejs": "3.7.1",
+    "@types/node": "18.16.2",
     "dotenv": "16.0.3",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.5.0",
