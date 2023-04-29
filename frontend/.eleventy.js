@@ -19,6 +19,7 @@ require('dotenv').config({
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-vite'));
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
   eleventyConfig.addGlobalData('env', process.env);
