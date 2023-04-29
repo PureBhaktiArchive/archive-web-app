@@ -206,22 +206,25 @@ export const itemTemplate = (hit, { html, components }) => html`
       class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0"
     >
       <!-- Percentage -->
-      ${hit.percentage !== null &&
-      html`
-        <div
-          class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
-          title="How much Srila Gurudeva is speaking in the recording"
-        >
-          <div
-            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
-            style="--percentage: ${Math.ceil(hit.percentage * 20) * 5}%"
-          ></div>
-          <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
-            <span class="whitespace-nowrap">Srila Gurudeva</span>
-            <span>${Math.ceil(hit.percentage * 20) * 5}%</span>
-          </div>
-        </div>
-      `}
+      ${hit.percentage != null // Use loose equality to cover undefined: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#loose_equality_using
+        ? html`
+            <div
+              class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
+              title="How much Srila Gurudeva is speaking in the recording"
+            >
+              <div
+                class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+                style="--percentage: ${Math.ceil(hit.percentage * 20) * 5}%"
+              ></div>
+              <div
+                class="flex w-full justify-between space-x-2 px-1.5 opacity-95"
+              >
+                <span class="whitespace-nowrap">Srila Gurudeva</span>
+                <span>${Math.ceil(hit.percentage * 20) * 5}%</span>
+              </div>
+            </div>
+          `
+        : null}
 
       <!-- Sound Quality Rating -->
       ${hit.soundQualityRating &&
