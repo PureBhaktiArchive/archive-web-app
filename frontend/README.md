@@ -5,12 +5,10 @@ This sub-project contains the frontend part of the Archive.
 ## Technology stack
 
 - [Eleventy](https://www.11ty.dev/) as a Static Site Generator
-- [Parcel.js](https://parceljs.org/) v2 as a bundler
+- [Vite](https://vitejs.dev/) as a bundler via [Vite plugin for Eleventy](https://www.11ty.dev/docs/server-vite/)
 - [Tailwind CSS](https://tailwindcss.com/) as an utility-first CSS framework
 - [Alpine JS](https://github.com/alpinejs/alpine) as a JS framework
 - [Algolia InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/getting-started/js/) for search UI
-
-HTML files are processed by Eleventy first, then by Parcel.
 
 ### InstantSearch Templates
 
@@ -26,7 +24,7 @@ VS Code has built-in [intellisense and type checking for JavaScript](https://cod
 
 ## Environment variables
 
-Environment variables should be added to an `.env` file according to the [Parcel's documentation](https://parceljs.org/features/node-emulation/#.env-files). Use `.env.development.local` for local development.
+Environment variables should be added to an `.env` file. Use `.env.development.local` for local development.
 
 | Variable                 | Description                                                                                                                                                                      |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -45,8 +43,8 @@ Environment variables should be added to an `.env` file according to the [Parcel
 - Open terminal in the `frontend` folder.
 - Run `npm i` to install the dependencies.
 - Create `.env.development.local` file in the `frontend` folder and enter variables according to [Environment variables](#environment-variables) section.
-- Run `npm start` to start the Parcel development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
-- Open the local website URL using the link shown by the previous command. Note that for pages other than `index.html` the extension has to be added manually, like this: http://localhost:3000/about.html.
+- Run `npm start` to start the development server, which will automatically rebuild the app as you change files and supports hot module replacement for fast development.
+- Open the local website URL using the link shown by the previous command.
 
 ## Deployment
 

@@ -8,10 +8,6 @@
 
 # production
 /dist
-/.parcel-cache
-/.serve
-/_site
-/.cache
 
 # misc
 .DS_Store
