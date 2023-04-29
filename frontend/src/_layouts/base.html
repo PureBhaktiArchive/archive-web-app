@@ -17,7 +17,7 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="flex flex-col overflow-y-scroll overlayed:overflow-hidden sm:h-screen">
+  <body class="flex min-h-screen flex-col overflow-y-scroll overlayed:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
 
     <!-- Top section Join us now -->
@@ -85,9 +85,9 @@ gtm-tag-id: GTM-PNC4S5J
     </header>
 
     <!-- Page Content -->
-    <div class="mx-auto max-w-screen-xl flex-1">
-      {{ content }}
-    </div>
+    <section class="flex-1">
+      <div class="mx-auto max-w-screen-xl">{{ content }}</div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-neutral-600 p-4 pb-40 text-sm text-white">
