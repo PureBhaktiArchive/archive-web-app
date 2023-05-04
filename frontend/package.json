@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run 11ty:serve",
-    "build": "npm-run-all --print-label 11ty:clean 11ty:build",
-    "11ty:clean": "rm -rf dist",
-    "11ty:serve": "npx @11ty/eleventy --serve --quiet --incremental",
-    "11ty:watch": "npx @11ty/eleventy --watch --quiet",
-    "11ty:build": "npx @11ty/eleventy --quiet",
+    "start": "npx @11ty/eleventy --serve --quiet --incremental",
+    "build": "npx @11ty/eleventy --quiet",
     "lint": "eslint .",
     "check-js-typing": "tsc"
   },
