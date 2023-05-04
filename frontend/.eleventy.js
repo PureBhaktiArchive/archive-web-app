@@ -3,8 +3,6 @@
  */
 
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
-const { formatDurationForHumans } = require('./src/duration');
-const { soundQualityRatingMapping } = require('./src/sound-quality-rating');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -25,13 +23,15 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('src/*.css');
   eleventyConfig.addPassthroughCopy('src/*.js');
+  eleventyConfig.addPassthroughCopy('src/*.mjs');
   eleventyConfig.addPassthroughCopy('src/fonts');
   eleventyConfig.addPassthroughCopy('src/images');
 
   eleventyConfig.addGlobalData('env', process.env);
 
   //Filter for duration calculation
-  eleventyConfig.addFilter('duration', function (durationInSeconds) {
+  eleventyConfig.addFilter('duration', async function (durationInSeconds) {
+    const { formatDurationForHumans } = await import('./src/duration.mjs');
     return `${formatDurationForHumans(durationInSeconds)}`;
   });
 
@@ -42,14 +42,28 @@ module.exports = function (eleventyConfig) {
   );
 
   //Filter for Sound Quality Rating color
-  eleventyConfig.addFilter('sound_quality_color', function (soundqualitycolor) {
-    return `${soundQualityRatingMapping[soundqualitycolor].color}`;
-  });
+  eleventyConfig.addFilter(
+    'sound_quality_color',
+    async function (soundqualitycolor) {
+      const { soundQualityRatingMapping } = await import(
+        './src/sound-quality-rating.mjs'
+      );
+
+      return `${soundQualityRatingMapping[soundqualitycolor].color}`;
+    }
+  );
 
   //Filter for Sound Quality Rating label
-  eleventyConfig.addFilter('sound_quality_label', function (soundqualitylabel) {
-    return `${soundQualityRatingMapping[soundqualitylabel].label}`;
-  });
+  eleventyConfig.addFilter(
+    'sound_quality_label',
+    async function (soundqualitylabel) {
+      const { soundQualityRatingMapping } = await import(
+        './src/sound-quality-rating.mjs'
+      );
+
+      return `${soundQualityRatingMapping[soundqualitylabel].label}`;
+    }
+  );
 
   // Return your Object options:
   return {

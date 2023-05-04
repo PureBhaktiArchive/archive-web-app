@@ -3,7 +3,7 @@
  */
 
 import Alpine from 'alpinejs';
-import { formatDurationForHumans } from './duration';
+import { formatDurationForHumans } from './duration.mjs';
 
 /**
  * @typedef ContentDetails
