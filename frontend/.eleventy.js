@@ -22,6 +22,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-vite'));
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
+
+  eleventyConfig.addPassthroughCopy('src/*.css');
+  eleventyConfig.addPassthroughCopy('src/*.js');
+  eleventyConfig.addPassthroughCopy('src/fonts');
+  eleventyConfig.addPassthroughCopy('src/images');
+
   eleventyConfig.addGlobalData('env', process.env);
 
   //Filter for duration calculation

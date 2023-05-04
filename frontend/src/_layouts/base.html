@@ -8,10 +8,10 @@ gtm-tag-id: GTM-PNC4S5J
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#115E59">
     <meta name="msapplication-navbutton-color" content="#115E59 ">
-    <link rel="manifest" href="~/src/manifest.webmanifest">
-    <link rel="icon" sizes="32x32" type="image/png" href="~/src/images/favicon-32x32.png">
-    <link rel="icon" sizes="16x16" type="image/png" href="~/src/images/favicon-16x16.png">
-    <link rel="stylesheet" href="~/src/app.css">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" sizes="32x32" type="image/png" href="/images/favicon-32x32.png">
+    <link rel="icon" sizes="16x16" type="image/png" href="/images/favicon-16x16.png">
+    <link rel="stylesheet" href="/app.css">
 
     <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
@@ -114,8 +114,8 @@ gtm-tag-id: GTM-PNC4S5J
     </footer>
     <!-- Footer -->
     {%- if jsFile -%}
-      <script type="module" src="~/src/{{jsFile}}"></script>
+      <script type="module" src="/{{jsFile}}"></script>
     {%- endif -%}
-    <script type="module" src="~/src/menu.js"></script>
+    <script type="module" src="/menu.js"></script>
   </body>
 </html>
