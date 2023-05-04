@@ -8,6 +8,7 @@
 
 # production
 /dist
+/.11ty-vite
 
 # misc
 .DS_Store
