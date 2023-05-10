@@ -17,7 +17,7 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="flex min-h-screen flex-col overflow-y-scroll overlayed:overflow-hidden">
+  <body class="overlayed:overflow-hidden flex min-h-screen flex-col overflow-y-scroll">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
 
     <!-- Top section Join us now -->
@@ -26,7 +26,11 @@ gtm-tag-id: GTM-PNC4S5J
     </section>
 
     <header class="border-b border-gray-200 py-4">
-      <div x-data="{open: false}" class="mx-auto flex max-w-screen-xl items-center px-4">
+      <div
+        x-data="{open: false}"
+        x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
+        class="mx-auto flex max-w-screen-xl items-center px-4"
+      >
         <!-- Logo -->
         <a href="/" class="mr-auto"><div class="mx-auto inline-flex h-10 items-center font-erasDemi text-neutral-600 md:mx-0 md:h-16 md:text-2xl">PURE BHAKTI ARCHIVE</div></a>
 
@@ -113,6 +117,14 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
     </footer>
     <!-- Footer -->
+
+    <div
+      x-data="{ open: false }"
+      @toggle-backdrop.window="open = $event.detail"
+      x-show="open"
+      class="fixed h-full w-full bg-white/50 backdrop-blur-sm md:hidden md:open:hidden"
+    ></div>
+
     {%- if jsFile -%}
       <script type="module" src="~/src/{{jsFile}}"></script>
     {%- endif -%}
