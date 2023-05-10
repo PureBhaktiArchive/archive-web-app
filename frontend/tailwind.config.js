@@ -43,11 +43,10 @@ module.exports = {
       },
     },
   },
-  dataStates: ['open', 'overlayed'],
+
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
     require('@stefanracic/tailwind-child'),
-    require('./tailwind-plugins/data-states'),
   ],
 };
