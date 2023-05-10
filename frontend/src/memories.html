@@ -8,8 +8,17 @@ tags:
   - topnav
 jsFile: memories.js
 ---
-<div class="mt-4 flex">
-  <div id="filter-panel" class="fixed top-0 z-20 hidden h-full w-64 max-w-full flex-col bg-white text-sm open:flex md:static md:z-auto md:flex md:w-1/5 md:max-w-sm">
+<div
+  x-data="{open: false}"
+  x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
+  class="mt-4 flex"
+>
+  <div
+    x-cloak
+    @keydown.escape="open = false"
+    :data-open="open"
+    class="fixed top-0 z-20 hidden h-full w-64 max-w-full bg-white text-sm transition-transform data-[open]:flex data-[open]:flex-col md:static md:z-auto md:flex md:w-1/5 md:max-w-sm"
+  >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
     <div class="grow overflow-y-auto overflow-x-hidden p-2 pt-0">
       <div id="gurus-list"></div>
@@ -19,7 +28,12 @@ jsFile: memories.js
       <div id="duration-menu"></div>
     </div>
     <div class="flex-none border-t p-2 md:hidden">
-      <button data-filter-toggle class="w-full rounded-md bg-neutral-600 p-2 font-semibold uppercase text-white shadow-sm">Close</button>
+      <button
+        @click="open = false"
+        class="w-full rounded-md bg-neutral-600 p-2 font-semibold uppercase text-white shadow-sm"
+      >
+        Close
+      </button>
     </div>
   </div>
   <main class="w-full grow px-2 sm:w-4/5 sm:px-4">
@@ -38,7 +52,12 @@ jsFile: memories.js
     </div>
     <div class="my-3 flex items-center">
       <!-- Filter button -->
-      <button data-filter-toggle class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden">
+      <button
+        type="button"
+        @click="open = true"
+        x-show="!open"
+        class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden"
+      >
         <!-- Heroicon name: solid/filter -->
         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
