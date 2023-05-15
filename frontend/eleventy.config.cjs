@@ -2,7 +2,14 @@
  * sri sri guru gaurangau jayatah
  */
 
-const { EleventyRenderPlugin } = require('@11ty/eleventy');
+/**
+ * This should be
+ * const { EleventyRenderPlugin } = require('@11ty/eleventy');
+ * But it prduces TS2305 with TypeScript checking on. Perhaps an 11ty’s export issue.
+ * Therefore we're using a workaround described in https://github.com/11ty/eleventy/issues/2935
+ * Otherwise we'd have to apply `@ts-ignore`.
+ */
+const EleventyRenderPlugin = require('@11ty/eleventy/src/Plugins/RenderPlugin.js');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -12,8 +19,11 @@ require('dotenv').config({
  * Eleventy config function.
  *
  * Typing idea borrowed from https://github.com/11ty/eleventy/discussions/2089
- *  @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
- *  @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ * But it doesn't seem to work with tsconfig present.
+ * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
+ * Therefore as of now the below types evaluate to `any`. Still keeping the annotations for the future.
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
