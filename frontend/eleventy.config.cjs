@@ -31,17 +31,19 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
-  eleventyConfig.addPassthroughCopy('src/*.css');
-  eleventyConfig.addPassthroughCopy('src/*.js');
-  eleventyConfig.addPassthroughCopy('src/*.mjs');
-  eleventyConfig.addPassthroughCopy('src/fonts');
-  eleventyConfig.addPassthroughCopy('src/images');
+  eleventyConfig.addPassthroughCopy({ 'src/css': 'css' });
+  eleventyConfig.addPassthroughCopy({ 'src/js': 'js' });
+  eleventyConfig.addPassthroughCopy({ 'src/fonts': 'fonts' });
+  eleventyConfig.addPassthroughCopy({ 'src/images': 'images' });
+
+  // This is a public directory for Vite - https://vitejs.dev/guide/assets.html#the-public-directory
+  eleventyConfig.addPassthroughCopy('src/public');
 
   eleventyConfig.addGlobalData('env', process.env);
 
   //Filter for duration calculation
   eleventyConfig.addFilter('duration', async function (durationInSeconds) {
-    const { formatDurationForHumans } = await import('./src/duration.mjs');
+    const { formatDurationForHumans } = await import('./src/js/duration.mjs');
     return `${formatDurationForHumans(durationInSeconds)}`;
   });
 
@@ -56,7 +58,7 @@ module.exports = function (eleventyConfig) {
     'sound_quality_color',
     async function (soundqualitycolor) {
       const { soundQualityRatingMapping } = await import(
-        './src/sound-quality-rating.mjs'
+        './src/js/sound-quality-rating.mjs'
       );
 
       return `${soundQualityRatingMapping[soundqualitycolor].color}`;
@@ -68,7 +70,7 @@ module.exports = function (eleventyConfig) {
     'sound_quality_label',
     async function (soundqualitylabel) {
       const { soundQualityRatingMapping } = await import(
-        './src/sound-quality-rating.mjs'
+        './src/js/sound-quality-rating.mjs'
       );
 
       return `${soundQualityRatingMapping[soundqualitylabel].label}`;

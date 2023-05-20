@@ -14,7 +14,7 @@ import {
   stats,
 } from 'instantsearch.js/es/widgets';
 import 'mdn-polyfills/Element.prototype.toggleAttribute';
-import './algolia.css';
+import '../css/algolia.css';
 import { itemTemplate } from './memories-item-template';
 import { searchBar } from './search-bar';
 
