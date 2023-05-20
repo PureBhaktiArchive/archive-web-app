@@ -9,11 +9,12 @@ tags:
 jsFile: audios.js
 ---
 <div
-  x-data="{open: false}"
-  x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
   class="mt-4 flex"
 >
   <div
+    x-data="{open: false}"
+    @open-filter.window="open = $event.detail"
+    x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
     x-cloak
     @keydown.escape="open = false"
     :class="open ? 'flex flex-col': 'hidden'"
@@ -52,11 +53,10 @@ jsFile: audios.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
-    <div class="my-3 flex items-center">
+    <div x-data="{ open: false }" class="my-3 flex items-center">
       <!-- Filter button -->
       <button
-        type="button"
-        @click="open = true"
+        @click="$dispatch('open-filter', 'open = true')"
         x-show="!open"
         class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden"
       >
