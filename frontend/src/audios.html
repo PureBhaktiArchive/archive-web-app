@@ -16,8 +16,8 @@ jsFile: audios.js
   <div
     x-cloak
     @keydown.escape="open = false"
-    :data-open="open"
-    class="fixed top-0 z-20 hidden h-full w-64 max-w-full bg-white text-sm transition-transform data-[open]:flex data-[open]:flex-col md:static md:z-auto md:flex md:w-1/5 md:max-w-sm"
+    :class="open ? 'flex flex-col': 'hidden'"
+    class="fixed top-0 z-20 h-full w-64 max-w-full bg-white text-sm transition-transform  md:static md:z-auto md:flex md:w-1/5 md:max-w-sm"
   >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
     <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
