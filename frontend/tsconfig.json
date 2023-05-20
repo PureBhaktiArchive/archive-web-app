@@ -30,13 +30,6 @@
     "allowJs": true,
     "checkJs": true
   },
-  "include": [
-    // Root coinfig files
-    "*.js",
-    "*.cjs",
-    // Data files
-    "src/**/*.11tydata.js",
-    "src/_data/**/*.js"
-  ],
+  "include": ["src/**/*.11tydata.js", "src/_data/**/*.js"],
   "exclude": ["node_modules", "**/node_modules/*", "dist"]
 }

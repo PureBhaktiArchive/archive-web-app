@@ -21,7 +21,7 @@ require('dotenv').config({
  * Typing idea borrowed from https://github.com/11ty/eleventy/discussions/2089
  * But it doesn't seem to work with tsconfig present.
  * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
- * Therefore as of now the below types evaluate to `any`. Still keeping the annotations for the future.
+ * Therefore as of now this file is not included in the tsconfig. Intellisense is more important.
  * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
  * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
