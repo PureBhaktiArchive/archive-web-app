@@ -11,7 +11,7 @@
     "module": "ES2022",
     "moduleResolution": "node",
     // This is needed to prevent node globals from being added to the project
-    "types": [],
+    "types": ["vite/client"],
 
     // Completeness
 

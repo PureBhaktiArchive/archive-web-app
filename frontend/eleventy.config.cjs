@@ -27,7 +27,9 @@ require('dotenv').config({
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
-  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-vite'));
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-vite'), {
+    viteOptions: require('./vite.config.js'),
+  });
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
@@ -38,8 +40,6 @@ module.exports = function (eleventyConfig) {
 
   // This is a public directory for Vite - https://vitejs.dev/guide/assets.html#the-public-directory
   eleventyConfig.addPassthroughCopy('src/public');
-
-  eleventyConfig.addGlobalData('env', process.env);
 
   //Filter for duration calculation
   eleventyConfig.addFilter('duration', async function (durationInSeconds) {

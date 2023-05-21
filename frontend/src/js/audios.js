@@ -24,11 +24,11 @@ import { soundQualityRatingMapping } from './sound-quality-rating.mjs';
 import './webshare';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APPLICATION_ID,
-  process.env.ALGOLIA_API_KEY
+  import.meta.env.ALGOLIA_APPLICATION_ID,
+  import.meta.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
-  indexName: process.env.ALGOLIA_INDEX_AUDIOS,
+  indexName: import.meta.env.ALGOLIA_INDEX_AUDIOS,
   searchClient,
 });
 
@@ -186,8 +186,9 @@ search.addWidgets([
   }),
 ]);
 
-if (process.env.NODE_ENV !== 'production') {
-  // Making devtools detect ALpine on the page: https://github.com/alpine-collective/alpinejs-devtools/issues/327
+// Only in development according to https://vitejs.dev/guide/env-and-mode.html#env-variables
+if (import.meta.env.DEV) {
+  // Making devtools detect Alpine on the page: https://github.com/alpine-collective/alpinejs-devtools/issues/327
   window['Alpine'] = Alpine;
 }
 

@@ -19,11 +19,11 @@ import { itemTemplate } from './memories-item-template';
 import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APPLICATION_ID,
-  process.env.ALGOLIA_API_KEY
+  import.meta.env.ALGOLIA_APPLICATION_ID,
+  import.meta.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
-  indexName: process.env.ALGOLIA_INDEX_MEMORIES,
+  indexName: import.meta.env.ALGOLIA_INDEX_MEMORIES,
   searchClient,
 });
 

@@ -125,8 +125,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1">
             <!-- Download -->
             <a
-              href="https://${process.env
-                .STORAGE_BUCKET}.storage.googleapis.com/${hit.objectID}.mp3"
+              href="${import.meta.env.STORAGE_BASE_URL}/${hit.objectID}.mp3"
               class="inline-flex space-x-1"
               title="Download file for listening offline"
             >
@@ -148,7 +147,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Feedback -->
             <a
-              href="${process.env.FEEDBACK_FORM_AUDIOS}${hit.objectID}"
+              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.objectID}"
               target="_blank"
               class="inline-flex space-x-1"
               title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"

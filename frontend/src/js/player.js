@@ -45,11 +45,11 @@ const createNewPlayer = (fileId, contentDetails) => ({
   },
 
   get downloadURL() {
-    return `https://${process.env.STORAGE_BUCKET}.storage.googleapis.com/${this.fileId}.mp3`;
+    return `${import.meta.env.STORAGE_BASE_URL}/${this.fileId}.mp3`;
   },
 
   get feedbackURL() {
-    return process.env.FEEDBACK_FORM_AUDIOS + this.fileId;
+    return import.meta.env.FEEDBACK_FORM_AUDIOS + this.fileId;
   },
 
   get durationForHumans() {
