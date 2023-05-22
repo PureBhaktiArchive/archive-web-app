@@ -117,7 +117,7 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
     </footer>
     <!-- Footer -->
-
+    <!-- Backdrop -->
     <div
       x-data="{ open: false }"
       x-init="$watch('open', (value) => document.body.toggleAttribute('data-overlayed', value))"
@@ -125,6 +125,7 @@ gtm-tag-id: GTM-PNC4S5J
       x-show="open"
       class="fixed inset-0 bg-white/50 backdrop-blur-sm"
     ></div>
+    <!-- Backdrop -->
 
     {%- if jsFile -%}
       <script type="module" src="~/src/{{jsFile}}"></script>
