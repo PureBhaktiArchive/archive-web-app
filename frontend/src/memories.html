@@ -49,9 +49,10 @@ jsFile: memories.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
-    <div x-data="{ open: false }" class="my-3 flex items-center">
+    <div class="my-3 flex items-center">
       <!-- Filter button -->
       <button
+        x-data
         @click="$dispatch('toggle-filter', true)"
         class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden"
       >
