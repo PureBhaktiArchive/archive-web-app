@@ -8,12 +8,10 @@ tags:
   - topnav
 jsFile: audios.js
 ---
-<div
-  class="mt-4 flex"
->
+<div class="mt-4 flex">
   <div
     x-data="{open: false}"
-    @open-filter.window="open = $event.detail"
+    @toggle-filter.window="open = $event.detail ?? !open"
     x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
     x-cloak
     @keydown.escape="open = false"
@@ -56,7 +54,7 @@ jsFile: audios.js
     <div x-data="{ open: false }" class="my-3 flex items-center">
       <!-- Filter button -->
       <button
-        @click="$dispatch('open-filter', 'open = true')"
+        @click="$dispatch('toggle-filter', true)"
         class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden"
       >
         <!-- Heroicon name: solid/filter -->
