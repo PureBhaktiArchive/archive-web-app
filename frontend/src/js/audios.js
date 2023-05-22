@@ -14,7 +14,6 @@ import {
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
-import 'mdn-polyfills/Element.prototype.toggleAttribute';
 import '../css/algolia.css';
 import { itemTemplate } from './audio-item-template';
 import './player';
