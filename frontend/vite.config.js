@@ -2,8 +2,17 @@
  * sri sri guru gaurangau jayatah
  */
 
+/**
+ * This file is not consumed by Vite.js automatically, we explicitly pass it to Eleventy - Vite plugin.
+ */
+
+const browserslistToEsbuild = require('browserslist-to-esbuild');
+
 /** @type {import('vite').UserConfig} */
 module.exports = {
+  build: {
+    target: browserslistToEsbuild(),
+  },
   // Exposing certain environment variables according to https://vitejs.dev/config/shared-options.html#envprefix
   define: {
     'import.meta.env.STORAGE_BASE_URL': JSON.stringify(
