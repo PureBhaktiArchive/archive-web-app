@@ -124,7 +124,7 @@ gtm-tag-id: GTM-PNC4S5J
       x-init="$watch('open', (value) => document.body.toggleAttribute('data-overlayed', value))"
       @toggle-backdrop.window="open = $event.detail ?? !open"
       x-show="open"
-      class="fixed inset-0 z-10 bg-white/50 backdrop-blur-sm"
+      class="fixed inset-0 z-10 bg-gray-700/50 backdrop-blur-[2px]"
     ></div>
 
     {%- if jsFile -%}
