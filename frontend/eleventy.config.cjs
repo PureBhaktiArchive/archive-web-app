@@ -2,14 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-/**
- * This should be
- * const { EleventyRenderPlugin } = require('@11ty/eleventy');
- * But it prduces TS2305 with TypeScript checking on. Perhaps an 11ty’s export issue.
- * Therefore we're using a workaround described in https://github.com/11ty/eleventy/issues/2935
- * Otherwise we'd have to apply `@ts-ignore`.
- */
-const EleventyRenderPlugin = require('@11ty/eleventy/src/Plugins/RenderPlugin.js');
+const { EleventyRenderPlugin } = require('@11ty/eleventy');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
