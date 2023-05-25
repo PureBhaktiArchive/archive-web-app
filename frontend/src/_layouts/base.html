@@ -6,8 +6,8 @@ gtm-tag-id: GTM-PNC4S5J
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#115E59">
-    <meta name="msapplication-navbutton-color" content="#115E59 ">
+    <meta name="theme-color" content="#525252">
+    <meta name="msapplication-navbutton-color" content="#525252">
     <link rel="icon" sizes="32x32" type="image/png" href="/favicon-32x32.png">
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png">
     <link rel="stylesheet" href="/css/app.css">
@@ -16,7 +16,7 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="overflow-y-scroll data-[overlayed]:overflow-hidden">
+  <body class="flex min-h-screen flex-col overflow-y-scroll overlayed:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
 
     <!-- Top section Join us now -->
@@ -84,12 +84,12 @@ gtm-tag-id: GTM-PNC4S5J
     </header>
 
     <!-- Page Content -->
-    <div class="mx-auto max-w-screen-xl">
-      {{ content }}
-    </div>
+    <section class="flex-1">
+      <div class="mx-auto max-w-screen-xl">{{ content }}</div>
+    </section>
 
     <!-- Footer -->
-    <footer class=" bg-neutral-600 p-4 pb-40 text-sm text-white">
+    <footer class="bg-neutral-600 p-4 pb-40 text-sm text-white">
       <div class="mx-auto flex max-w-screen-xl grow flex-col gap-y-4 md:flex-row md:justify-between">
         <div class="mx-auto h-6 font-erasDemi md:mx-0 md:h-10 md:text-lg">PURE BHAKTI ARCHIVE</div>
         <div class="text-center md:text-right">
