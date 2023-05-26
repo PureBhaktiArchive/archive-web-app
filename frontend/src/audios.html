@@ -15,7 +15,7 @@ jsFile: audios.js
     x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
     x-cloak
     @keydown.escape="open = false"
-    :class="open ? 'translate-x-0 transform-gpu': '-translate-x-full transform-cpu'"
+    :class="open ? 'translate-x-0 transform-gpu': '-translate-x-full'"
     class="fixed top-0 z-20 flex h-full w-64 flex-col bg-white text-sm transition-transform ease-linear md:static md:z-auto md:flex md:w-1/5 md:max-w-sm md:translate-x-0"
   >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
