@@ -3,8 +3,8 @@
  */
 
 import { escape } from 'instantsearch.js/es/lib/utils';
-import { formatDurationForHumans } from './duration.js';
-import { soundQualityRatingMapping } from './sound-quality-rating.js';
+import { formatDurationForHumans } from './duration';
+import { soundQualityRatingMapping } from './sound-quality-rating';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**

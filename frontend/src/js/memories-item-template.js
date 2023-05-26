@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { formatDurationForHumans } from './duration.js';
+import { formatDurationForHumans } from './duration';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**
