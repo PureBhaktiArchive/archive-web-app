@@ -3,6 +3,10 @@
  */
 
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const { formatDurationForHumans } = require('./config/filters/duration');
+const {
+  soundQualityRatingMapping,
+} = require('./config/filters/sound-quality-rating');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -35,10 +39,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('src/public');
 
   //Filter for duration calculation
-  eleventyConfig.addFilter('duration', async function (durationInSeconds) {
-    const { formatDurationForHumans } = await import('./src/js/duration.mjs');
-    return `${formatDurationForHumans(durationInSeconds)}`;
-  });
+  eleventyConfig.addFilter(
+    'duration',
+    (durationInSeconds) => `${formatDurationForHumans(durationInSeconds)}`
+  );
 
   //Filter for Gurudev percentage calculation
   eleventyConfig.addFilter(
@@ -49,25 +53,15 @@ module.exports = function (eleventyConfig) {
   //Filter for Sound Quality Rating color
   eleventyConfig.addFilter(
     'sound_quality_color',
-    async function (soundqualitycolor) {
-      const { soundQualityRatingMapping } = await import(
-        './src/js/sound-quality-rating.mjs'
-      );
-
-      return `${soundQualityRatingMapping[soundqualitycolor].color}`;
-    }
+    (soundqualitycolor) =>
+      `${soundQualityRatingMapping[soundqualitycolor].color}`
   );
 
   //Filter for Sound Quality Rating label
   eleventyConfig.addFilter(
     'sound_quality_label',
-    async function (soundqualitylabel) {
-      const { soundQualityRatingMapping } = await import(
-        './src/js/sound-quality-rating.mjs'
-      );
-
-      return `${soundQualityRatingMapping[soundqualitylabel].label}`;
-    }
+    (soundqualitylabel) =>
+      `${soundQualityRatingMapping[soundqualitylabel].label}`
   );
 
   // Return your Object options:
