@@ -27,7 +27,7 @@ jsFile: audio.js
   <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
-      <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mr-1 [&>*]:mb-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+      <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
         <div>#{{ audio.objectID }}</div>
         {% if audio.dateForHumans -%}
           <div>
@@ -172,7 +172,7 @@ jsFile: audio.js
       </a>
     </div>
   </div>
-  <div class="prose-sm prose mt-6 dark:prose-invert sm:prose">
+  <div class="prose prose-sm mt-6 dark:prose-invert sm:prose">
     <h4>Topics</h4>
     {% renderTemplate "liquid,md", audio -%}
     {{- topics -}}
