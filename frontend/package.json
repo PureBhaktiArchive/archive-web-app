@@ -35,7 +35,7 @@
     "@shopify/prettier-plugin-liquid": "1.1.0",
     "@stefanracic/tailwind-child": "1.0.5",
     "@tailwindcss/aspect-ratio": "0.4.2",
-    "@tailwindcss/typography": "0.5.7",
+    "@tailwindcss/typography": "0.5.9",
     "@types/alpinejs": "3.7.1",
     "@types/node": "18.16.2",
     "dotenv": "16.0.3",
