@@ -47,7 +47,8 @@ Alpine.data('searchResultItem', (/** @type {string} */ fileId) => {
     },
 
     // For `x-bind`
-    self: {
+    // `self` causes issues, see https://github.com/alpinejs/alpine/discussions/3603
+    root: {
       [`@archive:player-status-${fileId}.window`]: 'onPlayerStatus',
     },
     playButton: {

@@ -18,13 +18,12 @@ import { formatDurationForHumans } from './duration';
  */
 
 /**
- * Creates new audio player Alpine component
+ * Audio player component
  * Decalring this intermediate function to avoid type inference as Record<string, any>
  * @param {number} fileId Audio file ID
  * @param {ContentDetails} contentDetails Title and other content details to initialise the player
- * @returns An Lpine component data object
  */
-const createNewPlayer = (fileId, contentDetails) => ({
+const player = (fileId, contentDetails) => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -224,7 +223,8 @@ const createNewPlayer = (fileId, contentDetails) => ({
   },
 
   // For x-bind
-  self: {
+  // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
+  root: {
     'x-show': 'isOpen',
     'x-transition': '',
     '@archive:toggle-play.window': 'handleTogglePlayEvent',
@@ -257,4 +257,4 @@ const createNewPlayer = (fileId, contentDetails) => ({
   },
 });
 
-Alpine.data('player', createNewPlayer);
+Alpine.data('player', player);

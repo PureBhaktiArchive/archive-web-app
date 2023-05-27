@@ -46,7 +46,8 @@ Alpine.data(
       }
     },
 
-    self: {
+    // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
+    root: {
       '@click.prevent': 'share',
     },
   })

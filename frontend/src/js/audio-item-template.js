@@ -14,7 +14,7 @@ export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
     x-data="searchResultItem(${hit.objectID})"
-    x-bind="self"
+    x-bind="root"
   >
     <!-- Main section -->
     <div class="flex grow items-start">
@@ -174,7 +174,7 @@ export const itemTemplate = (hit, { html, components }) => html`
               x-data="webshare('${escape(
                 hit.title
               )}', '/audios/${hit.objectID}/')"
-              x-bind="self"
+              x-bind="root"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"
               data-tippy-placement="top"
