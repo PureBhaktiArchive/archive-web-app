@@ -239,7 +239,7 @@ a[class^='ais-'] {
 }
 
 .ais-Panel {
-  @apply pt-2 pr-2;
+  @apply pr-2 pt-2;
 }
 
 .ais-Panel--collapsible {
