@@ -17,7 +17,7 @@ gtm-tag-id: GTM-PNC4S5J
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
   </head>
 
-  <body class="flex min-h-screen flex-col overflow-y-scroll overlayed:overflow-hidden">
+  <body class="flex min-h-screen flex-col overflow-y-scroll data-[overlayed]:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
 
     <!-- Top section Join us now -->
@@ -26,7 +26,11 @@ gtm-tag-id: GTM-PNC4S5J
     </section>
 
     <header class="border-b border-gray-200 py-4">
-      <div x-data="{open: false}" class="mx-auto flex max-w-screen-xl items-center px-4">
+      <div
+        x-data="{open: false}"
+        x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
+        class="mx-auto flex max-w-screen-xl items-center px-4"
+      >
         <!-- Logo -->
         <a href="/" class="mr-auto"><div class="mx-auto inline-flex h-10 items-center font-erasDemi text-neutral-600 md:mx-0 md:h-16 md:text-2xl">PURE BHAKTI ARCHIVE</div></a>
 
@@ -57,8 +61,8 @@ gtm-tag-id: GTM-PNC4S5J
         <nav
           x-cloak
           @keydown.escape="open = false"
-          :data-open="open"
-          class="fixed top-0 right-0 z-40 flex h-screen w-64 translate-x-full flex-col items-start gap-4 overflow-hidden border-l border-l-gray-300 bg-white p-4 pt-14 text-sm font-semibold uppercase text-stone-900 transition-transform data-[open]:translate-x-0 md:relative md:top-auto md:h-auto md:w-auto md:max-w-none md:translate-x-0 md:flex-row md:border-l-0 md:bg-none md:p-0 lg:gap-x-10"
+          :class="open ? 'translate-x-0': 'translate-x-full'"
+          class="fixed top-0 right-0 z-40 flex h-screen w-64 flex-col items-start gap-4 overflow-hidden border-l border-l-gray-300 bg-white p-4 pt-14 text-sm font-semibold uppercase text-stone-900 transition-transform ease-linear md:relative md:top-auto md:h-auto md:w-auto md:max-w-none md:translate-x-0 md:flex-row md:border-l-0 md:bg-none md:p-0 lg:gap-x-10"
         >
           <button class="self-end p-2 md:hidden" @click="open = false">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -112,7 +116,17 @@ gtm-tag-id: GTM-PNC4S5J
         </div>
       </div>
     </footer>
-    <!-- Footer -->
+
+    <!-- Backdrop -->
+    <div
+      x-data="{ open: false }"
+      x-cloak
+      x-init="$watch('open', (value) => document.body.toggleAttribute('data-overlayed', value))"
+      @toggle-backdrop.window="open = $event.detail != null ? $event.detail : !open"
+      x-show="open"
+      class="fixed inset-0 z-10 bg-gray-700/50 backdrop-blur-[2px]"
+    ></div>
+
     {%- if jsFile -%}
       <script type="module" src="~/src/{{jsFile}}"></script>
     {%- endif -%}
