@@ -2,6 +2,7 @@
   "plugins": {
     "postcss-mixins": true,
     "tailwindcss/nesting": true,
-    "tailwindcss": true
+    "tailwindcss": true,
+    "autoprefixer": true
   }
 }

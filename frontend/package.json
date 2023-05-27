@@ -19,6 +19,7 @@
     "@types/alpinejs": "3.7.1",
     "@types/html-minifier-terser": "7.0.0",
     "@types/node": "18.16.2",
+    "autoprefixer": "10.4.14",
     "browserslist-to-esbuild": "1.2.0",
     "dotenv": "16.0.3",
     "eslint": "8.31.0",
