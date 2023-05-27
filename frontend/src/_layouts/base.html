@@ -14,6 +14,10 @@ gtm-tag-id: GTM-PNC4S5J
 
     <title>Srila BV Narayana Gosvami Maharaja’s Official Archive</title>
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
+    {%- if jsFile -%}
+      <script type="module" src="/js/{{jsFile}}"></script>
+    {%- endif -%}
+    <script type="module" src="/js/common.js"></script>
   </head>
 
   <body class="flex min-h-screen flex-col overflow-y-scroll overlayed:overflow-hidden">
@@ -112,9 +116,5 @@ gtm-tag-id: GTM-PNC4S5J
       </div>
     </footer>
     <!-- Footer -->
-    {%- if jsFile -%}
-      <script type="module" src="/js/{{jsFile}}"></script>
-    {%- endif -%}
-    <script type="module" src="/js/common.js"></script>
   </body>
 </html>
