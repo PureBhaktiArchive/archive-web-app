@@ -11,7 +11,7 @@ jsFile: audios.js
 <div class="mt-4 flex">
   <div
     x-data="{open: false}"
-    @toggle-filter.window="open = $event.detail ?? !open"
+    @toggle-filter.window="open = $event.detail != null ? $event.detail : !open"
     x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
     x-cloak
     @keydown.escape="open = false"
