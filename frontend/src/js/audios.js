@@ -194,3 +194,5 @@ Alpine.store('activeFileId', 0);
 // This store provides access to the search helper from the search result item component
 // Search should be already started for the helper to be defined
 Alpine.store('searchHelper', search.helper);
+
+Alpine.start();

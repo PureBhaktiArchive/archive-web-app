@@ -3,6 +3,7 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
+import Alpine from 'alpinejs';
 import instantsearch from 'instantsearch.js';
 import {
   configure,
@@ -129,3 +130,4 @@ search.addWidgets([
 ]);
 
 search.start();
+Alpine.start();
