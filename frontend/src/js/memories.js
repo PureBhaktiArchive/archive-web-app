@@ -4,7 +4,7 @@
 
 import algoliasearch from 'algoliasearch/lite';
 import Alpine from 'alpinejs';
-import instantsearch from 'instantsearch.js';
+import instantsearch from 'instantsearch.js/es';
 import {
   configure,
   hits,
