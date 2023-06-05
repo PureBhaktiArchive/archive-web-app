@@ -6,8 +6,6 @@
 
     // Modules
 
-    // We need to specify `module` because otherwise we face an error:
-    // Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.ts(1323)
     "module": "ES2022",
     "moduleResolution": "node",
     // This is needed to prevent node globals from being added to the project
