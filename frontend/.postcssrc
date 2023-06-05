@@ -3,6 +3,10 @@
     "postcss-mixins": true,
     "tailwindcss/nesting": true,
     "tailwindcss": true,
-    "autoprefixer": true
+    "postcss-preset-env": {
+      "features": {
+        "nesting-rules": false
+      }
+    }
   }
 }
