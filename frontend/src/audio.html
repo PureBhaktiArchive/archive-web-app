@@ -102,7 +102,7 @@ jsFile: audio.js
     <div class="mb-1 flex space-x-1">
       <!-- Download -->
       <a
-        href="https://{{ env.STORAGE_BUCKET }}.storage.googleapis.com/{{ audio.objectID }}.mp3"
+        href="{{ fileUrl }}"
         class="inline-flex items-center space-x-1"
         title="Download file for listening offline"
       >
@@ -148,7 +148,7 @@ jsFile: audio.js
         href="/audios/{{ audio.objectID }}/"
         class="inline-flex cursor-pointer items-center space-x-1"
         x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.objectID }}/')"
-        x-bind="self"
+        x-bind="root"
         data-tippy-content="Link copied to clipboard"
         data-tippy-trigger="manual"
         data-tippy-placement="bottom"

@@ -3,7 +3,8 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
-import instantsearch from 'instantsearch.js';
+import Alpine from 'alpinejs';
+import instantsearch from 'instantsearch.js/es';
 import {
   configure,
   hits,
@@ -13,17 +14,16 @@ import {
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
-import 'mdn-polyfills/Element.prototype.toggleAttribute';
-import './algolia.css';
+import '../css/algolia.css';
 import { itemTemplate } from './memories-item-template';
 import { searchBar } from './search-bar';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APPLICATION_ID,
-  process.env.ALGOLIA_API_KEY
+  import.meta.env.ALGOLIA_APPLICATION_ID,
+  import.meta.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
-  indexName: process.env.ALGOLIA_INDEX_MEMORIES,
+  indexName: import.meta.env.ALGOLIA_INDEX_MEMORIES,
   searchClient,
 });
 
@@ -130,3 +130,4 @@ search.addWidgets([
 ]);
 
 search.start();
+Alpine.start();

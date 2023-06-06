@@ -42,7 +42,7 @@ export const itemTemplate = (hit, { html, components }) => html`
       <!-- Feedback -->
       <div>
         <a
-          href="${process.env.FEEDBACK_FORM_MEMORIES}${hit.objectID}"
+          href="${import.meta.env.FEEDBACK_FORM_MEMORIES}${hit.objectID}"
           target="_blank"
           class="inline-flex space-x-1"
           title="Help us improve! Give feedback about the Speaker’s Name or Introduction, etc of this video"

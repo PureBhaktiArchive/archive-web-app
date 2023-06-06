@@ -1,8 +1,7 @@
 <div
-  id="player"
   x-cloak
   x-data="player({% if fileId and contentDetails %}{{ fileId }}, JSON.parse('{{ contentDetails | json | replace: "'", "\\'" | escape }}'){% endif %})"
-  x-bind="self"
+  x-bind="root"
   class="fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 shadow-xl-around md:flex-row md:space-x-6"
 >
   <!-- Controls -->
@@ -118,7 +117,7 @@
             :href="'/audios/' + fileId + '/'"
             class="ml-1 inline-flex cursor-pointer items-start pl-1"
             x-data="webshare"
-            x-bind="self"
+            x-bind="root"
             :data-webshare-title="contentDetails.title"
             :data-webshare-url="'/audios/' + fileId + '/'"
             data-tippy-content="Link coied to clipboard"

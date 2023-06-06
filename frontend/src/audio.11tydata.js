@@ -9,6 +9,8 @@ module.exports = {
     alias: 'audio',
   },
   eleventyComputed: {
+    // Download URL
+    fileUrl: `${process.env.STORAGE_BASE_URL}/{{audio.objectID}}.mp3`,
     // Compiling content details for the audio player
     contentDetails: ({
       audio: {

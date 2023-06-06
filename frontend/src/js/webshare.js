@@ -4,6 +4,7 @@
 
 import Alpine from 'alpinejs';
 import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 
 /**
  * @typedef {Object} WebshareComponent
@@ -46,7 +47,8 @@ Alpine.data(
       }
     },
 
-    self: {
+    // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
+    root: {
       '@click.prevent': 'share',
     },
   })

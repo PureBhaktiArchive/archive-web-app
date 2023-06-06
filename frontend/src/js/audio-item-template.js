@@ -14,7 +14,7 @@ export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
     x-data="searchResultItem(${hit.objectID})"
-    x-bind="self"
+    x-bind="root"
   >
     <!-- Main section -->
     <div class="flex grow items-start">
@@ -125,8 +125,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1">
             <!-- Download -->
             <a
-              href="https://${process.env
-                .STORAGE_BUCKET}.storage.googleapis.com/${hit.objectID}.mp3"
+              href="${import.meta.env.STORAGE_BASE_URL}/${hit.objectID}.mp3"
               class="inline-flex space-x-1"
               title="Download file for listening offline"
             >
@@ -148,7 +147,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Feedback -->
             <a
-              href="${process.env.FEEDBACK_FORM_AUDIOS}${hit.objectID}"
+              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.objectID}"
               target="_blank"
               class="inline-flex space-x-1"
               title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
@@ -175,7 +174,7 @@ export const itemTemplate = (hit, { html, components }) => html`
               x-data="webshare('${escape(
                 hit.title
               )}', '/audios/${hit.objectID}/')"
-              x-bind="self"
+              x-bind="root"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"
               data-tippy-placement="top"

@@ -3,8 +3,10 @@
  */
 
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
-const { formatDurationForHumans } = require('./src/duration');
-const { soundQualityRatingMapping } = require('./src/sound-quality-rating');
+const { formatDurationForHumans } = require('./config/filters/duration');
+const {
+  soundQualityRatingMapping,
+} = require('./config/filters/sound-quality-rating');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -14,19 +16,33 @@ require('dotenv').config({
  * Eleventy config function.
  *
  * Typing idea borrowed from https://github.com/11ty/eleventy/discussions/2089
- *  @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
- *  @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ * But it doesn't seem to work with tsconfig present.
+ * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
+ * Therefore as of now this file is not included in the tsconfig. Intellisense is more important.
+ * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
+ * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-vite'), {
+    viteOptions: require('./vite.config.js'),
+  });
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPlugin(EleventyRenderPlugin);
-  eleventyConfig.addGlobalData('env', process.env);
+
+  eleventyConfig.addPassthroughCopy('src/css');
+  eleventyConfig.addPassthroughCopy('src/js');
+  eleventyConfig.addPassthroughCopy('src/fonts');
+  eleventyConfig.addPassthroughCopy('src/images');
+
+  // This is a public directory for Vite - https://vitejs.dev/guide/assets.html#the-public-directory
+  eleventyConfig.addPassthroughCopy('src/public');
 
   //Filter for duration calculation
-  eleventyConfig.addFilter('duration', function (durationInSeconds) {
-    return `${formatDurationForHumans(durationInSeconds)}`;
-  });
+  eleventyConfig.addFilter(
+    'duration',
+    (durationInSeconds) => `${formatDurationForHumans(durationInSeconds)}`
+  );
 
   //Filter for Gurudev percentage calculation
   eleventyConfig.addFilter(
@@ -35,14 +51,18 @@ module.exports = function (eleventyConfig) {
   );
 
   //Filter for Sound Quality Rating color
-  eleventyConfig.addFilter('sound_quality_color', function (soundqualitycolor) {
-    return `${soundQualityRatingMapping[soundqualitycolor].color}`;
-  });
+  eleventyConfig.addFilter(
+    'sound_quality_color',
+    (soundqualitycolor) =>
+      `${soundQualityRatingMapping[soundqualitycolor].color}`
+  );
 
   //Filter for Sound Quality Rating label
-  eleventyConfig.addFilter('sound_quality_label', function (soundqualitylabel) {
-    return `${soundQualityRatingMapping[soundqualitylabel].label}`;
-  });
+  eleventyConfig.addFilter(
+    'sound_quality_label',
+    (soundqualitylabel) =>
+      `${soundQualityRatingMapping[soundqualitylabel].label}`
+  );
 
   // Return your Object options:
   return {
@@ -50,6 +70,7 @@ module.exports = function (eleventyConfig) {
       input: 'src',
       layouts: '_layouts',
       includes: '_includes',
+      output: 'dist',
     },
   };
 };

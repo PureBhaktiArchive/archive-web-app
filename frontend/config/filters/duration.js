@@ -3,6 +3,11 @@
  */
 
 /**
+ * This file is for Eleventy, written in CommonJS module syntax.
+ * The same code is duplicated in the `src/js` folder in ESM syntax for the browser.
+ */
+
+/**
  * Formats duration in human-readable format
  * @param {number} durationInSeconds
  * @param {number} [referenceDuration] Another duration in seconds to align the formatted string length to

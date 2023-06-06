@@ -14,8 +14,7 @@ import {
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
-import 'mdn-polyfills/Element.prototype.toggleAttribute';
-import './algolia.css';
+import '../css/algolia.css';
 import { itemTemplate } from './audio-item-template';
 import './player';
 import { searchBar } from './search-bar';
@@ -24,11 +23,11 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
 
 const searchClient = algoliasearch(
-  process.env.ALGOLIA_APPLICATION_ID,
-  process.env.ALGOLIA_API_KEY
+  import.meta.env.ALGOLIA_APPLICATION_ID,
+  import.meta.env.ALGOLIA_API_KEY
 );
 const search = instantsearch({
-  indexName: process.env.ALGOLIA_INDEX_AUDIOS,
+  indexName: import.meta.env.ALGOLIA_INDEX_AUDIOS,
   searchClient,
 });
 
@@ -186,11 +185,6 @@ search.addWidgets([
   }),
 ]);
 
-if (process.env.NODE_ENV !== 'production') {
-  // Making devtools detect ALpine on the page: https://github.com/alpine-collective/alpinejs-devtools/issues/327
-  window['Alpine'] = Alpine;
-}
-
 search.start();
 
 // This store keeps the currently playing file Id
@@ -200,3 +194,5 @@ Alpine.store('activeFileId', 0);
 // This store provides access to the search helper from the search result item component
 // Search should be already started for the helper to be defined
 Alpine.store('searchHelper', search.helper);
+
+Alpine.start();

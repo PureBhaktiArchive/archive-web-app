@@ -25,10 +25,6 @@
     {
       "matchPackageNames": ["googleapis"],
       "dependencyDashboardApproval": false
-    },
-    {
-      "matchSourceUrlPrefixes": ["https://github.com/parcel-bundler/parcel"],
-      "groupName": "parcel monorepo"
     }
   ]
 }
