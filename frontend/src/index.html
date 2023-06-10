@@ -99,12 +99,12 @@ tags:
 <!--Body left ends-->
  <!--Body Right-->
   <div class="md:w-3/12 sm:w-full md:!pr-4 md:!pl-2 px-2">
-  {% for dailyvideo in dailyVideos %}
-    <div class="mb-8">
-   <div class=" font-semibold md:text-base !text-sm uppercase text-black pb-2 ">Today's harikatha (hindi)
+  {% for dailyvideo in dailyVideos offset: 0 limit: 2 %}
+    <div class="mb-8 ">
+   <div class=" font-semibold md:text-base !text-sm uppercase text-black pb-2">Today's harikatha ({{ dailyvideo.language | language_name }})
    </div>
    <div class="aspect-w-16 aspect-h-9">
-     <iframe class="rounded-lg " src="https://www.youtube.com/embed/{{ dailyvideo.videoID }}"
+     <iframe scrolling="no" class="rounded-lg " src="https://i.ytimg.com/vi_webp/{{ dailyvideo.videoID }}/0.webp"
        title="श्री बृहदभागवतामृतम् : गोपियों का उल्लास- हिन्दी, 07 अप्रैल 1998 मथुरा" frameborder="0"
        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
        allowfullscreen></iframe>
