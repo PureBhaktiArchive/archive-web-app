@@ -9,6 +9,7 @@ This sub-project contains the frontend part of the Archive.
 - [Tailwind CSS](https://tailwindcss.com/) as an utility-first CSS framework
 - [Alpine JS](https://github.com/alpinejs/alpine) as a JS framework
 - [Algolia InstantSearch.js](https://www.algolia.com/doc/guides/building-search-ui/getting-started/js/) for search UI
+- [Directus SDK](https://docs.directus.io/reference/sdk.html) for pulling data from the headless CMS
 
 ### InstantSearch Templates
 
@@ -37,6 +38,10 @@ Environment variables should be added to an `.env.local` file.
 | `FEEDBACK_FORM_MEMORIES` | The base URL of the Memories Feedback Form, memory ID will be appended in the end.                                                                                               |
 | `AUDIOS_DATA_PATH`       | Path to a file containing JSON data for audio pages generation. Should be absolute or relative to the `frontend` folder. This file can be downloaded from the Realtime Database. |
 | `DONATION_URL`           | The URL of the external donation page.                                                                                                                                           |
+| `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                                                                                                                            |
+| `DIRECTUS_EMAIL`         | Username for Directus, used in case of username/password authentication.                                                                                                         |
+| `DIRECTUS_PASSWORD`      | Password for Directus, used in case of username/password authentication.                                                                                                         |
+| `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.                                                                                                            |
 
 For a new environment variable to be accessible from the frontend code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
 
