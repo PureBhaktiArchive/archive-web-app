@@ -101,14 +101,24 @@ tags:
   <div class="md:w-3/12 sm:w-full md:!pr-4 md:!pl-2 px-2">
   {% for dailyvideo in dailyVideos offset: 0 limit: 2 %}
     <div class="mb-8 ">
-   <div class=" font-semibold md:text-base !text-sm uppercase text-black pb-2">Today's harikatha ({{ dailyvideo.language | language_name }})
-   </div>
-   <div class="aspect-w-14 aspect-h-9">
-    <img class="rounded-md" src="https://img.youtube.com/vi/{{ dailyvideo.videoID }}/hqdefault.jpg">
-   </div>
+      <div class=" font-semibold md:text-base !text-sm uppercase text-black pb-2">Today's harikatha ({{ dailyvideo.language | language_name }})</div>
+      <div
+       x-data="{showthumb: true}" class="aspect-w-16 aspect-h-9">
+            <template x-if="showthumb">
+              <img
+              @click="showthumb = false"
+              class="rounded-md"
+              src="https://img.youtube.com/vi/{{ dailyvideo.videoID }}/hqdefault.jpg">
+            </template>
+            <template x-if="!showthumb">
+              <iframe
+              class="w-full rounded-md h-auto" src="https://www.youtube.com/embed/{{ dailyvideo.videoID }}?autoplay=1&enablejsapi=1" allow="autoplay"></iframe>
+            </template>
+        </div>
     </div>
   {% endfor %}
-    <div class="mb-8">
+
+  <div class="mb-8">
    <div class=" font-semibold md:text-base !text-sm  uppercase text-black pb-2">short video of the day</div>
    <div class="aspect-w-9 aspect-h-16">
      <iframe class="rounded-md" src="https://www.youtube.com/embed/CwHT3zbTSI4"
@@ -118,6 +128,7 @@ tags:
    </div>
     </div>
   </div>
+
 <!--Body Right Ends-->
 </div>
 <!-- Memories -->
