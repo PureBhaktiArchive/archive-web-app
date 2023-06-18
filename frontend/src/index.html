@@ -7,129 +7,139 @@ tags:
   - topnav
 ---
 <div class="md:flex">
-<!--Body left-->
-  <div class="md:w-9/12 w-full md:!px-4 sm:!px-0">
+  <!-- Body left -->
+  <div class="w-full sm:!px-0 md:w-9/12 md:!px-4">
     <div class="flex items-start bg-pink-100 p-2 text-center md:m-4 md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
-     <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
-     <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
-      <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
-      <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
-      <p class="text-sm md:text-base ">
-      To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
-      <a
-        href="https://www.purebhakti.com/"
-        class="font-semibold hover:underline"
-        target="_blank"
-        >PureBhakti website</a
-      >.
-    </p>
-    <p class="hidden md:block">
-      Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
-      gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
-    </p>
-    <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
-  </div>
-</div>
-<!-- Audio Recordings -->
-<div class="mx-2 mb-4 md:mx-4">
-  <div class="items-start justify-between pt-4 md:flex md:space-x-4">
-    <div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
-      <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+      <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
+      <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
+        <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
+        <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
+        <p class="text-sm md:text-base ">
+          To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
+          <a
+            href="https://www.purebhakti.com/"
+            class="font-semibold hover:underline"
+            target="_blank"
+            >PureBhakti website</a
+          >.
+        </p>
+        <p class="hidden md:block">
+          Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day,
+          he gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
+        </p>
+        <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
+      </div>
     </div>
-    <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
-  </div>
-  <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-    {% for audio in audios offset: 25 limit: 8 %}
-      <a href="./audios/{{ audio.objectID }}/">
-        <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
-          <div class="col-span-1 ml-2">
-            <button
-              class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
-              title="Play"
-              type="button"
-            >
-              <!-- Material Icons: Play Arrow -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="ml-1 h-8 w-6"
-              >
-                <path
-                  fill="white"
-                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="col-span-5 content-center pt-1 md:col-span-7">
-            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-            <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-              <div>#{{ audio.objectID }}</div>
-              {% if audio.dateForHumans -%}
-                <div>
-                  {{ audio.dateForHumans }}
-                  {% if audio.dateUncertain -%}
-                    <span title="Date is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.location -%}
-                <div>
-                  {{ audio.location }}
-                  {% if audio.locationUncertain -%}
-                    <span title="Location is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.category -%}
-                <div>{{ audio.category }}</div>
-              {%- endif %}
-              {% for language in audio.languages -%}
-                <div>{{ language }}</div>
-              {%- endfor %}
-            </div>
-          </div>
+    <!-- Audio Recordings -->
+    <div class="mx-2 mb-4 md:mx-4">
+      <div class="items-start justify-between pt-4 md:flex md:space-x-4">
+        <div>
+          <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
+          <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
         </div>
-      </a>
-    {% endfor %}
+        <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
+      </div>
+      <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+        {% for audio in audios offset: 25 limit: 8 %}
+          <a href="./audios/{{ audio.objectID }}/">
+            <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
+              <div class="col-span-1 ml-2">
+                <button
+                  class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+                  title="Play"
+                  type="button"
+                >
+                  <!-- Material Icons: Play Arrow -->
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="ml-1 h-8 w-6"
+                  >
+                    <path
+                      fill="white"
+                      d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="col-span-5 content-center pt-1 md:col-span-7">
+                <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+                <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                  <div>#{{ audio.objectID }}</div>
+                  {% if audio.dateForHumans -%}
+                    <div>
+                      {{ audio.dateForHumans }}
+                      {% if audio.dateUncertain -%}
+                        <span title="Date is uncertain">(?)</span>
+                      {%- endif %}
+                    </div>
+                  {%- endif %}
+                  {% if audio.location -%}
+                    <div>
+                      {{ audio.location }}
+                      {% if audio.locationUncertain -%}
+                        <span title="Location is uncertain">(?)</span>
+                      {%- endif %}
+                    </div>
+                  {%- endif %}
+                  {% if audio.category -%}
+                    <div>{{ audio.category }}</div>
+                  {%- endif %}
+                  {% for language in audio.languages -%}
+                    <div>{{ language }}</div>
+                  {%- endfor %}
+                </div>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
   </div>
-</div>
-  </div>
-<!--Body left ends-->
- <!--Body Right-->
-  <div class="md:w-3/12 sm:w-full md:!pr-4 md:!pl-2 px-2">
-  {% for dailyvideo in dailyVideos offset: 0 limit: 2 %}
-    <div class="mb-8 ">
-      <div class=" font-semibold md:text-base !text-sm uppercase text-black pb-2">Today's harikatha ({{ dailyvideo.language | language_name }})</div>
-      <div
-       x-data="{showthumb: true}" class="aspect-w-16 aspect-h-9">
-            <template x-if="showthumb">
-              <img
+  <!-- Body left ends -->
+  <!-- Body Right -->
+  <div class="px-2 sm:w-full md:w-3/12 md:!pl-2 md:!pr-4">
+    {% for dailyvideo in dailyVideos offset: 0 limit: 2 %}
+      <div class="mb-8 ">
+        <div class=" pb-2 !text-sm font-semibold uppercase text-black md:text-base">Today's harikatha ({{ dailyvideo.language | language_name }})</div>
+        <div
+          x-data="{showthumb: true}"
+          class="aspect-h-9 aspect-w-16"
+        >
+          <template x-if="showthumb">
+            <img
               @click="showthumb = false"
               class="rounded-md"
-              src="https://img.youtube.com/vi/{{ dailyvideo.videoID }}/hqdefault.jpg">
-            </template>
-            <template x-if="!showthumb">
-              <iframe
-              class="w-full rounded-md h-auto" src="https://www.youtube.com/embed/{{ dailyvideo.videoID }}?autoplay=1&enablejsapi=1" allow="autoplay"></iframe>
-            </template>
+              src="https://img.youtube.com/vi/{{ dailyvideo.videoID }}/hqdefault.jpg"
+            >
+          </template>
+          <template x-if="!showthumb">
+            <iframe
+              class="h-auto w-full rounded-md"
+              src="https://www.youtube.com/embed/{{ dailyvideo.videoID }}?autoplay=1&enablejsapi=1"
+              allow="autoplay"
+            ></iframe>
+          </template>
         </div>
-    </div>
-  {% endfor %}
+      </div>
+    {% endfor %}
 
-  <div class="mb-8">
-   <div class=" font-semibold md:text-base !text-sm  uppercase text-black pb-2">short video of the day</div>
-   <div class="aspect-w-9 aspect-h-16">
-     <iframe class="rounded-md" src="https://www.youtube.com/embed/CwHT3zbTSI4"
-       title="Who experiences Separation" frameborder="0"
-       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-       allowfullscreen></iframe></iframe>
-   </div>
+    <div class="mb-8">
+      <div class=" pb-2 !text-sm font-semibold  uppercase text-black md:text-base">short video of the day</div>
+      <div class="aspect-h-16 aspect-w-9">
+        <iframe
+          class="rounded-md"
+          src="https://www.youtube.com/embed/CwHT3zbTSI4"
+          title="Who experiences Separation"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
   </div>
 
-<!--Body Right Ends-->
+  <!-- Body Right Ends -->
 </div>
 <!-- Memories -->
 <div class="mx-2 mb-4 md:mx-4">
