@@ -8,7 +8,7 @@ tags:
 ---
 <div class="md:flex">
   <!-- Body left -->
-  <div class="w-full sm:!px-0 md:w-9/12 md:!px-4">
+  <div class="md:w-9/12 md:px-4">
     <div class="flex items-start bg-pink-100 p-2 text-center md:m-4 md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
       <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
       <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
@@ -98,45 +98,31 @@ tags:
   </div>
   <!-- Body left ends -->
   <!-- Body Right -->
-  <div class="px-2 sm:w-full md:w-3/12 md:!pl-2 md:!pr-4">
-    {% for dailyvideo in dailyVideos offset: 0 limit: 2 %}
+  <div class="px-2 md:w-3/12 md:pr-4">
+    {% for video in dailyVideos offset: 0 limit: 2 %}
       <div class="mb-8 ">
-        <div class=" pb-2 !text-sm font-semibold uppercase text-black md:text-base">Today's harikatha ({{ dailyvideo.language | language_name }})</div>
+        <div class=" pb-2 text-sm font-semibold uppercase text-black md:text-base">Today&rsquo;s harikatha ({{ video.language | language_name }})</div>
         <div
-          x-data="{showthumb: true}"
+          x-data="{inVideoMode: false}"
           class="aspect-h-9 aspect-w-16"
         >
-          <template x-if="showthumb">
+          <template x-if="!inVideoMode">
             <img
-              @click="showthumb = false"
+              @click="inVideoMode = true"
               class="rounded-md"
-              src="https://img.youtube.com/vi/{{ dailyvideo.videoID }}/hqdefault.jpg"
+              src="https://img.youtube.com/vi/{{ video.videoID }}/hqdefault.jpg"
             >
           </template>
-          <template x-if="!showthumb">
+          <template x-if="inVideoMode">
             <iframe
               class="h-auto w-full rounded-md"
-              src="https://www.youtube.com/embed/{{ dailyvideo.videoID }}?autoplay=1&enablejsapi=1"
+              src="https://www.youtube.com/embed/{{ video.videoID }}?autoplay=1"
               allow="autoplay"
             ></iframe>
           </template>
         </div>
       </div>
     {% endfor %}
-
-    <div class="mb-8">
-      <div class=" pb-2 !text-sm font-semibold  uppercase text-black md:text-base">short video of the day</div>
-      <div class="aspect-h-16 aspect-w-9">
-        <iframe
-          class="rounded-md"
-          src="https://www.youtube.com/embed/CwHT3zbTSI4"
-          title="Who experiences Separation"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
   </div>
 
   <!-- Body Right Ends -->
