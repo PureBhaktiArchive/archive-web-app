@@ -100,7 +100,7 @@ tags:
   <!-- Body Right -->
   <div class="md:flex-1 md:pr-2 md:pt-1">
     {% for video in dailyVideos %}
-      <div class="mb-2 p-2">
+      <div class="mb-2 p-2 md:pl-0">
         <div class="pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</div>
         <div
           x-data="{inVideoMode: false}"
