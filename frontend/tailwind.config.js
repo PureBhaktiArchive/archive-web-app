@@ -18,6 +18,11 @@ module.exports = {
       boxShadow: {
         'xl-around': '0px 0px 25px 0px rgba(0,0,0,0.3)',
       },
+      flex: {
+        2: '2 2 0%',
+        3: '3 3 0%',
+        4: '4 4 0%',
+      },
       colors: {
         peach: {
           light: '#fed0b1',
