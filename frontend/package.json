@@ -16,7 +16,7 @@
     "@stefanracic/tailwind-child": "1.0.5",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
-    "@types/alpinejs": "3.7.1",
+    "@types/alpinejs": "3.7.2",
     "@types/html-minifier-terser": "7.0.0",
     "@types/node": "18.16.2",
     "browserslist-to-esbuild": "1.2.0",
@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "algoliasearch": "4.17.1",
-    "alpinejs": "3.12.1",
+    "alpinejs": "3.12.2",
     "instantsearch.js": "4.49.2",
     "tippy.js": "6.3.7"
   }
