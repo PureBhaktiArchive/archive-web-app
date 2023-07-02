@@ -1,3 +1,7 @@
+# We have to use this intermediate workflow because the `repository_dispatch`
+# workflow runs in the default branch only, which violates the production environment
+# protection rule.
+# Source of inspiration: https://github.com/orgs/community/discussions/24657#discussioncomment-3244904
 name: Deployment Webhook
 on:
   repository_dispatch:
