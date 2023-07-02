@@ -33,9 +33,9 @@ tags:
   </div>
   <!-- Body left ends -->
   <!-- Body Right -->
-  <div class="sm:inline-flex sm:items-stretch md:flex-1 md:flex-col md:pr-2 md:pt-1">
+  <div class="sm:inline-flex md:flex-1 md:flex-col md:pr-2 md:pt-1">
     {% for video in dailyVideos %}
-      <div class="mb-2 border-2 border-red-800 p-2 md:pl-0">
+      <div class="mb-2 p-2 md:pl-0">
         <div class="pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</div>
         <div
           x-data="{inVideoMode: false}"
