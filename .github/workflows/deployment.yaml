@@ -3,19 +3,18 @@ on:
   push:
     branches:
       - production
-      - test
   workflow_dispatch:
 
 concurrency:
-  group: deployment-${{ github.ref_name }}
+  group: production_deployment
   cancel-in-progress: true
 
 jobs:
   deployment:
-    name: Deploy to ${{ github.ref_name }}
+    name: Deploy
     runs-on: ubuntu-latest
     environment:
-      name: ${{ github.ref_name }}
+      name: production
       url: ${{ steps.get-site-url.outputs.channel-url}}
 
     env:
