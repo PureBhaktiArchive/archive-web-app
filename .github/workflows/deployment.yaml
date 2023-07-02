@@ -34,8 +34,7 @@ jobs:
       # Downloading audios data file from Firebase RTDB
       - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project $GCP_PROJECT_ID
 
-      # Pinning the commit SHA because this action does not maintain semver refs yet: https://github.com/algolia/setup-algolia-cli/issues/1#issuecomment-1465535303
-      - uses: algolia/setup-algolia-cli@67edb645f512a59591304a79253d0843de4d7134
+      - uses: algolia/setup-algolia-cli@v1.1.0
 
       # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
       # For pipefail: https://stackoverflow.com/a/19804002
