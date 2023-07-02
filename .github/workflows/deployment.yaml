@@ -4,6 +4,9 @@ on:
     branches:
       - production
   workflow_dispatch:
+  repository_dispatch:
+    types:
+      - production_deployment
 
 concurrency:
   group: production_deployment
@@ -21,6 +24,11 @@ jobs:
       GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
 
     steps:
+      - name: Debounce
+        uses: zachary95/github-actions-debounce@v0.1.0
+        with:
+          wait: 120
+
       # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
       - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
       - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
