@@ -21,17 +21,22 @@
 /**
  *
  * @param {{directus: Directus}} data
- * @returns
+ * @returns {Promise<{language: string, videoID: string}[]>}
  */
 module.exports = async ({ directus }) =>
-  Promise.all(
-    ['en', 'hi'].map(async (language) => ({
-      language,
-      videoID: youTubeUrlRegexp.exec(
-        await queryDailyVideoUrl(directus, language)
-      ).groups['videoId'],
-    }))
-  );
+  (
+    await Promise.all(
+      ['en', 'hi'].map(async (language) => {
+        const videoUrl = await queryDailyVideoUrl(directus, language);
+        return videoUrl
+          ? {
+              language,
+              videoID: youTubeUrlRegexp.exec(videoUrl).groups['videoId'],
+            }
+          : null;
+      })
+    )
+  ).filter(Boolean);
 
 /**
  * Extracts Video ID from a YouTube URL
@@ -48,8 +53,8 @@ const youTubeUrlRegexp =
  * @param {string} language
  * @returns {Promise<string>}
  */
-async function queryDailyVideoUrl(directus, language) {
-  return (
+const queryDailyVideoUrl = async (directus, language) =>
+  (
     await directus.items('daily_videos').readByQuery({
       fields: ['video_url'],
       filter: {
@@ -60,5 +65,4 @@ async function queryDailyVideoUrl(directus, language) {
       sort: ['-date_published'],
       limit: 1,
     })
-  ).data?.[0].video_url;
-}
+  ).data?.[0]?.video_url;
