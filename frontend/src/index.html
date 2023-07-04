@@ -47,6 +47,16 @@ tags:
             <img
               @click="inVideoMode = true"
               class="rounded-md"
+              srcset="
+                https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg 320w,
+                https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
+              "
+              sizes="
+                (min-width: 1024px) 320px,
+                (min-width: 768px) 240px,
+                (min-width: 504px) calc((100vw - 1.5rem) / 2),
+                calc(100vw - 1rem)
+              "
               src="https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg"
             >
           </template>
