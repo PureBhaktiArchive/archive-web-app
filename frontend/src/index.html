@@ -30,8 +30,9 @@ tags:
     </div>
   </div>
   <!-- Daily Videos -->
-  <div class="max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2">
-    {% for video in dailyVideos %}
+  <div class="empty:hidden max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2">
+    {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
+    {%- for video in dailyVideos %}
       <!--
         Due to usage of `aspect-w-` class, the element has strange height when it's a flex item.
         That is why as of now we resort to just blocks and `mb-2`
@@ -58,7 +59,7 @@ tags:
           </template>
         </div>
       </div>
-    {% endfor %}
+    {% endfor -%}
   </div>
 </div>
 <!-- Audio Recordings -->
