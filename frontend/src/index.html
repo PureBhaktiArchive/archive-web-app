@@ -37,7 +37,7 @@ tags:
         Due to usage of `aspect-w-` class, the element has strange height when it's a flex item.
         That is why as of now we resort to just blocks and `mb-2`
       -->
-      <li class="mb-2 min-w-[240px] flex-1 lg:min-w-[320px]">
+      <li class="mb-2 min-w-[240px] max-md:flex-1 lg:min-w-[320px]">
         <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</h3>
         <div
           x-data="{inVideoMode: false}"
