@@ -7,6 +7,7 @@ const { formatDurationForHumans } = require('./config/filters/duration');
 const {
   soundQualityRatingMapping,
 } = require('./config/filters/sound-quality-rating');
+const { getDirectusClient } = require('./config/directus');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -38,6 +39,8 @@ module.exports = function (eleventyConfig) {
   // This is a public directory for Vite - https://vitejs.dev/guide/assets.html#the-public-directory
   eleventyConfig.addPassthroughCopy('src/public');
 
+  eleventyConfig.addGlobalData('directus', getDirectusClient);
+
   //Filter for duration calculation
   eleventyConfig.addFilter(
     'duration',
@@ -62,6 +65,13 @@ module.exports = function (eleventyConfig) {
     'sound_quality_label',
     (soundqualitylabel) =>
       `${soundQualityRatingMapping[soundqualitylabel].label}`
+  );
+
+  //Filter for transforms the language code into the language name
+  eleventyConfig.addAsyncFilter('language_name', async (language_code) =>
+    new Intl.DisplayNames('en', {
+      type: 'language',
+    }).of(language_code)
   );
 
   // Return your Object options:

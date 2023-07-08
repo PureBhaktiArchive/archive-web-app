@@ -6,26 +6,71 @@ eleventyNavigation:
 tags:
   - topnav
 ---
-<div class="flex items-start bg-pink-100 p-2 text-center md:m-4 md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
-  <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
-  <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
-    <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
-    <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
-    <p class="text-sm md:text-base ">
-      To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
-      <a
-        href="https://www.purebhakti.com/"
-        class="font-semibold hover:underline"
-        target="_blank"
-        >PureBhakti website</a
-      >.
-    </p>
-    <p class="hidden md:block">
-      Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
-      gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
-    </p>
-    <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
-  </div>
+<div class="flex gap-4 max-md:flex-col md:m-4">
+  <!-- Introduction -->
+  <section class="flex items-start bg-pink-100 p-2 text-center md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
+    <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
+    <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
+      <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
+      <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
+      <p class="text-sm md:text-base ">
+        To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
+        <a
+          href="https://www.purebhakti.com/"
+          class="font-semibold hover:underline"
+          target="_blank"
+          >PureBhakti website</a
+        >.
+      </p>
+      <p class="hidden md:block">
+        Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
+        gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
+      </p>
+      <a href="./about/" class="inline-block rounded-md border-2 border-gray-200 bg-white px-5 py-2 text-sm text-gray-600 hover:bg-gray-50">Read More</a>
+    </div>
+  </section>
+  <!-- Daily Videos -->
+  <ul class="empty:hidden max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2">
+    {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
+    {%- for video in dailyVideos %}
+      <!--
+        Due to usage of `aspect-w-` class, the element has strange height when it's a flex item.
+        That is why as of now we resort to just blocks and `mb-2`
+      -->
+      <li class="mb-2 min-w-[240px] max-md:flex-1 lg:min-w-[320px]">
+        <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</h3>
+        <div
+          x-data="{inVideoMode: false}"
+          class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md"
+        >
+          <template x-if="!inVideoMode">
+            <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
+            <img
+              @click="inVideoMode = true"
+              class="cursor-pointer"
+              srcset="
+                https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg 320w,
+                https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
+              "
+              sizes="
+                (min-width: 1024px) 320px,
+                (min-width: 768px) 240px,
+                (min-width: 504px) calc((100vw - 1.5rem) / 2),
+                calc(100vw - 1rem)
+              "
+              src="https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg"
+            >
+          </template>
+          <template x-if="inVideoMode">
+            <iframe
+              src="https://www.youtube.com/embed/{{ video.videoID }}?autoplay=1&modestbranding=1"
+              allow="autoplay"
+            ></iframe>
+          </template>
+        </div>
+      </li>
+    {% endfor -%}
+  </ul>
 </div>
 <!-- Audio Recordings -->
 <div class="mx-2 mb-4 md:mx-4">
