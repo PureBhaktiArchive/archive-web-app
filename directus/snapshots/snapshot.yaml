@@ -1,12 +1,12 @@
 version: 1
-directus: 11.1.0
+directus: 12.0.2
 vendor: postgres
 collections:
   - collection: daily_videos
     meta:
       accountability: all
       archive_app_filter: true
-      archive_field: status
+      archive_field: null
       archive_value: archived
       collapse: open
       collection: daily_videos
@@ -15,7 +15,10 @@ collections:
       group: null
       hidden: false
       icon: video_library
-      item_duplication_fields: null
+      item_duplication_fields:
+        - language
+        - title
+        - video_url
       note: null
       preview_url: null
       singleton: false
@@ -69,40 +72,33 @@ fields:
       foreign_key_column: null
   - collection: daily_videos
     field: date_published
-    type: dateTime
+    type: timestamp
     meta:
       collection: daily_videos
-      conditions:
-        - name: Optional for drafts
-          rule:
-            _and:
-              - status:
-                  _eq: draft
-          required: false
-          options:
-            includeSeconds: false
-            use24: true
+      conditions: []
       display: datetime
       display_options:
         format: short
       field: date_published
       group: null
       hidden: false
-      interface: null
+      interface: datetime
       note: When the video will be published on the website
       options: null
       readonly: false
       required: true
       sort: 2
       special: null
-      translations: null
+      translations:
+        - language: en-US
+          translation: Publication Date
       validation: null
       validation_message: null
       width: half
     schema:
       name: date_published
       table: daily_videos
-      data_type: timestamp without time zone
+      data_type: timestamp with time zone
       default_value: null
       max_length: null
       numeric_precision: null
@@ -199,14 +195,18 @@ fields:
     type: string
     meta:
       collection: daily_videos
-      conditions: null
+      conditions: []
       display: labels
       display_options:
         choices:
           - text: English
             value: en
+            background: '#3399FF'
+            foreground: '#FFFFFF'
           - text: Hindi
             value: hi
+            background: '#FFA439'
+            foreground: '#FFFFFF'
       field: language
       group: null
       hidden: false
@@ -248,26 +248,18 @@ fields:
     type: string
     meta:
       collection: daily_videos
-      conditions: null
+      conditions: []
       display: labels
       display_options:
         choices:
-          - text: $t:draft
-            value: draft
-            foreground: "#18222F"
-            background: "#D3DAE4"
           - text: $t:scheduled
             value: scheduled
-            background: "#3399FF"
-            foreground: "#FFFFFF"
+            background: '#A2B5CD'
+            foreground: '#FFFFFF'
           - text: $t:published
             value: published
-            foreground: "#FFFFFF"
-            background: var(--primary)
-          - text: $t:archived
-            value: archived
-            foreground: "#FFFFFF"
-            background: var(--warning)
+            background: '#2ECDA7'
+            foreground: '#FFFFFF'
       field: status
       group: null
       hidden: false
@@ -275,14 +267,10 @@ fields:
       note: null
       options:
         choices:
-          - text: $t:draft
-            value: draft
           - text: $t:scheduled
             value: scheduled
           - text: $t:published
             value: published
-          - text: $t:archived
-            value: archived
       readonly: false
       required: false
       sort: 4
@@ -359,7 +347,7 @@ fields:
       interface: select-dropdown-m2o
       note: null
       options:
-        template: "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
       readonly: true
       required: false
       sort: 7
@@ -399,7 +387,7 @@ fields:
       interface: select-dropdown-m2o
       note: null
       options:
-        template: "{{avatar.$thumbnail}} {{first_name}} {{last_name}}"
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
       readonly: true
       required: false
       sort: 9
@@ -426,31 +414,23 @@ fields:
       foreign_key_table: directus_users
       foreign_key_column: id
   - collection: daily_videos
-    field: video_id
+    field: video_url
     type: string
     meta:
       collection: daily_videos
       conditions: null
       display: field-actions
       display_options:
-        copyButtonLabel: null
-        copyPrefix: https://youtu.be/
-        linkButtonLabel: null
-        linkPrefix: https://youtu.be/
         showCopy: true
         showLink: true
-      field: video_id
+      field: video_url
       group: null
       hidden: false
       interface: field-actions
-      note: >-
-        A video identifier, 11 characters, usually comes in the end of a link
-        after `v=`
+      note: null
       options:
-        copyPrefix: https://youtu.be/
-        iconLeft: videocam
-        linkPrefix: https://youtu.be/
-        showCopy: true
+        iconLeft: youtube_activity
+        placeholder: https://www.youtube.com/watch?v=…
         showLink: true
       readonly: false
       required: true
@@ -459,12 +439,13 @@ fields:
       translations: null
       validation:
         _and:
-          - video_id:
-              _regex: ^[-\w]{11}$
-      validation_message: Value should be 11 characters long, only letters and hyphens
+          - video_url:
+              _regex: >-
+                http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?
+      validation_message: null
       width: half
     schema:
-      name: video_id
+      name: video_url
       table: daily_videos
       data_type: character varying
       default_value: null
@@ -472,7 +453,7 @@ fields:
       numeric_precision: null
       numeric_scale: null
       is_nullable: true
-      is_unique: false
+      is_unique: true
       is_primary_key: false
       is_generated: false
       generation_expression: null
