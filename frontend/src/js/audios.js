@@ -10,7 +10,6 @@ import {
   infiniteHits,
   numericMenu,
   pagination,
-  panel,
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
@@ -75,11 +74,7 @@ search.addWidgets([
         document.getElementById('under-progress').classList.remove('hidden');
     },
   },
-  panel({
-    templates: {
-      header: () => 'Location',
-    },
-  })(refinementList)({
+  refinementList({
     container: '#location-list',
     attribute: 'location',
     searchable: true,
@@ -87,11 +82,7 @@ search.addWidgets([
     showMoreLimit: 50,
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Languages',
-    },
-  })(refinementList)({
+  refinementList({
     container: '#language-list',
     attribute: 'languageCategory',
     transformItems: (items) =>
@@ -107,11 +98,7 @@ search.addWidgets([
           highlighted: languageCategories[item.label].label,
         })),
   }),
-  panel({
-    templates: {
-      header: () => 'Sound Quality',
-    },
-  })(refinementList)({
+  refinementList({
     container: '#sound-quality-list',
     attribute: 'soundQualityRating',
     sortBy: (a, b) =>
@@ -124,20 +111,12 @@ search.addWidgets([
         highlighted: soundQualityRatingMapping[item.label].label || item.label,
       })),
   }),
-  panel({
-    templates: {
-      header: () => 'Category',
-    },
-  })(refinementList)({
+  refinementList({
     container: '#category-list',
     attribute: 'category',
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Year',
-    },
-  })(refinementList)({
+  refinementList({
     container: '#year-list',
     attribute: 'year',
     limit: 100,
@@ -146,11 +125,7 @@ search.addWidgets([
       list: 'columns-[5rem]',
     },
   }),
-  panel({
-    templates: {
-      header: () => 'Srila Gurudeva Timing',
-    },
-  })(numericMenu)({
+  numericMenu({
     container: '#percentage-menu',
     attribute: 'percentage',
     items: [
@@ -159,11 +134,7 @@ search.addWidgets([
       { label: 'More than 90%', start: 0.9 },
     ],
   }),
-  panel({
-    templates: {
-      header: () => 'Duration',
-    },
-  })(numericMenu)({
+  numericMenu({
     container: '#duration-menu',
     attribute: 'duration',
     items: [
