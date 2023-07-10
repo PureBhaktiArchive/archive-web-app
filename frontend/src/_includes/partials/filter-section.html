@@ -1,16 +1,18 @@
-<div x-data="{ expanded: false }" x-spread="self">
-  <div x-spread="header" class="sticky top-0 flex cursor-pointer select-none bg-white py-2 align-baseline text-xs font-bold uppercase">
+<div x-data="{ expanded: false }" class="mb-2">
+  <div
+    @click="expanded = ! expanded"
+    class="sticky top-0 flex cursor-pointer select-none rounded-md border-gray-500 bg-gray-200 p-2 py-2 align-baseline text-xs font-bold uppercase hover:bg-gray-300"
+  >
     <span class="flex-grow">{{ title }}</span>
-    <svg class="within-open:hidden w-3 flex-none" viewBox="0 0 30 30" x-cloak>
-      <path
-        d="M28.206 15a1.5 1.5 0 01-1.495 1.494h-9.717v9.716a1.495 1.495 0 11-2.99 0v-9.716H4.289a1.495 1.495 0 110-2.99h9.716V3.789a1.495 1.495 0 112.99 0v9.716h9.716A1.5 1.5 0 0128.206 15z"
-        stroke="currentColor"
-        stroke-width=".7"
-      />
-    </svg>
-    <svg class="within-open:block hidden w-3 flex-none" viewBox="0 0 30 30" x-cloak>
-      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="3.5" d="M4.5 15h22" />
+    <svg data-accordion-icon class="h-3 w-3 shrink-0" :class="expanded ? 'rotate-180': ''" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
     </svg>
   </div>
-  <div id="{{ id }}" x-spread="contents"></div>
+  <div
+    id="{{ id }}"
+    x-show="!expanded"
+    x-transition:enter="transition motion-safe:ease-out duration-200"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+  ></div>
 </div>
