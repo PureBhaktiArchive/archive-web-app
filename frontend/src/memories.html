@@ -20,11 +20,11 @@ jsFile: memories.js
   >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
     <div class="grow overflow-y-auto overflow-x-hidden p-2 pt-0">
-      <div id="gurus-list"></div>
-      <div id="language-list"></div>
-      <div id="program-name-list"></div>
-      <div id="speaker-country-list"></div>
-      <div id="duration-menu"></div>
+      <div id="gurus-list">{% render 'partials/filter-section.html', title: 'Initiating Guru(s)', subtitle: '[Sorted by decreasing count of matching records]' -%}</div>
+      <div id="language-list">{% render 'partials/filter-section.html', title: 'Languages' -%}</div>
+      <div id="program-name-list">{% render 'partials/filter-section.html', title: 'Program Name' -%}</div>
+      <div id="speaker-country-list">{% render 'partials/filter-section.html', title: 'Speaker Country' -%}</div>
+      <div id="duration-menu">{% render 'partials/filter-section.html', title: 'Duration' -%}</div>
     </div>
     <div class="flex-none border-t p-2 md:hidden">
       <button
