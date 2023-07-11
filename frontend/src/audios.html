@@ -20,13 +20,13 @@ jsFile: audios.js
   >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
     <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
-      {% render 'partials/filter-section.html', title: 'Languages', id: 'language-list' -%}
-      {% render 'partials/filter-section.html', title: 'Sound Quality', id: 'sound-quality-list' -%}
-      {% render 'partials/filter-section.html', title: 'Duration', id: 'duration-menu' -%}
-      {% render 'partials/filter-section.html', title: 'Srila Gurudeva Timing', id: 'percentage-menu' -%}
-      {% render 'partials/filter-section.html', title: 'Category', id: 'category-list' -%}
-      {% render 'partials/filter-section.html', title: 'Year', id: 'year-list' -%}
-      {% render 'partials/filter-section.html', title: 'Location', id: 'location-list' -%}
+      <div id="language-list">{% render 'partials/filter-section.html', title: 'Languages' -%}</div>
+      <div id="sound-quality-list">{% render 'partials/filter-section.html', title: 'Sound Quality' -%}</div>
+      <div id="duration-menu">{% render 'partials/filter-section.html', title: 'Duration' -%}</div>
+      <div id="percentage-menu">{% render 'partials/filter-section.html', title: 'Srila Gurudeva Timing' -%}</div>
+      <div id="category-list">{% render 'partials/filter-section.html', title: 'Category' -%}</div>
+      <div id="year-list">{% render 'partials/filter-section.html', title: 'Year' -%}</div>
+      <div id="location-list">{% render 'partials/filter-section.html', title: 'Location' -%}</div>
     </div>
     <div class="flex-none border-t p-2 md:hidden">
       <button

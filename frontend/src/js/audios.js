@@ -75,7 +75,7 @@ search.addWidgets([
     },
   },
   refinementList({
-    container: '#location-list',
+    container: '#location-list div:empty',
     attribute: 'location',
     searchable: true,
     showMore: true,
@@ -83,7 +83,7 @@ search.addWidgets([
     sortBy: ['name:asc'],
   }),
   refinementList({
-    container: '#language-list',
+    container: '#language-list div:empty',
     attribute: 'languageCategory',
     transformItems: (items) =>
       items
@@ -99,7 +99,7 @@ search.addWidgets([
         })),
   }),
   refinementList({
-    container: '#sound-quality-list',
+    container: '#sound-quality-list div:empty',
     attribute: 'soundQualityRating',
     sortBy: (a, b) =>
       soundQualityRatingMapping[a.name].order -
@@ -112,12 +112,12 @@ search.addWidgets([
       })),
   }),
   refinementList({
-    container: '#category-list',
+    container: '#category-list div:empty',
     attribute: 'category',
     sortBy: ['name:asc'],
   }),
   refinementList({
-    container: '#year-list',
+    container: '#year-list div:empty',
     attribute: 'year',
     limit: 100,
     sortBy: ['name:asc'],
@@ -126,7 +126,7 @@ search.addWidgets([
     },
   }),
   numericMenu({
-    container: '#percentage-menu',
+    container: '#percentage-menu div:empty',
     attribute: 'percentage',
     items: [
       { label: 'Any' },
@@ -135,7 +135,7 @@ search.addWidgets([
     ],
   }),
   numericMenu({
-    container: '#duration-menu',
+    container: '#duration-menu div:empty',
     attribute: 'duration',
     items: [
       { label: 'Any' },
