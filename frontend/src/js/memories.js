@@ -60,22 +60,22 @@ search.addWidgets([
     },
   },
   refinementList({
-    container: '#program-name-list  div:empty',
+    container: '#program-name-list div:empty',
     attribute: 'programName',
     sortBy: ['name:asc'],
   }),
   refinementList({
-    container: '#speaker-country-list  div:empty',
+    container: '#speaker-country-list div:empty',
     attribute: 'speakerCountry',
     sortBy: ['name:asc'],
   }),
   refinementList({
-    container: '#language-list  div:empty',
+    container: '#language-list div:empty',
     attribute: 'language',
     sortBy: ['name:asc'],
   }),
   numericMenu({
-    container: '#duration-menu  div:empty',
+    container: '#duration-menu div:empty',
     attribute: 'duration',
     items: [
       { label: 'Any' },
@@ -89,7 +89,6 @@ search.addWidgets([
     attribute: 'gurus.fullName',
     showMore: true,
     showMoreLimit: 20,
-    sortBy: ['gurus.desc'],
   }),
   hits({
     container: '#hits',
