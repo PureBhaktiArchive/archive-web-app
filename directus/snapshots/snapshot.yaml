@@ -2,161 +2,35 @@ version: 1
 directus: 12.0.2
 vendor: postgres
 collections:
-  - collection: daily_videos
+  - collection: videos
     meta:
       accountability: all
       archive_app_filter: true
       archive_field: null
-      archive_value: archived
+      archive_value: null
       collapse: open
-      collection: daily_videos
+      collection: videos
       color: null
-      display_template: null
+      display_template: '{{title}}'
       group: null
       hidden: false
       icon: video_library
-      item_duplication_fields:
-        - language
-        - title
-        - video_url
+      item_duplication_fields: null
       note: null
       preview_url: null
       singleton: false
       sort: null
       sort_field: null
       translations: null
-      unarchive_value: draft
+      unarchive_value: null
     schema:
-      name: daily_videos
+      name: videos
 fields:
-  - collection: daily_videos
-    field: date_created
-    type: timestamp
-    meta:
-      collection: daily_videos
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_created
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 8
-      special:
-        - cast-timestamp
-        - date-created
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_created
-      table: daily_videos
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: daily_videos
-    field: date_published
-    type: timestamp
-    meta:
-      collection: daily_videos
-      conditions: []
-      display: datetime
-      display_options:
-        format: short
-      field: date_published
-      group: null
-      hidden: false
-      interface: datetime
-      note: When the video will be published on the website
-      options: null
-      readonly: false
-      required: true
-      sort: 2
-      special: null
-      translations:
-        - language: en-US
-          translation: Publication Date
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_published
-      table: daily_videos
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: daily_videos
-    field: date_updated
-    type: timestamp
-    meta:
-      collection: daily_videos
-      conditions: null
-      display: datetime
-      display_options:
-        relative: true
-      field: date_updated
-      group: null
-      hidden: true
-      interface: datetime
-      note: null
-      options: null
-      readonly: true
-      required: false
-      sort: 10
-      special:
-        - cast-timestamp
-        - date-updated
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: date_updated
-      table: daily_videos
-      data_type: timestamp with time zone
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: daily_videos
+  - collection: videos
     field: id
     type: integer
     meta:
-      collection: daily_videos
+      collection: videos
       conditions: null
       display: null
       display_options: null
@@ -176,9 +50,9 @@ fields:
       width: full
     schema:
       name: id
-      table: daily_videos
+      table: videos
       data_type: integer
-      default_value: nextval('daily_videos_id_seq'::regclass)
+      default_value: nextval('videos_id_seq'::regclass)
       max_length: null
       numeric_precision: 32
       numeric_scale: 0
@@ -190,11 +64,11 @@ fields:
       has_auto_increment: true
       foreign_key_table: null
       foreign_key_column: null
-  - collection: daily_videos
+  - collection: videos
     field: language
     type: string
     meta:
-      collection: daily_videos
+      collection: videos
       conditions: []
       display: labels
       display_options:
@@ -220,7 +94,7 @@ fields:
             value: hi
         color: null
       readonly: false
-      required: true
+      required: false
       sort: 3
       special: null
       translations: null
@@ -229,7 +103,7 @@ fields:
       width: half
     schema:
       name: language
-      table: daily_videos
+      table: videos
       data_type: character varying
       default_value: null
       max_length: 3
@@ -243,63 +117,11 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: daily_videos
-    field: status
-    type: string
-    meta:
-      collection: daily_videos
-      conditions: []
-      display: labels
-      display_options:
-        choices:
-          - text: $t:scheduled
-            value: scheduled
-            background: '#A2B5CD'
-            foreground: '#FFFFFF'
-          - text: $t:published
-            value: published
-            background: '#2ECDA7'
-            foreground: '#FFFFFF'
-      field: status
-      group: null
-      hidden: false
-      interface: select-dropdown
-      note: null
-      options:
-        choices:
-          - text: $t:scheduled
-            value: scheduled
-          - text: $t:published
-            value: published
-      readonly: false
-      required: false
-      sort: 4
-      special: null
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: status
-      table: daily_videos
-      data_type: character varying
-      default_value: scheduled
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: null
-      foreign_key_column: null
-  - collection: daily_videos
+  - collection: videos
     field: title
     type: string
     meta:
-      collection: daily_videos
+      collection: videos
       conditions: null
       display: null
       display_options: null
@@ -311,7 +133,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 6
+      sort: 3
       special: null
       translations: null
       validation: null
@@ -319,7 +141,7 @@ fields:
       width: full
     schema:
       name: title
-      table: daily_videos
+      table: videos
       data_type: character varying
       default_value: null
       max_length: 255
@@ -333,120 +155,41 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-  - collection: daily_videos
-    field: user_created
-    type: uuid
-    meta:
-      collection: daily_videos
-      conditions: null
-      display: user
-      display_options: null
-      field: user_created
-      group: null
-      hidden: true
-      interface: select-dropdown-m2o
-      note: null
-      options:
-        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
-      readonly: true
-      required: false
-      sort: 7
-      special:
-        - user-created
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: user_created
-      table: daily_videos
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_users
-      foreign_key_column: id
-  - collection: daily_videos
-    field: user_updated
-    type: uuid
-    meta:
-      collection: daily_videos
-      conditions: null
-      display: user
-      display_options: null
-      field: user_updated
-      group: null
-      hidden: true
-      interface: select-dropdown-m2o
-      note: null
-      options:
-        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
-      readonly: true
-      required: false
-      sort: 9
-      special:
-        - user-updated
-      translations: null
-      validation: null
-      validation_message: null
-      width: half
-    schema:
-      name: user_updated
-      table: daily_videos
-      data_type: uuid
-      default_value: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      is_generated: false
-      generation_expression: null
-      has_auto_increment: false
-      foreign_key_table: directus_users
-      foreign_key_column: id
-  - collection: daily_videos
-    field: video_url
+  - collection: videos
+    field: url
     type: string
     meta:
-      collection: daily_videos
+      collection: videos
       conditions: null
       display: field-actions
       display_options:
         showCopy: true
         showLink: true
-      field: video_url
+      field: url
       group: null
       hidden: false
       interface: field-actions
-      note: null
+      note: Enter YouTube link
       options:
         iconLeft: youtube_activity
-        placeholder: https://www.youtube.com/watch?v=…
+        placeholder: https://youtube.com/…
+        showCopy: true
         showLink: true
       readonly: false
       required: true
-      sort: 5
+      sort: 2
       special: null
       translations: null
       validation:
         _and:
-          - video_url:
+          - url:
               _regex: >-
-                http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?[\w\?=]*)?
+                ^(https?:\/\/)?(youtu\.be\/|((www|m)\.)?youtube(?:-nocookie)?\.com\/(\w*\?(.*&)?v=|(shorts|embed|v|e)\/))(?<videoId>[\w\-_]{11})([&?].*)?$
       validation_message: null
-      width: half
+      width: full
     schema:
-      name: video_url
-      table: daily_videos
+      name: url
+      table: videos
       data_type: character varying
       default_value: null
       max_length: 255
@@ -460,46 +203,49 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
-relations:
-  - collection: daily_videos
-    field: user_created
-    related_collection: directus_users
+  - collection: videos
+    field: vertical
+    type: boolean
     meta:
-      junction_field: null
-      many_collection: daily_videos
-      many_field: user_created
-      one_allowed_collections: null
-      one_collection: directus_users
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
+      collection: videos
+      conditions: null
+      display: boolean
+      display_options:
+        colorOff: '#A2B5CD'
+        colorOn: '#A2B5CD'
+        iconOff: panorama_horizontal
+        iconOn: panorama_vertical
+        labelOff: '16:9'
+        labelOn: '9:16'
+      field: vertical
+      group: null
+      hidden: false
+      interface: boolean
+      note: null
+      options:
+        label: Video Is Vertical (Shorts)
+      readonly: false
+      required: true
+      sort: 4
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
     schema:
-      table: daily_videos
-      column: user_created
-      foreign_key_table: directus_users
-      foreign_key_column: id
-      constraint_name: daily_videos_user_created_foreign
-      on_update: NO ACTION
-      on_delete: NO ACTION
-  - collection: daily_videos
-    field: user_updated
-    related_collection: directus_users
-    meta:
-      junction_field: null
-      many_collection: daily_videos
-      many_field: user_updated
-      one_allowed_collections: null
-      one_collection: directus_users
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: null
-      sort_field: null
-    schema:
-      table: daily_videos
-      column: user_updated
-      foreign_key_table: directus_users
-      foreign_key_column: id
-      constraint_name: daily_videos_user_updated_foreign
-      on_update: NO ACTION
-      on_delete: NO ACTION
+      name: vertical
+      table: videos
+      data_type: boolean
+      default_value: false
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
