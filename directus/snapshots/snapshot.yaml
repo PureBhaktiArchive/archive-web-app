@@ -46,6 +46,32 @@ collections:
       unarchive_value: null
     schema:
       name: home
+  - collection: scheduled_videos
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: processed
+      archive_value: 'true'
+      collapse: open
+      collection: scheduled_videos
+      color: '#A2B5CD'
+      display_template: null
+      group: videos
+      hidden: false
+      icon: auto_schedule
+      item_duplication_fields:
+        - language
+        - title
+        - video_url
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: 'false'
+    schema:
+      name: scheduled_videos
   - collection: videos
     meta:
       accountability: all
@@ -255,6 +281,177 @@ fields:
     schema:
       name: short_video
       table: home
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: scheduled_videos
+    field: date_published
+    type: timestamp
+    meta:
+      collection: scheduled_videos
+      conditions: []
+      display: datetime
+      display_options:
+        format: short
+      field: date_published
+      group: null
+      hidden: false
+      interface: datetime
+      note: When the video will be published on the website
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: Publication Date
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_published
+      table: scheduled_videos
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: id
+    type: integer
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: scheduled_videos
+      data_type: integer
+      default_value: nextval('scheduled_videos_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: processed
+    type: boolean
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: boolean
+      display_options:
+        colorOff: '#A2B5CD'
+        colorOn: '#3399FF'
+        iconOff: schedule
+        iconOn: check_circle
+        labelOff: Scheduled
+        labelOn: Processed
+      field: processed
+      group: null
+      hidden: false
+      interface: boolean
+      note: Whether this item was processed and launched
+      options:
+        colorOff: '#A2B5CD'
+        colorOn: '#3399FF'
+        iconOff: toggle_off
+        iconOn: toggle_on
+        label: Processed
+      readonly: true
+      required: false
+      sort: 3
+      special:
+        - cast-boolean
+      translations:
+        - language: en-US
+          translation: Processing Status
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: processed
+      table: scheduled_videos
+      data_type: boolean
+      default_value: false
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: video
+    type: integer
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: video
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: null
+      readonly: false
+      required: true
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: video
+      table: scheduled_videos
       data_type: integer
       default_value: null
       max_length: null
@@ -555,3 +752,24 @@ relations:
       constraint_name: home_short_video_foreign
       on_update: NO ACTION
       on_delete: SET NULL
+  - collection: scheduled_videos
+    field: video
+    related_collection: videos
+    meta:
+      junction_field: null
+      many_collection: scheduled_videos
+      many_field: video
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: scheduled_videos
+      column: video
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: scheduled_videos_video_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
