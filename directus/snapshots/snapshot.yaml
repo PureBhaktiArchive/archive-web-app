@@ -81,7 +81,7 @@ collections:
       collapse: open
       collection: videos
       color: null
-      display_template: '{{title}}'
+      display_template: "{{vertical}}\_{{language}}\_{{title}}"
       group: null
       hidden: false
       icon: video_library
@@ -89,7 +89,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: null
+      sort: 3
       sort_field: null
       translations: null
       unarchive_value: null
@@ -602,6 +602,7 @@ fields:
       conditions: null
       display: field-actions
       display_options:
+        hideFieldValue: true
         showCopy: true
         showLink: true
       field: url
