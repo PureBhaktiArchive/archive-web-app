@@ -200,15 +200,23 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-label {
-  @apply flex items-baseline;
+  @apply flex items-start py-1 pl-2;
 }
 
 .ais-RefinementList-checkbox {
-  @apply flex-none;
+  @apply h-5 w-5 flex-none;
+}
+
+.ais-NumericMenu-label {
+  @apply flex items-start py-1 pl-2;
+}
+
+.ais-NumericMenu-radio {
+  @apply h-4 w-4 flex-none;
 }
 
 .ais-RefinementList-labelText {
-  @apply grow overflow-x-hidden break-words px-1;
+  @apply grow overflow-x-hidden break-words pl-2;
 }
 
 .ais-HierarchicalMenu-count,
