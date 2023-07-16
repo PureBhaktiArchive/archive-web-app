@@ -10,7 +10,7 @@
     </svg>
   </button>
   {% if subtitle -%}
-    <p class="text-xs font-normal lowercase">{{ subtitle }}</p>
+    <p class="text-xs font-normal lowercase" :class="{ 'hidden': expanded }">{{ subtitle }}</p>
   {%- endif %}
   <div
     x-show="!expanded"
