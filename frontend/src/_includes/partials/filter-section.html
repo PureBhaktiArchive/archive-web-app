@@ -1,5 +1,5 @@
 <div x-data="{ expanded: false }" class="mb-2">
-  <button
+  <div
     @click="expanded = !expanded"
     :class="{ 'text-gray-800 bg-gray-200': !expanded }"
     class="mb-2 flex w-full cursor-pointer rounded-md border border-gray-200 bg-white p-2 py-2 text-left align-baseline text-sm font-semibold uppercase text-gray-500 shadow hover:bg-gray-300"
@@ -8,7 +8,7 @@
     <svg class="h-4 w-3 shrink-0" :class="{ 'rotate-180': !expanded }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
     </svg>
-  </button>
+  </div>
   {% if subtitle -%}
     <p class="text-xs font-normal lowercase" :class="{ 'hidden': expanded }">{{ subtitle }}</p>
   {%- endif %}
