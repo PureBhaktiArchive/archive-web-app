@@ -204,7 +204,11 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-checkbox {
-  @apply h-5 w-5 flex-none;
+  @apply h-6 w-5 flex-none rounded border-gray-800 bg-gray-100;
+}
+
+.ais-RefinementList-labelText {
+  @apply flex grow items-center overflow-x-hidden break-words pl-2;
 }
 
 .ais-NumericMenu-label {
@@ -212,11 +216,11 @@ a[class^='ais-'] {
 }
 
 .ais-NumericMenu-radio {
-  @apply h-4 w-4 flex-none;
+  @apply h-6 w-4 flex-none align-middle;
 }
 
-.ais-RefinementList-labelText {
-  @apply grow overflow-x-hidden break-words pl-2;
+.ais-NumericMenu-labelText {
+  @apply pl-1;
 }
 
 .ais-HierarchicalMenu-count,
@@ -366,10 +370,6 @@ a[class^='ais-'] {
 
 .ais-Hits-list {
   @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
-}
-
-.ais-NumericMenu-labelText {
-  @apply pl-1;
 }
 
 .ais-Stats-text {
