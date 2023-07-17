@@ -115,7 +115,7 @@ fields:
         title: Videos
       readonly: false
       required: false
-      sort: 3
+      sort: 2
       special:
         - alias
         - no-data
@@ -190,7 +190,7 @@ fields:
                 _eq: false
       readonly: false
       required: false
-      sort: 5
+      sort: 3
       special:
         - m2o
       translations: null
@@ -271,7 +271,7 @@ fields:
                 _eq: true
       readonly: false
       required: false
-      sort: 6
+      sort: 5
       special:
         - m2o
       translations: null
