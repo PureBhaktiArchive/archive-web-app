@@ -200,7 +200,7 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-label {
-  @apply flex items-start py-1 pl-2;
+  @apply flex items-center py-1 pl-2;
 }
 
 .ais-RefinementList-checkbox {
@@ -227,7 +227,7 @@ a[class^='ais-'] {
 .ais-Menu-count,
 .ais-RefinementList-count,
 .ais-ToggleRefinement-count {
-  @apply flex-none text-xs text-gray-400;
+  @apply flex-none text-xs text-gray-800;
 }
 
 .ais-HierarchicalMenu-showMore,
