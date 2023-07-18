@@ -204,7 +204,7 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-checkbox {
-  @apply h-6 w-5 flex-none rounded border-gray-800 bg-gray-100;
+  @apply h-6 w-5 flex-none rounded-lg border-gray-100 bg-white  text-gray-500 focus:text-gray-600 focus:ring-2 dark:border-gray-600 dark:bg-gray-700;
 }
 
 .ais-RefinementList-labelText {
