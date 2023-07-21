@@ -85,10 +85,11 @@ search.addWidgets([
     ],
   }),
   refinementList({
-    container: '#gurus-list  div:empty',
+    container: '#gurus-list div:empty',
     attribute: 'gurus.fullName',
     showMore: true,
     showMoreLimit: 20,
+    sortBy: ['count:desc'],
   }),
   hits({
     container: '#hits',
