@@ -148,16 +148,7 @@ tags:
   </div>
   <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
     {% for videoId in memories limit: 4 %}
-      <div class="grow">
-        <iframe
-          src="https://www.youtube.com/embed/{{videoId}}"
-          class="aspect-[16/9] w-full rounded-md"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
+      {% render 'partials/video-thumbnail.html', v-id: videoId -%}
     {% endfor %}
   </div>
 </div>
