@@ -148,7 +148,7 @@ tags:
   </div>
   <ul class="flex flex-wrap max-md:mx-2 max-md:my-2 max-md:flex max-md:flex-wrap max-md:gap-2 sm:flex-nowrap">
     {% for videoId in memories limit: 4 %}
-      <li class="min-w-[240px] pr-2 max-md:flex-1 lg:min-w-[288px]">
+      <li class="min-w-[240px] pr-2 max-md:flex-1 lg:min-w-[288px] xl:min-w-[314px]">
         {% render 'partials/video-thumbnail.html', v-id: videoId -%}
       </li>
     {% endfor %}
