@@ -8,8 +8,8 @@
       @click="inVideoMode = true"
       class="cursor-pointer"
       srcset="
-        https://i1.ytimg.com/vi/{{ v-id }}/mqdefault.jpg 320w,
-        https://i1.ytimg.com/vi/{{ v-id }}/hq720.jpg 1280w
+        https://i1.ytimg.com/vi/{{v-id}}/mqdefault.jpg 320w,
+        https://i1.ytimg.com/vi/{{v-id}}/hq720.jpg 1280w
       "
       sizes="
         (min-width: 1024px) 288px,
@@ -17,12 +17,12 @@
         (min-width: 504px) calc((100vw - 1.5rem) / 2),
         calc(100vw - 1rem)
       "
-      src="https://i1.ytimg.com/vi/{{ v-id }}/mqdefault.jpg"
+      src="https://i1.ytimg.com/vi/{{v-id}}/mqdefault.jpg"
     >
   </template>
   <template x-if="inVideoMode">
     <iframe
-      src="https://www.youtube.com/embed/{{ v-id }}?autoplay=1&modestbranding=1"
+      src="https://www.youtube.com/embed/{{v-id}}?autoplay=1&modestbranding=1"
       allow="autoplay"
     ></iframe>
   </template>
