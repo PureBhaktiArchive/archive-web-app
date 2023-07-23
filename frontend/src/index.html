@@ -33,21 +33,22 @@ tags:
     {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
     {%- for video in videos %}
       <!--
-        Due to usage of `aspect-w-` class, the element has strange height when it's a flex item.
+        Due to usage of `aspect-w-` class, elements have strange height when they are flex items,
+        and `gap` doesn't work well, elements overlap each other.
         That is why as of now we resort to just blocks and `mb-2`
       -->
-      <li class="mb-2 min-w-[240px] max-md:flex-1 lg:min-w-[320px]">
+      <li
+        class="group mb-2 min-w-[240px] data-[vertical]:max-w-[320px] max-md:flex-1"
+        {% if video.vertical %}
+          data-vertical
+        {% endif %}
+      >
         <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-sm font-semibold uppercase text-black md:text-sm">
           {{ video.title }}
         </h3>
-        {% if video.vertical %}
-          {% assign aspectRatio = 'aspect-w-9 aspect-h-16' %}
-        {% else %}
-          {% assign aspectRatio = 'aspect-h-9 aspect-w-16' %}
-        {% endif %}
         <div
           x-data="{inVideoMode: false}"
-          class="{{ aspectRatio }} overflow-hidden rounded-md"
+          class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md group-data-[vertical]:aspect-h-16 group-data-[vertical]:aspect-w-9"
         >
           <template x-if="!inVideoMode">
             <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
@@ -59,7 +60,6 @@ tags:
                 https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
               "
               sizes="
-                (min-width: 1024px) 320px,
                 (min-width: 768px) 240px,
                 (min-width: 504px) calc((100vw - 1.5rem) / 2),
                 calc(100vw - 1rem)
