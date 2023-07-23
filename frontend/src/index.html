@@ -6,7 +6,7 @@ eleventyNavigation:
 tags:
   - topnav
 ---
-<div class="flex gap-4 max-md:flex-col md:m-4">
+<div class="grid gap-4 max-md:grid-cols-1 md:m-4">
   <!-- Introduction -->
   <section class="bg-pink-100 p-2 md:rounded-lg md:border md:border-gray-200 md:p-4 md:shadow-lg md:shadow-gray-400/30">
     <img src="/images/srila-gurudev.jpg" alt="" class="float-left mr-4 w-1/3 rounded-lg">
@@ -29,7 +29,7 @@ tags:
     </div>
   </section>
   <!-- Daily Videos -->
-  <ul class="empty:hidden max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2">
+  <ul class="empty:hidden max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2 md:row-span-3">
     {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
     {%- for video in videos %}
       <!--
@@ -77,93 +77,93 @@ tags:
       </li>
     {% endfor -%}
   </ul>
-</div>
-<!-- Audio Recordings -->
-<div class="mx-2 mb-4 md:mx-4">
-  <div class="items-start justify-between pt-4 md:flex md:space-x-4">
-    <div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
-      <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+  <!-- Audio Recordings -->
+  <div class="mx-2 mb-4 md:mx-4">
+    <div class="items-start justify-between pt-4 md:flex md:space-x-4">
+      <div>
+        <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
+        <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+      </div>
+      <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
-    <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
-  </div>
-  <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-    {% for audio in audios offset: 25 limit: 8 %}
-      <a href="./audios/{{ audio.objectID }}/">
-        <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
-          <div class="col-span-1 ml-2">
-            <button
-              class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
-              title="Play"
-              type="button"
-            >
-              <!-- Material Icons: Play Arrow -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="ml-1 h-8 w-6"
+    <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+      {% for audio in audios offset: 25 limit: 8 %}
+        <a href="./audios/{{ audio.objectID }}/">
+          <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
+            <div class="col-span-1 ml-2">
+              <button
+                class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+                title="Play"
+                type="button"
               >
-                <path
-                  fill="white"
-                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="col-span-5 content-center pt-1 md:col-span-7">
-            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-            <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-              <div>#{{ audio.objectID }}</div>
-              {% if audio.dateForHumans -%}
-                <div>
-                  {{ audio.dateForHumans }}
-                  {% if audio.dateUncertain -%}
-                    <span title="Date is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.location -%}
-                <div>
-                  {{ audio.location }}
-                  {% if audio.locationUncertain -%}
-                    <span title="Location is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.category -%}
-                <div>{{ audio.category }}</div>
-              {%- endif %}
-              {% for language in audio.languages -%}
-                <div>{{ language }}</div>
-              {%- endfor %}
+                <!-- Material Icons: Play Arrow -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="ml-1 h-8 w-6"
+                >
+                  <path
+                    fill="white"
+                    d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="col-span-5 content-center pt-1 md:col-span-7">
+              <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+              <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                <div>#{{ audio.objectID }}</div>
+                {% if audio.dateForHumans -%}
+                  <div>
+                    {{ audio.dateForHumans }}
+                    {% if audio.dateUncertain -%}
+                      <span title="Date is uncertain">(?)</span>
+                    {%- endif %}
+                  </div>
+                {%- endif %}
+                {% if audio.location -%}
+                  <div>
+                    {{ audio.location }}
+                    {% if audio.locationUncertain -%}
+                      <span title="Location is uncertain">(?)</span>
+                    {%- endif %}
+                  </div>
+                {%- endif %}
+                {% if audio.category -%}
+                  <div>{{ audio.category }}</div>
+                {%- endif %}
+                {% for language in audio.languages -%}
+                  <div>{{ language }}</div>
+                {%- endfor %}
+              </div>
             </div>
           </div>
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-</div>
-<!-- Memories -->
-<div class="mx-2 mb-4 md:mx-4">
-  <div class="items-start justify-between md:flex md:space-x-4">
-    <div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
-      <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
+        </a>
+      {% endfor %}
     </div>
-    <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
   </div>
-  <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
-    {% for videoId in memories limit: 4 %}
-      <div class="grow">
-        <iframe
-          src="https://www.youtube.com/embed/{{videoId}}"
-          class="aspect-[16/9] w-full rounded-md"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+  <!-- Memories -->
+  <div class="mx-2 mb-4 md:col-span-2 md:mx-4">
+    <div class="items-start justify-between md:flex md:space-x-4">
+      <div>
+        <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
+        <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
       </div>
-    {% endfor %}
+      <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+      {% for videoId in memories limit: 4 %}
+        <div class="grow">
+          <iframe
+            src="https://www.youtube.com/embed/{{videoId}}"
+            class="aspect-[16/9] w-full rounded-md"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
