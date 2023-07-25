@@ -1,6 +1,6 @@
 <div
   x-data="{videoMode: false}"
-  class="aspect-h-9 aspect-w-16 min-w-[240px] overflow-hidden rounded-md"
+  class="aspect-h-9 aspect-w-16 min-w-[240px] overflow-hidden rounded-md sm:min-w-[0px]"
 >
   <template x-if="!videoMode">
     <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
@@ -12,7 +12,7 @@
         https://i1.ytimg.com/vi/{{v-id}}/hq720.jpg 1280w
       "
       sizes="
-        (min-width: 1024px) 288px,
+        (min-width: 1024px) 320px,
         (min-width: 768px) 240px,
         (min-width: 504px) calc((100vw - 1.5rem) / 2),
         calc(100vw - 1rem)
