@@ -39,35 +39,7 @@ tags:
       -->
       <li class="mb-2 min-w-[240px] max-md:flex-1 lg:min-w-[320px]">
         <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</h3>
-        <div
-          x-data="{inVideoMode: false}"
-          class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md"
-        >
-          <template x-if="!inVideoMode">
-            <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
-            <img
-              @click="inVideoMode = true"
-              class="cursor-pointer"
-              srcset="
-                https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg 320w,
-                https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
-              "
-              sizes="
-                (min-width: 1024px) 320px,
-                (min-width: 768px) 240px,
-                (min-width: 504px) calc((100vw - 1.5rem) / 2),
-                calc(100vw - 1rem)
-              "
-              src="https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg"
-            >
-          </template>
-          <template x-if="inVideoMode">
-            <iframe
-              src="https://www.youtube.com/embed/{{ video.videoID }}?autoplay=1&modestbranding=1"
-              allow="autoplay"
-            ></iframe>
-          </template>
-        </div>
+        {% render 'partials/video-thumbnail.html', v-id: video.videoID -%}
       </li>
     {% endfor -%}
   </ul>
