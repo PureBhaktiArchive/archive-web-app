@@ -5,7 +5,7 @@
     class="flex w-full cursor-pointer rounded-md border border-gray-200 p-2 py-2 pb-3 pt-3 text-left align-baseline text-sm font-medium uppercase text-gray-500 hover:bg-gray-300"
   >
     <span class="flex-grow">{{ title }}</span>
-    <svg class="h-4 w-3 shrink-0" :class="{ 'rotate-180': !expanded }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+    <svg class="h-4 w-3 shrink-0" :class="{ 'rotate-180': expanded }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
     </svg>
   </div>
