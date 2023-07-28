@@ -50,23 +50,23 @@ tags:
           x-data="{inVideoMode: false}"
           class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md group-data-[vertical]:aspect-h-16 group-data-[vertical]:aspect-w-9"
         >
-          <template x-if="!inVideoMode">
-            <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
-            <img
-              @click="inVideoMode = true"
-              class="cursor-pointer object-cover"
-              srcset="
-                https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg 320w,
-                https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
-              "
-              sizes="
-                (min-width: 768px) 240px,
-                (min-width: 504px) calc((100vw - 1.5rem) / 2),
-                calc(100vw - 1rem)
-              "
-              src="https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg"
-            >
-          </template>
+          <!-- Using `x-show` instead of `x-if` for the image because of an issue in Safari: element cloned from a template does not render properly with `object-cover` -->
+          <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
+          <img
+            x-show="!inVideoMode"
+            @click="inVideoMode = true"
+            class="cursor-pointer object-cover"
+            srcset="
+              https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg {% if video.vertical %} 101w {% else %} 320w {% endif %},
+              https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg {% if video.vertical %} 405w {% else %} 1280w {% endif %}
+            "
+            sizes="
+              (min-width: 768px) 240px,
+              (min-width: 504px) calc((100vw - 1.5rem) / 2),
+              calc(100vw - 1rem)
+            "
+            src="https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg"
+          >
           <template x-if="inVideoMode">
             <iframe
               src="https://www.youtube.com/embed/{{ video.videoID }}?autoplay=1&modestbranding=1"
