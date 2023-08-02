@@ -13,7 +13,7 @@
     "@11ty/eleventy-navigation": "0.3.5",
     "@11ty/eleventy-plugin-vite": "PureBhaktiArchive/eleventy-plugin-vite#patched",
     "@directus/sdk": "10.3.3",
-    "@shopify/prettier-plugin-liquid": "1.1.0",
+    "@shopify/prettier-plugin-liquid": "1.2.2",
     "@stefanracic/tailwind-child": "1.0.5",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.9",
