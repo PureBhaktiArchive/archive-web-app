@@ -67,13 +67,6 @@ module.exports = function (eleventyConfig) {
       `${soundQualityRatingMapping[soundqualitylabel].label}`
   );
 
-  //Filter for transforms the language code into the language name
-  eleventyConfig.addAsyncFilter('language_name', async (language_code) =>
-    new Intl.DisplayNames('en', {
-      type: 'language',
-    }).of(language_code)
-  );
-
   // Return your Object options:
   return {
     dir: {

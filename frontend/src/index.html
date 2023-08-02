@@ -6,23 +6,22 @@ eleventyNavigation:
 tags:
   - topnav
 ---
-<div class="flex gap-4 max-md:flex-col md:m-4">
+<div class="grid gap-4 max-md:grid-cols-1 md:m-4">
   <!-- Introduction -->
-  <section class="flex items-start bg-pink-100 p-2 text-center md:space-x-6 md:rounded-lg md:border md:border-gray-200 md:p-4 md:text-left md:shadow-lg md:shadow-gray-400/30">
-    <img src="/images/srila-gurudev.jpg" alt="" class="block w-1/3 rounded-lg">
-    <div class="w-2/3 space-y-4 pl-2 text-left md:mt-8">
-      <p class="text-sm font-semibold uppercase md:text-base">Hare Krsna!</p>
-      <p class="font-semibold tracking-tight text-neutral-600 md:text-2xl">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
-      <p class="text-sm md:text-base ">
+  <section class="bg-pink-100 p-2 md:rounded-lg md:border md:border-gray-200 md:p-4 md:shadow-lg md:shadow-gray-400/30">
+    <img src="/images/srila-gurudev.jpg" alt="" class="float-left mr-4 w-1/3 rounded-lg">
+    <div class="prose prose-neutral max-w-none max-md:prose-sm">
+      <p class="font-semibold uppercase">Hare Krsna!</p>
+      <p class="lead font-semibold tracking-tight">Welcome to the official archive website of His Divine Grace Srila Bhaktivedanta Narayana Gosvami Maharaja</p>
+      <p>
         To know more about Srila Bhaktivedanta Narayana Gosvami Maharaja (henceforth referred to as ‘Srila Gurudeva’) and to access his books and transcripts please visit the
         <a
           href="https://www.purebhakti.com/"
-          class="font-semibold hover:underline"
           target="_blank"
-          >PureBhakti website</a
+          >PureBhakti&nbsp;website</a
         >.
       </p>
-      <p class="hidden md:block">
+      <p class="max-md:hidden">
         Srila Gurudeva's rasika harikatha, replete with Gaudiya Vaisnava siddhanta, was indeed his hallmark. Devotees from different institutions flocked to him to hear him speak. On any usual day, he
         gave 3-4 classes and darsanas. As per current estimates, the number of audio files of his recorded harikatha, just in the last 15 years of his preaching is between 10,000-11,000!
       </p>
@@ -30,37 +29,39 @@ tags:
     </div>
   </section>
   <!-- Daily Videos -->
-  <ul class="empty:hidden max-md:mx-2 max-md:flex max-md:flex-wrap max-md:justify-center max-md:gap-2">
+  <ul class="flex gap-x-4 gap-y-2 empty:hidden max-md:mx-2 max-md:flex-wrap max-md:justify-center md:col-start-2 md:row-span-3 md:flex-col">
     {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
-    {%- for video in dailyVideos %}
-      <!--
-        Due to usage of `aspect-w-` class, the element has strange height when it's a flex item.
-        That is why as of now we resort to just blocks and `mb-2`
-      -->
-      <li class="mb-2 min-w-[240px] max-md:flex-1 lg:min-w-[320px]">
-        <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-sm font-semibold uppercase text-black md:text-sm">Today&rsquo;s harikatha ({{ video.language | language_name }})</h3>
+    {%- for video in home.videos %}
+      <li
+        class="group min-w-[240px] data-[vertical]:max-w-[320px] max-md:flex-1"
+        {% if video.vertical %}
+          data-vertical
+        {% endif %}
+      >
+        <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-center text-sm font-semibold uppercase text-black md:text-sm">
+          {{ video.title }}
+        </h3>
         <div
           x-data="{inVideoMode: false}"
-          class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md"
+          class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md group-data-[vertical]:aspect-h-16 group-data-[vertical]:aspect-w-9"
         >
-          <template x-if="!inVideoMode">
-            <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
-            <img
-              @click="inVideoMode = true"
-              class="cursor-pointer"
-              srcset="
-                https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg 320w,
-                https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg 1280w
-              "
-              sizes="
-                (min-width: 1024px) 320px,
-                (min-width: 768px) 240px,
-                (min-width: 504px) calc((100vw - 1.5rem) / 2),
-                calc(100vw - 1rem)
-              "
-              src="https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg"
-            >
-          </template>
+          <!-- Using `x-show` instead of `x-if` for the image because of an issue in Safari: element cloned from a template does not render properly with `object-cover` -->
+          <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
+          <img
+            x-show="!inVideoMode"
+            @click="inVideoMode = true"
+            class="cursor-pointer object-cover"
+            srcset="
+              https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg {% if video.vertical %} 101w {% else %} 320w {% endif %},
+              https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg {% if video.vertical %} 405w {% else %} 1280w {% endif %}
+            "
+            sizes="
+              (min-width: 768px) 240px,
+              (min-width: 504px) calc((100vw - 1.5rem) / 2),
+              calc(100vw - 1rem)
+            "
+            src="https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg"
+          >
           <template x-if="inVideoMode">
             <iframe
               src="https://www.youtube.com/embed/{{ video.videoID }}?autoplay=1&modestbranding=1"
@@ -71,93 +72,93 @@ tags:
       </li>
     {% endfor -%}
   </ul>
-</div>
-<!-- Audio Recordings -->
-<div class="mx-2 mb-4 md:mx-4">
-  <div class="items-start justify-between pt-4 md:flex md:space-x-4">
-    <div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
-      <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+  <!-- Audio Recordings -->
+  <div class="mx-2 mb-4 md:row-start-2 md:mx-4">
+    <div class="items-start justify-between pt-4 md:flex md:space-x-4">
+      <div>
+        <h4 class="text-sm font-semibold uppercase md:text-base">Audio Recordings</h4>
+        <p class="mb-2 text-sm md:text-base">Illuminations on pristine Gaudiya conceptions in the line of Srila Bhaktisiddhanta Sarasvati Prabhupada</p>
+      </div>
+      <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
-    <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
-  </div>
-  <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-    {% for audio in audios offset: 25 limit: 8 %}
-      <a href="./audios/{{ audio.objectID }}/">
-        <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
-          <div class="col-span-1 ml-2">
-            <button
-              class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
-              title="Play"
-              type="button"
-            >
-              <!-- Material Icons: Play Arrow -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                class="ml-1 h-8 w-6"
+    <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+      {% for audio in audios offset: 25 limit: 8 %}
+        <a href="./audios/{{ audio.objectID }}/">
+          <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
+            <div class="col-span-1 ml-2">
+              <button
+                class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+                title="Play"
+                type="button"
               >
-                <path
-                  fill="white"
-                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div class="col-span-5 content-center pt-1 md:col-span-7">
-            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-            <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-              <div>#{{ audio.objectID }}</div>
-              {% if audio.dateForHumans -%}
-                <div>
-                  {{ audio.dateForHumans }}
-                  {% if audio.dateUncertain -%}
-                    <span title="Date is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.location -%}
-                <div>
-                  {{ audio.location }}
-                  {% if audio.locationUncertain -%}
-                    <span title="Location is uncertain">(?)</span>
-                  {%- endif %}
-                </div>
-              {%- endif %}
-              {% if audio.category -%}
-                <div>{{ audio.category }}</div>
-              {%- endif %}
-              {% for language in audio.languages -%}
-                <div>{{ language }}</div>
-              {%- endfor %}
+                <!-- Material Icons: Play Arrow -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="ml-1 h-8 w-6"
+                >
+                  <path
+                    fill="white"
+                    d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div class="col-span-5 content-center pt-1 md:col-span-7">
+              <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+              <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                <div>#{{ audio.objectID }}</div>
+                {% if audio.dateForHumans -%}
+                  <div>
+                    {{ audio.dateForHumans }}
+                    {% if audio.dateUncertain -%}
+                      <span title="Date is uncertain">(?)</span>
+                    {%- endif %}
+                  </div>
+                {%- endif %}
+                {% if audio.location -%}
+                  <div>
+                    {{ audio.location }}
+                    {% if audio.locationUncertain -%}
+                      <span title="Location is uncertain">(?)</span>
+                    {%- endif %}
+                  </div>
+                {%- endif %}
+                {% if audio.category -%}
+                  <div>{{ audio.category }}</div>
+                {%- endif %}
+                {% for language in audio.languages -%}
+                  <div>{{ language }}</div>
+                {%- endfor %}
+              </div>
             </div>
           </div>
-        </div>
-      </a>
-    {% endfor %}
-  </div>
-</div>
-<!-- Memories -->
-<div class="mx-2 mb-4 md:mx-4">
-  <div class="items-start justify-between md:flex md:space-x-4">
-    <div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
-      <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
+        </a>
+      {% endfor %}
     </div>
-    <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
   </div>
-  <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
-    {% for videoId in memories limit: 4 %}
-      <div class="grow">
-        <iframe
-          src="https://www.youtube.com/embed/{{videoId}}"
-          class="aspect-[16/9] w-full rounded-md"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+  <!-- Memories -->
+  <div class="mx-2 mb-4 md:col-span-2 md:mx-4">
+    <div class="items-start justify-between md:flex md:space-x-4">
+      <div>
+        <h4 class="text-sm font-semibold uppercase md:text-base">Memories of Srila Gurudeva</h4>
+        <p class="mb-2 text-sm md:text-base">Watch the memories of followers and contemporaries of Srila Gurudeva. It is truly heart melting!</p>
       </div>
-    {% endfor %}
+      <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
+    </div>
+    <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
+      {% for videoId in memories limit: 4 %}
+        <div class="grow">
+          <iframe
+            src="https://www.youtube.com/embed/{{videoId}}"
+            class="aspect-[16/9] w-full rounded-md"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
