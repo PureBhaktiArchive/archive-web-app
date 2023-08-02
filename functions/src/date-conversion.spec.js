@@ -14,6 +14,9 @@ describe.each`
   const datetime = DateTime.fromISO(iso, { setZone: true });
 
   test('from Serial to DateTime', () => {
+    // Testing to assert that the zoneName is not null
+    // Because we cannot augment TSSettings with JSDoc similar to https://github.com/DefinitelyTyped/DefinitelyTyped/blob/273b347a3d66948ecf59b2d412dab9794d3d9310/types/luxon/test/luxon-tests.module.ts#L16-L20
+    if (datetime.zoneName === null) throw new Error(`${iso} is invalid`);
     expect(fromSerialDate(serialDate, datetime.zoneName)).toEqual(datetime);
   });
 
