@@ -39,8 +39,6 @@ Environment variables should be added to an `.env.local` file.
 | `AUDIOS_DATA_PATH`       | Path to a file containing JSON data for audio pages generation. Should be absolute or relative to the `frontend` folder. This file can be downloaded from the Realtime Database. |
 | `DONATION_URL`           | The URL of the external donation page.                                                                                                                                           |
 | `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                                                                                                                            |
-| `DIRECTUS_EMAIL`         | Username for Directus, used in case of username/password authentication.                                                                                                         |
-| `DIRECTUS_PASSWORD`      | Password for Directus, used in case of username/password authentication.                                                                                                         |
 | `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.                                                                                                            |
 
 For a new environment variable to be accessible from the frontend code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
