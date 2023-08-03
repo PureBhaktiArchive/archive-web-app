@@ -2,6 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "npx @11ty/eleventy --serve --quiet --incremental",
     "build": "npx @11ty/eleventy --quiet",
