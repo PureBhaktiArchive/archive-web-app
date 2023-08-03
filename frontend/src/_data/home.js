@@ -2,6 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
+const { readSingleton } = require('@directus/sdk');
+
 /**
  * @typedef Video
  * @property {string} url
@@ -13,10 +15,11 @@
  * @property {Video} hindi_video
  * @property {Video} short_video
  *
- * @typedef TypeMap
+ * @typedef Schema
  * @property {Home} home
+ * @property {Video[]} videos
  *
- * @typedef {import('@directus/sdk').Directus<TypeMap>} Directus
+ * @typedef {import('@directus/sdk').RestClient<Schema>} Directus
  */
 
 /**
@@ -26,14 +29,12 @@
  */
 const fetchVideos = async ({ directus }) =>
   Object.entries(
-    // Type conversion required because SDK returns a singleton, but typing says it's an array
-    // Conversion to `unknown` first is required because types are incompatible
-    /**@type {Home} */ /** @type {unknown} */ (
-      (
-        await directus.items('home').readByQuery({
-          fields: ['*.url', '*.language', '*.vertical'],
-        })
-      ).data
+    await directus.request(
+      readSingleton('home', {
+        fields: [
+          { english_video: ['*'], hindi_video: ['*'], short_video: ['*'] },
+        ],
+      })
     )
   )
     // Filtering out other possible properties
