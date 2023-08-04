@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version-file: frontend/package.json
           cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
