@@ -147,7 +147,7 @@ tags:
       </div>
       <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
-    <div class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-4 grid gap-2 min-[500px]:grid-cols-2 lg:grid-cols-4">
       {% for videoId in memories limit: 4 %}
         {% render 'partials/video-thumbnail.html', v-id: videoId -%}
       {% endfor %}
