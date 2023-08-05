@@ -50,10 +50,11 @@ tags:
           <img
             x-show="!inVideoMode"
             @click="inVideoMode = true"
-            class="cursor-pointer object-cover"
+            class="cursor-pointer object-cover object-center"
             srcset="
               https://i1.ytimg.com/vi/{{ video.videoID }}/mqdefault.jpg {% if video.vertical %} 101w {% else %} 320w {% endif %},
-              https://i1.ytimg.com/vi/{{ video.videoID }}/hq720.jpg {% if video.vertical %} 405w {% else %} 1280w {% endif %}
+              https://i1.ytimg.com/vi/{{ video.videoID }}/hqdefault.jpg {% if video.vertical %} 151w {% else %} 480w {% endif %},
+              https://i1.ytimg.com/vi/{{ video.videoID }}/sddefault.jpg {% if video.vertical %} 202w {% else %} 640w {% endif %}
             "
             sizes="
               (min-width: 768px) 240px,
@@ -147,19 +148,41 @@ tags:
       </div>
       <a href="./memories/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
-    <div class="mt-4 flex flex-wrap gap-4 sm:flex-nowrap">
-      {% for videoId in memories limit: 4 %}
-        <div class="grow">
-          <iframe
-            src="https://www.youtube.com/embed/{{videoId}}"
-            class="aspect-[16/9] w-full rounded-md"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </div>
-      {% endfor %}
-    </div>
+    <ul class="mt-4 grid gap-2 min-[500px]:grid-cols-2 lg:grid-cols-4">
+      {%- for videoId in memories limit: 4 %}
+        <li class="min-w-[240px]">
+          <div
+            x-data="{inVideoMode: false}"
+            class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md"
+          >
+            <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
+            <img
+              x-show="!inVideoMode"
+              @click="inVideoMode = true"
+              class="cursor-pointer object-cover object-center"
+              srcset="
+                https://i1.ytimg.com/vi/{{ videoId }}/mqdefault.jpg 320w,
+                https://i1.ytimg.com/vi/{{ videoId }}/hqdefault.jpg 480w,
+                https://i1.ytimg.com/vi/{{ videoId }}/sddefault.jpg 640w
+              "
+              sizes="
+                (min-width: 1024px) calc((100vw - 4rem) / 4),
+                (min-width: 500px) calc((100vw - 1rem) / 2),
+                calc(100vw - 1rem)
+              "
+              src="https://i1.ytimg.com/vi/{{ videoId }}/mqdefault.jpg"
+              loading="lazy"
+            >
+            <template x-if="inVideoMode">
+              <iframe
+                src="https://www.youtube.com/embed/{{ videoId }}?autoplay=1&modestbranding=1"
+                allow="autoplay"
+                allowfullscreen
+              ></iframe>
+            </template>
+          </div>
+        </li>
+      {% endfor -%}
+    </ul>
   </div>
 </div>
