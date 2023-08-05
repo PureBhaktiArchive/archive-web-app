@@ -157,16 +157,15 @@ tags:
             <!-- Thumbnail URLs taken from https://stackoverflow.com/a/20542029/3082178 -->
             <img
               @click="inVideoMode = true"
-              class="cursor-pointer"
+              class="cursor-pointer object-cover object-center"
               srcset="
                 https://i1.ytimg.com/vi/{{videoId}}/mqdefault.jpg 320w,
-                https://i1.ytimg.com/vi/{{videoId}}/hq720.jpg 1280w
-                https://i1.ytimg.com/vi/{{videoId}}/maxresdefault.jpg 1920w
+                https://i1.ytimg.com/vi/{{videoId}}/hqdefault.jpg 480w,
+                https://i1.ytimg.com/vi/{{videoId}}/sddefault.jpg 640w
               "
               sizes="
-                (min-width: 1024px) 320px,
-                (min-width: 768px) 240px,
-                (min-width: 504px) calc((100vw - 1.5rem) / 2),
+                (min-width: 1024px) calc((100vw - 4rem) / 4),
+                (min-width: 500px) calc((100vw - 1rem) / 2),
                 calc(100vw - 1rem)
               "
               src="https://i1.ytimg.com/vi/{{videoId}}/mqdefault.jpg"
