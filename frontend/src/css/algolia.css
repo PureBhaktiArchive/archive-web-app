@@ -200,19 +200,19 @@ a[class^='ais-'] {
 }
 
 .ais-RefinementList-label {
-  @apply flex items-center py-1 pl-2;
+  @apply flex items-center px-1 py-1;
 }
 
 .ais-RefinementList-checkbox {
-  @apply h-6 w-5 flex-none rounded-lg border-gray-100 bg-white  text-gray-500 focus:text-gray-600 focus:ring-2;
+  @apply flex-none;
 }
 
 .ais-RefinementList-labelText {
-  @apply flex grow items-center overflow-x-hidden break-words pl-2;
+  @apply grow overflow-x-hidden break-words px-2 text-sm text-gray-600 dark:text-gray-400;
 }
 
 .ais-NumericMenu-label {
-  @apply flex items-start py-1 pl-2;
+  @apply flex items-start px-1 py-1;
 }
 
 .ais-NumericMenu-radio {
@@ -227,7 +227,7 @@ a[class^='ais-'] {
 .ais-Menu-count,
 .ais-RefinementList-count,
 .ais-ToggleRefinement-count {
-  @apply flex-none text-xs text-gray-800;
+  @apply flex-none text-xs font-semibold text-gray-800;
 }
 
 .ais-HierarchicalMenu-showMore,

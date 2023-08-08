@@ -11,6 +11,27 @@
     font-style: normal;
   }
 
+  input[type='checkbox'] {
+    @apply h-5 w-5 appearance-none rounded border border-gray-300 bg-white text-gray-500 focus:text-gray-600 focus:ring-2 dark:border-gray-600 dark:bg-gray-700;
+  }
+
+  /*
+
+  [type='checkbox']:checked,
+  .dark [type='checkbox']:checked {
+    border-color: transparent;
+    background-color: currentColor;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(
+      data:image/svg + xml;charset=utf-8,
+      %3Csvgaria-hidden='true'xmlns='http://www.w3.org/2000/svg'fill='none'viewBox='0 0 16 12'%3E%3Cpathstroke='%23fff'stroke-linecap='round'stroke-linejoin='round'stroke-width='3'd='M1 5.917 5.724 10.5 15 1.5'/%3E%3C/svg%3E
+    );
+  }
+
+  */
+
   button {
     @apply focus:outline-none;
   }
