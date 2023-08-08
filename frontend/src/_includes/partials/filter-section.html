@@ -4,7 +4,7 @@
     :class="!expanded ? 'text-gray-800 bg-neutral-100' : ''"
     class="flex w-full cursor-pointer rounded-md border border-gray-200 px-2 py-[10px] text-left align-baseline text-sm font-medium uppercase text-gray-500 hover:bg-neutral-300"
   >
-    <span class="flex-grow">{{ title }}</span>
+    <span class="flex-grow px-2">{{ title }}</span>
     <svg class="h-5 w-3 shrink-0" :class="{ 'rotate-180': expanded }" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
     </svg>
