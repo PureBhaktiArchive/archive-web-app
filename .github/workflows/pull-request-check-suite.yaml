@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version-file: frontend/package.json
           cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
@@ -70,6 +70,8 @@ jobs:
           DONATION_URL: ${{ vars.DONATION_URL}}
           FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES}}
+          DIRECTUS_URL: ${{ vars.DIRECTUS_URL }}
+          DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
 
       - run: npm test --if-present
       - run: npx prettier --check .
