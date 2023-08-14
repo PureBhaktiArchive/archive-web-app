@@ -11,7 +11,7 @@
 >
   <header
     @click="expanded = !expanded"
-    class="flex cursor-pointer rounded-md border border-neutral-200 px-2 py-2 text-left align-baseline text-sm font-medium uppercase transition-colors group-data-[expanded]:bg-neutral-100 group-data-[expanded]:text-neutral-800"
+    class="flex cursor-pointer select-none rounded-md border border-neutral-200 px-2 py-2 text-left align-baseline text-sm font-medium uppercase transition-colors group-data-[expanded]:bg-neutral-100 group-data-[expanded]:text-neutral-800"
   >
     <span class="mr-2 flex-grow">{{ title }}</span>
     <svg class="h-5 w-3 shrink-0 group-data-[expanded]:rotate-180 motion-safe:transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -27,7 +27,7 @@
     x-transition:leave-end="opacity-0"
   >
     {% if subtitle -%}
-      <p class="text-xs font-light lowercase">{{ subtitle }}</p>
+      <p class="mb-2 text-xs font-light lowercase">{{ subtitle }}</p>
     {%- endif %}
     <!-- Slot for Instant Search, should be empty for selectors to work -->
     <div></div>
