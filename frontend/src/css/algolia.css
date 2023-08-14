@@ -182,7 +182,10 @@ a[class^='ais-'] {
 .ais-NumericMenu-list,
 .ais-RatingMenu-list,
 .ais-RefinementList-list {
-  @apply font-normal leading-normal;
+  @apply space-y-2;
+}
+
+.ais-RefinementList-item {
 }
 
 .ais-HierarchicalMenu-link {
@@ -195,39 +198,26 @@ a[class^='ais-'] {
   }
 }
 
-.ais-RefinementList-item {
-  @apply break-inside-avoid py-1;
-}
-
+.ais-NumericMenu-label,
 .ais-RefinementList-label {
-  @apply flex items-center px-1 py-1;
+  @apply flex break-inside-avoid items-center;
 }
 
+.ais-NumericMenu-radio,
 .ais-RefinementList-checkbox {
   @apply flex-none;
 }
 
+.ais-NumericMenu-labelText,
 .ais-RefinementList-labelText {
-  @apply grow overflow-x-hidden break-words px-2 text-sm text-gray-600 dark:text-gray-400;
-}
-
-.ais-NumericMenu-label {
-  @apply flex items-start px-1 py-1;
-}
-
-.ais-NumericMenu-radio {
-  @apply h-6 w-4 flex-none align-middle;
-}
-
-.ais-NumericMenu-labelText {
-  @apply pl-1;
+  @apply mx-2 overflow-x-hidden break-words text-sm text-gray-600 dark:text-gray-400;
 }
 
 .ais-HierarchicalMenu-count,
 .ais-Menu-count,
 .ais-RefinementList-count,
 .ais-ToggleRefinement-count {
-  @apply flex-none text-xs font-semibold text-gray-800;
+  @apply ml-auto flex-none text-xs font-semibold text-gray-800;
 }
 
 .ais-HierarchicalMenu-showMore,
