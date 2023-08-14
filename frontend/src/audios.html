@@ -35,7 +35,11 @@ jsFile: audios.js
       <div id="category-list">
         {% render 'partials/filter-section.html', title: 'Category' -%}
       </div>
-      <div id="year-list">
+      <!-- Columns is not an ideal solution, waiting for better suggestions: https://stackoverflow.com/q/76898065/3082178 -->
+      <div
+        id="year-list"
+        class="[&_.ais-RefinementList-labelText]:whitespace-nowrap [&_.ais-RefinementList]:columns-[5rem]"
+      >
         {% render 'partials/filter-section.html', title: 'Year' -%}
       </div>
       <div id="location-list" class="shadow">
