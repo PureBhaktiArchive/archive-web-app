@@ -210,14 +210,14 @@ a[class^='ais-'] {
 
 .ais-NumericMenu-labelText,
 .ais-RefinementList-labelText {
-  @apply mx-2 overflow-x-hidden break-words text-sm text-gray-600 dark:text-gray-400;
+  @apply mx-2 overflow-x-hidden break-words text-sm;
 }
 
 .ais-HierarchicalMenu-count,
 .ais-Menu-count,
 .ais-RefinementList-count,
 .ais-ToggleRefinement-count {
-  @apply ml-auto flex-none text-xs font-semibold text-gray-800;
+  @apply ml-auto flex-none text-xs font-semibold;
 }
 
 .ais-HierarchicalMenu-showMore,
@@ -281,7 +281,7 @@ a[class^='ais-'] {
   @apply block rounded border px-3 py-1 transition-colors duration-200 ease-out focus:outline-none;
 
   .ais-Pagination-item--disabled & {
-    @apply cursor-not-allowed text-gray-400 opacity-60;
+    @apply cursor-not-allowed text-neutral-400 opacity-60;
   }
 
   .ais-Pagination-item--selected & {
@@ -301,7 +301,7 @@ a[class^='ais-'] {
   }
 
   & .ais-SearchBox-input {
-    @apply h-8 px-8 text-sm;
+    @apply h-8 px-8;
   }
 
   & .ais-SearchBox-submit,
