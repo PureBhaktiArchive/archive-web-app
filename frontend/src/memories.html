@@ -16,10 +16,10 @@ jsFile: memories.js
     x-cloak
     @keydown.escape="open = false"
     :class="open ? 'translate-x-0': '-translate-x-full'"
-    class="du fixed top-0 z-20 flex h-full w-64 flex-col bg-white text-sm transition-transform ease-linear md:static md:z-auto md:flex md:w-1/5 md:max-w-sm md:translate-x-0"
+    class="fixed top-0 z-20 flex h-full w-64 flex-col bg-white transition-transform ease-linear md:static md:z-auto md:flex md:w-1/5 md:max-w-sm md:translate-x-0"
   >
-    <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
-    <div class="grow overflow-y-auto overflow-x-hidden p-2 pt-0">
+    <header class="flex-none border-b p-4 font-bold text-neutral-600 md:hidden">Filter</header>
+    <div class="grow overflow-y-auto overflow-x-hidden p-2">
       <div id="gurus-list">
         {% render 'partials/filter-section.html', title: 'Initiating Guru(s)', subtitle: '[Sorted by decreasing count of matching records]' -%}
       </div>
@@ -36,14 +36,14 @@ jsFile: memories.js
         {% render 'partials/filter-section.html', title: 'Duration' -%}
       </div>
     </div>
-    <div class="flex-none border-t p-2 md:hidden">
+    <footer class="flex-none border-t p-4 md:hidden">
       <button
         @click="open = false"
-        class="w-full rounded-md bg-neutral-600 p-2 font-semibold uppercase text-white shadow-sm"
+        class="rounded-md bg-neutral-600 px-10 py-2 text-sm font-semibold text-white"
       >
         Close
       </button>
-    </div>
+    </footer>
   </div>
   <main class="w-full grow px-2 sm:w-4/5 sm:px-4">
     <div id="searchbox" class="flex flex-none">
