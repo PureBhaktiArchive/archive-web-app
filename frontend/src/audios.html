@@ -19,7 +19,7 @@ jsFile: audios.js
     class="fixed top-0 z-20 flex h-full w-64 flex-col bg-white text-sm transition-transform ease-linear md:static md:z-auto md:flex md:w-1/5 md:max-w-sm md:translate-x-0"
   >
     <div class="flex-none bg-submarine-500 p-2 text-center font-bold uppercase text-neutral-600 md:hidden">Filter</div>
-    <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40 pt-0">
+    <div class="grow overflow-y-auto overflow-x-hidden p-2 pb-40">
       <div id="language-list">
         {% render 'partials/filter-section.html', title: 'Languages' -%}
       </div>
@@ -42,7 +42,7 @@ jsFile: audios.js
       >
         {% render 'partials/filter-section.html', title: 'Year' -%}
       </div>
-      <div id="location-list" class="shadow">
+      <div id="location-list">
         {% render 'partials/filter-section.html', title: 'Location' -%}
       </div>
     </div>
