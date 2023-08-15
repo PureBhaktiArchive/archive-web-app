@@ -7,7 +7,7 @@ import Alpine from 'alpinejs';
 import instantsearch from 'instantsearch.js/es';
 import {
   configure,
-  infiniteHits,
+  hits,
   numericMenu,
   pagination,
   panel,
@@ -173,7 +173,7 @@ search.addWidgets([
       { label: '45+ minutes', start: 2700 },
     ],
   }),
-  infiniteHits({
+  hits({
     container: '#hits',
     templates: {
       item: itemTemplate,
