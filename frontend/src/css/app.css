@@ -5,7 +5,8 @@
 @layer base {
   @font-face {
     font-family: 'ITC Eras Demi';
-    src: url('../fonts/ITC Eras Demi.ttf') format('ttf'),
+    src:
+      url('../fonts/ITC Eras Demi.ttf') format('ttf'),
       url('../fonts/ITC Eras Demi.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
