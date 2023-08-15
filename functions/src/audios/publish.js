@@ -35,7 +35,10 @@ function getLanguageAttributes(input) {
 
 /**
  * @param {string} source
- * @returns {Pick<AudiosAlgoliaRecord, 'dateForHumans' | 'dateISO' | 'year'> | null}
+ * @returns {Pick<
+ *   AudiosAlgoliaRecord,
+ *   'dateForHumans' | 'dateISO' | 'year'
+ * > | null}
  */
 function getDateAttributes(source) {
   if (!source) return null;

@@ -21,12 +21,10 @@ export const itemTemplate = (hit, { html, components }) => html`
     <h3 class="break-words font-semibold" title="Speaker name">
       <span>${components.Highlight({ hit, attribute: 'speakerName' })}, </span>
       ${hit.gurus.map(
-        ({ fullName, abbreviation }, index) => html`<span
-          key=${abbreviation}
-          title="${fullName}"
-          class="text-xs"
-          >${abbreviation}${index < hit.gurus.length - 1 && `, `}</span
-        >`
+        ({ fullName, abbreviation }, index) =>
+          html`<span key=${abbreviation} title="${fullName}" class="text-xs"
+            >${abbreviation}${index < hit.gurus.length - 1 && `, `}</span
+          >`
       )}
     </h3>
     <!-- Tag line -->
