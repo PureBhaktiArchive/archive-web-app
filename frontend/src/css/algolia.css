@@ -352,12 +352,8 @@ a[class^='ais-'] {
   @apply absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 fill-current;
 }
 
-.ais-InfiniteHits-list {
-  @apply divide-y;
-}
-
-.ais-Hits-list {
-  @apply flex flex-wrap justify-center sm:justify-start md:justify-start;
+.ais-Hits-list--cards {
+  @apply flex flex-wrap max-sm:justify-center;
 }
 
 .ais-NumericMenu-labelText {

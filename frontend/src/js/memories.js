@@ -119,6 +119,9 @@ search.addWidgets([
   }),
   hits({
     container: '#hits',
+    cssClasses: {
+      list: 'ais-Hits-list--cards',
+    },
     templates: {
       item: itemTemplate,
       empty: () => '',
