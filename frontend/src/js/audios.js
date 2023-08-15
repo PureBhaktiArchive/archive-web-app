@@ -54,10 +54,19 @@ search.addWidgets([
     templates: {
       text: (data) =>
         data.hasManyResults
-          ? `${data.nbHits} results`
+          ? `${
+              data.nbPages > 1
+                ? `${data.page * data.hitsPerPage + 1}–${Math.min(
+                    data.nbHits,
+                    (data.page + 1) * data.hitsPerPage
+                  )} of `
+                : ''
+            }${data.nbHits} results`
           : data.hasOneResult
           ? '1 result'
-          : 'No results',
+          : data.hasNoResults
+          ? 'No results'
+          : '',
     },
   }),
   // Loading indicator
