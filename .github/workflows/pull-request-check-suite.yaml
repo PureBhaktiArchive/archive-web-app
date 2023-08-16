@@ -72,6 +72,7 @@ jobs:
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES}}
           DIRECTUS_URL: ${{ vars.DIRECTUS_URL }}
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
       - run: npm test --if-present
       - run: npx prettier --check .

@@ -3,6 +3,12 @@
  */
 
 const { readSingleton } = require('@directus/sdk');
+const {
+  getVideoDetails,
+  getSrcSet,
+  getThumbnails,
+  youTubeUrlRegexp,
+} = require('../youtube');
 
 /**
  * @typedef Video
@@ -25,39 +31,41 @@ const { readSingleton } = require('@directus/sdk');
 /**
  *
  * @param {{directus: Directus}} data
- * @returns {Promise<{title: string, vertical: boolean, videoID: string}[]>}
+ * @returns {Promise<{title: string, vertical: boolean, videoId: string}[]>}
  */
-const fetchVideos = async ({ directus }) =>
-  Object.entries(
-    await directus.request(
-      readSingleton('home', {
-        fields: [
-          { english_video: ['*'], hindi_video: ['*'], short_video: ['*'] },
-        ],
-      })
+const fetchHomePageVideos = async ({ directus }) =>
+  Promise.all(
+    Object.entries(
+      await directus.request(
+        readSingleton('home', {
+          fields: [
+            { english_video: ['*'], hindi_video: ['*'], short_video: ['*'] },
+          ],
+        })
+      )
     )
-  )
-    // Filtering out other possible properties
-    .filter(([property]) => property.endsWith('_video'))
-    .map(([, { url, language, vertical }]) => ({
-      title: vertical
-        ? 'Short video of the day'
-        : `Today’s harikatha (${new Intl.DisplayNames('en', {
-            type: 'language',
-          }).of(language)})`,
-      vertical,
-      videoID: youTubeUrlRegexp.exec(url).groups['videoId'],
-    }));
-
-/**
- * Extracts Video ID from a YouTube URL
- * Groups:
- *   - videoId
- * https://regex101.com/r/wISpTS/2
- */
-const youTubeUrlRegexp =
-  /^(https?:\/\/)?(youtu\.be\/|((www|m)\.)?youtube(?:-nocookie)?\.com\/(\w*\?(.*&)?v=|(shorts|embed|v|e)\/))(?<videoId>[\w\-_]{11})([&?].*)?$/i;
+      // Filtering out other possible properties
+      .filter(([property]) => property.endsWith('_video'))
+      .map(async ([, { url, language, vertical }]) => {
+        const videoId = youTubeUrlRegexp.exec(url).groups['videoId'];
+        const videoDetails = await getVideoDetails(videoId);
+        const thumbnails = getThumbnails(videoDetails.snippet);
+        return {
+          title: vertical
+            ? 'Short video of the day'
+            : `Today’s harikatha (${new Intl.DisplayNames('en', {
+                type: 'language',
+              }).of(language)})`,
+          vertical,
+          videoId,
+          thumbnail: {
+            srcset: getSrcSet(thumbnails, vertical),
+            fallbackUrl: thumbnails.at(-1).url,
+          },
+        };
+      })
+  );
 
 module.exports = async (data) => ({
-  videos: await fetchVideos(data),
+  videos: await fetchHomePageVideos(data),
 });
