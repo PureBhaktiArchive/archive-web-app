@@ -42,7 +42,7 @@ const getThumbnails = (videoSnippet) =>
   );
 
 /**
- * Constructs `srcset` attribute for the thumbnail
+ * Constructs `srcset` attribute for the thumbnail image element
  * @param {import('googleapis').youtube_v3.Schema$Thumbnail[]} thumbnails
  * @param {boolean} vertical Whether video is vertical (9:16 instead of 16:9), in this case YT widens a thumbnail artificially
  * @returns {string} value for image's `srcset` attribute
@@ -51,9 +51,10 @@ const getSrcSet = (thumbnails, vertical) =>
   thumbnails
     .map(
       (thumbnail) =>
-        `${thumbnail.url} ${Math.trunc(
-          thumbnail.width * (vertical ? (9 / 16) ** 2 : 1)
-        )}w`
+        `${thumbnail.url} ${
+          // If it's vertical, only middle portion will be taken from the thumbnail
+          Math.trunc(thumbnail.width * (vertical ? (9 / 16) ** 2 : 1))
+        }w`
     )
     .join(', ');
 
