@@ -86,8 +86,8 @@ tags:
     <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
       {% for audio in audios offset: 25 limit: 8 %}
         <a href="./audios/{{ audio.objectID }}/">
-          <div class="flex items-start rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50">
-            <div class="m-2">
+          <div class="flex items-center rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50">
+            <div class="mx-2 mt-1.5">
               <button
                 class="w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
                 title="Play"
@@ -106,9 +106,9 @@ tags:
                 </svg>
               </button>
             </div>
-            <div class="content-center overflow-hidden py-1">
+            <div class="mr-2 mt-1 content-center overflow-hidden">
               <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-              <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+              <div class="flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
                 <div>#{{ audio.objectID }}</div>
                 {% if audio.dateForHumans -%}
                   <div>
