@@ -84,12 +84,12 @@ tags:
       <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
     <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
-      {% for audio in audios offset: 25 limit: 8 %}
+      {% for audio in audios offset: 6 limit: 8 %}
         <a href="./audios/{{ audio.objectID }}/">
-          <div class="grid  grid-cols-6 rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50 md:grid-cols-8">
-            <div class="col-span-1 ml-2 md:col-span-2 md:ml-3 lg:col-span-1 lg:ml-2">
+          <div class="flex items-start rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50">
+            <div class="m-2">
               <button
-                class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+                class="w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
                 title="Play"
                 type="button"
               >
@@ -106,8 +106,10 @@ tags:
                 </svg>
               </button>
             </div>
-            <div class="col-span-5 content-center pt-1 md:col-span-6 lg:col-span-7">
-              <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+            <div class="content-center py-1">
+              <div class="text-xs font-semibold">
+                {{ audio.title }}
+              </div>
               <div class="mb-1 flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
                 <div>#{{ audio.objectID }}</div>
                 {% if audio.dateForHumans -%}
