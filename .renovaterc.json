@@ -25,6 +25,10 @@
     {
       "matchPackageNames": ["googleapis"],
       "dependencyDashboardApproval": false
+    },
+    {
+      "matchPackagePatterns": ["prettier-plugin-"],
+      "groupName": "linters"
     }
   ]
 }

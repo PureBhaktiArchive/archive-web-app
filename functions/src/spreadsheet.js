@@ -309,7 +309,8 @@ export class Spreadsheet {
   /**
    * Transforms the object into a values array.
    * https://developers.google.com/sheets/api/guides/values says,> When
-   * updating, values with no data are skipped. To clear data, use an empty> String ("").
+   * updating, values with no data are skipped. To clear data, use an empty>
+   * String ("").
    *
    * - `undefined` in the object transforms into `null` in the array.
    * - `null` in the object transforms into empty string in the array.

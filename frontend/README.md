@@ -40,6 +40,7 @@ Environment variables should be added to an `.env.local` file.
 | `DONATION_URL`           | The URL of the external donation page.                                                                                                                                           |
 | `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                                                                                                                            |
 | `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.                                                                                                            |
+| `YOUTUBE_API_KEY`        | API key for accessing YouTube                                                                                                                                                    |
 
 For a new environment variable to be accessible from the frontend code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
 

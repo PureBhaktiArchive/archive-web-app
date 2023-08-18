@@ -47,8 +47,8 @@ search.addWidgets([
   // Loading indicator
   {
     $$type: 'Loading indicator',
-    render: ({ searchMetadata = {} }) => {
-      const { isSearchStalled } = searchMetadata;
+    render: ({ status }) => {
+      const isSearchStalled = status === 'stalled';
       document
         .getElementById('loading')
         .classList.toggle('hidden', !isSearchStalled);
@@ -93,6 +93,9 @@ search.addWidgets([
   }),
   hits({
     container: '#hits',
+    cssClasses: {
+      list: 'ais-Hits-list--cards',
+    },
     templates: {
       item: itemTemplate,
       empty: () => '',

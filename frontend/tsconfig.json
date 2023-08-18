@@ -30,11 +30,6 @@
     "allowJs": true,
     "checkJs": true
   },
-  "include": [
-    "plugins/**/*.js",
-    "config/**/*.js",
-    "src/**/*.11tydata.js",
-    "src/_data/**/*.js"
-  ],
-  "exclude": ["node_modules", "**/node_modules/*", "dist"]
+  "include": ["plugins/**/*.js", "config/**/*.js", "src/**/*.js"],
+  "exclude": ["node_modules", "**/node_modules/*", "dist", "src/js/**/*.js"]
 }

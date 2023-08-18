@@ -9,9 +9,7 @@ import { formatDurationForHumans } from './duration';
  * @type { import("instantsearch.js").TemplateWithBindEvent<import("instantsearch.js").Hit & { __hitIndex: number; }>}
  */
 export const itemTemplate = (hit, { html, components }) => html`
-  <article
-    class="max-w-screen-mobile-s items-center pb-4 pl-0 pr-0 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:pl-8 sm:pr-0 md:pl-8 md:pr-0"
-  >
+  <article class="max-w-screen-mobile-s items-center pb-4 sm:ml-8 md:ml-8">
     <!-- Video player -->
     <iframe
       class="h-40 w-80 rounded-lg border-t-2 sm:w-72 md:w-72"
@@ -23,12 +21,10 @@ export const itemTemplate = (hit, { html, components }) => html`
     <h3 class="break-words font-semibold" title="Speaker name">
       <span>${components.Highlight({ hit, attribute: 'speakerName' })}, </span>
       ${hit.gurus.map(
-        ({ fullName, abbreviation }, index) => html`<span
-          key=${abbreviation}
-          title="${fullName}"
-          class="text-xs"
-          >${abbreviation}${index < hit.gurus.length - 1 && `, `}</span
-        >`
+        ({ fullName, abbreviation }, index) =>
+          html`<span key=${abbreviation} title="${fullName}" class="text-xs"
+            >${abbreviation}${index < hit.gurus.length - 1 && `, `}</span
+          >`
       )}
     </h3>
     <!-- Tag line -->

@@ -7,7 +7,7 @@ import Alpine from 'alpinejs';
 import instantsearch from 'instantsearch.js/es';
 import {
   configure,
-  infiniteHits,
+  hits,
   numericMenu,
   pagination,
   refinementList,
@@ -53,17 +53,26 @@ search.addWidgets([
     templates: {
       text: (data) =>
         data.hasManyResults
-          ? `${data.nbHits} results`
+          ? `${
+              data.nbPages > 1
+                ? `${data.page * data.hitsPerPage + 1}–${Math.min(
+                    data.nbHits,
+                    (data.page + 1) * data.hitsPerPage
+                  )} of `
+                : ''
+            }${data.nbHits} results`
           : data.hasOneResult
           ? '1 result'
-          : 'No results',
+          : data.hasNoResults
+          ? 'No results'
+          : '',
     },
   }),
   // Loading indicator
   {
     $$type: 'Loading indicator',
-    render: ({ searchMetadata = {} }) => {
-      const { isSearchStalled } = searchMetadata;
+    render: ({ status }) => {
+      const isSearchStalled = status === 'stalled';
       document
         .getElementById('loading')
         .classList.toggle('hidden', !isSearchStalled);
@@ -141,7 +150,7 @@ search.addWidgets([
       { label: '45+ minutes', start: 2700 },
     ],
   }),
-  infiniteHits({
+  hits({
     container: '#hits',
     templates: {
       item: itemTemplate,
