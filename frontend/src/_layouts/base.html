@@ -5,6 +5,10 @@ gtm-tag-id: GTM-PNC4S5J
 <html>
   <head>
     <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    {% if descrition %}
+      <meta name="description" content="{{ description }}">
+    {% endif %}
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#525252">
     <meta name="msapplication-navbutton-color" content="#525252">
@@ -12,10 +16,6 @@ gtm-tag-id: GTM-PNC4S5J
     <link rel="icon" sizes="16x16" type="image/png" href="/favicon-16x16.png">
     <link rel="stylesheet" href="/css/app.css">
 
-    <title>{{ page.title }}</title>
-    {% if descrition %}
-      <meta name="description" content="{{ description }}">
-    {% endif %}
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
     <script type="module" src="/js/{{ jsFile | default: 'common.js' }}"></script>
   </head>
