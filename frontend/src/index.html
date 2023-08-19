@@ -85,54 +85,52 @@ tags:
     </div>
     <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
       {% for audio in audios offset: 25 limit: 8 %}
-        <a href="./audios/{{ audio.objectID }}/">
-          <div class="flex items-center rounded-md border border-indigo-300 hover:!bg-yellow-100 hover:!bg-opacity-50">
-            <div class="mx-2 mt-1.5">
-              <button
-                class="w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
-                title="Play"
-                type="button"
+        <a class="flex items-center rounded-md border border-neutral-300" href="./audios/{{ audio.objectID }}/">
+          <div class="mx-2 mt-1.5">
+            <button
+              class="w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
+              title="Play"
+              type="button"
+            >
+              <!-- Material Icons: Play Arrow -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="ml-1 h-8 w-6"
               >
-                <!-- Material Icons: Play Arrow -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  class="ml-1 h-8 w-6"
-                >
-                  <path
-                    fill="white"
-                    d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
-                  />
-                </svg>
-              </button>
-            </div>
-            <div class="mr-2 mt-1 content-center overflow-hidden">
-              <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
-              <div class="flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-                <div>#{{ audio.objectID }}</div>
-                {% if audio.dateForHumans -%}
-                  <div>
-                    {{ audio.dateForHumans }}
-                    {% if audio.dateUncertain -%}
-                      <span title="Date is uncertain">(?)</span>
-                    {%- endif %}
-                  </div>
-                {%- endif %}
-                {% if audio.location -%}
-                  <div>
-                    {{ audio.location }}
-                    {% if audio.locationUncertain -%}
-                      <span title="Location is uncertain">(?)</span>
-                    {%- endif %}
-                  </div>
-                {%- endif %}
-                {% if audio.category -%}
-                  <div>{{ audio.category }}</div>
-                {%- endif %}
-                {% for language in audio.languages -%}
-                  <div>{{ language }}</div>
-                {%- endfor %}
-              </div>
+                <path
+                  fill="white"
+                  d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="mr-2 mt-1 content-center overflow-hidden">
+            <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
+            <div class="flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+              <div>#{{ audio.objectID }}</div>
+              {% if audio.dateForHumans -%}
+                <div>
+                  {{ audio.dateForHumans }}
+                  {% if audio.dateUncertain -%}
+                    <span title="Date is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.location -%}
+                <div>
+                  {{ audio.location }}
+                  {% if audio.locationUncertain -%}
+                    <span title="Location is uncertain">(?)</span>
+                  {%- endif %}
+                </div>
+              {%- endif %}
+              {% if audio.category -%}
+                <div>{{ audio.category }}</div>
+              {%- endif %}
+              {% for language in audio.languages -%}
+                <div>{{ language }}</div>
+              {%- endfor %}
             </div>
           </div>
         </a>
