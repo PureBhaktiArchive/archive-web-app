@@ -34,5 +34,6 @@ module.exports = {
       duration,
     }),
     title: (data) => data.audio.title,
+    description: (data) => `Listen to “${data.audio.title}” recording`,
   },
 };

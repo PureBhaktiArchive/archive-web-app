@@ -13,6 +13,9 @@ gtm-tag-id: GTM-PNC4S5J
     <link rel="stylesheet" href="/css/app.css">
 
     <title>{{ page.title }}</title>
+    {% if descrition %}
+      <meta name="description" content="{{ description }}">
+    {% endif %}
     {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
     <script type="module" src="/js/{{ jsFile | default: 'common.js' }}"></script>
   </head>
