@@ -33,5 +33,6 @@ module.exports = {
       languages,
       duration,
     }),
+    title: (data) => data.audio.title,
   },
 };
