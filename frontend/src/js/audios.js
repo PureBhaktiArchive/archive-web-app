@@ -10,7 +10,6 @@ import {
   hits,
   numericMenu,
   pagination,
-  panel,
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
@@ -84,24 +83,16 @@ search.addWidgets([
         document.getElementById('under-progress').classList.remove('hidden');
     },
   },
-  panel({
-    templates: {
-      header: () => 'Location',
-    },
-  })(refinementList)({
-    container: '#location-list',
+  refinementList({
+    container: '#location-list div:empty',
     attribute: 'location',
     searchable: true,
     showMore: true,
     showMoreLimit: 50,
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Languages',
-    },
-  })(refinementList)({
-    container: '#language-list',
+  refinementList({
+    container: '#language-list div:empty',
     attribute: 'languageCategory',
     transformItems: (items) =>
       items
@@ -116,12 +107,8 @@ search.addWidgets([
           highlighted: languageCategories[item.label].label,
         })),
   }),
-  panel({
-    templates: {
-      header: () => 'Sound Quality',
-    },
-  })(refinementList)({
-    container: '#sound-quality-list',
+  refinementList({
+    container: '#sound-quality-list div:empty',
     attribute: 'soundQualityRating',
     sortBy: (a, b) =>
       soundQualityRatingMapping[a.name].order -
@@ -133,34 +120,19 @@ search.addWidgets([
         highlighted: soundQualityRatingMapping[item.label].label || item.label,
       })),
   }),
-  panel({
-    templates: {
-      header: () => 'Category',
-    },
-  })(refinementList)({
-    container: '#category-list',
+  refinementList({
+    container: '#category-list div:empty',
     attribute: 'category',
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Year',
-    },
-  })(refinementList)({
-    container: '#year-list',
+  refinementList({
+    container: '#year-list div:empty',
     attribute: 'year',
     limit: 100,
     sortBy: ['name:asc'],
-    cssClasses: {
-      list: 'columns-[5rem]',
-    },
   }),
-  panel({
-    templates: {
-      header: () => 'Srila Gurudeva Timing',
-    },
-  })(numericMenu)({
-    container: '#percentage-menu',
+  numericMenu({
+    container: '#percentage-menu div:empty',
     attribute: 'percentage',
     items: [
       { label: 'Any' },
@@ -168,12 +140,8 @@ search.addWidgets([
       { label: 'More than 90%', start: 0.9 },
     ],
   }),
-  panel({
-    templates: {
-      header: () => 'Duration',
-    },
-  })(numericMenu)({
-    container: '#duration-menu',
+  numericMenu({
+    container: '#duration-menu div:empty',
     attribute: 'duration',
     items: [
       { label: 'Any' },

@@ -1,0 +1,35 @@
+<!--
+  Declaring a data attribute to use it further with `group-data-[expanded]` modifier.
+  https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state
+  https://tailwindcss.com/docs/hover-focus-and-other-states#data-attributes
+  This is better than using :class because we stay in the Tailwind paradigm, avail of class sorting etc.
+-->
+<div
+  x-data="{ expanded: true }"
+  :data-expanded="expanded"
+  class="group mb-2 overflow-hidden text-neutral-600"
+>
+  <header
+    @click="expanded = !expanded"
+    class="flex cursor-pointer select-none rounded-md border border-neutral-200 px-2 py-2 text-left align-baseline text-sm font-medium uppercase transition-colors group-data-[expanded]:bg-neutral-100 group-data-[expanded]:text-neutral-800"
+  >
+    <span class="mr-2 flex-grow">{{ title }}</span>
+    <svg class="h-5 w-3 shrink-0 group-data-[expanded]:rotate-180 motion-safe:transition-transform" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+    </svg>
+  </header>
+  <main
+    x-show="expanded"
+    class="-mt-1 rounded-b-md border border-t-0 border-neutral-200 p-2 pt-3 transition-opacity dark:border-neutral-700 dark:bg-neutral-900"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+  >
+    {% if subtitle -%}
+      <p class="mb-2 text-xs font-light lowercase">{{ subtitle }}</p>
+    {%- endif %}
+    <!-- Slot for Instant Search, should be empty for selectors to work -->
+    <div></div>
+  </main>
+</div>

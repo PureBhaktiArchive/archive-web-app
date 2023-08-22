@@ -10,7 +10,6 @@ import {
   hits,
   numericMenu,
   pagination,
-  panel,
   refinementList,
   stats,
 } from 'instantsearch.js/es/widgets';
@@ -60,39 +59,23 @@ search.addWidgets([
         document.getElementById('results-footer').classList.remove('hidden');
     },
   },
-  panel({
-    templates: {
-      header: () => 'Program Name',
-    },
-  })(refinementList)({
-    container: '#program-name-list',
+  refinementList({
+    container: '#program-name-list div:empty',
     attribute: 'programName',
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Speaker Country',
-    },
-  })(refinementList)({
-    container: '#speaker-country-list',
+  refinementList({
+    container: '#speaker-country-list div:empty',
     attribute: 'speakerCountry',
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Languages',
-    },
-  })(refinementList)({
-    container: '#language-list',
+  refinementList({
+    container: '#language-list div:empty',
     attribute: 'language',
     sortBy: ['name:asc'],
   }),
-  panel({
-    templates: {
-      header: () => 'Duration',
-    },
-  })(numericMenu)({
-    container: '#duration-menu',
+  numericMenu({
+    container: '#duration-menu div:empty',
     attribute: 'duration',
     items: [
       { label: 'Any' },
@@ -101,21 +84,12 @@ search.addWidgets([
       { label: '45+ minutes', start: 2700 },
     ],
   }),
-  panel({
-    templates: {
-      header: (options, { html }) => html`
-        <span>Initiating Guru(s)</span>
-        <p class="text-xs font-normal lowercase">
-          [Sorted by decreasing count of matching records]
-        </p>
-      `,
-    },
-  })(refinementList)({
-    container: '#gurus-list',
+  refinementList({
+    container: '#gurus-list div:empty',
     attribute: 'gurus.fullName',
     showMore: true,
     showMoreLimit: 20,
-    sortBy: ['gurus:desc'],
+    sortBy: ['count:desc'],
   }),
   hits({
     container: '#hits',
