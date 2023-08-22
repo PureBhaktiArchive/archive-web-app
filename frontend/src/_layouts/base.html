@@ -1,6 +1,5 @@
 ---
 gtm-tag-id: GTM-PNC4S5J
-showMobileTitle: true
 ---
 <!doctype html>
 <html>
@@ -45,9 +44,9 @@ showMobileTitle: true
         <a href="/" class="mr-auto"><div class="mx-auto inline-flex h-10 items-center font-erasDemi text-neutral-600 md:mx-0 md:h-16 md:text-2xl">PURE BHAKTI ARCHIVE</div></a>
 
         <!-- Mobile title -->
-        {% if showMobileTitle %}
+        {% if tags contains 'topnav' %}
           <span class="border-b-4 border-b-neutral-600 pb-2 text-sm font-bold uppercase text-neutral-600 md:hidden">
-            {{ eleventyNavigation.title | default: eleventyNavigation.key | escape }}
+            {{ title | escape }}
           </span>
         {% endif %}
 
