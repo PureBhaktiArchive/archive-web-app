@@ -83,7 +83,7 @@ tags:
       </div>
       <a href="./audios/" class="inline-block flex-none rounded-md bg-neutral-600 px-5 py-2 text-xs font-semibold capitalize text-white hover:bg-neutral-500 md:text-sm">Browse All</a>
     </div>
-    <div class="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
+    <div class="mt-4 grid grid-cols-1 gap-2 sm:max-md:grid-cols-2 lg:grid-cols-2">
       {% for audio in audios offset: 25 limit: 8 %}
         <a class="flex items-center rounded-md border border-neutral-300" href="./audios/{{ audio.objectID }}/">
           <button
