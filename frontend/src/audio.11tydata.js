@@ -10,7 +10,8 @@ module.exports = {
   },
   eleventyComputed: {
     // Download URL
-    fileUrl: `${process.env.STORAGE_BASE_URL}/{{audio.objectID}}.mp3`,
+    fileUrl: (data) =>
+      `${process.env.STORAGE_BASE_URL}/${data.audio.objectID}.mp3`,
     // Compiling content details for the audio player
     contentDetails: ({
       audio: {
@@ -33,5 +34,6 @@ module.exports = {
       languages,
       duration,
     }),
+    title: (data) => data.audio.title,
   },
 };
