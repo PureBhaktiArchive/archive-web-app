@@ -84,7 +84,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           >
             <!-- ID -->
             <div title="Unique file identifier">
-              #${hit.objectID.padStart(4, '0')}
+              #${components.Highlight({ hit, attribute: 'archiveId' })}
             </div>
             <!-- Date -->
             ${hit.dateForHumans
