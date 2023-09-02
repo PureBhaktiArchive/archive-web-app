@@ -2,11 +2,12 @@
  * sri sri guru gaurangau jayatah
  */
 
-export {};
+export { };
 
 /**
  * @typedef {Object} AudiosAlgoliaRecord
  * @property {string} objectID
+ * @property {string} archiveId
  * @property {string} title
  * @property {string} topics
  * @property {boolean} topicsReady
