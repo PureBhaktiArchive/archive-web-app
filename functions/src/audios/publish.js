@@ -111,7 +111,7 @@ export default functions.pubsub
         /** @returns {AudiosAlgoliaRecord} */
         ([id, entry]) => ({
           objectID: id,
-          archiveId: id,
+          archiveId: Number(id),
           title: entry.contentDetails.title,
           topics: sanitizeTopics(entry.contentDetails.topics),
           topicsReady: entry.contentDetails.topicsReady,
