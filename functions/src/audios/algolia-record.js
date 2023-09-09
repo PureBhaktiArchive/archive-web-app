@@ -2,7 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
-export { };
+export {};
 
 /**
  * @typedef {Object} AudiosAlgoliaRecord
