@@ -83,7 +83,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0"
           >
             <!-- ID -->
-            <div title="Unique file identifier">
+            <div class="min-w-[6ch]" title="Unique file identifier">
               #${components.Highlight({ hit, attribute: 'archiveId' })}
             </div>
             <!-- Date -->
