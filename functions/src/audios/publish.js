@@ -105,7 +105,8 @@ export default functions.pubsub
         ([id, entry]) =>
           !entry.obsolete &&
           (durations.get(id) || 0) > 0 &&
-          entry.contentDetails.title
+          entry.contentDetails.title &&
+          Number.isFinite(id)
       )
       .map(
         /** @returns {AudiosAlgoliaRecord} */
