@@ -2,7 +2,7 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint .",
-    "check-js-typing": "tsc",
+    "check-js-typing": "tsc -p jsconfig.json",
     "serve": "firebase emulators:start --only functions",
     "shell": "firebase functions:shell",
     "start": "npm run shell",
