@@ -16,6 +16,7 @@ import {
 /**
  * @typedef {import('./algolia-record.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
  *
+ *
  * @typedef {import('./entry.js').AudiosEntry} AudiosEntry
  */
 
