@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    // Language and Environment
+    "lib": ["ES2021"],
+
+    // Modules
+    "module": "Node16",
+
+    // Type Checking
+    "noImplicitReturns": true,
+    "strict": true,
+
+    // Emit
+    "noEmit": true,
+
+    // JavaScript Support
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["src"]
+}
