@@ -3,7 +3,7 @@
  */
 
 /**
- * @param {string | null} text
+ * @param {string} [text]
  * @returns {string[]}
  */
 export const parseCSV = (text, separator = ',') =>

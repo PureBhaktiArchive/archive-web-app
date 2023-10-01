@@ -19,6 +19,8 @@ describe('CSV', () => {
     ${'English,Hindi,Spanish'} | ${['English', 'Hindi', 'Spanish']}
     ${'  '}                    | ${[]}
     ${''}                      | ${[]}
+    ${undefined}               | ${[]}
+    ${null}                    | ${[]}
   `('"$input" should be parsed to "$values"', ({ input, values }) => {
     expect(parseCSV(input)).toStrictEqual(values);
   });
