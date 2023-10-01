@@ -12,6 +12,7 @@
       "unordered(dateForHumans)",
       "unordered(category)",
       "unordered(languages)",
+      "unordered(otherSpeakers)",
       "unordered(dateISO)",
       "unordered(year)"
     ],
@@ -24,6 +25,7 @@
       "languageCategory",
       "searchable(location)",
       "percentage",
+      "otherSpeakers",
       "soundQualityRating",
       "year"
     ],
