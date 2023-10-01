@@ -138,6 +138,7 @@ search.addWidgets([
       { label: 'Any' },
       { label: 'More than 50%', start: 0.5 },
       { label: 'More than 90%', start: 0.9 },
+      { label: 'Only other guru-varga', end: 0 },
     ],
   }),
   numericMenu({
@@ -149,6 +150,11 @@ search.addWidgets([
       { label: '15-45 minutes', start: 900, end: 2700 },
       { label: '45+ minutes', start: 2700 },
     ],
+  }),
+  refinementList({
+    container: '#other-speakers-list div:empty',
+    attribute: 'otherSpeakers',
+    sortBy: ['name:asc'],
   }),
   hits({
     container: '#hits',
