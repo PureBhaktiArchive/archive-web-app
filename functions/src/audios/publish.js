@@ -124,6 +124,7 @@ export default functions.pubsub
           category: entry.contentDetails.category,
           ...getLanguageAttributes(entry.contentDetails.languages),
           percentage: entry.contentDetails.percentage,
+          otherSpeakers: parseCSV(entry.contentDetails.otherSpeakers),
           soundQualityRating: entry.contentDetails.soundQualityRating,
           duration:
             /** @type {number} We Filtered out undefined values above */
