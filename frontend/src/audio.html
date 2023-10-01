@@ -149,7 +149,7 @@ description: Audio recording with all the details, including topics discussed
         href="/audios/{{ audio.objectID }}/"
         class="inline-flex cursor-pointer items-center space-x-1"
         x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.objectID }}/')"
-        x-bind="root"
+        x-on:click.prevent="share"
         data-tippy-content="Link copied to clipboard"
         data-tippy-trigger="manual"
         data-tippy-placement="bottom"

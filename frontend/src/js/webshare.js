@@ -46,10 +46,5 @@ Alpine.data(
         (tippyElement._tippy ?? tippy(this.$el)).show();
       }
     },
-
-    // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
-    root: {
-      '@click.prevent': 'share',
-    },
   })
 );

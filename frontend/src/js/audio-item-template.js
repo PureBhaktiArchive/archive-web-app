@@ -174,7 +174,7 @@ export const itemTemplate = (hit, { html, components }) => html`
               x-data="webshare('${escape(
                 hit.title
               )}', '/audios/${hit.objectID}/')"
-              x-bind="root"
+              x-on:click.prevent="share"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"
               data-tippy-placement="top"
