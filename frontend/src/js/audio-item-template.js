@@ -225,8 +225,14 @@ export const itemTemplate = (hit, { html, components }) => html`
               <div
                 class="flex w-full justify-between space-x-2 px-1.5 opacity-95"
               >
-                <span class="whitespace-nowrap">Srila Gurudeva</span>
-                <span>${Math.ceil(hit.percentage * 20) * 5}%</span>
+                ${hit.percentage > 0
+                  ? html`
+                      <span class="whitespace-nowrap">Srila Gurudeva</span>
+                      <span>${Math.ceil(hit.percentage * 20) * 5}%</span>
+                    `
+                  : html`
+                      <span class="whitespace-nowrap">Other guru-varga</span>
+                    `}
               </div>
             </div>
           `
