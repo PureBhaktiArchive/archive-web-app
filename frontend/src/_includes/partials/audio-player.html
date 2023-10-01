@@ -117,7 +117,7 @@
             :href="'/audios/' + fileId + '/'"
             class="ml-1 inline-flex cursor-pointer items-start pl-1"
             x-data="webshare"
-            x-bind="root"
+            x-on:click.prevent="share"
             :data-webshare-title="contentDetails.title"
             :data-webshare-url="'/audios/' + fileId + '/'"
             data-tippy-content="Link coied to clipboard"
