@@ -10,6 +10,7 @@ import 'tippy.js/dist/tippy.css';
  * @typedef {Object} WebshareComponent
  * @property {string} url
  * @property {string} title
+ * @property {Function} share
  */
 
 Alpine.data(
