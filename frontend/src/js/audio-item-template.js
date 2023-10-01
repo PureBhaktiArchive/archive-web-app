@@ -51,9 +51,9 @@ export const itemTemplate = (hit, { html, components }) => html`
           />
         </svg>
       </button>
-      <div class="grow">
+      <div class="grow pl-2">
         <!-- First line -->
-        <div class="ml-2 flex items-start justify-between space-x-1">
+        <div class="flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
             <a href="/audios/${hit.objectID}/"
@@ -77,7 +77,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           >
         </div>
         <!-- Second line -->
-        <div class="ml-2 flex items-end justify-between">
+        <div class="flex items-end justify-between">
           <!-- Tags -->
           <div
             class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0"
@@ -198,6 +198,13 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
           </div>
         </div>
+        <!-- Other Speakers -->
+        ${hit.otherSpeakers &&
+        html`
+          <div title="Other guru-varga" class="text-xs">
+            ${components.Highlight({ hit, attribute: 'otherSpeakers' })}
+          </div>
+        `}
       </div>
     </div>
     <!-- Complimentary section -->
