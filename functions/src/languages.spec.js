@@ -2,31 +2,9 @@
  * sri sri guru gaurangau jayatah
  */
 
-import {
-  abbreviateLanguages,
-  categorizeLanguages,
-  parseLanguages,
-} from './languages.js';
+import { abbreviateLanguages, categorizeLanguages } from './languages.js';
 
 describe('Languages', () => {
-  it.each`
-    input                      | languages
-    ${'English'}               | ${['English']}
-    ${'Hindi'}                 | ${['Hindi']}
-    ${'Bengali'}               | ${['Bengali']}
-    ${'Hindi,English'}         | ${['Hindi', 'English']}
-    ${'English, Hindi'}        | ${['English', 'Hindi']}
-    ${'Hindi,Bengali'}         | ${['Hindi', 'Bengali']}
-    ${'English,Bengali'}       | ${['English', 'Bengali']}
-    ${'Bengali,Hindi,English'} | ${['Bengali', 'Hindi', 'English']}
-    ${'English,Russian'}       | ${['English', 'Russian']}
-    ${'English,Hindi,Spanish'} | ${['English', 'Hindi', 'Spanish']}
-    ${'  '}                    | ${[]}
-    ${''}                      | ${[]}
-  `('"$input" should be parsed to "$languages"', ({ input, languages }) => {
-    expect(parseLanguages(input)).toStrictEqual(languages);
-  });
-
   it.each`
     languages                          | category
     ${['English']}                     | ${'E'}
