@@ -6,7 +6,7 @@ import { formatDurationForHumans } from './duration';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**
- * @type { import("instantsearch.js").TemplateWithBindEvent<import("instantsearch.js").Hit & { __hitIndex: number; }>}
+ * @type { import("instantsearch.js").TemplateWithBindEvent<import("instantsearch.js").Hit>}
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article class="max-w-screen-mobile-s items-center pb-4 sm:ml-8 md:ml-8">
