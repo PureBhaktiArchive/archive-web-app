@@ -46,6 +46,8 @@ jobs:
           jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
+
+          algolia index config import $INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
         env:
           ALGOLIA_CLI_TELEMETRY: 0
           # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
