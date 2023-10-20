@@ -16,6 +16,7 @@ import {
 /**
  * @typedef {import('./algolia-record.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
  *
+ *
  * @typedef {import('./entry.js').AudiosEntry} AudiosEntry
  */
 
@@ -103,10 +104,10 @@ export default functions.pubsub
       // Skipping entries which are obsolete or has no valid duration
       .filter(
         ([id, entry]) =>
+          Number.isFinite(id) &&
           !entry.obsolete &&
           (durations.get(id) || 0) > 0 &&
-          entry.contentDetails.title &&
-          Number.isFinite(id)
+          entry.contentDetails.title
       )
       .map(
         /** @returns {AudiosAlgoliaRecord} */
