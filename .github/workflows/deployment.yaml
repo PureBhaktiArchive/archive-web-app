@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: ${{ steps.get-site-url.outputs.channel-url}}
+      url: ${{ steps.get-site-url.outputs.channel-url }}
 
     env:
       GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
@@ -40,14 +40,12 @@ jobs:
       - name: Update Algolia index
         run: |
           set -o pipefail
-          algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
+          algolia indices config import $TEMP_INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
           jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
-
-          algolia index config import $INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
         env:
           ALGOLIA_CLI_TELEMETRY: 0
           # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
