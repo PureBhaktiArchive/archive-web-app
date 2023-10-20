@@ -4,15 +4,21 @@
 
 import Alpine from 'alpinejs';
 
-Alpine.data('searchResultItem', (/** @type {string} */ fileId) => {
-  const helper =
-    /** @type {import('algoliasearch-helper').AlgoliaSearchHelper} */ (
-      Alpine.store('searchHelper')
-    );
-  const itemData = helper.lastResults.hits.find(
-    // fileId has to be converted to string because the objectID is a string
-    (hit) => hit.objectID === fileId.toString()
+/**
+ * @typedef {import('./audio-record').AudioRecord} AudioRecord
+ * @typedef {import('algoliasearch-helper').SearchResults<AudioRecord>} AudioSearchResults
+ * @typedef {import('algoliasearch-helper').AlgoliaSearchHelper} AlgoliaSearchHelper
+ */
+
+Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
+  const helper = /** @type {AlgoliaSearchHelper} */ (
+    Alpine.store('searchHelper')
   );
+
+  // Type cast is needed because the helper is not generic
+  const itemData = /** @type {AudioSearchResults} */ (
+    helper.lastResults
+  ).hits.find((hit) => hit.archiveId === fileId);
   if (!itemData)
     throw new Error(`Cannot find search result item for ${fileId}`);
 

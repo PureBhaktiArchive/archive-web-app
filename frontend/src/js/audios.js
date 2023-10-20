@@ -153,7 +153,10 @@ search.addWidgets([
   hits({
     container: '#hits',
     templates: {
-      item: itemTemplate,
+      // Casting type because HitsTemplates is not generic in InstantSearch
+      item: /** @type {import("instantsearch.js").TemplateWithBindEvent<import('instantsearch.js').Hit>} */ (
+        itemTemplate
+      ),
       empty: () => '',
     },
   }),

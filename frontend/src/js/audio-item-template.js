@@ -8,7 +8,15 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**
- * @type { import("instantsearch.js").TemplateWithBindEvent<import("instantsearch.js").Hit & { __hitIndex: number; }>}
+ * @typedef {import('./audio-record').AudioRecord} AudioRecord
+ * @typedef {import("instantsearch.js").Hit<AudioRecord>} AudioHit
+ * @typedef {import("instantsearch.js").TemplateParams} TemplateParams
+ */
+
+/**
+ *
+ * @param {AudioHit} hit
+ * @param {TemplateParams} param
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
