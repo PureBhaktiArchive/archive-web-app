@@ -13,7 +13,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    x-data="searchResultItem(${hit.objectID})"
+    x-data="searchResultItem(${hit.archiveId})"
     x-bind="root"
   >
     <!-- Main section -->
@@ -56,7 +56,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         <div class="ml-2 flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
-            <a href="/audios/${hit.objectID}/"
+            <a href="/audios/${hit.archiveId}/"
               >${components.Highlight({ hit, attribute: 'title' })}</a
             >
           </h3>
@@ -125,7 +125,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1">
             <!-- Download -->
             <a
-              href="${import.meta.env.STORAGE_BASE_URL}/${hit.objectID}.mp3"
+              href="${import.meta.env.STORAGE_BASE_URL}/${hit.archiveId}.mp3"
               class="inline-flex space-x-1"
               title="Download file for listening offline"
             >
@@ -147,7 +147,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Feedback -->
             <a
-              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.objectID}"
+              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.archiveId}"
               target="_blank"
               class="inline-flex space-x-1"
               title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
@@ -169,11 +169,11 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Share -->
             <a
-              href="/audios/${hit.objectID}/"
+              href="/audios/${hit.archiveId}/"
               class="ml-1 inline-flex cursor-pointer pl-1"
               x-data="webshare('${escape(
                 hit.title
-              )}', '/audios/${hit.objectID}/')"
+              )}', '/audios/${hit.archiveId}/')"
               x-bind="root"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"
