@@ -2,6 +2,7 @@
 permalink: "/audios/{{ audio.fileId | slug }}/"
 layout: base
 jsFile: audio.js
+description: Audio recording with all the details, including topics discussed
 ---
 <article class="mx-auto mt-10 flex max-w-screen-md flex-col px-2 sm:px-4">
   <div class="flex justify-between space-x-1 align-baseline">
@@ -148,7 +149,7 @@ jsFile: audio.js
         href="/audios/{{ audio.fileId }}/"
         class="inline-flex cursor-pointer items-center space-x-1"
         x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.fileId }}/')"
-        x-bind="root"
+        x-on:click.prevent="share"
         data-tippy-content="Link copied to clipboard"
         data-tippy-trigger="manual"
         data-tippy-placement="bottom"

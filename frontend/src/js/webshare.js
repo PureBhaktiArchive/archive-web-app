@@ -10,6 +10,7 @@ import 'tippy.js/dist/tippy.css';
  * @typedef {Object} WebshareComponent
  * @property {string} url
  * @property {string} title
+ * @property {Function} share
  */
 
 Alpine.data(
@@ -45,11 +46,6 @@ Alpine.data(
         // Creating a tippy instance if it's not created yet
         (tippyElement._tippy ?? tippy(this.$el)).show();
       }
-    },
-
-    // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
-    root: {
-      '@click.prevent': 'share',
     },
   })
 );

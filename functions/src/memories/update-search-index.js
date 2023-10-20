@@ -15,6 +15,7 @@ import { Spreadsheet } from '../spreadsheet.js';
  *
  * @typedef {import('./algolia-record.js').MemoriesAlgoliaRecord} MemoriesAlgoliaRecord
  *
+ *
  * @typedef {import('./memories-row.js').MemoriesRow} MemoriesRow
  */
 

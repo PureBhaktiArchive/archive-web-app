@@ -9,6 +9,7 @@ import { abbreviateLanguages, parseLanguages } from '../languages.js';
  *
  * @typedef {import('../storage-file-metadata.js').StorageFileMetadata} StorageFileMetadata
  *
+ *
  * @typedef {import('@google-cloud/storage').File} File
  */
 

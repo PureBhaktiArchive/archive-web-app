@@ -17,7 +17,7 @@ jobs:
       functions: ${{ steps.filter.outputs.functions == 'true' || steps.filter.outputs.workflows == 'true' }}
     steps:
       # Checkout to use filters from file
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -38,7 +38,7 @@ jobs:
     env:
       GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
       - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version-file: frontend/package.json
+          node-version-file: ${{ github.job }}/package.json
           cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
@@ -96,11 +96,11 @@ jobs:
     if: needs.changes.outputs.functions == 'true'
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version-file: ${{ github.job }}/package.json
           cache: npm
           cache-dependency-path: ${{ github.job }}/package-lock.json
 
@@ -109,6 +109,17 @@ jobs:
       - run: npm run check-js-typing
       - run: npm test -- --passWithNoTests
       - run: npx prettier --check .
+
+  check:
+    name: Summary Check
+    if: always()
+    needs:
+      - frontend
+      - functions
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 1
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
 
   deployment:
     name: Deploy to Firebase Hosting Preview Channel
@@ -122,7 +133,7 @@ jobs:
       group: ${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Download artifact from build job
         id: download
         uses: actions/download-artifact@v3
