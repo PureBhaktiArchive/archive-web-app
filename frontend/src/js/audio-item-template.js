@@ -21,7 +21,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    x-data="searchResultItem(${hit.archiveId})"
+    x-data="searchResultItem(${hit.fileId})"
     x-bind="root"
   >
     <!-- Main section -->
@@ -64,7 +64,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         <div class="ml-2 flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
-            <a href="/audios/${hit.archiveId}/"
+            <a href="/audios/${hit.fileId}/"
               >${components.Highlight({ hit, attribute: 'title' })}</a
             >
           </h3>
@@ -92,7 +92,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           >
             <!-- ID -->
             <div class="min-w-[6ch]" title="Unique file identifier">
-              #${components.Highlight({ hit, attribute: 'archiveId' })}
+              #${components.Highlight({ hit, attribute: 'fileId' })}
             </div>
             <!-- Date -->
             ${hit.dateForHumans
@@ -133,7 +133,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1">
             <!-- Download -->
             <a
-              href="${import.meta.env.STORAGE_BASE_URL}/${hit.archiveId}.mp3"
+              href="${import.meta.env.STORAGE_BASE_URL}/${hit.fileId}.mp3"
               class="inline-flex space-x-1"
               title="Download file for listening offline"
             >
@@ -155,7 +155,7 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Feedback -->
             <a
-              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.archiveId}"
+              href="${import.meta.env.FEEDBACK_FORM_AUDIOS}${hit.fileId}"
               target="_blank"
               class="inline-flex space-x-1"
               title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
@@ -177,11 +177,11 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
             <!-- Share -->
             <a
-              href="/audios/${hit.archiveId}/"
+              href="/audios/${hit.fileId}/"
               class="ml-1 inline-flex cursor-pointer pl-1"
               x-data="webshare('${escape(
                 hit.title
-              )}', '/audios/${hit.archiveId}/')"
+              )}', '/audios/${hit.fileId}/')"
               x-bind="root"
               data-tippy-content="Link copied to clipboard"
               data-tippy-trigger="manual"

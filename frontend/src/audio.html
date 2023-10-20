@@ -1,5 +1,5 @@
 ---
-permalink: "/audios/{{ audio.archiveId | slug }}/"
+permalink: "/audios/{{ audio.fileId | slug }}/"
 layout: base
 jsFile: audio.js
 ---
@@ -28,7 +28,7 @@ jsFile: audio.js
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
       <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-        <div class="min-w-[6ch]" title="Unique file identifier">#{{ audio.archiveId }}</div>
+        <div class="min-w-[6ch]" title="Unique file identifier">#{{ audio.fileId }}</div>
         {% if audio.dateForHumans -%}
           <div>
             {{ audio.dateForHumans }}
@@ -123,7 +123,7 @@ jsFile: audio.js
       </a>
       <!-- Feedback -->
       <a
-        href="{{ env.FEEDBACK_FORM_AUDIOS }}{{ audio.archiveId }}"
+        href="{{ env.FEEDBACK_FORM_AUDIOS }}{{ audio.fileId }}"
         target="_blank"
         class="inline-flex items-center space-x-1"
         title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
@@ -145,9 +145,9 @@ jsFile: audio.js
       </a>
       <!-- Share -->
       <a
-        href="/audios/{{ audio.archiveId }}/"
+        href="/audios/{{ audio.fileId }}/"
         class="inline-flex cursor-pointer items-center space-x-1"
-        x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.archiveId }}/')"
+        x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.fileId }}/')"
         x-bind="root"
         data-tippy-content="Link copied to clipboard"
         data-tippy-trigger="manual"
@@ -180,4 +180,4 @@ jsFile: audio.js
   </div>
 </article>
 <!-- Player UI -->
-{% render 'partials/audio-player.html', fileId: audio.archiveId, contentDetails: contentDetails -%}
+{% render 'partials/audio-player.html', fileId: audio.fileId, contentDetails: contentDetails -%}

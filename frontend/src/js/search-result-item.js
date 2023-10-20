@@ -18,7 +18,7 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
   // Type cast is needed because the helper is not generic
   const itemData = /** @type {AudioSearchResults} */ (
     helper.lastResults
-  ).hits.find((hit) => hit.archiveId === fileId);
+  ).hits.find((hit) => hit.fileId === fileId);
   if (!itemData)
     throw new Error(`Cannot find search result item for ${fileId}`);
 
