@@ -29,7 +29,7 @@ description: Audio recording with all the details, including topics discussed
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
       <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-        <div class="min-w-[6ch]" title="Unique file identifier">#{{ audio.fileId }}</div>
+        <div title="Unique file identifier">#{{ audio.fileId }}</div>
         {% if audio.dateForHumans -%}
           <div>
             {{ audio.dateForHumans }}
