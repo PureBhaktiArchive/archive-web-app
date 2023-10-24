@@ -35,8 +35,6 @@ jobs:
     # It is not possible to use `github.job` inside `if` expression
     # Comparing to string, because the job output is a strings, not boolean
     if: needs.changes.outputs.frontend == 'true'
-    env:
-      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,7 +47,7 @@ jobs:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: curl -sL firebase.tools | analytics=false bash
       # Downloading audios data file from Firebase RTDB
-      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project $GCP_PROJECT_ID
+      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project ${{ vars.GCP_PROJECT_ID }}
 
       - uses: actions/setup-node@v3
         with:
@@ -62,7 +60,7 @@ jobs:
       - run: npm run check-js-typing
       - run: npm run build
         env:
-          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_INDEX_AUDIOS: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           ALGOLIA_INDEX_MEMORIES: ${{ vars.ALGOLIA_INDEX_MEMORIES}}
@@ -76,12 +74,6 @@ jobs:
 
       - run: npm test --if-present
       - run: npx prettier --check .
-      - run: tar -cvf ${{ runner.temp }}/dist.tar dist
-      - name: Upload dist folder for deployment job
-        uses: actions/upload-artifact@v3
-        with:
-          name: frontend
-          path: ${{ runner.temp }}/dist.tar
 
   # Job id should match the folder name because it's used in the expressions
   functions:
@@ -122,37 +114,10 @@ jobs:
         if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled')
 
   deployment:
-    name: Deploy to Firebase Hosting Preview Channel
-    runs-on: ubuntu-latest
+    name: Deploy to Firebase Hosting
+    uses: ./.github/workflows/deployment.yml
+    with:
+      environment: preview
+    secrets: inherit
     needs: frontend
     if: contains( github.event.pull_request.labels.*.name, 'preview')
-    environment:
-      name: preview-${{ github.head_ref }}
-      url: ${{ steps.deploy.outputs.channel-url }}
-    concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download artifact from build job
-        id: download
-        uses: actions/download-artifact@v3
-        with:
-          name: frontend
-          path: ${{ runner.temp }}
-
-      - run: tar -xvf ${{steps.download.outputs.download-path}}/dist.tar -C frontend
-      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
-        env:
-          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - run: curl -sL firebase.tools | analytics=false bash
-      - name: Deploy
-        # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-        run: |
-          set -o pipefail # https://stackoverflow.com/a/19804002
-          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
-          (echo -n "channel-url=" && cat) >> $GITHUB_OUTPUT
-        id: deploy
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
