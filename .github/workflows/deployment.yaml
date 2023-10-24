@@ -44,7 +44,7 @@ jobs:
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
+          jq -c '.[]?' ${{ runner.temp }}/audios.json | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
