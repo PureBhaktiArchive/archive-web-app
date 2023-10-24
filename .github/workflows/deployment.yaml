@@ -24,7 +24,7 @@ jobs:
       url: ${{ steps.get-url.outputs.url }}
 
     steps:
-      - uses: ./.github/actions/setup-firebase.yaml
+      - uses: ./.github/actions/setup-firebase
 
       # Downloading audios data file from Firebase RTDB
       - run: firebase database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
