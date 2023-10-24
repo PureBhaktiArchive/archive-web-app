@@ -100,7 +100,7 @@ jobs:
         run: |
           set -o pipefail
           firebase hosting:channel:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.channels[] | select(.name | endswith("$SUFFIX")) | .url'' --raw-output |\
+          jq '.result.channels[] | select(.name | endswith("$SUFFIX")) | .url' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         env:
           # Full channel name is not a suffix, but still the condition `endswith` will work
