@@ -87,12 +87,12 @@ jobs:
           jq '.result.name' --raw-output |\
           (echo -n "name=" && cat) >> $GITHUB_OUTPUT
         id: create-channel
-        if: ${{ env.PRODUCTION }}
+        if: ${{ env.PRODUCTION != 'true' }}
 
       # Deploying
       - run: firebase $COMMAND --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
         env:
-          COMMAND: ${{ env.PRODUCTION && 'deploy --only hosting' || format('hosting:channel:deploy {0}', github.head_ref) }}
+          COMMAND: ${{ env.PRODUCTION == 'true' && 'deploy --only hosting' || format('hosting:channel:deploy {0}', github.head_ref) }}
 
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - name: Get URL
