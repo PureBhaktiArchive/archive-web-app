@@ -24,6 +24,7 @@ jobs:
       url: ${{ steps.get-url.outputs.url }}
 
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-firebase
 
       # Downloading audios data file from Firebase RTDB
@@ -50,7 +51,6 @@ jobs:
           INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
 
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version-file: frontend/package.json
