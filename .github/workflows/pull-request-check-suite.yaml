@@ -115,7 +115,7 @@ jobs:
 
   deployment:
     name: Deploy to Firebase Hosting
-    uses: ./.github/workflows/deployment.yml
+    uses: ./.github/workflows/deployment.yaml
     with:
       environment: preview
     secrets: inherit
