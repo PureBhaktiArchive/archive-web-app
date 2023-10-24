@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+name: Setup Firebase Tools
+description: Setup Firebase CLI and GAC
+runs:
+  using: composite
+
+  steps:
+    - run: |
+        curl -sL firebase.tools | analytics=false bash
+        echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
+        echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+      shell: bash
+      env:
+        SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
