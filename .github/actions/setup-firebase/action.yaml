@@ -11,7 +11,7 @@ runs:
       shell: bash
     - run:
         echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
-        echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+        echo $SERVICE_ACCOUNT > $RUNNER_TEMP/service-account.json
       shell: bash
       if: inputs.service-account
       env:
