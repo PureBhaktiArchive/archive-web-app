@@ -12,16 +12,13 @@ concurrency:
   group: ${{ inputs.environment || 'production' }}_deployment
   cancel-in-progress: true
 
-env:
-  PRODUCTION: ${{ inputs.environment == 'production' }}
-
 jobs:
   deployment:
     name: Deploy
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
-      url: ${{ steps.get-url.outputs.url }}
+      url: ${{ inputs.environment == 'production' && steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
       - uses: actions/checkout@v4
@@ -80,27 +77,22 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      # Creating a channel explicitly to get its full name
-      - run: |
-          firebase hosting:channel:create ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.name' --raw-output |\
-          (echo -n "name=" && cat) >> $GITHUB_OUTPUT
-        id: create-channel
-        if: ${{ env.PRODUCTION != 'true' }}
-
-      # Deploying
-      - run: firebase $COMMAND --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
-        env:
-          COMMAND: ${{ env.PRODUCTION == 'true' && 'deploy --only hosting' || format('hosting:channel:deploy {0}', github.head_ref) }}
-
+      # Deploying to a preview channel
       # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-      - name: Get URL
-        id: get-url
-        run: |
-          set -o pipefail
-          firebase hosting:channel:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.channels[] | select(.name | endswith("$SUFFIX")) | .url' --raw-output |\
+      - run: |
+          set -o pipefail # https://stackoverflow.com/a/19804002
+          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
+          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
-        env:
-          # Full channel name is not a suffix, but still the condition `endswith` will work
-          SUFFIX: ${{ steps.create-channel.outputs.name || 'live'}}
+        id: deploy-preview
+        if: ${{ inputs.environment != 'production' }}
+
+      # Deploying to production
+      - run: |
+          set -o pipefail # https://stackoverflow.com/a/19804002
+          firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
+          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
+          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+        id: deploy-production
+        if: ${{ inputs.environment == 'production' }}
