@@ -115,8 +115,9 @@ jobs:
 
   deployment:
     name: Deploy to Firebase Hosting
+    needs: frontend
+    if: contains( github.event.pull_request.labels.*.name, 'preview')
     uses: ./.github/workflows/deployment.yaml
     with:
       environment: preview
     secrets: inherit
-    if: contains( github.event.pull_request.labels.*.name, 'preview')
