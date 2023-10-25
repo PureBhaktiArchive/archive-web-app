@@ -26,6 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-firebase
+        with:
+          service-account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       # Downloading audios data file from Firebase RTDB
       - run: firebase database:get /audio/records --output ${{ runner.temp }}/audios.json --project ${{ vars.GCP_PROJECT_ID }}
