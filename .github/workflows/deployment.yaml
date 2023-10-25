@@ -35,7 +35,7 @@ jobs:
       - uses: ./.github/actions/download-records
         with:
           file-path: ${{ runner.temp }}/audios.json
-          gcp-account: ${{ secrets.GCP_PROJECT }}
+          gcp-project: ${{ secrets.GCP_PROJECT }}
 
       - uses: algolia/setup-algolia-cli@v1.1.0
 
