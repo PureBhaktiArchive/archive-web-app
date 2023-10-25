@@ -119,5 +119,4 @@ jobs:
     with:
       environment: preview
     secrets: inherit
-    needs: frontend
     if: contains( github.event.pull_request.labels.*.name, 'preview')
