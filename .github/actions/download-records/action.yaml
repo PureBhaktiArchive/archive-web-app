@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
+name: Download audio records
+description: Download audio records from the Realtime Database
+inputs:
+  file-path:
+    description: File path
+    required: true
+  gcp-project:
+    description: GCP Project
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: firebase database:get /audio/records --output ${{ inputs.path }} --project ${{ inputs.gcp-project }}
+      shell: bash
