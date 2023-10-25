@@ -28,7 +28,7 @@ jobs:
       - run: curl -sL firebase.tools | analytics=false bash
 
       # Downloading audios data file from Firebase RTDB
-      - run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT }}
+      - run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT_ID }}
 
       - uses: algolia/setup-algolia-cli@v1.1.0
 
