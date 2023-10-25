@@ -21,12 +21,11 @@ jobs:
       url: ${{ inputs.environment == 'production' && steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
-      - uses: actions/checkout@v4
-      - run: curl -sL firebase.tools | analytics=false bash
       - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
       - run: echo $SERVICE_ACCOUNT > $RUNNER_TEMP/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+      - run: curl -sL firebase.tools | analytics=false bash
 
       # Downloading audios data file from Firebase RTDB
       - run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT }}
@@ -41,7 +40,7 @@ jobs:
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]?' ${{ runner.temp }}/audios.json | algolia objects import $TEMP_INDEX -F -
+          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
@@ -52,6 +51,7 @@ jobs:
           INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
 
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version-file: frontend/package.json
@@ -77,8 +77,18 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
+      # Deploying to production
+      - run: |
+          firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+          # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
+          set -o pipefail # https://stackoverflow.com/a/19804002
+          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
+          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
+          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+        id: deploy-production
+        if: ${{ inputs.environment == 'production' }}
+
       # Deploying to a preview channel
-      # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
       - run: |
           set -o pipefail # https://stackoverflow.com/a/19804002
           firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
@@ -86,13 +96,3 @@ jobs:
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.environment != 'production' }}
-
-      # Deploying to production
-      - run: |
-          set -o pipefail # https://stackoverflow.com/a/19804002
-          firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
-          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
-          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
-          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
-        id: deploy-production
-        if: ${{ inputs.environment == 'production' }}
