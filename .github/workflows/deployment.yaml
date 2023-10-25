@@ -32,10 +32,7 @@ jobs:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       # Downloading audios data file from Firebase RTDB
-      - uses: ./.github/actions/download-records
-        with:
-          file-path: ${{ runner.temp }}/audios.json
-          gcp-project: ${{ secrets.GCP_PROJECT }}
+      - run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT }}
 
       - uses: algolia/setup-algolia-cli@v1.1.0
 
