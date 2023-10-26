@@ -14,7 +14,7 @@ jobs:
     name: Deployment
     uses: ./.github/workflows/deployment.yaml
     with:
-      environment: production
+      environment: ${{ github.ref_name }}
     secrets: inherit
   tag:
     name: Tag
