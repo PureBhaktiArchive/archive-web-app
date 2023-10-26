@@ -1,26 +1,21 @@
-# We have to use this intermediate workflow because the `repository_dispatch`
-# workflow runs in the default branch only, which violates the production environment
-# protection rule.
-# Source of inspiration: https://github.com/orgs/community/discussions/24657#discussioncomment-3244904
-name: Deployment Webhook
+name: Deployment from CMS
 on:
-  repository_dispatch:
-    types:
-      - production_deployment
+  # We use the `workflow_dispatch` trigger because with the `repository_dispatch` trigger
+  # a workflow runs in the default branch only, which violates the production environment
+  # protection rule. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
+  workflow_dispatch:
 
 jobs:
-  initiate:
-    name: Initiate deployment
+  # We debounce deployments initiated by the CMS here
+  debounce:
     runs-on: ubuntu-latest
-
     steps:
       - name: Debounce
         uses: zachary95/github-actions-debounce@v0.1.0
         with:
           wait: 120
 
-      - name: Invoke the deployment workflow
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: deployment.yaml
-          ref: production
+  deploy:
+    needs: debounce
+    uses: ./.github/workflows/deployment.yaml
+    secrets: inherit

@@ -1,18 +1,18 @@
 name: Deployment
 on:
-  workflow_dispatch:
   workflow_call:
     inputs:
       environment:
         description: Environment to deploy to
         required: true
+        default: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
         type: string
   push:
     branches:
       - production
 
 concurrency:
-  group: ${{ inputs.environment || 'production' }}_deployment
+  group: ${{ inputs.environment }}_deployment
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
-      url: ${{ inputs.environment == 'production' && steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
+      url: ${{ steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
       - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
