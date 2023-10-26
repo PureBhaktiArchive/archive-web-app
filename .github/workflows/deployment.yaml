@@ -1,12 +1,19 @@
 name: Deployment
 on:
-  push:
-    branches:
-      - production
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      environment:
+        description: Environment to deploy to
+        required: true
+        type: string
+      preview:
+        description: Whether to deploy to a preview channel
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
-  group: production_deployment
+  group: ${{ inputs.environment }}_deployment
   cancel-in-progress: true
 
 jobs:
@@ -14,28 +21,22 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     environment:
-      name: production
-      url: ${{ steps.get-site-url.outputs.channel-url}}
-
-    env:
-      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      name: ${{ inputs.environment }}
+      url: ${{ steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
-      # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
-      - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
       - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
-
       - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: curl -sL firebase.tools | analytics=false bash
 
-      # Downloading audios data file from Firebase RTDB
-      - run: firebase database:get /audio/records --output $AUDIOS_DATA_PATH --project $GCP_PROJECT_ID
+      - name: Download audio records from the Firebase RTDB
+        run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT_ID }}
 
       - uses: algolia/setup-algolia-cli@v1.1.0
 
-      # Mimicing the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
+      # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
       # For pipefail: https://stackoverflow.com/a/19804002
       - name: Update Algolia index
         run: |
@@ -43,13 +44,13 @@ jobs:
           algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
 
           # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]?' $AUDIOS_DATA_PATH | algolia objects import $TEMP_INDEX -F -
+          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
 
           algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
           ALGOLIA_CLI_TELEMETRY: 0
           # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
-          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
           ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
@@ -63,14 +64,12 @@ jobs:
 
       - run: |
           npm ci
-          npm run lint
-          npm run check-js-typing
-          npm test --if-present
           npm run build
-        name: Prepare frontend
+        name: Build frontend
         working-directory: frontend
         env:
-          ALGOLIA_APPLICATION_ID: ${{ secrets.ALGOLIA_APPLICATION_ID }}
+          AUDIOS_DATA_PATH: ${{ runner.temp }}/audios.json
+          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           ALGOLIA_INDEX_AUDIOS: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           ALGOLIA_INDEX_MEMORIES: ${{ vars.ALGOLIA_INDEX_MEMORIES}}
@@ -82,13 +81,22 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      # Deploying
-      - run: firebase deploy --only hosting --project $GCP_PROJECT_ID --force --non-interactive
-      # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-      - name: Get site URL
+      - run: set -o pipefail # https://stackoverflow.com/a/19804002
+
+      - name: Deploy to production
         run: |
-          set -o pipefail
-          firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
+          firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+          # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
+          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
           jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
-          (echo -n "channel-url=" && cat) >> $GITHUB_OUTPUT
-        id: get-site-url
+          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+        id: deploy-production
+        if: ${{ ! inputs.preview }}
+
+      - name: Deploy to a preview channel
+        run: |
+          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
+          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
+          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+        id: deploy-preview
+        if: ${{ inputs.preview }}
