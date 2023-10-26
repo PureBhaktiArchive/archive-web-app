@@ -2,7 +2,7 @@
 # sri sri guru gauranga jayatah
 #
 
-name: Production Deployment
+name: Deployment from Push
 on:
   push:
     branches:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   deployment:
-    name: Deployment
+    name: Deploy to ${{ github.ref_name }}
     uses: ./.github/workflows/deployment.yaml
     with:
       environment: ${{ github.ref_name }}
