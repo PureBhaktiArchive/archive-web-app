@@ -7,6 +7,9 @@ on:
         description: Environment to deploy to
         required: true
         type: string
+  push:
+    branches:
+      - production
 
 concurrency:
   group: ${{ inputs.environment || 'production' }}_deployment
@@ -96,3 +99,17 @@ jobs:
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.environment != 'production' }}
+
+  tag:
+    name: Add Tag
+    needs: deployment
+    # Adding tag only if a new version is deployed
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create tag
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          git tag -f $DATE
+          git push -f origin $DATE
