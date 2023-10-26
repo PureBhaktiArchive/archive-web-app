@@ -1,0 +1,26 @@
+#
+# sri sri guru gauranga jayatah
+#
+
+name: Production Deployment
+on:
+  push:
+    branches:
+      - production
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    name: Deployment
+    uses: ./.github/workflows/deployment.yaml
+    with:
+      environment: production
+    secrets: inherit
+  tag:
+    name: Tag
+    needs: deployment
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git tag -f $(date +'%Y-%m-%d')
+      - run: git push -f origin --tags

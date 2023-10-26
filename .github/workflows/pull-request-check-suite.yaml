@@ -120,4 +120,5 @@ jobs:
     uses: ./.github/workflows/deployment.yaml
     with:
       environment: preview
+      preview: true
     secrets: inherit

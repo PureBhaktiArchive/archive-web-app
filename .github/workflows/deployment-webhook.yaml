@@ -1,8 +1,8 @@
+# We use the `workflow_dispatch` trigger because with the `repository_dispatch` trigger
+# a workflow runs in the default branch only, which violates the production environment
+# protection rule. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
 name: Deployment from CMS
 on:
-  # We use the `workflow_dispatch` trigger because with the `repository_dispatch` trigger
-  # a workflow runs in the default branch only, which violates the production environment
-  # protection rule. https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch
   workflow_dispatch:
 
 jobs:
@@ -18,4 +18,6 @@ jobs:
   deploy:
     needs: debounce
     uses: ./.github/workflows/deployment.yaml
+    with:
+      environment: production
     secrets: inherit

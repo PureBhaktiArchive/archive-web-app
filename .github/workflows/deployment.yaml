@@ -5,11 +5,12 @@ on:
       environment:
         description: Environment to deploy to
         required: true
-        default: ${{ github.event_name == 'pull_request' && 'preview' || 'production' }}
         type: string
-  push:
-    branches:
-      - production
+      preview:
+        description: Whether to deploy to a preview channel
+        required: false
+        default: false
+        type: boolean
 
 concurrency:
   group: ${{ inputs.environment }}_deployment
@@ -90,7 +91,7 @@ jobs:
           jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-production
-        if: ${{ inputs.environment == 'production' }}
+        if: ${{ ! inputs.preview }}
 
       - name: Deploy to a preview channel
         run: |
@@ -98,18 +99,4 @@ jobs:
           jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
-        if: ${{ inputs.environment != 'production' }}
-
-  tag:
-    name: Add Tag
-    needs: deployment
-    # Adding tag only if a new version is deployed
-    if: ${{ github.event_name == 'push' }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Create tag
-        run: |
-          DATE=$(date +'%Y-%m-%d')
-          git tag -f $DATE
-          git push -f origin $DATE
+        if: ${{ inputs.preview }}
