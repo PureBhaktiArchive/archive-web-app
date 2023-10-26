@@ -80,11 +80,12 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
+      - run: set -o pipefail # https://stackoverflow.com/a/19804002
+
       - name: Deploy to production
         run: |
           firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
           # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-          set -o pipefail # https://stackoverflow.com/a/19804002
           firebase hosting:sites:list --json --project $GCP_PROJECT_ID |\
           jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
@@ -93,7 +94,6 @@ jobs:
 
       - name: Deploy to a preview channel
         run: |
-          set -o pipefail # https://stackoverflow.com/a/19804002
           firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
           jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
