@@ -74,17 +74,16 @@ jobs:
         id: deploy-production
         if: ${{ ! inputs.preview }}
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/service-account.json
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
       - name: Deploy to a preview channel
         run: |
+          set -o pipefail # https://stackoverflow.com/a/19804002
           firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
           jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.preview }}
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/service-account.json
 
       - uses: algolia/setup-algolia-cli@v1.1.0
         with:
