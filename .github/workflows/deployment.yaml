@@ -15,7 +15,11 @@ on:
 concurrency:
   group: ${{ inputs.environment }}_deployment
   cancel-in-progress: true
-
+defaults:
+  run:
+    # To ensure pipefail (https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference)
+    # See also https://stackoverflow.com/a/19804002
+    shell: bash
 jobs:
   deployment:
     name: Deploy
@@ -62,15 +66,14 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      - run: set -o pipefail # https://stackoverflow.com/a/19804002
-
       - name: Deploy to production
         run: |
           firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+
           # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
-          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} \
+          | jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output \
+          | (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-production
         if: ${{ ! inputs.preview }}
         env:
@@ -78,10 +81,9 @@ jobs:
 
       - name: Deploy to a preview channel
         run: |
-          set -o pipefail # https://stackoverflow.com/a/19804002
-          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
-          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} \
+          | jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output \
+          | (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.preview }}
 
