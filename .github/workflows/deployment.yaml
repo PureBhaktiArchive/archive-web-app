@@ -28,35 +28,13 @@ jobs:
       - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - run: curl -sL firebase.tools | analytics=false bash
 
       - name: Download audio records from the Firebase RTDB
         run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT_ID }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
-
-      - uses: algolia/setup-algolia-cli@v1.1.0
-        with:
-          version: 1.4.2 # latest at the moment. Need at least 1.3.0 to deal with the config
-
-      # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
-      # For pipefail: https://stackoverflow.com/a/19804002
-      - name: Update Algolia index
-        run: |
-          set -o pipefail
-          algolia indices config import $TEMP_INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
-
-          # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
-
-          algolia indices move $TEMP_INDEX $INDEX --confirm
-        env:
-          ALGOLIA_CLI_TELEMETRY: 0
-          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
-          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
-          TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
 
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -107,3 +85,24 @@ jobs:
         if: ${{ inputs.preview }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/service-account.json
+
+      - uses: algolia/setup-algolia-cli@v1.1.0
+        with:
+          version: 1.4.2 # latest at the moment. Need at least 1.3.0 to deal with the config
+
+      - name: Update Algolia index
+        # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
+        run: |
+          algolia indices config import $TEMP_INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
+
+          # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
+          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
+
+          algolia indices move $TEMP_INDEX $INDEX --confirm
+        env:
+          ALGOLIA_CLI_TELEMETRY: 0
+          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
+          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
+          TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
