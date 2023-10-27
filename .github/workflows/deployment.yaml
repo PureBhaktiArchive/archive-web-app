@@ -86,6 +86,8 @@ jobs:
           | (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.preview }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
       - uses: algolia/setup-algolia-cli@v1.1.0
         with:
