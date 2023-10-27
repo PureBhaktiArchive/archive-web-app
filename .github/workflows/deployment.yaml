@@ -25,14 +25,15 @@ jobs:
       url: ${{ steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
-      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
-      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
       - run: curl -sL firebase.tools | analytics=false bash
 
       - name: Download audio records from the Firebase RTDB
         run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT_ID }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
       - uses: algolia/setup-algolia-cli@v1.1.0
         with:
@@ -94,6 +95,8 @@ jobs:
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-production
         if: ${{ ! inputs.preview }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/service-account.json
 
       - name: Deploy to a preview channel
         run: |
@@ -102,3 +105,5 @@ jobs:
           (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.preview }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: $RUNNER_TEMP/service-account.json
