@@ -1,0 +1,12 @@
+{
+  "plugins": {
+    "postcss-mixins": true,
+    "tailwindcss/nesting": true,
+    "tailwindcss": true,
+    "postcss-preset-env": {
+      "features": {
+        "nesting-rules": false
+      }
+    }
+  }
+}

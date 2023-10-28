@@ -1,0 +1,90 @@
+---
+layout: base
+title: Memories
+eleventyNavigation:
+  order: 3
+tags:
+  - topnav
+jsFile: memories.js
+---
+<div class="mt-4 flex">
+  <div
+    x-data="{open: false}"
+    @toggle-filter.window="open = $event.detail != null ? $event.detail : !open"
+    x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
+    x-cloak
+    @keydown.escape="open = false"
+    :class="open ? 'translate-x-0': '-translate-x-full'"
+    class="fixed top-0 z-20 flex h-full w-64 flex-col bg-white transition-transform ease-linear md:static md:z-auto md:flex md:w-1/5 md:max-w-sm md:translate-x-0"
+  >
+    <header class="flex-none border-b p-4 font-bold text-neutral-600 md:hidden">Filter</header>
+    <div class="grow overflow-y-auto overflow-x-hidden p-2">
+      <div id="gurus-list">
+        {% render 'partials/filter-section.html', title: 'Initiating Guru(s)', subtitle: '[Sorted by decreasing count of matching records]' -%}
+      </div>
+      <div id="language-list">
+        {% render 'partials/filter-section.html', title: 'Languages' -%}
+      </div>
+      <div id="program-name-list">
+        {% render 'partials/filter-section.html', title: 'Program Name' -%}
+      </div>
+      <div id="speaker-country-list">
+        {% render 'partials/filter-section.html', title: 'Speaker Country' -%}
+      </div>
+      <div id="duration-menu">
+        {% render 'partials/filter-section.html', title: 'Duration' -%}
+      </div>
+    </div>
+    <footer class="flex-none border-t p-4 md:hidden">
+      <button
+        @click="open = false"
+        class="rounded-md bg-neutral-600 px-10 py-2 text-sm font-semibold text-white"
+      >
+        Close
+      </button>
+    </footer>
+  </div>
+  <main class="w-full grow px-2 sm:w-4/5 sm:px-4">
+    <div id="searchbox" class="flex flex-none">
+      <input
+        type="search"
+        placeholder="Search for program, speaker, topics, dates etc."
+        class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
+      >
+      <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-neutral-600 px-2 font-semibold text-white shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <span class="hidden sm:inline">Search</span>
+      </button>
+    </div>
+    <div class="my-3 flex items-center">
+      <!-- Filter button -->
+      <button
+        x-data
+        @click="$dispatch('toggle-filter', true)"
+        class="mr-4 inline-flex w-24 items-center space-x-1 rounded-md border-gray-300 bg-neutral-600 px-4 py-2 font-semibold text-white shadow-sm md:hidden"
+      >
+        <!-- Heroicon name: solid/filter -->
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
+        </svg>
+        <span>Filter</span>
+      </button>
+      <span id="stats" class="whitespace-nowrap text-sm"></span>
+      <span id="loading" class="text-sm font-bold italic text-neutral-600">Loading…</span>
+    </div>
+    <div id="hits"></div>
+    <div id="pagination" class="my-2 w-full"></div>
+    <div id="results-footer" class="hidden p-2 text-center text-sm text-gray-500">
+      <p>Please Note: The results displayed above are not in any particular order of seniority, date, etc.</p>
+      <p>
+        You can find more Memories recordings on the following YouTube channels, while we collate all of them here:<br>
+        <a href="https://www.youtube.com/channel/UCfYqnuIc-NjbX1LfGFxCvYg" target="_blank" class="text-blue-900 underline">Remembering Srila Gurudeva</a>,
+        <a href="https://www.youtube.com/playlist?list=PLpNgpvUJOl86QK8Yvx7pzvb8a1aQaM4j9" target="_blank" class="text-blue-900 underline">Gurudeva Memories 2021</a>,
+        <a href="https://www.youtube.com/channel/UCWioFce4v7kjGfTfHUwvN0Q" target="_blank" class="text-blue-900 underline">Fond Memories of Srila Gurudeva</a>.
+      </p>
+      <p>Progressively, newer Memories videos will be added here regularly. So we welcome you to come back to hear some more!</p>
+    </div>
+  </main>
+</div>

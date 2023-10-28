@@ -4,6 +4,9 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[liquid]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -25,8 +28,6 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  // Turning off styles validation for using mustache template inside style attribute without warning
-  "html.validate.styles": false,
   "editor.formatOnSave": true,
   "editor.quickSuggestions": {
     "other": true,
@@ -49,6 +50,10 @@
     "**/node_modules": true
   },
   "files.associations": {
-    ".htmlhintrc": "json"
-  }
+    ".postcssrc": "json",
+    "*.html": "liquid"
+  },
+  "liquid.format.enable": false,
+  "liquid.engine": "standard",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

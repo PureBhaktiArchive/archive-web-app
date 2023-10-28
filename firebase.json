@@ -1,15 +1,12 @@
 {
   "functions": {
-    "predeploy": [
-      "rm -rf \"$RESOURCE_DIR/lib\"",
-      "npm --prefix \"$RESOURCE_DIR\" run lint",
-      "npm --prefix \"$RESOURCE_DIR\" run build"
-    ],
     "source": "functions"
   },
   "hosting": {
     "public": "frontend/dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "cleanUrls": true,
+    "trailingSlash": true,
     "headers": [
       {
         "source": "/service-worker.js",
@@ -20,12 +17,6 @@
           }
         ]
       }
-    ],
-    "predeploy": [
-      "rm -rf frontend/.cache",
-      "rm -rf \"$RESOURCE_DIR\"",
-      "npm --prefix \"$RESOURCE_DIR/..\" run lint",
-      "npm --prefix \"$RESOURCE_DIR/..\" run build"
     ]
   },
   "emulators": {

@@ -1,0 +1,143 @@
+---
+gtm-tag-id: GTM-PNC4S5J
+---
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{{ page.title | escape }}</title>
+    {% if description %}
+      <meta name="description" content="{{ description | escape }}">
+    {% endif %}
+    <meta name="theme-color" content="#525252">
+    <meta name="msapplication-navbutton-color" content="#525252">
+
+    <!-- 180x180 - ставим первым для safari -->
+    <link rel="apple-touch-icon-precomposed" href="/images/icon-180.png">
+    <!-- WhatsApp and perhaps some other apps use this link -->
+    <link rel="icon" sizes="180x180" href="/images/icon-180.png">
+    <link rel="icon" sizes="16x16 32x32" href="/images/icon.ico">
+
+    <link rel="stylesheet" href="/css/app.css">
+
+    {% render 'partials/gtm.html', tag-id: gtm-tag-id -%}
+    <script type="module" src="/js/{{ jsFile | default: 'common.js' }}"></script>
+  </head>
+
+  <body class="flex min-h-screen flex-col overflow-y-scroll data-[overlayed]:overflow-hidden">
+    {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
+
+    <!-- Top section Join us now -->
+    <section class="flex flex-wrap items-center justify-center gap-2 border-b border-t border-gray-300 bg-neutral-100 px-4 py-2 sm:flex-nowrap">
+      {% render 'partials/join-us.html' -%}
+    </section>
+
+    <header class="border-b border-gray-200 py-4">
+      <div
+        x-data="{open: false}"
+        x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
+        class="mx-auto flex max-w-screen-xl items-center px-4"
+      >
+        <!-- Logo -->
+        <a href="/" class="mr-auto"><div class="mx-auto inline-flex h-10 items-center font-erasDemi text-neutral-600 md:mx-0 md:h-16 md:text-2xl">PURE BHAKTI ARCHIVE</div></a>
+
+        <!-- Mobile title -->
+        {% if tags contains 'topnav' %}
+          <span class="border-b-4 border-b-neutral-600 pb-2 text-sm font-bold uppercase text-neutral-600 md:hidden">
+            {{ title | escape }}
+          </span>
+        {% endif %}
+
+        <!-- Hamburger menu button -->
+        <button
+          type="button"
+          @click="open = true"
+          x-show="!open"
+          class="p-2 text-gray-900 md:hidden"
+        >
+          <span class="sr-only">Open sidebar</span>
+          <svg
+            class="h-6 w-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path clip-rule="evenodd" fill-rule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+            </path>
+          </svg>
+        </button>
+        <!-- Menu -->
+        <nav
+          x-cloak
+          @keydown.escape="open = false"
+          :class="open ? 'translate-x-0': 'translate-x-full'"
+          class="fixed right-0 top-0 z-40 flex h-screen w-64 flex-col items-start gap-4 overflow-hidden border-l border-l-gray-300 bg-white p-4 pt-14 text-sm font-semibold uppercase text-stone-900 transition-transform ease-linear md:relative md:top-auto md:h-auto md:w-auto md:max-w-none md:translate-x-0 md:flex-row md:border-l-0 md:bg-none md:p-0 lg:gap-x-10"
+        >
+          <button class="self-end p-2 md:hidden" @click="open = false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+            </svg>
+          </button>
+          {%- assign menu = collections.topnav | eleventyNavigation -%}
+          {%- for entry in menu -%}
+            <a
+              href="{{ entry.url }}"
+              class="border-b-4 border-b-white pb-1 hover:border-b-neutral-500 hover:text-neutral-500 data-[active]:border-b-neutral-600 data-[active]:text-neutral-600"
+              {% if entry.url == page.url %}
+                data-active
+              {% endif %}
+              {% if entry.target == 'external' %}
+                target="_blank"
+              {% endif %}
+            >
+              {{ entry.title }}
+            </a>
+          {%- endfor -%}
+        </nav>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="flex-1 md:py-3">
+      <div class="mx-auto max-w-screen-xl">{{ content }}</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-neutral-600 p-4 pb-40 text-sm text-white">
+      <div class="mx-auto flex max-w-screen-xl grow flex-col gap-y-4 md:flex-row md:justify-between">
+        <div class="mx-auto h-6 font-erasDemi md:mx-0 md:h-10 md:text-lg">PURE BHAKTI ARCHIVE</div>
+        <div class="text-center md:text-right">
+          <div class="mb-1 inline-flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-2 [&>*]:border-r [&>*]:border-white [&>*]:pr-2 last:[&>*]:mr-0 last:[&>*]:border-0 last:[&>*]:pr-0">
+            {%- assign menu = collections.bottomnav | eleventyNavigation -%}
+            {%- for entry in menu -%}
+              <a
+                href="{{ entry.url }}"
+                class="hover:underline"
+                {% if entry.target == 'external' %}
+                  target="_blank"
+                {% endif %}
+              >
+                {{ entry.title }}
+              </a>
+            {%- endfor -%}
+          </div>
+          <p>Copyright &copy;2022–{{ 'today' | date: '%Y' }} Pure Bhakti Archive Inc.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Backdrop -->
+    <div
+      x-data="{ open: false }"
+      x-cloak
+      x-init="$watch('open', (value) => document.body.toggleAttribute('data-overlayed', value))"
+      @toggle-backdrop.window="open = $event.detail != null ? $event.detail : !open"
+      x-show="open"
+      class="fixed inset-0 z-10 bg-gray-700/50 backdrop-blur-[2px]"
+    ></div>
+  </body>
+</html>

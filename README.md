@@ -10,6 +10,7 @@ The web app consists of the following components.
 
 - [Frontend](frontend) hosted at Firebase Hosting.
 - [Serverless Backend](functions) implemented as Cloud Functions for Firebase.
+- [Directus](https://directus.io/) as a headless CMS.
 - [Algolia](https://www.algolia.com/doc/) as an external search provider.
 
 See each of the README files linked above for component-specific descriptions.

@@ -1,0 +1,363 @@
+/*
+ * sri sri guru gaurangau jayatah
+ */
+
+/*
+    Prevent InfiniteHits buttons from moving scroll position
+    https://bugs.chromium.org/p/chromium/issues/detail?id=1110323
+  */
+.ais-InfiniteHits-loadPrevious,
+.ais-InfiniteHits-loadMore,
+.ais-HierarchicalMenu-showMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  overflow-anchor: none;
+}
+
+.ais-InfiniteHits-loadMore {
+  @apply mx-auto block;
+}
+
+.ais-Breadcrumb-list,
+.ais-Breadcrumb-item,
+.ais-Pagination-list,
+.ais-RangeInput-form,
+.ais-RatingMenu-link,
+.ais-PoweredBy {
+  @apply inline-flex;
+}
+
+.ais-GeoSearch,
+.ais-GeoSearch-map {
+  @apply h-full;
+}
+
+.ais-HierarchicalMenu-list .ais-HierarchicalMenu-list {
+  @apply ml-4;
+}
+
+.ais-PoweredBy-logo {
+  @apply block h-3 w-auto;
+}
+
+.ais-RatingMenu-starIcon {
+  @apply block h-4 w-4;
+}
+
+.ais-RangeSlider {
+  .rheostat {
+    @apply mb-10 mt-10 overflow-visible;
+  }
+
+  .rheostat-background {
+    @apply top-0 h-2 w-full;
+  }
+
+  .rheostat-handle {
+    @apply -top-2 -ml-3;
+  }
+
+  .rheostat-background {
+    @apply relative border-gray-400 bg-white;
+  }
+
+  .rheostat-progress {
+    @apply absolute top-px h-1 bg-gray-800;
+  }
+}
+
+.rheostat-handle {
+  @apply relative z-10 h-3 w-3 cursor-grab rounded-3xl border-gray-800 bg-white;
+}
+
+.rheostat-marker {
+  @apply absolute -ml-px h-1 w-px bg-gray-400;
+}
+
+.rheostat-marker--large {
+  @apply h-2;
+}
+
+.rheostat-value {
+  @apply absolute ml-2 -translate-x-2 pt-4 text-center;
+}
+
+.rheostat-tooltip {
+  @apply absolute -top-6 ml-2 -translate-x-2 text-center;
+}
+
+a[class^='ais-'] {
+  @apply no-underline;
+}
+
+.ais-Breadcrumb-separator {
+  @apply mx-1 my-0 font-normal;
+}
+
+.ais-Breadcrumb-link,
+.ais-HierarchicalMenu-link,
+.ais-Menu-link,
+.ais-Pagination-link,
+.ais-RatingMenu-link {
+  @apply transition-colors duration-200 ease-out;
+}
+
+.ais-Breadcrumb-item--selected,
+.ais-HierarchicalMenu-item--selected,
+.ais-Menu-item--selected {
+  @apply font-bold;
+}
+
+.ais-Breadcrumb-separator {
+  @apply mx-1 my-0 font-normal;
+}
+
+.ais-ClearRefinements-button,
+.ais-CurrentRefinements-reset,
+.ais-GeoSearch-redo,
+.ais-GeoSearch-reset,
+.ais-HierarchicalMenu-showMore,
+.ais-InfiniteHits-loadPrevious,
+.ais-InfiniteHits-loadMore,
+.ais-InfiniteResults-loadMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  @apply rounded bg-neutral-600 px-2 py-1 text-xs text-white outline-none transition-colors duration-200 ease-out;
+}
+
+.ais-ClearRefinements-button--disabled,
+.ais-GeoSearch-redo--disabled,
+.ais-GeoSearch-reset--disabled,
+.ais-HierarchicalMenu-showMore--disabled,
+.ais-InfiniteHits-loadMore--disabled,
+.ais-InfiniteResults-loadMore--disabled,
+.ais-Menu-showMore--disabled,
+.ais-RefinementList-showMore--disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+.ais-InfiniteHits-loadPrevious--disabled {
+  @apply hidden;
+}
+
+.ais-CurrentRefinements {
+  @apply -mt-1 flex flex-wrap;
+}
+.ais-CurrentRefinements-list {
+  @apply flex flex-wrap;
+}
+
+.ais-CurrentRefinements-item {
+  @apply mr-1 mt-1 flex rounded bg-peach px-2 py-1;
+}
+
+.ais-CurrentRefinements-category {
+  @apply ml-1 flex;
+}
+
+.ais-CurrentRefinements-delete {
+  @apply ml-1;
+}
+
+.ais-CurrentRefinements-label,
+.ais-CurrentRefinements-categoryLabel,
+.ais-CurrentRefinements-delete {
+  @apply whitespace-nowrap text-sm text-white;
+}
+
+.ais-CurrentRefinements-reset {
+  @apply mt-1 whitespace-nowrap;
+
+  & + .ais-CurrentRefinements-list {
+    @apply ml-1;
+  }
+}
+
+.ais-HierarchicalMenu-link,
+.ais-Menu-link {
+  @apply block leading-normal;
+}
+
+.ais-HierarchicalMenu-list,
+.ais-Menu-list,
+.ais-NumericMenu-list,
+.ais-RatingMenu-list,
+.ais-RefinementList-list {
+  @apply space-y-2;
+}
+
+.ais-RefinementList-item {
+}
+
+.ais-HierarchicalMenu-link {
+  .ais-HierarchicalMenu-item--parent > &:after {
+    @apply inline-block;
+  }
+
+  .ais-HierarchicalMenu-item--selected > &:after {
+    @apply rotate-90;
+  }
+}
+
+.ais-NumericMenu-label,
+.ais-RefinementList-label {
+  @apply flex break-inside-avoid items-center;
+}
+
+.ais-NumericMenu-radio,
+.ais-RefinementList-checkbox {
+  @apply flex-none;
+}
+
+.ais-NumericMenu-labelText,
+.ais-RefinementList-labelText {
+  @apply mx-2 overflow-x-hidden break-words text-sm;
+}
+
+.ais-HierarchicalMenu-count,
+.ais-Menu-count,
+.ais-RefinementList-count,
+.ais-ToggleRefinement-count {
+  @apply ml-auto flex-none text-xs font-semibold;
+}
+
+.ais-HierarchicalMenu-showMore,
+.ais-Menu-showMore,
+.ais-RefinementList-showMore {
+  @apply mt-2;
+}
+
+.ais-Highlight-highlighted,
+.ais-Snippet-highlighted {
+  @apply bg-yellow-300;
+}
+
+.ais-InfiniteHits-loadMore,
+.ais-InfiniteResults-loadMore {
+  @apply mt-4;
+}
+
+.ais-InfiniteHits-loadPrevious {
+  @apply mb-4;
+}
+
+.ais-Panel {
+  @apply pr-2 pt-2;
+}
+
+.ais-Panel--collapsible {
+  @apply relative;
+
+  &.ais-Panel--collapsed {
+    & .ais-Panel-body,
+    & .ais-Panel-footer {
+      @apply hidden;
+    }
+  }
+
+  & .ais-Panel-collapseButton {
+    @apply absolute right-0 top-0 border-none bg-none p-0;
+  }
+}
+
+.ais-Panel-header {
+  @apply sticky top-0 bg-white py-1 text-xs font-bold uppercase;
+}
+
+.ais-Panel-footer {
+  @apply mt-2 text-xs;
+}
+
+.ais-Pagination {
+  @apply overflow-x-auto pb-2 text-center;
+}
+
+.ais-Pagination-item {
+  & + .ais-Pagination-item {
+    @apply ml-1.5;
+  }
+}
+
+.ais-Pagination-link {
+  @apply block rounded border px-3 py-1 transition-colors duration-200 ease-out focus:outline-none;
+
+  .ais-Pagination-item--disabled & {
+    @apply cursor-not-allowed text-neutral-400 opacity-60;
+  }
+
+  .ais-Pagination-item--selected & {
+    @apply bg-neutral-600 text-white;
+  }
+}
+
+.ais-PoweredBy-logo {
+  @apply ml-1;
+}
+
+.ais-HierarchicalMenu-searchBox,
+.ais-Menu-searchBox,
+.ais-RefinementList-searchBox {
+  & > * {
+    @apply mb-2;
+  }
+
+  & .ais-SearchBox-input {
+    @apply h-8 px-8;
+  }
+
+  & .ais-SearchBox-submit,
+  & .ais-SearchBox-reset,
+  & .ais-SearchBox-loadingIndicator {
+    @apply w-6;
+  }
+}
+
+.ais-SearchBox-form {
+  @apply relative block;
+}
+
+.ais-SearchBox-input {
+  @apply relative h-10 w-full rounded border bg-white px-10 shadow focus:outline-none;
+
+  /* clears the 'X' from Internet Explorer */
+  &::-ms-clear,
+  &::-ms-reveal {
+    @apply hidden h-0 w-0;
+  }
+
+  /* clears the 'X' from Chrome */
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    @apply hidden;
+  }
+}
+
+.ais-SearchBox-submit,
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  @apply absolute h-full w-8;
+}
+
+.ais-SearchBox-submit {
+  @apply left-0;
+}
+
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  @apply right-0;
+}
+
+.ais-SearchBox-submitIcon,
+.ais-SearchBox-resetIcon,
+.ais-SearchBox-loadingIcon {
+  @apply absolute left-1/2 top-1/2 h-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 fill-current;
+}
+
+.ais-Hits-list--cards {
+  @apply flex flex-wrap max-sm:justify-center;
+}
+
+.ais-Stats-text {
+  @apply font-bold italic text-neutral-600;
+}
