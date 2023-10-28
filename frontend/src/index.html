@@ -80,7 +80,7 @@ tags:
     </div>
     <div class="mt-4 grid grid-cols-1 gap-2 sm:max-md:grid-cols-2 lg:grid-cols-2">
       {% for audio in audios offset: 25 limit: 8 %}
-        <a class="flex items-center rounded-md border border-neutral-300" href="./audios/{{ audio.objectID }}/">
+        <a class="flex items-center rounded-md border border-neutral-300" href="./audios/{{ audio.fileId }}/">
           <button
             class="m-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
             title="Play"
@@ -102,7 +102,7 @@ tags:
           <div class="mt-1 content-center overflow-hidden pr-2">
             <div class="truncate text-xs font-semibold">{{ audio.title }}</div>
             <div class="flex flex-wrap truncate text-xs [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-              <div>#{{ audio.objectID }}</div>
+              <div>#{{ audio.fileId }}</div>
               {% if audio.dateForHumans -%}
                 <div>
                   {{ audio.dateForHumans }}

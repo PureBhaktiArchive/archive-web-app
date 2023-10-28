@@ -15,7 +15,11 @@ on:
 concurrency:
   group: ${{ inputs.environment }}_deployment
   cancel-in-progress: true
-
+defaults:
+  run:
+    # To ensure pipefail (https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#exit-codes-and-error-action-preference)
+    # See also https://stackoverflow.com/a/19804002
+    shell: bash
 jobs:
   deployment:
     name: Deploy
@@ -25,35 +29,16 @@ jobs:
       url: ${{ steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
-      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
-      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
+      - run: echo $SERVICE_ACCOUNT > ${{ runner.temp }}/service-account.json
         env:
           SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
       - run: curl -sL firebase.tools | analytics=false bash
 
       - name: Download audio records from the Firebase RTDB
         run: firebase database:get /audio/records --output $RUNNER_TEMP/audios.json --project ${{ vars.GCP_PROJECT_ID }}
-
-      - uses: algolia/setup-algolia-cli@v1.1.0
-
-      # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
-      # For pipefail: https://stackoverflow.com/a/19804002
-      - name: Update Algolia index
-        run: |
-          set -o pipefail
-          algolia indices copy $INDEX $TEMP_INDEX --scope settings,synonyms,rules --confirm
-
-          # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
-          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
-
-          algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
-          ALGOLIA_CLI_TELEMETRY: 0
-          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
-          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-          INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
-          TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -81,22 +66,46 @@ jobs:
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
 
-      - run: set -o pipefail # https://stackoverflow.com/a/19804002
-
       - name: Deploy to production
         run: |
           firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+
           # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
-          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output |\
-          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+          firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} \
+          | jq '.result.sites[] | select(.type == "DEFAULT_SITE") | .defaultUrl' --raw-output \
+          | (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-production
         if: ${{ ! inputs.preview }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
       - name: Deploy to a preview channel
         run: |
-          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} |\
-          jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output |\
-          (echo -n "url=" && cat) >> $GITHUB_OUTPUT
+          firebase hosting:channel:deploy ${{ github.head_ref }} --json --project ${{ vars.GCP_PROJECT_ID }} \
+          | jq '.result."${{ vars.GCP_PROJECT_ID }}".url' --raw-output \
+          | (echo -n "url=" && cat) >> $GITHUB_OUTPUT
         id: deploy-preview
         if: ${{ inputs.preview }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
+
+      - uses: algolia/setup-algolia-cli@v1.1.0
+        with:
+          version: 1.4.2 # latest at the moment. Need at least 1.3.0 to deal with the config
+
+      - name: Update Algolia index
+        # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
+        run: |
+          algolia indices config import $TEMP_INDEX -F algolia/audios.json --scope settings,synonyms,rules --confirm
+
+          # https://www.algolia.com/doc/tools/cli/examples/recipes/#import-from-a-json-file
+          jq -c '.[]?' $RUNNER_TEMP/audios.json | algolia objects import $TEMP_INDEX -F -
+
+          algolia indices move $TEMP_INDEX $INDEX --confirm
+        env:
+          ALGOLIA_CLI_TELEMETRY: 0
+          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
+          ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
+          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
+          TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp

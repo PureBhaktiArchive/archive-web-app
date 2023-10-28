@@ -5,8 +5,7 @@
 export {};
 
 /**
- * @typedef {Object} AudiosAlgoliaRecord
- * @property {string} objectID
+ * @typedef {Object} AudioRecord
  * @property {number} fileId
  * @property {string} title
  * @property {string} topics

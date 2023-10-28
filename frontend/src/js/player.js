@@ -39,10 +39,6 @@ const player = (fileId, contentDetails) => ({
   contentDetails: null,
   audio: new Audio(),
 
-  get idPadded() {
-    return this.fileId ? this.fileId.toString().padStart(4, '0') : null;
-  },
-
   get downloadURL() {
     return `${import.meta.env.STORAGE_BASE_URL}/${this.fileId}.mp3`;
   },
