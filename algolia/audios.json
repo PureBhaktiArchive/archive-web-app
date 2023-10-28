@@ -5,7 +5,7 @@
     "hitsPerPage": 20,
     "maxValuesPerFacet": 100,
     "searchableAttributes": [
-      "unordered(objectID)",
+      "unordered(fileId)",
       "unordered(title)",
       "unordered(topics)",
       "unordered(location)",
@@ -34,6 +34,7 @@
     "paginationLimitedTo": 1000,
     "attributeForDistinct": null,
     "exactOnSingleWordQuery": "attribute",
+    "disableTypoToleranceOnAttributes": ["fileId"],
     "ranking": [
       "typo",
       "geo",

@@ -105,6 +105,8 @@ export default functions.pubsub
       // Skipping entries which are obsolete or has no valid duration
       .filter(
         ([id, entry]) =>
+          // Only positive integers are allowed
+          /^\d+$/.test(id) &&
           !entry.obsolete &&
           (durations.get(id) || 0) > 0 &&
           entry.contentDetails.title
@@ -113,6 +115,7 @@ export default functions.pubsub
         /** @returns {AudiosAlgoliaRecord} */
         ([id, entry]) => ({
           objectID: id,
+          fileId: +id,
           title: entry.contentDetails.title,
           topics: sanitizeTopics(entry.contentDetails.topics),
           topicsReady: entry.contentDetails.topicsReady,

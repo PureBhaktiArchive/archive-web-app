@@ -5,8 +5,7 @@
 export {};
 
 /**
- * @typedef {Object} AudiosAlgoliaRecord
- * @property {string} objectID
+ * @typedef {Object} AudioRecord
  * @property {number} fileId
  * @property {string} title
  * @property {string} topics
@@ -22,7 +21,6 @@ export {};
  * @property {string[]} languages
  * @property {string} [languageCategory]
  * @property {number} percentage
- * @property {string[]} [otherSpeakers]
  * @property {string} soundQualityRating
  * @property {number | null} duration
  */

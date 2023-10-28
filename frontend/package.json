@@ -15,7 +15,7 @@
     "@11ty/eleventy": "2.0.1",
     "@11ty/eleventy-navigation": "0.3.5",
     "@11ty/eleventy-plugin-vite": "PureBhaktiArchive/eleventy-plugin-vite#patched",
-    "@directus/sdk": "12.0.1",
+    "@directus/sdk": "13.0.1",
     "@shopify/prettier-plugin-liquid": "1.3.0",
     "@stefanracic/tailwind-child": "1.0.5",
     "@tailwindcss/aspect-ratio": "0.4.2",
@@ -41,7 +41,7 @@
   "dependencies": {
     "algoliasearch": "4.20.0",
     "alpinejs": "3.13.0",
-    "instantsearch.js": "4.57.0",
+    "instantsearch.js": "4.58.0",
     "tippy.js": "6.3.7"
   }
 }
