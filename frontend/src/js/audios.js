@@ -83,30 +83,6 @@ search.addWidgets([
         document.getElementById('under-progress').classList.remove('hidden');
     },
   },
-  {
-    error: false,
-    init({ helper }) {
-      document.getElementById('retry-search').addEventListener('click', () => {
-        document.getElementById('loading').classList.remove('hidden');
-        document.getElementById('stats').classList.add('hidden');
-        document.getElementById('error').classList.add('hidden');
-        setTimeout(() => {
-          search.helper.search();
-        }, 500);
-      });
-      helper.on('error', () => {
-        this.error = true;
-      });
-    },
-    render({ searchMetadata = {} }) {
-      const { isSearchStalled } = searchMetadata;
-      document
-        .getElementById('stats')
-        .classList.toggle('hidden', this.error || isSearchStalled);
-      document.getElementById('error').classList.toggle('hidden', !this.error);
-      this.error = false;
-    },
-  },
   refinementList({
     container: '#location-list div:empty',
     attribute: 'location',
