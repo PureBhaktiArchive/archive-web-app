@@ -123,7 +123,7 @@ export default functions.database
               category: record.contentDetails.category,
               ...getLanguageAttributes(record.contentDetails.languages),
               percentage: record.contentDetails.percentage,
-              otherSpeakers: parseCSV(record.contentDetails.otherSpeakers),
+              otherSpeakers: parseCSV(record.contentDetails.otherSpeakers, '&'),
               soundQualityRating: record.contentDetails.soundQualityRating,
               duration:
                 // We have filtered out `undefined` values above
