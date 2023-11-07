@@ -81,7 +81,7 @@ function sanitizeTopics(topics) {
 }
 
 export default functions.database
-  .ref('/audios/published/trigger')
+  .ref('/audio/published/trigger')
   .onWrite(async () => {
     const [recordsSnapshot, durationsSnapshot] = await Promise.all([
       getDatabase().ref('/audio/records').once('value'),
