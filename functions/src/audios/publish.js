@@ -17,7 +17,7 @@ import {
  * @typedef {import('./algolia-record.js').AudiosAlgoliaRecord} AudiosAlgoliaRecord
  *
  *
- * @typedef {import('./entry.js').AudiosEntry} AudiosEntry
+ * @typedef {import('./record.js').AudioRecord} AudioRecord
  */
 
 if (!getApps().length) initializeApp();
@@ -80,12 +80,11 @@ function sanitizeTopics(topics) {
   );
 }
 
-export default functions.pubsub
-  .schedule('every monday 00:00')
-  .timeZone('Asia/Calcutta')
-  .onRun(async () => {
-    const [entriesSnapshot, durationsSnapshot] = await Promise.all([
-      getDatabase().ref('/audio/entries').once('value'),
+export default functions.database
+  .ref('/audios/published/trigger')
+  .onWrite(async () => {
+    const [recordsSnapshot, durationsSnapshot] = await Promise.all([
+      getDatabase().ref('/audio/records').once('value'),
       getDatabase().ref('/audio/durations').once('value'),
     ]);
     const durations = new Map(
@@ -99,39 +98,38 @@ export default functions.pubsub
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
     const records = Object.entries(
-      /** @type {Record<string, AudiosEntry>} */ (entriesSnapshot.val())
-    )
-      // Skipping entries which are obsolete or has no valid duration
-      .filter(
-        ([id, entry]) =>
-          // Only positive integers are allowed
-          /^\d+$/.test(id) &&
-          !entry.obsolete &&
-          (durations.get(id) || 0) > 0 &&
-          entry.contentDetails.title
-      )
-      .map(
-        /** @returns {AudiosAlgoliaRecord} */
-        ([id, entry]) => ({
-          objectID: id,
-          fileId: +id,
-          title: entry.contentDetails.title,
-          topics: sanitizeTopics(entry.contentDetails.topics),
-          topicsReady: entry.contentDetails.topicsReady,
-          ...getDateAttributes(entry.contentDetails.date),
-          dateUncertain: entry.contentDetails.dateUncertain || null,
-          timeOfDay: entry.contentDetails.timeOfDay || null,
-          location: entry.contentDetails.location || null,
-          locationUncertain: entry.contentDetails.locationUncertain || null,
-          category: entry.contentDetails.category,
-          ...getLanguageAttributes(entry.contentDetails.languages),
-          percentage: entry.contentDetails.percentage,
-          soundQualityRating: entry.contentDetails.soundQualityRating,
-          duration:
-            /** @type {number} We Filtered out undefined values above */
-            (durations.get(id)),
-        })
-      );
+      /** @type {Record<string, AudioRecord>} */ (recordsSnapshot.val())
+    ).flatMap(
+      /** @returns {AudiosAlgoliaRecord | []} */
+      ([id, record]) =>
+        // Only positive integers are allowed as ID
+        /^\d+$/.test(id) &&
+        // Only full records
+        record.contentDetails &&
+        // Only records with a duration
+        (durations.get(id) || 0) > 0
+          ? {
+              objectID: id,
+              fileId: +id,
+              title: record.contentDetails.title,
+              topics: sanitizeTopics(record.contentDetails.topics),
+              topicsReady: record.contentDetails.topicsReady,
+              ...getDateAttributes(record.contentDetails.date),
+              dateUncertain: record.contentDetails.dateUncertain || null,
+              timeOfDay: record.contentDetails.timeOfDay || null,
+              location: record.contentDetails.location || null,
+              locationUncertain:
+                record.contentDetails.locationUncertain || null,
+              category: record.contentDetails.category,
+              ...getLanguageAttributes(record.contentDetails.languages),
+              percentage: record.contentDetails.percentage,
+              soundQualityRating: record.contentDetails.soundQualityRating,
+              duration:
+                // We have filtered out `undefined` values above
+                durations.get(id) || 0,
+            }
+          : []
+    );
 
-    await getDatabase().ref('/audio/records').set(records);
+    await getDatabase().ref('/audio/published/records').set(records);
   });

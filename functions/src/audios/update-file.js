@@ -12,48 +12,48 @@ import { shallowlyEqual } from '../shallowly-equal.js';
 import { composeMediaMetadata, composeStorageMetadata } from './metadata.js';
 import { convertToMp3, copyCodec, transcode } from './transcode.js';
 
-/** @typedef {import('./entry.js').AudiosEntry} AudiosEntry */
+/** @typedef {import('./record.js').AudioRecord} AudioRecord */
 
 if (!getApps().length) initializeApp();
 
 export default functions
   .runWith({ timeoutSeconds: 540, memory: '1GB' })
-  .database.ref('/audio/entries/{id}')
+  .database.ref('/audio/records/{id}')
   .onWrite(async (change, { params: { id } }) => {
     // Don't process deletions
     if (!change.after.exists()) return;
-    /** @type {AudiosEntry} */
-    const entryBefore = change.before.val();
-    /** @type {AudiosEntry} */
-    const entry = change.after.val();
+    /** @type {AudioRecord} */
+    const recordBefore = change.before.val();
+    /** @type {AudioRecord} */
+    const record = change.after.val();
 
-    if (!entry.contentDetails || !entry.file) {
-      functions.logger.debug('Entry', id, 'is not complete');
+    if (!record.contentDetails || !record.file) {
+      functions.logger.debug('Record', id, 'is not complete');
       return;
     }
 
     const sourceFile = getStorage()
-      .bucket(entry.file.bucket)
-      .file(entry.file.name, { generation: entry.file.generation });
+      .bucket(record.file.bucket)
+      .file(record.file.name, { generation: record.file.generation });
 
     if (!(await sourceFile.exists()).shift()) {
-      functions.logger.warn('Source file', entry.file, 'does not exist.');
+      functions.logger.warn('Source file', record.file, 'does not exist.');
       return;
     }
 
     const mp3File = getStorage()
       .bucket(functions.config().storage?.bucket)
       .file(`${id}.mp3`);
-    const mediaMetadata = composeMediaMetadata(id, entry.contentDetails);
+    const mediaMetadata = composeMediaMetadata(id, record.contentDetails);
     const storageMetadata = composeStorageMetadata(
       id,
       sourceFile,
-      entry.contentDetails
+      record.contentDetails
     );
 
     /*
      * Performing least operation possible
-     * depending on what was changed in the entry
+     * depending on what has changed in the record
      */
 
     // Transcoding from source if MP3 does not exist or the source file changed
@@ -85,7 +85,7 @@ export default functions
     else if (
       !change.before.exists() ||
       !shallowlyEqual(
-        composeMediaMetadata(id, entryBefore.contentDetails),
+        composeMediaMetadata(id, recordBefore.contentDetails),
         mediaMetadata
       )
     ) {
@@ -102,7 +102,7 @@ export default functions
     // Updating only storage metadata if it changed
     else if (
       !shallowlyEqual(
-        composeStorageMetadata(id, sourceFile, entryBefore.contentDetails),
+        composeStorageMetadata(id, sourceFile, recordBefore.contentDetails),
         storageMetadata
       )
     ) {
