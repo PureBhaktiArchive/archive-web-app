@@ -9,7 +9,7 @@ import { getDatabase } from 'firebase-admin/database';
 import * as functions from 'firebase-functions';
 import { splitToChunks } from '../split-chunks.js';
 
-/** @typedef {import('./entry.js').AudiosEntry} AudiosEntry */
+/** @typedef {import('./record.js').AudioRecord} AudioRecord */
 
 if (!getApps().length) initializeApp();
 
@@ -29,14 +29,14 @@ export default functions
      * For this reason we're using `Object.entries` which work identical for both data structures.
      */
     const imported = Object.entries(
-      /** @type {Record<string, AudiosEntry>} */
-      ((await getDatabase().ref('/audio/import/entries').once('value')).val())
+      /** @type {Record<string, AudioRecord>} */
+      ((await getDatabase().ref('/audio/import/records').once('value')).val())
     );
 
     const newIds = new Set(imported.map(([id]) => id));
     const oldIds = Object.entries(
-      /** @type {Record<string, AudiosEntry>} */
-      ((await getDatabase().ref('/audio/entries').once('value')).val())
+      /** @type {Record<string, AudioRecord>} */
+      ((await getDatabase().ref('/audio/records').once('value')).val())
     ).map(([id]) => id);
 
     const deletions = oldIds
@@ -55,7 +55,7 @@ export default functions
        * See https://firebase.google.com/docs/database/usage/limits
        */
       splitToChunks([...imported, ...deletions], 500).map((chunk) =>
-        getDatabase().ref('/audio/entries').update(Object.fromEntries(chunk))
+        getDatabase().ref('/audio/records').update(Object.fromEntries(chunk))
       )
     );
   });
