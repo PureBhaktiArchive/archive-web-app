@@ -8,7 +8,6 @@ export {};
  * @typedef {Object} ContentDetails
  * @property {string} title
  * @property {string} topics
- * @property {boolean} topicsReady
  * @property {string} date
  * @property {boolean} dateUncertain
  * @property {string} timeOfDay

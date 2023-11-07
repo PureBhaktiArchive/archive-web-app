@@ -113,7 +113,6 @@ export default functions.database
               fileId: +id,
               title: record.contentDetails.title,
               topics: sanitizeTopics(record.contentDetails.topics),
-              topicsReady: record.contentDetails.topicsReady,
               ...getDateAttributes(record.contentDetails.date),
               dateUncertain: record.contentDetails.dateUncertain || null,
               timeOfDay: record.contentDetails.timeOfDay || null,
