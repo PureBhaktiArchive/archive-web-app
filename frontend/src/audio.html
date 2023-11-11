@@ -58,20 +58,35 @@ description: Audio recording with all the details, including topics discussed
         <!-- Percentage -->
         <div
           class="relative overflow-hidden rounded-lg border border-gray-300"
-          title="How much Srila Gurudeva is speaking in the recording"
+          title="
+            {%- if audio.percentage > 0 -%}
+              How much Srila Gurudeva is speaking in the recording
+            {%- else -%}
+              Only other guru-varga is speaking in the recording
+            {%- endif -%}
+          "
         >
           <div
-            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+            class="
+              {%- if audio.percentage > 0 -%}
+                bg-gray-300 w-[var(--percentage)]
+              {%- else -%}
+                bg-gray-100 w-full
+              {%- endif %} absolute z-auto h-full shadow-none
+            "
             style="--percentage: {{ audio.percentage | percentage }}"
           ></div>
-          <div class="flex w-full justify-between space-x-2 px-1.5 opacity-95">
-            <span class="whitespace-nowrap">Srila Gurudeva</span>
-            <span>{{ audio.percentage | percentage }}</span>
+          <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
+            {%- if audio.percentage > 0 -%}
+              Srila Gurudeva {{ audio.percentage | percentage }}
+            {%- else -%}
+              Other guru-varga
+            {%- endif -%}
           </div>
         </div>
         <!-- Sound Quality -->
         <div
-          class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5"
+          class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 pb-[1px]"
           title="Sound quality of the recording"
         >
           <svg
