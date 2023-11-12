@@ -227,11 +227,11 @@ export const itemTemplate = (hit, { html, components }) => html`
           : 'Only other guru-varga is speaking in the recording'}"
       >
         <div
-          class="${hit.percentage > 0
-            ? 'bg-gray-300 w-[var(--percentage)]'
+          class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+          style="--percentage: ${hit.percentage > 0
+            ? Math.ceil(hit.percentage * 20) * 5
             : // Default to 100% to make the “other guru-varga” shaded
-              'bg-gray-100 w-full'} absolute z-auto h-full shadow-none"
-          style="--percentage: ${Math.ceil(hit.percentage * 20) * 5}%"
+              100}%"
         ></div>
         <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
           ${hit.percentage > 0

@@ -67,14 +67,8 @@ description: Audio recording with all the details, including topics discussed
           "
         >
           <div
-            class="
-              {%- if audio.percentage > 0 -%}
-                bg-gray-300 w-[var(--percentage)]
-              {%- else -%}
-                bg-gray-100 w-full
-              {%- endif %} absolute z-auto h-full shadow-none
-            "
-            style="--percentage: {{ audio.percentage | percentage }}"
+            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+            style="--percentage: {% if audio.percentage > 0 -%}{{ audio.percentage | percentage }}{%- else -%}100%{%- endif -%}"
           ></div>
           <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
             {%- if audio.percentage > 0 -%}
