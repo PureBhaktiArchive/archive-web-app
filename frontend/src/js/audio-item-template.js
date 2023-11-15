@@ -209,7 +209,8 @@ export const itemTemplate = (hit, { html, components }) => html`
         <!-- Other Speakers -->
         ${hit.otherSpeakers &&
         html`
-          <div title="Other guru-varga" class="text-xs">
+          <div class="text-xs">
+            <span>${hit.percentage > 0 ? 'Other speakers' : 'Speakers'}: </span>
             ${components.Highlight({ hit, attribute: 'otherSpeakers' })}
           </div>
         `}
