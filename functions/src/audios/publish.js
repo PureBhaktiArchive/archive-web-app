@@ -7,7 +7,8 @@ import { getApps, initializeApp } from 'firebase-admin/app';
 import { getDatabase } from 'firebase-admin/database';
 /* eslint-enable import/no-unresolved */
 import * as functions from 'firebase-functions';
-import { categorizeLanguages, parseLanguages } from '../languages.js';
+import { parseCSV } from '../csv.js';
+import { categorizeLanguages } from '../languages.js';
 import {
   formatReducedPrecisionDateForHumans,
   parseReducedPrecisionIsoDate,
@@ -27,7 +28,7 @@ if (!getApps().length) initializeApp();
  * @returns {Pick<AudiosAlgoliaRecord, 'languageCategory' | 'languages'>}
  */
 function getLanguageAttributes(input) {
-  const languages = parseLanguages(input);
+  const languages = parseCSV(input);
   return {
     languages,
     languageCategory: categorizeLanguages(languages) || undefined,
@@ -122,6 +123,7 @@ export default functions.database
               category: record.contentDetails.category,
               ...getLanguageAttributes(record.contentDetails.languages),
               percentage: record.contentDetails.percentage,
+              otherSpeakers: parseCSV(record.contentDetails.otherSpeakers, '&'),
               soundQualityRating: record.contentDetails.soundQualityRating,
               duration:
                 // We have filtered out `undefined` values above

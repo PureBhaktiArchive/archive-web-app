@@ -59,9 +59,9 @@ export const itemTemplate = (hit, { html, components }) => html`
           />
         </svg>
       </button>
-      <div class="grow">
+      <div class="grow pl-2">
         <!-- First line -->
-        <div class="ml-2 flex items-start justify-between space-x-1">
+        <div class="flex items-start justify-between space-x-1">
           <!-- Title -->
           <h3 class="grow break-words font-semibold" title="${hit.title}">
             <a href="/audios/${hit.fileId}/"
@@ -85,7 +85,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           >
         </div>
         <!-- Second line -->
-        <div class="ml-2 flex items-end justify-between">
+        <div class="flex items-end justify-between">
           <!-- Tags -->
           <div
             class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0"
@@ -206,6 +206,14 @@ export const itemTemplate = (hit, { html, components }) => html`
             </a>
           </div>
         </div>
+        <!-- Other Speakers -->
+        ${hit.otherSpeakers &&
+        html`
+          <div class="text-xs">
+            <span>${hit.percentage > 0 ? 'Other speakers' : 'Speakers'}: </span>
+            ${components.Highlight({ hit, attribute: 'otherSpeakers' })}
+          </div>
+        `}
       </div>
     </div>
     <!-- Complimentary section -->
@@ -213,25 +221,25 @@ export const itemTemplate = (hit, { html, components }) => html`
       class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0"
     >
       <!-- Percentage -->
-      ${hit.percentage != null // Use loose equality to cover undefined: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#loose_equality_using
-        ? html`
-            <div
-              class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
-              title="How much Srila Gurudeva is speaking in the recording"
-            >
-              <div
-                class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
-                style="--percentage: ${Math.ceil(hit.percentage * 20) * 5}%"
-              ></div>
-              <div
-                class="flex w-full justify-between space-x-2 px-1.5 opacity-95"
-              >
-                <span class="whitespace-nowrap">Srila Gurudeva</span>
-                <span>${Math.ceil(hit.percentage * 20) * 5}%</span>
-              </div>
-            </div>
-          `
-        : null}
+      <div
+        class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
+        title="${hit.percentage > 0
+          ? 'How much Srila Gurudeva is speaking in the recording'
+          : 'Only other guru-varga is speaking in the recording'}"
+      >
+        <div
+          class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+          style="--percentage: ${hit.percentage > 0
+            ? Math.ceil(hit.percentage * 20) * 5
+            : // Default to 100% to make the “other guru-varga” shaded
+              100}%"
+        ></div>
+        <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
+          ${hit.percentage > 0
+            ? `Srila Gurudeva ${Math.ceil(hit.percentage * 20) * 5}%`
+            : 'Other guru-varga'}
+        </div>
+      </div>
 
       <!-- Sound Quality Rating -->
       ${hit.soundQualityRating &&

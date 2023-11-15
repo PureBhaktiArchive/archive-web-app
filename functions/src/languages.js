@@ -4,13 +4,6 @@
 
 import { iso6392 } from 'iso-639-2';
 
-/**
- * @param {string | null} text
- * @returns {string[]}
- */
-export const parseLanguages = (text) =>
-  (text?.trim() || null)?.split(',')?.map((language) => language.trim()) || [];
-
 const languagesOrder = ['Hindi', 'English', 'Bengali'].reverse();
 
 const languageToISO = iso6392.sort((a, b) => a.name.length - b.name.length);

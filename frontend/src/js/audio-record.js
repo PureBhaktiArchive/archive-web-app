@@ -20,6 +20,7 @@ export {};
  * @property {string[]} languages
  * @property {string} [languageCategory]
  * @property {number} percentage
+ * @property {string[]} otherSpeakers
  * @property {string} soundQualityRating
  * @property {number | null} duration
  */

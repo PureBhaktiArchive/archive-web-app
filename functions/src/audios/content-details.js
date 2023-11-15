@@ -16,5 +16,6 @@ export {};
  * @property {string} category
  * @property {string} languages
  * @property {number} percentage
+ * @property {string} [otherSpeakers]
  * @property {string} soundQualityRating
  */
