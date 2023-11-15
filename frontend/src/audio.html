@@ -183,6 +183,21 @@ description: Audio recording with all the details, including topics discussed
     </div>
   </div>
   <div class="prose prose-sm mt-6 dark:prose-invert sm:prose">
+    <!-- Other Speakers -->
+    {% if audio.otherSpeakers -%}
+      <h4>
+        {% if audio.percentage > 0 %}
+          Other speakers
+        {% else %}
+          Speakers
+        {% endif %}
+      </h4>
+      <ul>
+        {% for speaker in audio.otherSpeakers -%}
+          <li>{{ speaker }}</li>
+        {%- endfor %}
+      </ul>
+    {%- endif %}
     <h4>Topics</h4>
     {% renderTemplate "liquid,md", audio -%}
     {{- topics -}}
