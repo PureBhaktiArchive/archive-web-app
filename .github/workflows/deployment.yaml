@@ -68,7 +68,7 @@ jobs:
 
       - name: Deploy to production
         run: |
-          firebase deploy --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
+          firebase deploy --only hosting --project ${{ vars.GCP_PROJECT_ID }} --force --non-interactive
 
           # Inspired by https://superuser.com/a/943466 and https://stackoverflow.com/a/74998363
           firebase hosting:sites:list --json --project ${{ vars.GCP_PROJECT_ID }} \
