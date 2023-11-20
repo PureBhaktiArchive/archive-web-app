@@ -73,6 +73,7 @@ search.addWidgets([
     $$type: 'Loading indicator',
     render: ({ status }) => {
       const isSearchStalled = status === 'stalled';
+
       document
         .getElementById('loading')
         .classList.toggle('hidden', !isSearchStalled);
@@ -83,6 +84,27 @@ search.addWidgets([
         document.getElementById('under-progress').classList.remove('hidden');
     },
   },
+
+  {
+    $$type: 'Error indicator',
+    init({ instantSearchInstance }) {
+      document.getElementById('retry-search').addEventListener('click', () => {
+        instantSearchInstance.helper.search();
+      });
+      instantSearchInstance.on('error', () => {
+        document.getElementById('error-indicator').classList.remove('hidden');
+      });
+      instantSearchInstance.on('render', () => {
+        if (instantSearchInstance.status != 'error') {
+          document.getElementById('error-indicator').classList.add('hidden');
+        } else {
+          document.getElementById('loading').classList.add('hidden');
+          document.getElementById('stats').classList.add('hidden');
+        }
+      });
+    },
+  },
+
   refinementList({
     container: '#location-list div:empty',
     attribute: 'location',
