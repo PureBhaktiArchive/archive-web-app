@@ -68,43 +68,37 @@ search.addWidgets([
           : '',
     },
   }),
-  // Loading indicator
   {
-    $$type: 'Loading indicator',
-    render: ({ status }) => {
-      const isSearchStalled = status === 'stalled';
-
-      document
-        .getElementById('loading')
-        .classList.toggle('hidden', !isSearchStalled);
-      document
-        .getElementById('stats')
-        .classList.toggle('hidden', isSearchStalled);
-      if (!isSearchStalled)
-        document.getElementById('under-progress').classList.remove('hidden');
-    },
-  },
-
-  {
-    $$type: 'Error indicator',
+    $$type: 'Status widget',
     init({ instantSearchInstance }) {
-      document.getElementById('retry-search').addEventListener('click', () => {
-        instantSearchInstance.helper.search();
-      });
-      instantSearchInstance.on('error', () => {
-        document.getElementById('error-indicator').classList.remove('hidden');
-      });
+      const loadingElement = document.getElementById('loading');
+      const statsElement = document.getElementById('stats');
+      const errorElement = document.getElementById('error-indicator');
+      const retryElement = document.getElementById('retry-search');
+      const underProgressElement = document.getElementById('under-progress');
+
       instantSearchInstance.on('render', () => {
-        if (instantSearchInstance.status != 'error') {
-          document.getElementById('error-indicator').classList.add('hidden');
+        const isSearchStalled = instantSearchInstance.status === 'stalled';
+        loadingElement.classList.toggle('hidden', !isSearchStalled);
+        statsElement.classList.toggle('hidden', isSearchStalled);
+        if (!isSearchStalled) {
+          underProgressElement.classList.remove('hidden');
+        }
+        if (instantSearchInstance.status === 'error') {
+          loadingElement.classList.add('hidden');
+          statsElement.classList.add('hidden');
         } else {
-          document.getElementById('loading').classList.add('hidden');
-          document.getElementById('stats').classList.add('hidden');
+          errorElement.classList.add('hidden');
         }
       });
+      instantSearchInstance.on('error', () => {
+        errorElement.classList.remove('hidden');
+      });
+      retryElement.addEventListener('click', () => {
+        instantSearchInstance.helper.search();
+      });
     },
   },
-
   refinementList({
     container: '#location-list div:empty',
     attribute: 'location',
