@@ -72,24 +72,20 @@ search.addWidgets([
     $$type: 'Status widget',
     init({ instantSearchInstance }) {
       const loadingElement = document.getElementById('loading');
-      const statsElement = document.getElementById('stats');
       const errorElement = document.getElementById('error-indicator');
-      const retryElement = document.getElementById('retry-search');
-      const underProgressElement = document.getElementById('under-progress');
+      const retryElement = errorElement.querySelector('a');
 
+      // The `render` method is not called on API error (wrong index, API Key, etc.)
+      // That's why we're using the `render` event, which is dispatched in all cases.
       instantSearchInstance.on('render', () => {
-        const isSearchStalled = instantSearchInstance.status === 'stalled';
-        loadingElement.classList.toggle('hidden', !isSearchStalled);
-        statsElement.classList.toggle('hidden', isSearchStalled);
-        if (!isSearchStalled) {
-          underProgressElement.classList.remove('hidden');
-        }
-        if (instantSearchInstance.status === 'error') {
-          loadingElement.classList.add('hidden');
-          statsElement.classList.add('hidden');
-        } else {
-          errorElement.classList.add('hidden');
-        }
+        loadingElement.classList.toggle(
+          'hidden',
+          instantSearchInstance.status !== 'stalled'
+        );
+        errorElement.classList.toggle(
+          'hidden',
+          instantSearchInstance.status !== 'error'
+        );
       });
       instantSearchInstance.on('error', () => {
         errorElement.classList.remove('hidden');
