@@ -81,13 +81,15 @@ jsFile: audios.js
         </svg>
         <span>Filter</span>
       </button>
-      <span id="stats" class="whitespace-nowrap text-sm"></span>
-      <span id="loading" class="text-sm font-bold italic text-neutral-600">Loading…</span>
-      <span id="error-indicator" class="text-sm font-bold text-red-800">Error occured. Please <a class="cursor-pointer text-neutral-600" id="retry-search">retry</a> again.</span>
+      <div class="text-sm text-neutral-600">
+        <span id="stats" class="whitespace-nowrap"></span>
+        <span id="loading-indicator" class="">Loading…</span>
+        <span id="error-indicator" class="font-bold text-red-800">Error occured. Please <a class="cursor-pointer underline decoration-dotted">retry</a> later.</span>
+      </div>
     </div>
     <div id="hits" class="[&_.ais-Hits-list]:divide-y"></div>
     <div id="pagination" class="my-2 w-full"></div>
-    <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
+    <p id="under-progress" class="p-2 text-center text-sm text-gray-500">
       This Archive is under progress. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check again later.
     </p>
   </main>

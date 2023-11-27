@@ -71,7 +71,7 @@ search.addWidgets([
   {
     $$type: 'Status widget',
     init({ instantSearchInstance }) {
-      const loadingElement = document.getElementById('loading');
+      const loadingElement = document.getElementById('loading-indicator');
       const errorElement = document.getElementById('error-indicator');
       const retryElement = errorElement.querySelector('a');
 
