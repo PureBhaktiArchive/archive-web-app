@@ -87,11 +87,17 @@ search.addWidgets([
           instantSearchInstance.status !== 'error'
         );
       });
+
+      /** @type {import('instantsearch.js/es').UiState} */
+      let savedUIState;
       instantSearchInstance.on('error', () => {
         errorElement.classList.remove('hidden');
+        // Saving the UI state in which an error occured.
+        // This is needed because InstantSearch reverts the UI state to the previous successful state.
+        savedUIState = instantSearchInstance.getUiState();
       });
       retryElement.addEventListener('click', () => {
-        instantSearchInstance.helper.search();
+        instantSearchInstance.setUiState(savedUIState);
       });
     },
   },
