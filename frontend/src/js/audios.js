@@ -16,7 +16,7 @@ import {
 import '../css/algolia.css';
 import { itemTemplate } from './audio-item-template';
 import './player';
-import { searchBar } from './search-bar';
+import { searchBox } from './search-box';
 import './search-result-item';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
@@ -45,7 +45,7 @@ search.addWidgets([
   configure({
     hitsPerPage: 30,
   }),
-  searchBar({
+  searchBox({
     container: document.querySelector('#searchbox'),
   }),
   stats({
