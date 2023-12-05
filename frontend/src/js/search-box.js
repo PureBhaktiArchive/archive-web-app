@@ -12,19 +12,7 @@ import { connectSearchBox } from 'instantsearch.js/es/connectors';
 export const searchBox = connectSearchBox((renderOptions, isFirstRender) => {
   const { query, refine, widgetParams } = renderOptions;
   const searchBtn = document.getElementById('search-btn');
-  const spinnerElement = document.getElementById('search-spinner');
-
-  // Using the `render` event, which is dispatched in all cases.
-  renderOptions.instantSearchInstance.on('render', () => {
-    spinnerElement.classList.toggle(
-      'hidden',
-      renderOptions.instantSearchInstance.status !== 'stalled'
-    );
-    searchBtn.classList.toggle(
-      'hidden',
-      renderOptions.instantSearchInstance.status === 'stalled'
-    );
-  });
+  const spinnerBtn = document.getElementById('spinner-btn');
 
   if (isFirstRender) {
     const input = widgetParams.container.querySelector('input');
@@ -33,4 +21,16 @@ export const searchBox = connectSearchBox((renderOptions, isFirstRender) => {
     });
     input.value = query;
   }
+
+  // Using the `render` event, which is dispatched in all cases.
+  renderOptions.instantSearchInstance.on('render', () => {
+    spinnerBtn.classList.toggle(
+      'hidden',
+      renderOptions.instantSearchInstance.status !== 'stalled'
+    );
+    searchBtn.classList.toggle(
+      'hidden',
+      renderOptions.instantSearchInstance.status === 'stalled'
+    );
+  });
 });

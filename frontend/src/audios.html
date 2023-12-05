@@ -61,23 +61,22 @@ jsFile: audios.js
         placeholder="Search for title, topics, locations, dates, etc."
         class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
       >
-      <button id="search-btn" type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-neutral-600 px-2 font-semibold text-white shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span class="hidden sm:inline">Search</span>
-      </button>
-      <button
-        id="search-spinner"
-        type="button"
-        class="inline-flex items-center rounded-r-md bg-neutral-600 px-4 py-2 font-semibold leading-6 text-white"
-        disabled=""
-      >
-        <svg class="ml-3 mr-3 h-5 animate-spin text-white sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-        <span class="hidden sm:inline">Loading...</span>
+      <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-neutral-600 font-semibold text-white shadow-sm">
+        <div id="search-btn" class="hidden px-2">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span class="hidden sm:inline">Search</span>
+        </div>
+        <div id="spinner-btn" class="inline-flex items-center sm:mr-2">
+          <span class="max-sm:mt-1">
+            <svg class="ml-2 mr-2 h-5 animate-spin text-white sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+          </span>
+          <span class="hidden sm:inline">Loading...</span>
+        </div>
       </button>
     </div>
     <div class="my-3 flex items-center">
