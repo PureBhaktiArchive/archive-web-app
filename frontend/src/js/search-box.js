@@ -10,27 +10,23 @@ import { connectSearchBox } from 'instantsearch.js/es/connectors';
 
 /** @type {ReturnType<typeof connectSearchBox<WidgetParams>>} */
 export const searchBox = connectSearchBox((renderOptions, isFirstRender) => {
-  const { query, refine, widgetParams } = renderOptions;
-  const searchBtn = document.getElementById('search-btn');
-  const spinnerBtn = document.getElementById('spinner-btn');
-
+  const { query, refine, widgetParams, instantSearchInstance } = renderOptions;
   if (isFirstRender) {
     const input = widgetParams.container.querySelector('input');
-    input.addEventListener('input', (event) => {
-      refine(/** @type {HTMLInputElement } */ (event.target).value);
-    });
+    input.addEventListener('input', (event) =>
+      event.target instanceof HTMLInputElement
+        ? refine(event.target.value)
+        : void 0
+    );
     input.value = query;
   }
 
-  // Using the `render` event, which is dispatched in all cases.
-  renderOptions.instantSearchInstance.on('render', () => {
-    spinnerBtn.classList.toggle(
-      'hidden',
-      renderOptions.instantSearchInstance.status !== 'stalled'
-    );
-    searchBtn.classList.toggle(
-      'hidden',
-      renderOptions.instantSearchInstance.status === 'stalled'
-    );
-  });
+  const isStalled = instantSearchInstance.status === 'stalled';
+
+  widgetParams.container
+    .querySelector('button > :first-child') // The search label is the first child
+    .classList.toggle('hidden', isStalled);
+  widgetParams.container
+    .querySelector('button > :not(:first-child)') // The loading indicator is the second child
+    .classList.toggle('hidden', !isStalled);
 });
