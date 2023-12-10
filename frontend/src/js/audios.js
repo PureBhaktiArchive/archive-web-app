@@ -69,7 +69,7 @@ search.addWidgets([
     },
   }),
   {
-    $$type: 'Status widget',
+    $$type: 'Error widget',
     init({ instantSearchInstance }) {
       const errorElement = document.getElementById('error-indicator');
       const retryElement = errorElement.querySelector('a');
