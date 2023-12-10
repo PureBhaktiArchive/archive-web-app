@@ -77,7 +77,7 @@ jsFile: audios.js
         </span>
       </button>
     </div>
-    <div class="my-3 flex items-center">
+    <div class="my-3 flex flex-wrap items-center">
       <!-- Filter button -->
       <button
         x-data
@@ -90,10 +90,8 @@ jsFile: audios.js
         </svg>
         <span>Filter</span>
       </button>
-      <div class="text-sm text-neutral-600">
-        <span id="stats" class="whitespace-nowrap"></span>
-        <span id="error-indicator" class="font-bold text-red-800">Error occured. Please <a class="cursor-pointer underline decoration-dotted">retry</a> later.</span>
-      </div>
+      <span id="stats" class="mr-auto whitespace-nowrap text-sm text-neutral-600"></span>
+      <span id="error-indicator" class="whitespace-nowrap text-sm font-bold text-red-800">Error occured. Please <a class="cursor-pointer underline decoration-dotted">retry</a> later.</span>
     </div>
     <div id="hits" class="[&_.ais-Hits-list]:divide-y"></div>
     <div id="pagination" class="my-2 w-full"></div>
