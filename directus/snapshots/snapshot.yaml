@@ -149,7 +149,7 @@ fields:
                 _eq: false
       readonly: false
       required: false
-      sort: 4
+      sort: 3
       special:
         - m2o
       translations: null
@@ -194,7 +194,7 @@ fields:
                 _eq: false
       readonly: false
       required: false
-      sort: 3
+      sort: 4
       special:
         - m2o
       translations: null
