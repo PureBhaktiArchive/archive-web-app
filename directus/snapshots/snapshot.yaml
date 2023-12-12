@@ -56,7 +56,7 @@ collections:
       archive_value: null
       collapse: open
       collection: scheduled_videos
-      color: '#A2B5CD'
+      color: '#6644FF'
       display_template: null
       group: null
       hidden: false
