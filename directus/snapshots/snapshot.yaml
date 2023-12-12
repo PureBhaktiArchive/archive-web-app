@@ -58,7 +58,7 @@ collections:
       collection: scheduled_videos
       color: '#A2B5CD'
       display_template: null
-      group: videos
+      group: null
       hidden: false
       icon: auto_schedule
       item_duplication_fields:
@@ -68,7 +68,7 @@ collections:
       note: null
       preview_url: null
       singleton: false
-      sort: 1
+      sort: 2
       sort_field: null
       translations: null
       unarchive_value: null
