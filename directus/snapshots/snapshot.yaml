@@ -1,0 +1,867 @@
+version: 1
+directus: 14.1.2
+vendor: postgres
+collections:
+  - collection: Pages
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: Pages
+      color: null
+      display_template: null
+      group: null
+      hidden: false
+      icon: folder
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+  - collection: home
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: home
+      color: null
+      display_template: null
+      group: Pages
+      hidden: false
+      icon: home
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: true
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: home
+  - collection: scheduled_videos
+    meta:
+      accountability: all
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: scheduled_videos
+      color: '#6644FF'
+      display_template: null
+      group: null
+      hidden: false
+      icon: auto_schedule
+      item_duplication_fields:
+        - language
+        - title
+        - video_url
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 2
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: scheduled_videos
+  - collection: videos
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: videos
+      color: null
+      display_template: "{{vertical}}\_{{language}}\_{{title}}"
+      group: null
+      hidden: false
+      icon: video_library
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: videos
+fields:
+  - collection: home
+    field: divider-videos
+    type: alias
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: divider-videos
+      group: null
+      hidden: false
+      interface: presentation-divider
+      note: null
+      options:
+        icon: video_library
+        inlineTitle: true
+        title: Videos
+      readonly: false
+      required: false
+      sort: 2
+      special:
+        - alias
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: home
+    field: english_video
+    type: integer
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: english_video
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        filter:
+          _and:
+            - language:
+                _eq: en
+            - vertical:
+                _eq: false
+      readonly: false
+      required: false
+      sort: 3
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: english_video
+      table: home
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: home
+    field: hindi_video
+    type: integer
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: hindi_video
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        filter:
+          _and:
+            - language:
+                _eq: hi
+            - vertical:
+                _eq: false
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: hindi_video
+      table: home
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: home
+    field: id
+    type: integer
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: home
+      data_type: integer
+      default_value: nextval('home_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: home
+    field: short_video
+    type: integer
+    meta:
+      collection: home
+      conditions: null
+      display: null
+      display_options: null
+      field: short_video
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        filter:
+          _and:
+            - vertical:
+                _eq: true
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: short_video
+      table: home
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: scheduled_videos
+    field: date_created
+    type: timestamp
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: date_created
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 5
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: date_created
+      table: scheduled_videos
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: date_published
+    type: timestamp
+    meta:
+      collection: scheduled_videos
+      conditions: []
+      display: datetime
+      display_options:
+        format: short
+      field: date_published
+      group: null
+      hidden: false
+      interface: datetime
+      note: When the video will be published on the website
+      options: null
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations:
+        - language: en-US
+          translation: Publication Date
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_published
+      table: scheduled_videos
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: id
+    type: integer
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: scheduled_videos
+      data_type: integer
+      default_value: nextval('scheduled_videos_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: scheduled_videos
+    field: user_created
+    type: uuid
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: user
+      display_options:
+        display: name
+      field: user_created
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: user_created
+      table: scheduled_videos
+      data_type: uuid
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: directus_users
+      foreign_key_column: id
+  - collection: scheduled_videos
+    field: video
+    type: integer
+    meta:
+      collection: scheduled_videos
+      conditions: null
+      display: null
+      display_options: null
+      field: video
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: null
+      readonly: false
+      required: true
+      sort: 4
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: video
+      table: scheduled_videos
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: videos
+      foreign_key_column: id
+  - collection: videos
+    field: date_created
+    type: timestamp
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: date_created
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 6
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: date_created
+      table: videos
+      data_type: timestamp with time zone
+      default_value: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: id
+    type: integer
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: videos
+      data_type: integer
+      default_value: nextval('videos_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: language
+    type: string
+    meta:
+      collection: videos
+      conditions: []
+      display: labels
+      display_options:
+        choices:
+          - text: English
+            value: en
+            background: '#3399FF'
+            foreground: '#FFFFFF'
+          - text: Hindi
+            value: hi
+            background: '#FFA439'
+            foreground: '#FFFFFF'
+      field: language
+      group: null
+      hidden: false
+      interface: select-radio
+      note: null
+      options:
+        choices:
+          - text: English
+            value: en
+          - text: Hindi
+            value: hi
+        color: null
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: language
+      table: videos
+      data_type: character varying
+      default_value: null
+      max_length: 3
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: title
+    type: string
+    meta:
+      collection: videos
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: videos
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: url
+    type: string
+    meta:
+      collection: videos
+      conditions: null
+      display: field-actions
+      display_options:
+        hideFieldValue: true
+        showCopy: true
+        showLink: true
+      field: url
+      group: null
+      hidden: false
+      interface: field-actions
+      note: Enter YouTube link
+      options:
+        iconLeft: youtube_activity
+        placeholder: https://youtube.com/…
+        showCopy: true
+        showLink: true
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation:
+        _and:
+          - url:
+              _regex: >-
+                ^(https?:\/\/)?(youtu\.be\/|((www|m)\.)?youtube(?:-nocookie)?\.com\/(\w*\?(.*&)?v=|(shorts|embed|v|e)\/))(?<videoId>[\w\-_]{11})([&?].*)?$
+      validation_message: null
+      width: full
+    schema:
+      name: url
+      table: videos
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: true
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: videos
+    field: vertical
+    type: boolean
+    meta:
+      collection: videos
+      conditions: null
+      display: boolean
+      display_options:
+        colorOff: '#A2B5CD'
+        colorOn: '#A2B5CD'
+        iconOff: panorama_horizontal
+        iconOn: panorama_vertical
+        labelOff: '16:9'
+        labelOn: '9:16'
+      field: vertical
+      group: null
+      hidden: false
+      interface: boolean
+      note: null
+      options:
+        label: Video Is Vertical (Shorts)
+      readonly: false
+      required: true
+      sort: 5
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      name: vertical
+      table: videos
+      data_type: boolean
+      default_value: false
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+relations:
+  - collection: home
+    field: english_video
+    related_collection: videos
+    meta:
+      junction_field: null
+      many_collection: home
+      many_field: english_video
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home
+      column: english_video
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: home_english_video_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home
+    field: hindi_video
+    related_collection: videos
+    meta:
+      junction_field: null
+      many_collection: home
+      many_field: hindi_video
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home
+      column: hindi_video
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: home_hindi_video_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: home
+    field: short_video
+    related_collection: videos
+    meta:
+      junction_field: null
+      many_collection: home
+      many_field: short_video
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: home
+      column: short_video
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: home_short_video_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: scheduled_videos
+    field: user_created
+    related_collection: directus_users
+    meta:
+      junction_field: null
+      many_collection: scheduled_videos
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: scheduled_videos
+      column: user_created
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: scheduled_videos_user_created_foreign
+      on_update: NO ACTION
+      on_delete: SET NULL
+  - collection: scheduled_videos
+    field: video
+    related_collection: videos
+    meta:
+      junction_field: null
+      many_collection: scheduled_videos
+      many_field: video
+      one_allowed_collections: null
+      one_collection: videos
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    schema:
+      table: scheduled_videos
+      column: video
+      foreign_key_table: videos
+      foreign_key_column: id
+      constraint_name: scheduled_videos_video_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
