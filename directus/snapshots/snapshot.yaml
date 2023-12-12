@@ -1,5 +1,5 @@
 version: 1
-directus: 12.0.3
+directus: 14.1.2
 vendor: postgres
 collections:
   - collection: Pages
@@ -23,6 +23,7 @@ collections:
       sort_field: null
       translations: null
       unarchive_value: null
+      versioning: false
   - collection: home
     meta:
       accountability: all
@@ -44,6 +45,7 @@ collections:
       sort_field: null
       translations: null
       unarchive_value: null
+      versioning: false
     schema:
       name: home
   - collection: scheduled_videos
@@ -70,6 +72,7 @@ collections:
       sort_field: null
       translations: null
       unarchive_value: 'false'
+      versioning: false
     schema:
       name: scheduled_videos
   - collection: videos
@@ -93,6 +96,7 @@ collections:
       sort_field: null
       translations: null
       unarchive_value: null
+      versioning: false
     schema:
       name: videos
 fields:
