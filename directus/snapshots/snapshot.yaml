@@ -603,8 +603,8 @@ fields:
             value: hi
         color: null
       readonly: false
-      required: false
-      sort: 3
+      required: true
+      sort: 4
       special: null
       translations: null
       validation: null
@@ -736,7 +736,7 @@ fields:
         label: Video Is Vertical (Shorts)
       readonly: false
       required: true
-      sort: 4
+      sort: 5
       special:
         - cast-boolean
       translations: null
