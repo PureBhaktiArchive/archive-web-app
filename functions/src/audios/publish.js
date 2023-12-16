@@ -48,26 +48,6 @@ function getDateAttributes(source) {
   };
 }
 
-/**
- * Fixes common human mistakes in topics formatting so that it renders correctly
- * as Markdown
- *
- * @param {string} topics
- * @returns {string}
- */
-function sanitizeTopics(topics) {
-  return (
-    topics
-      .replaceAll('\r\n', '\n')
-      // Remove spaces in the beginning of the line
-      .replaceAll(/^ -/gm, '-')
-      // Add space after hyphen in the beginning of the line
-      .replaceAll(/^-(?!\s)/gm, '- ')
-      // Remove original text kept in the end of the cell
-      .replace(/\n*\s*ORIGINAL.*$/s, '')
-  );
-}
-
 export default functions.database
   .ref('/audio/published/trigger')
   .onWrite(async () => {
@@ -100,7 +80,7 @@ export default functions.database
               objectID: id,
               fileId: +id,
               title: record.contentDetails.title,
-              topics: sanitizeTopics(record.contentDetails.topics),
+              topics: record.contentDetails.topics,
               ...getDateAttributes(record.contentDetails.date),
               dateUncertain: record.contentDetails.dateUncertain || null,
               timeOfDay: record.contentDetails.timeOfDay || null,
