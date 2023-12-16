@@ -2,7 +2,6 @@
  * sri sri guru gaurangau jayatah
  */
 
-import { parseCSV } from '../csv.js';
 import { abbreviateLanguages } from '../languages.js';
 
 /**
@@ -23,7 +22,7 @@ export function composeFileName(id, contentDetails) {
   return [
     contentDetails.date ?? 'UNDATED',
     contentDetails.timeOfDay?.toUpperCase(),
-    abbreviateLanguages(parseCSV(contentDetails.languages)),
+    abbreviateLanguages(contentDetails.languages),
     '—',
     [contentDetails.title, contentDetails.location]
       .filter(Boolean)
