@@ -37,18 +37,6 @@ jobs:
     if: needs.changes.outputs.frontend == 'true'
     steps:
       - uses: actions/checkout@v4
-
-      # Setting environment variables which depend on the runner, cannot set in jobs.env: https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
-      - run: echo "AUDIOS_DATA_PATH=$RUNNER_TEMP/audios.json" >> $GITHUB_ENV
-      - run: echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/service-account.json" >> $GITHUB_ENV
-
-      - run: echo $SERVICE_ACCOUNT > $GOOGLE_APPLICATION_CREDENTIALS
-        env:
-          SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT }}
-      - run: curl -sL firebase.tools | analytics=false bash
-      # Downloading audios data file from Firebase RTDB
-      - run: firebase database:get /audio/published/records --output $AUDIOS_DATA_PATH --project ${{ vars.GCP_PROJECT_ID }}
-
       - uses: actions/setup-node@v4
         with:
           node-version-file: ${{ github.job }}/package.json

@@ -20,9 +20,28 @@ declare global {
     short_video: Video;
   };
 
+  type Audio = {
+    id: number;
+    status: 'published';
+    title: string;
+    topics: string;
+    date: string;
+    dateUncertain: boolean;
+    timeOfDay: string;
+    location: string;
+    locationUncertain: boolean;
+    category: string;
+    percentage: number;
+    soundQualityRating: string;
+    languages: string[];
+    otherSpeakers?: string[];
+    duration: number;
+  };
+
   type Schema = {
     home: Home;
     videos: Video[];
+    audios: Audio[];
   };
 
   type DirectusClient = RestClient<Schema>;
