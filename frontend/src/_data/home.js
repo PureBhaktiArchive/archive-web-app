@@ -11,26 +11,7 @@ const {
 } = require('../youtube');
 
 /**
- * @typedef Video
- * @property {string} url
- * @property {'en' | 'hi'} language
- * @property {boolean} vertical
- *
- * @typedef Home
- * @property {Video} english_video
- * @property {Video} hindi_video
- * @property {Video} short_video
- *
- * @typedef Schema
- * @property {Home} home
- * @property {Video[]} videos
- *
- * @typedef {import('@directus/sdk').RestClient<Schema>} Directus
- */
-
-/**
- *
- * @param {{directus: Directus}} data
+ * @param {{directus: DirectusClient}} data
  * @returns {Promise<{title: string, vertical: boolean, videoId: string}[]>}
  */
 const fetchHomePageVideos = async ({ directus }) =>

@@ -30,6 +30,11 @@
     "allowJs": true,
     "checkJs": true
   },
-  "include": ["plugins/**/*.js", "config/**/*.js", "src/**/*.js"],
+  "include": [
+    "plugins/**/*.js",
+    "config/**/*.js",
+    "src/**/*.js",
+    "src/**/*.d.ts"
+  ],
   "exclude": ["node_modules", "**/node_modules/*", "dist", "src/js/**/*.js"]
 }
