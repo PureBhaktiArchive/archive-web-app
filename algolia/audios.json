@@ -14,7 +14,8 @@
       "unordered(languages)",
       "unordered(otherSpeakers)",
       "unordered(dateISO)",
-      "unordered(year)"
+      "unordered(year)",
+      "unordered(series)"
     ],
     "numericAttributesToIndex": null,
     "attributesToRetrieve": null,
