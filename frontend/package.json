@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "test": "jest",
     "test:watch": "jest --watch --noStackTrace",
-    "check-js-typing": "tsc && tsc -p src/js"
+    "check-js-typing": "tsc -p jsconfig.json && tsc -p src/js/jsconfig.json"
   },
   "devDependencies": {
     "@11ty/eleventy": "2.0.1",

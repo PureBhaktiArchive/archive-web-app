@@ -11,6 +11,7 @@ const browserslistToEsbuild = require('browserslist-to-esbuild');
 /** @type {import('vite').UserConfig} */
 module.exports = {
   build: {
+    // @ts-expect-error
     target: browserslistToEsbuild(),
   },
   plugins: [require('./plugins/vite-plugin-html-minifier')()],

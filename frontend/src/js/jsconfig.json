@@ -15,6 +15,11 @@
 
     "skipLibCheck": true,
 
+    // Type Checking
+
+    "noImplicitReturns": true,
+    // TODO: "strict": true,
+
     // Emit
 
     "noEmit": true,
