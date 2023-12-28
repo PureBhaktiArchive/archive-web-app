@@ -2,6 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
+// @ts-expect-error due to https://github.com/11ty/eleventy/issues/2935, which is fixed in 3.0
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const { formatDurationForHumans } = require('./config/filters/duration');
 const {
@@ -17,12 +18,8 @@ require('dotenv').config({
  * Eleventy config function.
  *
  * Typing according to https://www.11ty.dev/docs/config/#type-definitions
- * But it doesn't seem to work with tsconfig present.
- * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
- * Therefore as of now this file is not included in the tsconfig (dotfiles are excluded by default - https://github.com/microsoft/TypeScript/pull/8484).
- * Intellisense is more important.
- * TODO: rename the file to `eleventy.config.js` after fixing the mentioned issue.
  * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
+ *   In order for intellisense to work, `maxNodeModuleJsDepth` should be set to `1`
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
