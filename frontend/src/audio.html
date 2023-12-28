@@ -36,6 +36,9 @@ description: Audio recording with all the details, including topics discussed
             {% if audio.dateUncertain -%}
               <span title="Date is uncertain">(?)</span>
             {%- endif %}
+            {% if audio.timeOfDay -%}
+              <span title="Time of day">{{ audio.timeOfDay }}</span>
+            {%- endif %}
           </div>
         {%- endif %}
         {% if audio.location -%}
