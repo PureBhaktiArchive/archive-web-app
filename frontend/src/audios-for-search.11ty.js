@@ -16,7 +16,7 @@ class Renderer {
 
   /**
    * Adds some attributes for the search index
-   * @param {{audios: Audio[]}} data
+   * @param {EleventyGlobalData} data
    */
   render({ audios }) {
     return JSON.stringify(

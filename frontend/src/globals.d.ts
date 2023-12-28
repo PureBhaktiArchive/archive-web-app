@@ -44,11 +44,16 @@ declare global {
     languageCategory: string;
   };
 
-  type Schema = {
+  type DirectusSchema = {
     home: Home;
     videos: Video[];
     audios: Audio[];
   };
 
-  type DirectusClient = RestClient<Schema>;
+  type DirectusClient = RestClient<DirectusSchema>;
+
+  type EleventyGlobalData = {
+    home: Home;
+    audios: Audio[];
+  };
 }
