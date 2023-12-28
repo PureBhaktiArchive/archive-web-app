@@ -8,6 +8,7 @@ const {
   soundQualityRatingMapping,
 } = require('./config/filters/sound-quality-rating');
 const { getDirectusClient } = require('./config/directus');
+const { formatReducedPrecisionDate } = require('./src/reduced-precision-date');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -65,6 +66,11 @@ module.exports = function (eleventyConfig) {
     'sound_quality_label',
     (soundqualitylabel) =>
       `${soundQualityRatingMapping[soundqualitylabel].label}`
+  );
+
+  eleventyConfig.addFilter(
+    'format_reduced_precision',
+    formatReducedPrecisionDate
   );
 
   // Return your Object options:
