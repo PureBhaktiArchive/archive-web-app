@@ -5,18 +5,23 @@
 const { categorizeLanguages } = require('../languages');
 const { formatReducedPrecisionDate } = require('../reduced-precision-date');
 
-// https://www.11ty.dev/docs/languages/javascript/#classes
+/**
+ * This JS template saves the audios data for the search index.
+ * The output file is used in the deployment process only, see `deployment.yaml`.
+ * Using the class option to specify the permalink: https://www.11ty.dev/docs/languages/javascript/#permalinks.
+ *
+ * Placing the file into the `public` directory in order to make sure Vite copies it verbatim (https://vitejs.dev/guide/assets#the-public-directory).
+ * The inner directory name starts with a dot to be ignored by the Firebase deployment (https://firebase.google.com/docs/hosting/full-config#ignore).
+ */
 class Renderer {
   data() {
     return {
-      //  Saving this data for the deployment process only.
-      //  File name starts with a dot to be ignored by the Firebase deployment (https://firebase.google.com/docs/hosting/full-config#ignore).
-      permalink: '.search/audios.json',
+      permalink: 'public/.search/audios.json',
     };
   }
 
   /**
-   * Adds some attributes for the search index
+   * Transforms the audios data from the CMS
    * @param {EleventyGlobalData} data
    */
   render({ audios }) {
