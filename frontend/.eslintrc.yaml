@@ -1,0 +1,27 @@
+root: true
+env:
+  node: true
+  es2022: true
+plugins:
+  - import
+  - header
+extends:
+  - eslint:recommended
+  - plugin:import/errors
+  - plugin:import/warnings
+  - prettier
+rules:
+  no-irregular-whitespace:
+    - error
+    - skipComments: true
+  'header/header':
+    - error
+    - block
+    - ['!', ' * sri sri guru gaurangau jayatah', ' ']
+    - 2
+overrides:
+  - files: '**/*.test.js'
+    plugins: [jest]
+    extends:
+      - plugin:jest/recommended
+      - plugin:jest/style
