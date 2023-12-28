@@ -40,8 +40,8 @@ search.addWidgets([
         data.hasManyResults
           ? `${data.nbHits} results`
           : data.hasOneResult
-          ? '1 result'
-          : 'No results',
+            ? '1 result'
+            : 'No results',
     },
   }),
   // Loading indicator
