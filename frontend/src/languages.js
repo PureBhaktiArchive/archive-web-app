@@ -18,10 +18,10 @@ const categorizeLanguages = (languages) =>
   !languages?.length
     ? null
     : // If any other language is present (except None)
-    languages.some((x) => x !== 'None' && !mainLanguages.includes(x))
-    ? 'O'
-    : mainLanguages
-        .flatMap((x) => (languages.includes(x) ? x.at(0).toUpperCase() : []))
-        .join('');
+      languages.some((x) => x !== 'None' && !mainLanguages.includes(x))
+      ? 'O'
+      : mainLanguages
+          .flatMap((x) => (languages.includes(x) ? x.at(0).toUpperCase() : []))
+          .join('');
 
 module.exports = { categorizeLanguages };
