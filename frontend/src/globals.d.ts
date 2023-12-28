@@ -38,7 +38,24 @@ declare global {
     duration: number;
   };
 
-  type AudioForSearch = Audio & {
+  type AudioForSearch = Pick<
+    Audio,
+    | 'title'
+    | 'topics'
+    | 'date'
+    | 'dateUncertain'
+    | 'timeOfDay'
+    | 'location'
+    | 'locationUncertain'
+    | 'category'
+    | 'percentage'
+    | 'soundQualityRating'
+    | 'languages'
+    | 'otherSpeakers'
+    | 'duration'
+  > & {
+    objectID: string;
+    fileId: number;
     dateForHumans: string;
     year: number;
     languageCategory: string;

@@ -22,11 +22,45 @@ class Renderer {
   render({ audios }) {
     return JSON.stringify(
       audios.map(
-        /** @return {AudioForSearch} */ (audio) => ({
-          ...audio,
-          year: +audio.date?.substring(0, 4),
-          dateForHumans: formatReducedPrecisionDate(audio.date),
-          languageCategory: categorizeLanguages(audio.languages),
+        /**
+         * Explicitly listing all the required members instead of a spread operator
+         * to avoid extraneous properties to get into the search index
+         * @return {AudioForSearch}
+         **/
+        ({
+          id,
+          title,
+          topics,
+          date,
+          dateUncertain,
+          timeOfDay,
+          location,
+          locationUncertain,
+          category,
+          percentage,
+          soundQualityRating,
+          languages,
+          otherSpeakers,
+          duration,
+        }) => ({
+          objectID: id.toString(),
+          fileId: id,
+          title,
+          topics,
+          date,
+          dateUncertain,
+          timeOfDay,
+          location,
+          locationUncertain,
+          category,
+          percentage,
+          soundQualityRating,
+          languages,
+          otherSpeakers,
+          duration,
+          year: +date?.substring(0, 4),
+          dateForHumans: formatReducedPrecisionDate(date),
+          languageCategory: categorizeLanguages(languages),
         })
       )
     );
