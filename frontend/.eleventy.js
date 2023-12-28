@@ -16,12 +16,13 @@ require('dotenv').config({
 /**
  * Eleventy config function.
  *
- * Typing idea borrowed from https://github.com/11ty/eleventy/discussions/2089
+ * Typing according to https://www.11ty.dev/docs/config/#type-definitions
  * But it doesn't seem to work with tsconfig present.
  * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
- * Therefore as of now this file is not included in the tsconfig. Intellisense is more important.
- * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
- * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ * Therefore as of now this file is not included in the tsconfig (dotfiles are excluded by default - https://github.com/microsoft/TypeScript/pull/8484).
+ * Intellisense is more important.
+ * TODO: rename the file to `eleventy.config.js` after fixing the mentioned issue.
+ * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
