@@ -38,6 +38,12 @@ declare global {
     duration: number;
   };
 
+  type AudioForSearch = Audio & {
+    dateForHumans: string;
+    year: number;
+    languageCategory: string;
+  };
+
   type Schema = {
     home: Home;
     videos: Video[];
