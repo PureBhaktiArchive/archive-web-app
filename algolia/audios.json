@@ -13,7 +13,7 @@
       "unordered(category)",
       "unordered(languages)",
       "unordered(otherSpeakers)",
-      "unordered(dateISO)",
+      "unordered(date)",
       "unordered(year)"
     ],
     "numericAttributesToIndex": null,
@@ -45,7 +45,7 @@
       "exact",
       "custom"
     ],
-    "customRanking": ["asc(dateISO)"],
+    "customRanking": ["asc(date)"],
     "separatorsToIndex": "",
     "removeWordsIfNoResults": "none",
     "queryType": "prefixLast",
