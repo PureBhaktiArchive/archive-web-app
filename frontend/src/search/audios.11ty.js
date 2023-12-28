@@ -2,8 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
-const { categorizeLanguages } = require('./languages');
-const { formatReducedPrecisionDate } = require('./reduced-precision-date');
+const { categorizeLanguages } = require('../languages');
+const { formatReducedPrecisionDate } = require('../reduced-precision-date');
 
 // https://www.11ty.dev/docs/languages/javascript/#classes
 class Renderer {
@@ -11,7 +11,7 @@ class Renderer {
     return {
       //  Saving this data for the deployment process only.
       //  File name starts with a dot to be ignored by the Firebase deployment (https://firebase.google.com/docs/hosting/full-config#ignore).
-      permalink: '.audios-for-search.json',
+      permalink: '.search/audios.json',
     };
   }
 
