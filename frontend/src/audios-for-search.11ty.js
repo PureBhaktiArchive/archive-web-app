@@ -2,6 +2,7 @@
  * sri sri guru gaurangau jayatah
  */
 
+const { categorizeLanguages } = require('./languages');
 const { formatReducedPrecisionDate } = require('./reduced-precision-date');
 
 // https://www.11ty.dev/docs/languages/javascript/#classes
@@ -25,7 +26,7 @@ class Renderer {
           ...audio,
           year: +audio.date?.substring(0, 4),
           dateForHumans: formatReducedPrecisionDate(audio.date),
-          languageCategory: '',
+          languageCategory: categorizeLanguages(audio.languages),
         })
       )
     );
