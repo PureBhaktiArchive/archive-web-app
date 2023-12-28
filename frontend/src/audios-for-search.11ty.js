@@ -2,6 +2,8 @@
  * sri sri guru gaurangau jayatah
  */
 
+const { formatReducedPrecisionDate } = require('./reduced-precision-date');
+
 // https://www.11ty.dev/docs/languages/javascript/#classes
 class Renderer {
   data() {
@@ -22,7 +24,7 @@ class Renderer {
         /** @return {AudioForSearch} */ (audio) => ({
           ...audio,
           year: +audio.date?.substring(0, 4),
-          dateForHumans: '',
+          dateForHumans: formatReducedPrecisionDate(audio.date),
           languageCategory: '',
         })
       )
