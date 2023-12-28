@@ -25,6 +25,11 @@
 
     "noEmit": true,
 
+    // Type Checking
+
+    "noImplicitReturns": true,
+    // TODO: "strict": true,
+
     // JavaScript Support
 
     "allowJs": true,
