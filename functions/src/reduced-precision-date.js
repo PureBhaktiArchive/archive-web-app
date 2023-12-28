@@ -69,9 +69,9 @@ export const formatReducedPrecisionDateForHumans = (date) =>
     date.precision === 'day'
       ? DateTime.DATE_FULL
       : date.precision === 'month'
-      ? {
-          year: 'numeric',
-          month: 'long',
-        }
-      : { year: 'numeric' }
+        ? {
+            year: 'numeric',
+            month: 'long',
+          }
+        : { year: 'numeric' }
   );

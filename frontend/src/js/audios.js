@@ -62,10 +62,10 @@ search.addWidgets([
                 : ''
             }${data.nbHits} results`
           : data.hasOneResult
-          ? '1 result'
-          : data.hasNoResults
-          ? 'No results'
-          : '',
+            ? '1 result'
+            : data.hasNoResults
+              ? 'No results'
+              : '',
     },
   }),
   // Loading indicator
