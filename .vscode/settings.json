@@ -53,7 +53,6 @@
     ".postcssrc": "json",
     "*.html": "liquid"
   },
-  "liquid.format.enable": false,
-  "liquid.engine": "standard",
+  "liquid.engine": "11ty",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

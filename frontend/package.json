@@ -9,7 +9,7 @@
     "start": "npx @11ty/eleventy --serve --quiet --incremental",
     "build": "npx @11ty/eleventy --quiet",
     "lint": "eslint .",
-    "check-js-typing": "tsc && tsc -p src/js"
+    "check-js-typing": "tsc -p jsconfig.json && tsc -p src/js/jsconfig.json"
   },
   "devDependencies": {
     "@11ty/eleventy": "2.0.1",
