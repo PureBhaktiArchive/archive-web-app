@@ -29,7 +29,7 @@
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-header": "3.1.1",
     "eslint-plugin-import": "2.29.1",
-    "googleapis": "125.0.0",
+    "googleapis": "129.0.0",
     "html-minifier-terser": "7.2.0",
     "postcss-mixins": "9.0.4",
     "postcss-preset-env": "9.1.4",
