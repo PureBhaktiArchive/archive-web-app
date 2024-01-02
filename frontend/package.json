@@ -17,7 +17,6 @@
     "@11ty/eleventy-plugin-vite": "PureBhaktiArchive/eleventy-plugin-vite#patched",
     "@directus/sdk": "13.0.2",
     "@shopify/prettier-plugin-liquid": "1.4.0",
-    "@stefanracic/tailwind-child": "1.0.5",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.10",
     "@types/alpinejs": "3.13.5",
@@ -35,7 +34,7 @@
     "postcss-preset-env": "9.1.4",
     "prettier": "3.1.1",
     "prettier-plugin-tailwindcss": "0.5.10",
-    "tailwindcss": "3.3.3",
+    "tailwindcss": "3.4.0",
     "typescript": "5.2.2"
   },
   "dependencies": {
