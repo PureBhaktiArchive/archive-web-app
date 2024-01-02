@@ -111,12 +111,12 @@ gtm-tag-id: GTM-PNC4S5J
       <div class="mx-auto flex max-w-screen-xl grow flex-col gap-y-4 md:flex-row md:justify-between">
         <div class="mx-auto h-6 font-erasDemi md:mx-0 md:h-10 md:text-lg">PURE BHAKTI ARCHIVE</div>
         <div class="text-center md:text-right">
-          <div class="mb-1 inline-flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-2 [&>*]:border-r [&>*]:border-white [&>*]:pr-2 last:[&>*]:mr-0 last:[&>*]:border-0 last:[&>*]:pr-0">
+          <div class="mb-1 inline-flex flex-wrap content-between items-baseline">
             {%- assign menu = collections.bottomnav | eleventyNavigation -%}
             {%- for entry in menu -%}
               <a
                 href="{{ entry.url }}"
-                class="hover:underline"
+                class="mb-1 mr-2 border-r border-white pr-2 last:mr-0 last:border-0 last:pr-0 hover:underline"
                 {% if entry.target == 'external' %}
                   target="_blank"
                 {% endif %}
