@@ -94,7 +94,7 @@ export class Spreadsheet {
 
   /**
    * @template R
-   * @param {import('gaxios').GaxiosResponse<R>} response
+   * @param {import('googleapis-common').GaxiosResponse<R>} response
    * @returns {R}
    */
   static #getResponse(response) {
