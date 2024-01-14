@@ -12,6 +12,8 @@ module.exports = {
     // Download URL
     fileUrl: (data) =>
       `${process.env.STORAGE_BASE_URL}/${data.audio.fileId}.mp3`,
+    feedbackUrl: (data) =>
+      `${process.env.FEEDBACK_FORM_AUDIOS}${data.audio.fileId}`,
     // Compiling content details for the audio player
     contentDetails: ({
       audio: {
