@@ -22,7 +22,7 @@ declare global {
 
   type Audio = {
     id: number;
-    status: 'published';
+    status: 'active' | 'inactive';
     title: string;
     topics: string;
     date: string;
