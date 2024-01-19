@@ -15,7 +15,7 @@
       "unordered(otherSpeakers)",
       "unordered(dateISO)",
       "unordered(year)",
-      "unordered(series)"
+      "unordered(series.name)"
     ],
     "numericAttributesToIndex": null,
     "attributesToRetrieve": null,
@@ -29,7 +29,7 @@
       "otherSpeakers",
       "soundQualityRating",
       "year",
-      "series"
+      "series.name"
     ],
     "attributesToSnippet": ["topics:10"],
     "attributesToHighlight": null,

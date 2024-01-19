@@ -21,7 +21,7 @@ export {};
  * @property {string} [languageCategory]
  * @property {number} percentage
  * @property {string[]} otherSpeakers
- * @property {string[]} series
+ * @property {object} [series]
  * @property {string} soundQualityRating
  * @property {number | null} duration
  */
