@@ -133,7 +133,8 @@ search.addWidgets([
   }),
   refinementList({
     container: '#series-list div:empty',
-    attribute: 'series',
+    attribute: 'series.name',
+    sortBy: ['name:asc'],
   }),
   numericMenu({
     container: '#percentage-menu div:empty',
