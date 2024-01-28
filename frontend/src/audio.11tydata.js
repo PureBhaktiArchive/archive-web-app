@@ -14,6 +14,9 @@ module.exports = {
   eleventyComputed: {
     // Download URL
     fileUrl: (data) => `${process.env.STORAGE_BASE_URL}/${data.audio.id}.mp3`,
+    // Computing the Feedback URL here because the env variables are not available in templates
+    feedbackUrl: (data) =>
+      `${process.env.FEEDBACK_FORM_AUDIOS}${data.audio.id}`,
     // Compiling content details for the audio player
     contentDetails: ({
       audio: {

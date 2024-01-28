@@ -88,7 +88,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         <div class="flex items-end justify-between">
           <!-- Tags -->
           <div
-            class="flex flex-wrap content-between align-baseline text-xs child-div:mr-1 child-div:mt-1 child-div:border-r child-div:border-gray-300 child-div:pr-1 last:child-div:border-0"
+            class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0"
           >
             <!-- ID -->
             <div title="Unique file identifier">
@@ -131,7 +131,7 @@ export const itemTemplate = (hit, { html, components }) => html`
           </div>
 
           <!-- Actions -->
-          <div class="flex divide-x text-sm child-a:ml-1 child-a:pl-1">
+          <div class="flex divide-x text-sm *:ml-1 *:pl-1">
             <!-- Download -->
             <a
               href="${import.meta.env.STORAGE_BASE_URL}/${hit.fileId}.mp3"
