@@ -73,5 +73,6 @@ declare global {
   type EleventyGlobalData = {
     home: Home;
     audios: Audio[];
+    directus: DirectusClient;
   };
 }
