@@ -5,7 +5,7 @@
 const { readItems } = require('@directus/sdk');
 
 /**
- * @param {{directus: DirectusClient}} data
+ * @param {EleventyGlobalData} data
  */
 module.exports = ({ directus }) =>
   directus.request(

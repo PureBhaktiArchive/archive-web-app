@@ -11,7 +11,7 @@ const {
 } = require('../youtube');
 
 /**
- * @param {{directus: DirectusClient}} data
+ * @param {EleventyGlobalData} data
  * @returns {Promise<{title: string, vertical: boolean, videoId: string}[]>}
  */
 const fetchHomePageVideos = async ({ directus }) =>
@@ -47,6 +47,10 @@ const fetchHomePageVideos = async ({ directus }) =>
       })
   );
 
+/**
+ * @param {EleventyGlobalData} data
+ * @returns
+ */
 module.exports = async (data) => ({
   videos: await fetchHomePageVideos(data),
 });
