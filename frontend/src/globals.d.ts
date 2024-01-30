@@ -22,6 +22,7 @@ declare global {
 
   type Audio = {
     id: number;
+    fileId: number; // Including this manually because Directus does not include query aliases in the field types. See https://github.com/directus/directus/blob/c45cd69dd723e0a536cab537aff117d5861868e7/sdk/src/types/query.ts#L69-L73
     status: 'active' | 'inactive';
     title: string;
     topics: string;

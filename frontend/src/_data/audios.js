@@ -7,7 +7,7 @@ const { readItems } = require('@directus/sdk');
 /**
  * @param {{directus: DirectusClient}} data
  */
-module.exports = async ({ directus }) =>
+module.exports = ({ directus }) =>
   directus.request(
     readItems('audios', {
       fields: ['*'],
