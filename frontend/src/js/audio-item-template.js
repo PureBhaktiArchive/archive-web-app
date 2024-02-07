@@ -132,8 +132,11 @@ export const itemTemplate = (hit, { html, components }) => html`
             ${hit.series &&
             html`
               <div title="Series">
-                <a href="/audios/series/${hit.series}/"
-                  >${components.Highlight({ hit, attribute: 'series' })}</a
+                <a href="/series/${hit.series}/"
+                  >${components.Highlight({
+                    hit,
+                    attribute: 'series',
+                  })}</a
                 >
               </div>
             `}
