@@ -133,7 +133,7 @@ search.addWidgets([
   }),
   refinementList({
     container: '#series-list div:empty',
-    attribute: 'series.name',
+    attribute: 'series',
     sortBy: ['name:asc'],
   }),
   numericMenu({
