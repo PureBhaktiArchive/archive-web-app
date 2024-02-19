@@ -33,12 +33,15 @@ collections:
       collapse: open
       collection: audios
       color: null
-      display_template: '#{{fileId}}{{title}}'
+      display_template: '{{id}} {{title}}'
       group: null
       hidden: false
       icon: audio_file
       item_duplication_fields: null
-      note: null
+      note: >-
+        As of now this collection is considerd read-only. Changes will affect
+        the website listing, but will not reflect in the downloaded file name
+        and media metadata.
       preview_url: null
       singleton: false
       sort: null
