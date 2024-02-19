@@ -133,20 +133,20 @@ fields:
       display: null
       display_options: null
       field: category
-      group: null
+      group: contentDetails
       hidden: false
       interface: input
       note: null
       options:
         iconLeft: category
       readonly: false
-      required: true
-      sort: 13
+      required: false
+      sort: 8
       special: null
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: category
       table: audios
@@ -163,6 +163,39 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: audios
+    field: contentDetails
+    type: alias
+    meta:
+      collection: audios
+      conditions:
+        - name: Hidden and optional for an inactive record
+          rule:
+            _and:
+              - status:
+                  _neq: active
+          hidden: true
+          required: false
+          options: {}
+      display: null
+      display_options: null
+      field: contentDetails
+      group: null
+      hidden: false
+      interface: group-raw
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - alias
+        - group
+        - no-data
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
   - collection: audios
     field: creationDate
     type: timestamp
@@ -213,7 +246,7 @@ fields:
       display: null
       display_options: null
       field: date
-      group: null
+      group: contentDetails
       hidden: false
       interface: input
       note: null
@@ -224,7 +257,7 @@ fields:
         trim: true
       readonly: false
       required: false
-      sort: 8
+      sort: 3
       special: null
       translations: null
       validation:
@@ -273,14 +306,14 @@ fields:
         labelOff: Certain
         labelOn: Uncertain
       field: dateUncertain
-      group: null
+      group: contentDetails
       hidden: false
       interface: boolean
       note: null
       options: null
       readonly: false
       required: false
-      sort: 9
+      sort: 4
       special:
         - cast-boolean
       translations: null
@@ -356,7 +389,7 @@ fields:
       display: null
       display_options: null
       field: languages
-      group: null
+      group: contentDetails
       hidden: false
       interface: tags
       note: null
@@ -368,14 +401,14 @@ fields:
           - English
           - Hindi
       readonly: false
-      required: true
-      sort: 14
+      required: false
+      sort: 9
       special:
         - cast-json
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: languages
       table: audios
@@ -401,7 +434,7 @@ fields:
       display: null
       display_options: null
       field: location
-      group: null
+      group: contentDetails
       hidden: false
       interface: input
       note: null
@@ -409,7 +442,7 @@ fields:
         iconLeft: location_on
       readonly: false
       required: false
-      sort: 11
+      sort: 6
       special: null
       translations: null
       validation: null
@@ -455,14 +488,14 @@ fields:
         labelOff: Certain
         labelOn: Uncertain
       field: locationUncertain
-      group: null
+      group: contentDetails
       hidden: false
       interface: boolean
       note: null
       options: null
       readonly: false
       required: false
-      sort: 12
+      sort: 7
       special:
         - cast-boolean
       translations: null
@@ -503,7 +536,7 @@ fields:
       display: null
       display_options: null
       field: otherSpeakers
-      group: null
+      group: contentDetails
       hidden: false
       interface: tags
       note: null
@@ -512,7 +545,7 @@ fields:
         iconLeft: campaign
       readonly: false
       required: false
-      sort: 17
+      sort: 12
       special:
         - cast-json
       translations: null
@@ -544,7 +577,7 @@ fields:
       display: formatted-value
       display_options: null
       field: percentage
-      group: null
+      group: contentDetails
       hidden: false
       interface: slider
       note: null
@@ -554,8 +587,8 @@ fields:
         minValue: 0
         stepInterval: 0.05
       readonly: false
-      required: true
-      sort: 15
+      required: false
+      sort: 10
       special: null
       translations: null
       validation: null
@@ -586,7 +619,7 @@ fields:
       display: labels
       display_options: null
       field: soundQualityRating
-      group: null
+      group: contentDetails
       hidden: false
       interface: select-radio
       note: null
@@ -599,8 +632,8 @@ fields:
           - text: Low
             value: Low
       readonly: false
-      required: true
-      sort: 16
+      required: false
+      sort: 11
       special: null
       translations: null
       validation: null
@@ -729,7 +762,7 @@ fields:
       display: null
       display_options: null
       field: timeOfDay
-      group: null
+      group: contentDetails
       hidden: false
       interface: select-radio
       note: null
@@ -742,7 +775,7 @@ fields:
             value: PM
       readonly: false
       required: false
-      sort: 10
+      sort: 5
       special: null
       translations: null
       validation: null
@@ -773,14 +806,14 @@ fields:
       display: null
       display_options: null
       field: title
-      group: null
+      group: contentDetails
       hidden: false
       interface: input
       note: null
       options: null
       readonly: false
-      required: true
-      sort: 6
+      required: false
+      sort: 1
       special: null
       translations: null
       validation: null
@@ -811,7 +844,7 @@ fields:
       display: null
       display_options: null
       field: topics
-      group: null
+      group: contentDetails
       hidden: false
       interface: input-rich-text-md
       note: null
@@ -824,7 +857,7 @@ fields:
           - numlist
       readonly: false
       required: false
-      sort: 7
+      sort: 2
       special: null
       translations: null
       validation: null
