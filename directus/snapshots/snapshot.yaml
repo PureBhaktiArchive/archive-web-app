@@ -386,7 +386,7 @@ fields:
     meta:
       collection: audios
       conditions: null
-      display: null
+      display: labels
       display_options: null
       field: languages
       group: contentDetails
