@@ -262,8 +262,11 @@ fields:
       translations: null
       validation:
         _and:
-          - date:
-              _regex: ^\d{4}(-\d{2}(-\d{2})?)?$
+          - _or:
+              - date:
+                  _null: true
+              - date:
+                  _regex: ^\d{4}(-\d{2}(-\d{2})?)?$
       validation_message: 'Date should be in one of the formats: YYYY, YYYY-MM, YYYY-MM-DD.'
       width: half
     schema:
