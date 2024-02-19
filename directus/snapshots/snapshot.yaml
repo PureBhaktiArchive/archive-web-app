@@ -309,22 +309,28 @@ fields:
     meta:
       collection: audios
       conditions: null
-      display: null
-      display_options: null
+      display: formatted-value
+      display_options:
+        bold: true
+        font: monospace
+        icon: numbers
       field: id
       group: null
-      hidden: true
+      hidden: false
       interface: input
       note: null
-      options: null
-      readonly: true
-      required: false
+      options:
+        font: monospace
+        iconLeft: numbers
+        min: 1
+      readonly: false
+      required: true
       sort: 1
       special: null
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       name: id
       table: audios
