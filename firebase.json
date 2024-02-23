@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "source": "functions"
-  },
   "hosting": {
     "public": "frontend/dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
@@ -27,9 +24,6 @@
     ]
   },
   "emulators": {
-    "functions": {
-      "port": 5001
-    },
     "database": {
       "port": 9000
     },

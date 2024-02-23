@@ -99,9 +99,10 @@ export const itemTemplate = (hit, { html, components }) => html`
               ? html`<div title="Date">
                   ${components.Highlight({ hit, attribute: 'dateForHumans' })}
                   ${hit.dateUncertain &&
-                  html`<span title="Date is uncertain">(?)</span>`}
+                  // Adding explicit whitespaces to preserve them. See https://github.com/developit/htm/issues/206#issuecomment-870709380 and https://github.com/developit/htm/issues/202
+                  html`${' '}<span title="Date is uncertain">(?)</span>`}
                   ${hit.timeOfDay &&
-                  html`<span title="Time of day">${hit.timeOfDay}</span>`}
+                  html`${' '}<span title="Time of day">${hit.timeOfDay}</span>`}
                 </div>`
               : html`<div>Date unknown</div>`}
 
@@ -110,7 +111,7 @@ export const itemTemplate = (hit, { html, components }) => html`
               ? html`<div title="Location">
                   ${components.Highlight({ hit, attribute: 'location' })}
                   ${hit.locationUncertain &&
-                  html`<span title="Location is uncertain">(?)</span>`}
+                  html`${' '}<span title="Location is uncertain">(?)</span>`}
                 </div>`
               : html`<div>Location unknown</div>`}
 

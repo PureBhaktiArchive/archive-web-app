@@ -18,6 +18,7 @@ module.exports = () => ({
   transformIndexHtml(html) {
     return minify(html, {
       collapseWhitespace: true,
+      conservativeCollapse: true,
       minifyJS: true,
       removeComments: true,
     });

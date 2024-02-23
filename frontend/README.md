@@ -27,20 +27,19 @@ VS Code has built-in [intellisense and type checking for JavaScript](https://cod
 
 Environment variables should be added to an `.env.local` file.
 
-| Variable                 | Description                                                                                                                                                                      |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ALGOLIA_API_KEY`        | Algolia API key                                                                                                                                                                  |
-| `ALGOLIA_APPLICATION_ID` | Algolia application ID                                                                                                                                                           |
-| `ALGOLIA_INDEX_AUDIOS`   | Algolia index name                                                                                                                                                               |
-| `ALGOLIA_INDEX_MEMORIES` | Algolia memories index name                                                                                                                                                      |
-| `STORAGE_BASE_URL`       | The base URL of the storage containing the MP3 files.                                                                                                                            |
-| `FEEDBACK_FORM_AUDIOS`   | The base URL of the Audios Feedback Form, file ID will be appended in the end.                                                                                                   |
-| `FEEDBACK_FORM_MEMORIES` | The base URL of the Memories Feedback Form, memory ID will be appended in the end.                                                                                               |
-| `AUDIOS_DATA_PATH`       | Path to a file containing JSON data for audio pages generation. Should be absolute or relative to the `frontend` folder. This file can be downloaded from the Realtime Database. |
-| `DONATION_URL`           | The URL of the external donation page.                                                                                                                                           |
-| `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                                                                                                                            |
-| `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.                                                                                                            |
-| `YOUTUBE_API_KEY`        | API key for accessing YouTube                                                                                                                                                    |
+| Variable                 | Description                                                                        |
+| ------------------------ | ---------------------------------------------------------------------------------- |
+| `ALGOLIA_API_KEY`        | Algolia API key                                                                    |
+| `ALGOLIA_APPLICATION_ID` | Algolia application ID                                                             |
+| `ALGOLIA_INDEX_AUDIOS`   | Algolia index name                                                                 |
+| `ALGOLIA_INDEX_MEMORIES` | Algolia memories index name                                                        |
+| `STORAGE_BASE_URL`       | The base URL of the storage containing the MP3 files.                              |
+| `FEEDBACK_FORM_AUDIOS`   | The base URL of the Audios Feedback Form, file ID will be appended in the end.     |
+| `FEEDBACK_FORM_MEMORIES` | The base URL of the Memories Feedback Form, memory ID will be appended in the end. |
+| `DONATION_URL`           | The URL of the external donation page.                                             |
+| `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                              |
+| `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.              |
+| `YOUTUBE_API_KEY`        | API key for accessing YouTube                                                      |
 
 For a new environment variable to be accessible from the frontend code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
 

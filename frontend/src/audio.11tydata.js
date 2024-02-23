@@ -2,12 +2,15 @@
  * sri sri guru gaurangau jayatah
  */
 
+const { formatReducedPrecisionDate } = require('./reduced-precision-date');
+
 module.exports = {
   pagination: {
     data: 'audios',
     size: 1,
     alias: 'audio',
   },
+  /** @type {Record<string, (data: EleventyGlobalData & {audio: Audio}) => unknown>} */
   eleventyComputed: {
     // Download URL
     fileUrl: (data) =>
@@ -19,7 +22,7 @@ module.exports = {
     contentDetails: ({
       audio: {
         title,
-        dateForHumans,
+        date,
         dateUncertain,
         location,
         locationUncertain,
@@ -29,7 +32,7 @@ module.exports = {
       },
     }) => ({
       title,
-      dateForHumans,
+      dateForHumans: formatReducedPrecisionDate(date),
       dateUncertain,
       location,
       locationUncertain,
