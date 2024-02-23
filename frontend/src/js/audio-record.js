@@ -9,7 +9,7 @@ export {};
  * @property {number} fileId
  * @property {string} title
  * @property {string} topics
- * @property {string} [dateISO]
+ * @property {string} [date]
  * @property {string} [dateForHumans]
  * @property {number} [year]
  * @property {boolean | null} dateUncertain

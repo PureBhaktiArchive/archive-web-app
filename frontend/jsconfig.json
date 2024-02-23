@@ -1,0 +1,45 @@
+{
+  /**
+    `jsconfig` and `tsconfig` have different defaults.
+    https://github.com/microsoft/TypeScript/issues/50862#issuecomment-1565175938
+    https://github.com/microsoft/TypeScript-Website/pull/2839/files#diff-811506e1c7d2851ddd738d69cc2db9ad1dc5ebdb8beb861e937fe40f73fdd6d0R112
+
+    Besides that, jsconfig has to be specified explicitly in the CLI `tsc`.
+    https://github.com/microsoft/TypeScript/issues/41350
+    https://github.com/microsoft/TypeScript/issues/6671
+  */
+
+  "compilerOptions": {
+    // Language and Environment
+
+    "target": "ES2021",
+    "lib": ["ES2021"],
+
+    // Modules
+
+    // We need to specify it because otherwise we face an error:
+    // Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.ts(1323)
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+
+    // Completeness
+
+    "skipLibCheck": true, // This is the default for jsconfig
+
+    // Emit
+
+    "noEmit": true, // This is the default for jsconfig
+
+    // Type Checking
+
+    "noImplicitReturns": true,
+    // TODO: "strict": true,
+
+    // JavaScript Support
+
+    "allowJs": true, // This is the default for jsconfig
+    "maxNodeModuleJsDepth": 1, // Overriding the default of 2 for jsconfig, otherwise tsc starts looking into node_modules and emit errors
+    "checkJs": true
+  },
+  "exclude": ["node_modules", "**/node_modules/*", "dist", "src/js/**/*.js"]
+}

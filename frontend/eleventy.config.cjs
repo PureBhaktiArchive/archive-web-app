@@ -2,12 +2,14 @@
  * sri sri guru gaurangau jayatah
  */
 
+// @ts-expect-error due to https://github.com/11ty/eleventy/issues/2935, which is fixed in 3.0
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
 const { formatDurationForHumans } = require('./config/filters/duration');
 const {
   soundQualityRatingMapping,
 } = require('./config/filters/sound-quality-rating');
 const { getDirectusClient } = require('./config/directus');
+const { formatReducedPrecisionDate } = require('./src/reduced-precision-date');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -16,12 +18,9 @@ require('dotenv').config({
 /**
  * Eleventy config function.
  *
- * Typing idea borrowed from https://github.com/11ty/eleventy/discussions/2089
- * But it doesn't seem to work with tsconfig present.
- * Setting `maxNodeModuleJsDepth` to 1 helps, but it brings all the type check errors from 11ty.
- * Therefore as of now this file is not included in the tsconfig. Intellisense is more important.
- * @param {import("@11ty/eleventy/src/UserConfig")} eleventyConfig
- * @returns {ReturnType<import("@11ty/eleventy/src/defaultConfig")>}
+ * Typing according to https://www.11ty.dev/docs/config/#type-definitions
+ * @param {import("@11ty/eleventy").UserConfig} eleventyConfig
+ *   In order for intellisense to work, `maxNodeModuleJsDepth` should be set to `1`
  */
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget('tailwind.config.js');
@@ -65,6 +64,11 @@ module.exports = function (eleventyConfig) {
     'sound_quality_label',
     (soundqualitylabel) =>
       `${soundQualityRatingMapping[soundqualitylabel].label}`
+  );
+
+  eleventyConfig.addFilter(
+    'format_reduced_precision',
+    formatReducedPrecisionDate
   );
 
   // Return your Object options:

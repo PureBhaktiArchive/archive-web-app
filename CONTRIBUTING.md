@@ -7,7 +7,7 @@ _sri sri guru gaurangau jayatah_
 Prerequisites:
 
 - [Visual Studio Code](https://code.visualstudio.com/) is recommended as a source code editor since the repository includes the workspace settings and recommended extensions for establishing streamligned and reproducible development environment.
-  - Open the whole repository in the editor, not only `frontend` or `functions` folders.
+  - Open the whole repository in the editor, not only `frontend` or any other nested directory.
   - Confirm the recommended extensions installation upon opening the repository in Visual Studio Code.
 - [Git client](https://git-scm.com/downloads).
 - [Node.js](https://nodejs.org/) v16 and npm.

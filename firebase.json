@@ -1,7 +1,4 @@
 {
-  "functions": {
-    "source": "functions"
-  },
   "hosting": {
     "public": "frontend/dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
@@ -17,12 +14,16 @@
           }
         ]
       }
+    ],
+    "redirects": [
+      {
+        "source": "/list*",
+        "type": 302,
+        "destination": "https://view.flodesk.com/pages/6454088302298deb828d9ab0"
+      }
     ]
   },
   "emulators": {
-    "functions": {
-      "port": 5001
-    },
     "database": {
       "port": 9000
     },

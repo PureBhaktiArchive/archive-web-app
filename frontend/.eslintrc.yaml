@@ -2,8 +2,6 @@ root: true
 env:
   node: true
   es2022: true
-parserOptions:
-  sourceType: module
 plugins:
   - import
   - header
@@ -13,19 +11,16 @@ extends:
   - plugin:import/warnings
   - prettier
 rules:
+  no-irregular-whitespace:
+    - error
+    - skipComments: true
   'header/header':
     - error
     - block
     - ['!', ' * sri sri guru gaurangau jayatah', ' ']
     - 2
-  import/extensions:
-    - error
-    - ignorePackages
-  import/no-commonjs:
-    - error
-    - allowConditionalRequire: false
 overrides:
-  - files: '**/*.spec.js'
+  - files: '**/*.test.js'
     plugins: [jest]
     extends:
       - plugin:jest/recommended
