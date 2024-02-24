@@ -16,7 +16,7 @@ import {
 import '../css/algolia.css';
 import { itemTemplate } from './audio-item-template';
 import './player';
-import { searchBar } from './search-bar';
+import { searchBox } from './search-box';
 import './search-result-item';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
@@ -45,7 +45,7 @@ search.addWidgets([
   configure({
     hitsPerPage: 30,
   }),
-  searchBar({
+  searchBox({
     container: document.querySelector('#searchbox'),
   }),
   stats({
@@ -68,19 +68,31 @@ search.addWidgets([
               : '',
     },
   }),
-  // Loading indicator
   {
-    $$type: 'Loading indicator',
-    render: ({ status }) => {
-      const isSearchStalled = status === 'stalled';
-      document
-        .getElementById('loading')
-        .classList.toggle('hidden', !isSearchStalled);
-      document
-        .getElementById('stats')
-        .classList.toggle('hidden', isSearchStalled);
-      if (!isSearchStalled)
-        document.getElementById('under-progress').classList.remove('hidden');
+    $$type: 'Error widget',
+    init({ instantSearchInstance }) {
+      const errorElement = document.getElementById('error-indicator');
+      const retryElement = errorElement.querySelector('a');
+
+      // The `render` method is not called on API error (wrong index, API Key, etc.)
+      // That's why we're using the `render` event, which is dispatched in all cases.
+      instantSearchInstance.on('render', () => {
+        errorElement.classList.toggle(
+          'hidden',
+          instantSearchInstance.status !== 'error'
+        );
+      });
+
+      /** @type {import('instantsearch.js/es').UiState} */
+      let savedUIState;
+      instantSearchInstance.on('error', () => {
+        // Saving the UI state in which an error occured.
+        // This is needed because InstantSearch reverts the UI state to the previous successful state.
+        savedUIState = instantSearchInstance.getUiState();
+      });
+      retryElement.addEventListener('click', () => {
+        instantSearchInstance.setUiState(savedUIState);
+      });
     },
   },
   refinementList({

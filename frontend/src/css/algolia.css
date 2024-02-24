@@ -357,7 +357,3 @@ a[class^='ais-'] {
 .ais-Hits-list--cards {
   @apply flex flex-wrap max-sm:justify-center;
 }
-
-.ais-Stats-text {
-  @apply font-bold italic text-neutral-600;
-}

@@ -15,7 +15,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
 import { itemTemplate } from './memories-item-template';
-import { searchBar } from './search-bar';
+import { searchBox } from './search-box';
 
 const searchClient = algoliasearch(
   import.meta.env.ALGOLIA_APPLICATION_ID,
@@ -30,7 +30,7 @@ search.addWidgets([
   configure({
     hitsPerPage: 30,
   }),
-  searchBar({
+  searchBox({
     container: document.querySelector('#searchbox'),
   }),
   stats({

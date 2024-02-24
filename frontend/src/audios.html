@@ -64,14 +64,23 @@ jsFile: audios.js
         placeholder="Search for title, topics, locations, dates, etc."
         class="block w-full appearance-none rounded-none rounded-l-md border border-r-0 border-gray-300 px-3 py-2 leading-6 placeholder-gray-300 focus:border-gray-300 focus:outline-none focus:ring-0"
       >
-      <button type="submit" class="sm:px4 rounded-r-md border-l-0 border-gray-300 bg-neutral-600 px-2 font-semibold text-white shadow-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-6 w-6 sm:hidden">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-        <span class="hidden sm:inline">Search</span>
+      <button type="submit" class="rounded-r-md border-l-0 border-gray-300 bg-neutral-600 px-4 font-semibold text-white shadow-sm">
+        <span class="whitespace-nowrap">
+          <svg class="inline-block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span class="max-sm:hidden">Search</span>
+        </span>
+        <span class="hidden whitespace-nowrap">
+          <svg class="inline-block h-6 w-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span class="max-sm:hidden">Loading...</span>
+        </span>
       </button>
     </div>
-    <div class="my-3 flex items-center">
+    <div class="my-3 flex flex-wrap items-center">
       <!-- Filter button -->
       <button
         x-data
@@ -84,12 +93,12 @@ jsFile: audios.js
         </svg>
         <span>Filter</span>
       </button>
-      <span id="stats" class="whitespace-nowrap text-sm"></span>
-      <span id="loading" class="text-sm font-bold italic text-neutral-600">Loading…</span>
+      <span id="stats" class="mr-auto whitespace-nowrap text-sm text-neutral-600"></span>
+      <span id="error-indicator" class="whitespace-nowrap text-sm font-bold text-red-800">Error occured. Please <a class="cursor-pointer underline decoration-dotted">retry</a> later.</span>
     </div>
     <div id="hits" class="[&_.ais-Hits-list]:divide-y"></div>
     <div id="pagination" class="my-2 w-full"></div>
-    <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
+    <p id="under-progress" class="p-2 text-center text-sm text-gray-500">
       This Archive is under progress. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check again later.
     </p>
   </main>
