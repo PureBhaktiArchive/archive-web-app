@@ -18,13 +18,26 @@ jsFile: series.js
         <div class="flex flex-grow flex-col">
           <div class="flex items-baseline justify-between">
             <!-- Title -->
-            {% render 'partials/audio-title.html', title: audio.title -%}
+            <div class="text-sm font-medium">{{ audio.title }}</div>
 
             <!-- Duration -->
-            {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
+            <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
+              {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
+            </div>
           </div>
           <!-- Second line -->
-          {% render 'partials/audio-tags.html', audioObj: audio, fileUrl: fileUrl -%}
+          <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
+            <div class="flex flex-grow flex-wrap items-start justify-between">
+              <!-- Tags -->
+              <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                {% render 'partials/audio-tags.html', audioObj: audio -%}
+              </div>
+              <!-- Colored badges -->
+              {% render 'partials/colored-badges.html', audioObj: audio -%}
+            </div>
+            <!-- Actions -->
+            {% render 'partials/audio-actions.html', audioObj: audio, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+          </div>
         </div>
       </div>
     {% endfor -%}
