@@ -24,78 +24,7 @@ description: Audio recording with all the details, including topics discussed
       {% render 'partials/colored-badges.html', audioObj: audio -%}
     </div>
     <!-- Actions -->
-    <div class="mb-1 flex space-x-1">
-      <!-- Download -->
-      <a
-        href="{{ fileUrl }}"
-        class="inline-flex items-center space-x-1"
-        title="Download file for listening offline"
-      >
-        <svg
-          class="h-full w-4 stroke-current"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-          />
-        </svg>
-        <span class="hidden md:inline">Download</span>
-      </a>
-      <!-- Feedback -->
-      <a
-        href="{{ feedbackUrl }}"
-        target="_blank"
-        class="inline-flex items-center space-x-1"
-        title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
-      >
-        <svg
-          class="h-full w-4 stroke-current"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-          />
-        </svg>
-        <span class="hidden md:inline">Feedback</span>
-      </a>
-      <!-- Share -->
-      <a
-        href="/audios/{{ audio.fileId }}/"
-        class="inline-flex cursor-pointer items-center space-x-1"
-        x-data="webshare('{{ audio.title | replace: "'", "\\'" | escape }}', '/audios/{{ audio.fileId }}/')"
-        x-on:click.prevent="share"
-        data-tippy-content="Link copied to clipboard"
-        data-tippy-trigger="manual"
-        data-tippy-placement="bottom"
-        title="Share this audio"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          class="h-full w-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z"
-          />
-        </svg>
-        <span class="hidden md:inline">Share</span>
-      </a>
-    </div>
+    {% render 'partials/audio-actions.html', audioObj: audio, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
   </div>
   <div class="prose prose-sm mt-6 sm:prose dark:prose-invert">
     <!-- Other Speakers -->
