@@ -21,59 +21,7 @@ description: Audio recording with all the details, including topics discussed
         {% render 'partials/audio-tags.html', audioObj: audio -%}
       </div>
       <!-- Colored badges -->
-      <div class="mb-1 flex items-center space-x-1">
-        <!-- Percentage -->
-        <div
-          class="relative overflow-hidden rounded-lg border border-gray-300"
-          title="
-            {%- if audio.percentage > 0 -%}
-              How much Srila Gurudeva is speaking in the recording
-            {%- else -%}
-              Only other guru-varga is speaking in the recording
-            {%- endif -%}
-          "
-        >
-          <div
-            class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
-            style="--percentage: {% if audio.percentage > 0 -%}{{ audio.percentage | percentage }}{%- else -%}100%{%- endif -%}"
-          ></div>
-          <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
-            {%- if audio.percentage > 0 -%}
-              Srila Gurudeva {{ audio.percentage | percentage }}
-            {%- else -%}
-              Other guru-varga
-            {%- endif -%}
-          </div>
-        </div>
-        <!-- Sound Quality -->
-        <div
-          class="{{ audio.soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 pb-[1px]"
-          title="Sound quality of the recording"
-        >
-          <svg
-            class="h-4 w-4 flex-none stroke-current stroke-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-          >
-            <path
-              d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            />
-            <path
-              d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
-              fill="none"
-              stroke="currentColor"
-              stroke-miterlimit="10"
-              stroke-width="32"
-            />
-          </svg>
-          <span>{{ audio.soundQualityRating | sound_quality_label }}</span>
-        </div>
-      </div>
+      {% render 'partials/colored-badges.html', audioObj: audio -%}
     </div>
     <!-- Actions -->
     <div class="mb-1 flex space-x-1">
