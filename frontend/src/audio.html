@@ -18,32 +18,7 @@ description: Audio recording with all the details, including topics discussed
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
       <div class="mb-1 flex flex-wrap content-between items-baseline *:mb-1 *:mr-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
-        <div title="Unique file identifier">#{{ audio.fileId }}</div>
-        {% if audio.date -%}
-          <div>
-            {{ audio.date | format_reduced_precision }}
-            {% if audio.dateUncertain -%}
-              <span title="Date is uncertain">(?)</span>
-            {%- endif %}
-            {% if audio.timeOfDay -%}
-              <span title="Time of day">{{ audio.timeOfDay }}</span>
-            {%- endif %}
-          </div>
-        {%- endif %}
-        {% if audio.location -%}
-          <div>
-            {{ audio.location }}
-            {% if audio.locationUncertain -%}
-              <span title="Location is uncertain">(?)</span>
-            {%- endif %}
-          </div>
-        {%- endif %}
-        {% if audio.category -%}
-          <div>{{ audio.category }}</div>
-        {%- endif %}
-        {% for language in audio.languages -%}
-          <div>{{ language }}</div>
-        {%- endfor %}
+        {% render 'partials/audio-tags.html', audioObj: audio -%}
       </div>
       <!-- Colored badges -->
       <div class="mb-1 flex items-center space-x-1">
