@@ -17,3 +17,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Eleventy Fetch's cache: https://www.11ty.dev/docs/plugins/fetch/#cache-directory
+.cache
