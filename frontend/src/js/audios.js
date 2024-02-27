@@ -176,6 +176,23 @@ search.addWidgets([
   }),
 ]);
 
+/**
+ * Checks if the UI State is empty, i.e. without a query or any filtering
+ * @param {import('instantsearch.js/es').IndexUiState} uiState
+ */
+const isEmptySearch = (uiState) => !uiState.query && !uiState.refinementList;
+
+// Hiding the series section upon search
+search.on(
+  'render',
+  () =>
+    (document.getElementById('series').style.display = isEmptySearch(
+      search.getUiState()['audios']
+    )
+      ? ''
+      : 'none')
+);
+
 search.start();
 
 // This store keeps the currently playing file Id
