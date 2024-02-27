@@ -9,39 +9,39 @@ jsFile: common-player.js
 ---
 <section class="mx-auto mt-4 flex max-w-screen-md  flex-col px-2 sm:px-4">
   <!-- Title -->
-  <div class="mb-2 flex items-center rounded-lg bg-neutral-600 pb-6 pl-4 pt-6 text-xl font-bold text-white">
+  <h1 class="rounded-lg bg-neutral-600 p-6 text-xl font-bold text-white">
     {{ serie.title }}
-  </div>
-  {%- for audio in serie.audios %}
-    <div class="mb-2 flex rounded-md border border-neutral-500 pb-1">
-      {% render 'partials/play-button.html' -%}
-
-      <div class="flex flex-grow flex-col">
-        <div class="flex items-baseline justify-between">
-          <!-- Title -->
-          <div class="text-sm font-medium">{{ audio.title }}</div>
-
-          <!-- Duration -->
-          <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-            {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
-          </div>
-        </div>
-        <!-- Second line -->
-        <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
-          <div class="flex flex-grow flex-wrap items-start justify-between">
-            <!-- Tags -->
-            <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-              {% render 'partials/audio-tags.html', audioObj: audio -%}
+  </h1>
+  <ul class="mt-2">
+    {%- for audio in serie.audios %}
+      <li class="mb-2 flex rounded-md border border-neutral-500 pb-1">
+        {% render 'partials/play-button.html' -%}
+        <div class="flex flex-grow flex-col">
+          <div class="flex items-baseline justify-between">
+            <!-- Title -->
+            <div class="text-sm font-medium">{{ audio.title }}</div>
+            <!-- Duration -->
+            <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
+              {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
             </div>
-            <!-- Colored badges -->
-            {% render 'partials/colored-badges.html', audioObj: audio -%}
           </div>
-          <!-- Actions -->
-          {% render 'partials/audio-actions.html', audioObj: audio, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+          <!-- Second line -->
+          <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
+            <div class="flex flex-grow flex-wrap items-start justify-between">
+              <!-- Tags -->
+              <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                {% render 'partials/audio-tags.html', audioObj: audio -%}
+              </div>
+              <!-- Colored badges -->
+              {% render 'partials/colored-badges.html', audioObj: audio -%}
+            </div>
+            <!-- Actions -->
+            {% render 'partials/audio-actions.html', audioObj: audio, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+          </div>
         </div>
-      </div>
-    </div>
-  {% endfor -%}
+      </li>
+    {% endfor -%}
+  </ul>
 </section>
 <!-- Player UI -->
 {% render 'partials/audio-player.html' -%}
