@@ -3,13 +3,15 @@ pagination:
     data: series
     size: 1
     alias: serie
-permalink: "series/{{ serie.name | slugify }}/"
+permalink: "series/{{ serie.title | slugify }}/"
 layout: base
 jsFile: common-player.js
 ---
 <section class="mx-auto mt-4 flex max-w-screen-md  flex-col px-2 sm:px-4">
   <!-- Title -->
-  <div class="mb-2 flex items-center rounded-lg bg-neutral-600 pb-6 pl-4 pt-6 text-xl font-bold text-white">{{ series.name }}</div>
+  <div class="mb-2 flex items-center rounded-lg bg-neutral-600 pb-6 pl-4 pt-6 text-xl font-bold text-white">
+    {{ serie.title }}
+  </div>
   {%- for audio in serie.audios %}
     <div class="mb-2 flex rounded-md border border-neutral-500 pb-1">
       {% render 'partials/play-button.html' -%}

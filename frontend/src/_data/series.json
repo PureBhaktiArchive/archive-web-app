@@ -1,8 +1,6 @@
 [
   {
-    "slug": "up123",
-    "name": "Upadeshamrita",
-    "description": "This series is having audios related to upadesh of Gurubarga",
+    "title": "Upadeshamrita",
     "audios": [
       {
         "category": "Lecture",
@@ -60,7 +58,7 @@
     ]
   },
   {
-    "name": "Q&A",
+    "title": "Q&A",
     "audios": [
       {
         "category": "Lecture",
