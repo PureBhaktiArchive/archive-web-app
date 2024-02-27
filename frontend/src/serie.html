@@ -3,8 +3,12 @@ pagination:
     data: series
     size: 1
     alias: serie
+    addAllPagesToCollections: true
 permalink: "series/{{ serie.title | slugify }}/"
 layout: base
+tags: series
+eleventyComputed:
+  title: "{{ serie.title }} Lecture Series"
 jsFile: common-player.js
 ---
 <section class="mx-auto mt-4 flex max-w-screen-md  flex-col px-2 sm:px-4">

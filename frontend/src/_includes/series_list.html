@@ -1,0 +1,12 @@
+<ul class="flex flex-wrap space-x-2">
+  {%- for item in collections.series -%}
+    <li class="rounded-md border border-orange-400 bg-orange-100 p-2">
+      <a href="{{ item.url }}">
+        {%- comment %}
+          The serie page title is amended, therefore using the raw `serie.title`
+        {%- endcomment %}
+        {{- item.data.serie.title -}}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

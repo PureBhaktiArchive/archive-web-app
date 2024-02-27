@@ -75,10 +75,7 @@ jsFile: audios.js
       </button>
     </div>
     <section id="series" title="Series" class="my-3">
-      Or browse curated series of lectures:
-      <div class="flex flex-wrap space-x-2">
-        {% render 'serie.html' for series as item %}
-      </div>
+      {% include 'series_list.html' %}
     </section>
     <div class="my-3 flex items-center">
       <!-- Filter button -->
