@@ -78,5 +78,29 @@
         "year": 1992
       }
     ]
+  },
+  {
+    "title": "Series 1",
+    "audios": []
+  },
+  {
+    "title": "Series 2",
+    "audios": []
+  },
+  {
+    "title": "Series 3 with quite a long title which does not fit into one line",
+    "audios": []
+  },
+  {
+    "title": "Series 4",
+    "audios": []
+  },
+  {
+    "title": "Series 5",
+    "audios": []
+  },
+  {
+    "title": "Series 6",
+    "audios": []
   }
 ]

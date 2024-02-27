@@ -1,6 +1,14 @@
-<ul class="flex flex-wrap space-x-2">
-  {%- for item in collections.series -%}
-    <li class="rounded-md border border-orange-400 bg-orange-100 p-2">
+{% comment %}
+  Limit can be passed in as a parameter of this partial. If the parameter is omitted, all items are rendered.
+
+  Important: use `include` (https://www.11ty.dev/docs/languages/liquid/#supported-features)
+  instead of `render` (https://liquidjs.com/tags/render.html) for this partial because
+  the latter is the liquidjs' feature and it does not have access to the 11ty's data cascade.
+  Whereas the `include` is supported by 11ty itself and provides access to the data.
+{% endcomment %}
+<ul class="flex flex-wrap">
+  {%- for item in collections.series limit: limit -%}
+    <li class="mb-2 mr-2 rounded-md border border-neutral-300 p-2">
       <a href="{{ item.url }}">
         {%- comment %}
           The serie page title is amended, therefore using the raw `serie.title`
