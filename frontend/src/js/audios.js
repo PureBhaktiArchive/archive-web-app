@@ -131,11 +131,6 @@ search.addWidgets([
     limit: 100,
     sortBy: ['name:asc'],
   }),
-  refinementList({
-    container: '#series-list div:empty',
-    attribute: 'series',
-    sortBy: ['name:asc'],
-  }),
   numericMenu({
     container: '#percentage-menu div:empty',
     attribute: 'percentage',
