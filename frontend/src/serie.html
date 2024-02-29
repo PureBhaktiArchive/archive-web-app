@@ -11,7 +11,7 @@ eleventyComputed:
   title: "{{ serie.title }} Lecture Series"
 jsFile: common-player.js
 ---
-<section class="mx-auto mt-4 flex max-w-screen-md  flex-col px-2 sm:px-4">
+<article class="mx-auto mt-10 max-w-screen-md px-2 sm:px-4">
   <!-- Title -->
   <h1 class="flex items-center space-x-1 rounded-lg bg-neutral-600 p-6 text-xl font-bold text-white">
     <!-- https://icon-sets.iconify.design/cil/featured-playlist/ -->
@@ -50,6 +50,10 @@ jsFile: common-player.js
       </li>
     {% endfor -%}
   </ul>
-</section>
+  <section class="mt-20">
+    <h4 class="mb-2 text-sm font-semibold uppercase md:text-base">Other Lecture Series</h4>
+    {% include 'series_list.html' %}
+  </section>
+</article>
 <!-- Player UI -->
 {% render 'partials/audio-player.html' -%}
