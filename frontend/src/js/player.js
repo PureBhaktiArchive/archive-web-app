@@ -114,14 +114,16 @@ const player = (fileId, contentDetails) => ({
     // Triggering all updates for the volume slider
     this.$nextTick(() => (this.volume = 1));
     if (fileId) this.loadFile(fileId, contentDetails, false);
-  },
 
-  /**
-   * Handles `archive:toggle-play` event from the search result item
-   * @param {CustomEvent} $event
-   */
-  handleTogglePlayEvent({ detail: { fileId, contentDetails, shouldPlay } }) {
-    this.loadFile(fileId, contentDetails, shouldPlay);
+    window.addEventListener(
+      'archive:toggle-play',
+      /**
+       * Handles `archive:toggle-play` event from an audio item on the page
+       * @param {CustomEvent} $event
+       */
+      ({ detail: { fileId, contentDetails, shouldPlay } }) =>
+        this.loadFile(fileId, contentDetails, shouldPlay)
+    );
   },
 
   /**
@@ -216,40 +218,6 @@ const player = (fileId, contentDetails) => ({
 
   get isMuted() {
     return !(this.volume > 0);
-  },
-
-  // For x-bind
-  // `self` can cause issues, see https://github.com/alpinejs/alpine/discussions/3603
-  root: {
-    'x-show': 'isOpen',
-    'x-transition': '',
-    '@archive:toggle-play.window': 'handleTogglePlayEvent',
-  },
-  playButton: {
-    '@click': 'togglePlay()',
-  },
-  seekButton: {
-    '@click': 'seekRelative',
-  },
-  seekSlider: {
-    ':max': 'duration',
-    ':value': 'currentTime',
-    '@input': 'startSeeking',
-    '@change': 'commitSeeking',
-  },
-  volumeSlider: {
-    ':value': 'volume',
-    '@input': 'setVolume',
-    '@change': 'commitVolume',
-  },
-  muteButton: {
-    '@click': 'toggleMute',
-  },
-  mutedIcon: {
-    'x-show': 'isMuted',
-  },
-  unmutedIcon: {
-    'x-show': '!isMuted',
   },
 });
 
