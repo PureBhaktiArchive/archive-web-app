@@ -4,28 +4,13 @@
 
 import Alpine from 'alpinejs';
 
-/**
- * @typedef {import('./audio-record').AudioRecord} AudioRecord
- * @typedef {import('algoliasearch-helper').SearchResults<AudioRecord>} AudioSearchResults
- * @typedef {import('algoliasearch-helper').AlgoliaSearchHelper} AlgoliaSearchHelper
- */
-
-Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
-  const helper = /** @type {AlgoliaSearchHelper} */ (
-    Alpine.store('searchHelper')
-  );
-
-  // Type cast is needed because the helper is not generic
-  const itemData = /** @type {AudioSearchResults} */ (
-    helper.lastResults
-  ).hits.find((hit) => hit.fileId === fileId);
-  if (!itemData)
-    throw new Error(`Cannot find search result item for ${fileId}`);
-
+Alpine.data('audioItem', (/** @type {number} */ fileId) => {
   return {
     fileId,
+    // Detecting if the current file Id is being played at the moment
     isPlaying: Alpine.store('activeFileId') === fileId,
-    itemData,
+    /** @type {ContentDetails} */
+    contentDetails: null,
     playerStatusListener: null,
 
     get playerStatusEventName() {
@@ -33,6 +18,8 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
     },
 
     init() {
+      this.contentDetails = JSON.parse(this.$root.dataset.contentDetails);
+
       // Saving the listener in order to remove it in the `destroy` method
       this.playerStatusListener =
         /** @param {CustomEvent<PlayerStatusEventDetail>} event */
@@ -60,16 +47,7 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
       const detail = {
         fileId: this.fileId,
         shouldPlay: !this.isPlaying,
-        contentDetails: {
-          title: this.itemData.title,
-          dateForHumans: this.itemData.dateForHumans,
-          dateUncertain: this.itemData.dateUncertain,
-          location: this.itemData.location,
-          locationUncertain: this.itemData.locationUncertain,
-          category: this.itemData.category,
-          languages: this.itemData.languages,
-          duration: this.itemData.duration,
-        },
+        contentDetails: this.contentDetails,
       };
 
       window.dispatchEvent(new CustomEvent('archive:toggle-play', { detail }));

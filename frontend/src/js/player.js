@@ -6,18 +6,6 @@ import Alpine from 'alpinejs';
 import { formatDurationForHumans } from './duration';
 
 /**
- * @typedef ContentDetails
-   @property {string} title
-   @property {string} dateForHumans
-   @property {boolean} dateUncertain
-   @property {string} location
-   @property {boolean} locationUncertain
-   @property {string} category
-   @property {string[]} languages
-   @property {number} duration
- */
-
-/**
  * Audio player component
  * It can be pre-populated with a file ID and content details using appropriate data attributes
  * Decalring this intermediate function to avoid type inference as Record<string, any>
@@ -57,9 +45,9 @@ const player = () => ({
   },
 
   init() {
-    // Syncing state between the player and the search result item
     this.$watch('isPlaying', (value) => {
-      // Storing the currently played file id in the global store for search results
+      // Storing the currently played file id in the global store
+      // This is to ensure that an audio item created after playback starts has proper play status
       this.$store['activeFileId'] = value ? this.fileId : null;
     });
 
@@ -143,7 +131,7 @@ const player = () => ({
       return;
     }
 
-    // Turning off playback to send event to the previously played search result item
+    // Turning off playback to send event to the previously played audio item
     if (this.fileId && this.isPlaying) this.togglePlay(false);
 
     this.fileId = fileId;

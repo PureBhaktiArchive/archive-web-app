@@ -7,6 +7,30 @@
 export {};
 
 declare global {
+  type ContentDetails = {
+    title: string;
+    dateForHumans: string;
+    dateUncertain: boolean;
+    location: string;
+    locationUncertain: boolean;
+    category: string;
+    languages: string[];
+    duration: number;
+  };
+
+  type AudioRecord = ContentDetails & {
+    fileId: number;
+    topics: string;
+    date?: string;
+    year?: number;
+    timeOfDay: string | null;
+    languageCategory?: string;
+    percentage: number;
+    otherSpeakers: string[];
+    series: string[];
+    soundQualityRating: string;
+  };
+
   type PlayerStatusEventDetail = {
     isPlaying: boolean;
   };

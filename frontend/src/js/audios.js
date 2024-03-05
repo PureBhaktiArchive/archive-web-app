@@ -14,10 +14,10 @@ import {
   stats,
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
+import './audio-item';
 import { itemTemplate } from './audio-item-template';
 import './player';
 import { searchBar } from './search-bar';
-import './search-result-item';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
 
@@ -193,9 +193,5 @@ search.start();
 // This store keeps the currently playing file Id
 // Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
 Alpine.store('activeFileId', 0);
-
-// This store provides access to the search helper from the search result item component
-// Search should be already started for the helper to be defined
-Alpine.store('searchHelper', search.helper);
 
 Alpine.start();

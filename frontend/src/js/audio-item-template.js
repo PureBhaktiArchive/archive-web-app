@@ -8,7 +8,6 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**
- * @typedef {import('./audio-record').AudioRecord} AudioRecord
  * @typedef {import("instantsearch.js").Hit<AudioRecord>} AudioHit
  * @typedef {import("instantsearch.js").TemplateParams} TemplateParams
  */
@@ -21,7 +20,19 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    x-data="searchResultItem(${hit.fileId})"
+    data-content-details="${JSON.stringify(
+      /** @type {ContentDetails} */ ({
+        title: hit.title,
+        category: hit.category,
+        dateForHumans: hit.dateForHumans,
+        dateUncertain: hit.dateUncertain,
+        duration: hit.duration,
+        languages: hit.languages,
+        location: hit.location,
+        locationUncertain: hit.locationUncertain,
+      })
+    )}"
+    x-data="audioItem(${hit.fileId})"
   >
     <!-- Main section -->
     <div class="flex grow items-start">
