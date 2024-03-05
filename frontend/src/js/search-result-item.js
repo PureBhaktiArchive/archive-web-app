@@ -26,6 +26,30 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
     fileId,
     isPlaying: Alpine.store('activeFileId') === fileId,
     itemData,
+    playerStatusListener: null,
+
+    get playerStatusEventName() {
+      return `archive:player-status-${this.fileId}`;
+    },
+
+    init() {
+      // Saving the listener in order to remove it in the `destroy` method
+      this.playerStatusListener =
+        /** @param {CustomEvent<PlayerStatusEventDetail>} event */
+        ({ detail: { isPlaying } }) => (this.isPlaying = isPlaying);
+
+      window.addEventListener(
+        this.playerStatusEventName,
+        this.playerStatusListener
+      );
+    },
+
+    destroy() {
+      window.removeEventListener(
+        this.playerStatusEventName,
+        this.playerStatusListener
+      );
+    },
 
     togglePlay() {
       /**
@@ -49,20 +73,6 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
       };
 
       window.dispatchEvent(new CustomEvent('archive:toggle-play', { detail }));
-    },
-
-    /** @param {CustomEvent<PlayerStatusEventDetail>} event */
-    onPlayerStatus({ detail: { isPlaying } }) {
-      this.isPlaying = isPlaying;
-    },
-
-    // For `x-bind`
-    // `self` causes issues, see https://github.com/alpinejs/alpine/discussions/3603
-    root: {
-      [`@archive:player-status-${fileId}.window`]: 'onPlayerStatus',
-    },
-    playButton: {
-      '@click': 'togglePlay',
     },
   };
 });
