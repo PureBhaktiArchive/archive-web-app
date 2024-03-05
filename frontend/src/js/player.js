@@ -19,11 +19,10 @@ import { formatDurationForHumans } from './duration';
 
 /**
  * Audio player component
+ * It can be pre-populated with a file ID and content details using appropriate data attributes
  * Decalring this intermediate function to avoid type inference as Record<string, any>
- * @param {number} fileId Audio file ID
- * @param {ContentDetails} contentDetails Title and other content details to initialise the player
  */
-const player = (fileId, contentDetails) => ({
+const player = () => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -113,7 +112,12 @@ const player = (fileId, contentDetails) => ({
 
     // Triggering all updates for the volume slider
     this.$nextTick(() => (this.volume = 1));
-    if (fileId) this.loadFile(fileId, contentDetails, false);
+
+    // These values can be pre-rendered in the HTML in case of static pages
+    // Initializing the player with these values
+    const { fileId, contentDetails } = this.$root.dataset;
+    if (fileId && contentDetails)
+      this.loadFile(fileId, JSON.parse(contentDetails), false);
 
     window.addEventListener(
       'archive:toggle-play',
