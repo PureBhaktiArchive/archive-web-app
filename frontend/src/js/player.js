@@ -122,8 +122,8 @@ const player = () => ({
     window.addEventListener(
       'archive:toggle-play',
       /**
-       * Handles `archive:toggle-play` event from an audio item on the page
-       * @param {CustomEvent} $event
+       * Handles `archive:toggle-play` event from audio items on the page
+       * @param {CustomEvent<PlayerToggleEventDetail>} $event
        */
       ({ detail: { fileId, contentDetails, shouldPlay } }) =>
         this.loadFile(fileId, contentDetails, shouldPlay)
@@ -173,7 +173,9 @@ const player = () => ({
     // We cannot rely on the watcher on `isPlaying` due to https://github.com/alpinejs/alpine/discussions/2699
     window.dispatchEvent(
       new CustomEvent(`archive:player-status-${this.fileId}`, {
-        detail: { isPlaying: this.isPlaying },
+        detail: /** @type {PlayerStatusEventDetail} */ ({
+          isPlaying: this.isPlaying,
+        }),
       })
     );
   },

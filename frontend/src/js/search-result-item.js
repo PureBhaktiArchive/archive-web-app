@@ -28,26 +28,30 @@ Alpine.data('searchResultItem', (/** @type {number} */ fileId) => {
     itemData,
 
     togglePlay() {
-      window.dispatchEvent(
-        new CustomEvent('archive:toggle-play', {
-          detail: {
-            fileId: this.fileId,
-            shouldPlay: !this.isPlaying,
-            contentDetails: {
-              title: this.itemData.title,
-              dateForHumans: this.itemData.dateForHumans,
-              dateUncertain: this.itemData.dateUncertain,
-              location: this.itemData.location,
-              locationUncertain: this.itemData.locationUncertain,
-              category: this.itemData.category,
-              languages: this.itemData.languages,
-              duration: this.itemData.duration,
-            },
-          },
-        })
-      );
+      /**
+       * Declaring a variable in order to enforce stricter object literal assignment checks
+       * See {@link https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html#stricter-object-literal-assignment-checks}
+       * @type {PlayerToggleEventDetail}
+       **/
+      const detail = {
+        fileId: this.fileId,
+        shouldPlay: !this.isPlaying,
+        contentDetails: {
+          title: this.itemData.title,
+          dateForHumans: this.itemData.dateForHumans,
+          dateUncertain: this.itemData.dateUncertain,
+          location: this.itemData.location,
+          locationUncertain: this.itemData.locationUncertain,
+          category: this.itemData.category,
+          languages: this.itemData.languages,
+          duration: this.itemData.duration,
+        },
+      };
+
+      window.dispatchEvent(new CustomEvent('archive:toggle-play', { detail }));
     },
 
+    /** @param {CustomEvent<PlayerStatusEventDetail>} event */
     onPlayerStatus({ detail: { isPlaying } }) {
       this.isPlaying = isPlaying;
     },
