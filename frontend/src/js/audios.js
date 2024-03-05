@@ -182,7 +182,7 @@ search.on(
   'render',
   () =>
     (document.getElementById('series').style.display = isEmptySearch(
-      search.getUiState()['audios']
+      search.getUiState()[import.meta.env.ALGOLIA_INDEX_AUDIOS]
     )
       ? ''
       : 'none')
