@@ -190,8 +190,4 @@ search.on(
 
 search.start();
 
-// This store keeps the currently playing file Id
-// Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
-Alpine.store('activeFileId', 0);
-
 Alpine.start();

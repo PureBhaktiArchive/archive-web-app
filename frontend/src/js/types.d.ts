@@ -31,10 +31,6 @@ declare global {
     soundQualityRating: string;
   };
 
-  type PlayerStatusEventDetail = {
-    isPlaying: boolean;
-  };
-
   type PlayerToggleEventDetail = {
     fileId: number;
     shouldPlay: boolean;

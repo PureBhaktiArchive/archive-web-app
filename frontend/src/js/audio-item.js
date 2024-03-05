@@ -7,11 +7,14 @@ import Alpine from 'alpinejs';
 Alpine.data('audioItem', (/** @type {number} */ fileId) => {
   return {
     fileId,
+
     // Detecting if the current file Id is being played at the moment
-    isPlaying: Alpine.store('activeFileId') === fileId,
+    get isPlaying() {
+      return Alpine.store('activeFileId') === this.fileId;
+    },
+
     /** @type {ContentDetails} */
     contentDetails: null,
-    playerStatusListener: null,
 
     get playerStatusEventName() {
       return `archive:player-status-${this.fileId}`;
@@ -19,23 +22,6 @@ Alpine.data('audioItem', (/** @type {number} */ fileId) => {
 
     init() {
       this.contentDetails = JSON.parse(this.$root.dataset.contentDetails);
-
-      // Saving the listener in order to remove it in the `destroy` method
-      this.playerStatusListener =
-        /** @param {CustomEvent<PlayerStatusEventDetail>} event */
-        ({ detail: { isPlaying } }) => (this.isPlaying = isPlaying);
-
-      window.addEventListener(
-        this.playerStatusEventName,
-        this.playerStatusListener
-      );
-    },
-
-    destroy() {
-      window.removeEventListener(
-        this.playerStatusEventName,
-        this.playerStatusListener
-      );
     },
 
     togglePlay() {

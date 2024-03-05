@@ -46,9 +46,9 @@ const player = () => ({
 
   init() {
     this.$watch('isPlaying', (value) => {
-      // Storing the currently played file id in the global store
-      // This is to ensure that an audio item created after playback starts has proper play status
-      this.$store['activeFileId'] = value ? this.fileId : null;
+      // Storing the currently played file id in the global store for audio items
+      // Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
+      Alpine.store('activeFileId', value ? this.fileId : NaN);
     });
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
@@ -157,15 +157,6 @@ const player = () => ({
     this.isPlaying = value;
     if (this.isPlaying) this.audio.play();
     else this.audio.pause();
-
-    // We cannot rely on the watcher on `isPlaying` due to https://github.com/alpinejs/alpine/discussions/2699
-    window.dispatchEvent(
-      new CustomEvent(`archive:player-status-${this.fileId}`, {
-        detail: /** @type {PlayerStatusEventDetail} */ ({
-          isPlaying: this.isPlaying,
-        }),
-      })
-    );
   },
 
   /**
