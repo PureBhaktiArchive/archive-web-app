@@ -18,9 +18,11 @@ module.exports = {
     // Computing the Feedback URL here because the env variables are not available in templates
     feedbackUrl: (data) =>
       `${process.env.FEEDBACK_FORM_AUDIOS}${data.audio.fileId}`,
-    // Compiling content details for the audio player
-    contentDetails: ({
+    // Compiling a record for the audio player
+    // We can't just pass `audio` there because 11ty adds own properties to the `audio` project
+    record: ({
       audio: {
+        fileId,
         title,
         date,
         dateUncertain,
@@ -31,6 +33,7 @@ module.exports = {
         duration,
       },
     }) => ({
+      fileId,
       title,
       dateForHumans: formatReducedPrecisionDate(date),
       dateUncertain,

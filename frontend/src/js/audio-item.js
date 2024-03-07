@@ -4,24 +4,18 @@
 
 import Alpine from 'alpinejs';
 
-Alpine.data('audioItem', (/** @type {number} */ fileId) => {
+Alpine.data('audioItem', () => {
   return {
-    fileId,
+    /** @type {AudioRecord} */
+    record: null,
 
     // Detecting if the current file Id is being played at the moment
     get isPlaying() {
-      return Alpine.store('activeFileId') === this.fileId;
-    },
-
-    /** @type {ContentDetails} */
-    contentDetails: null,
-
-    get playerStatusEventName() {
-      return `archive:player-status-${this.fileId}`;
+      return Alpine.store('activeFileId') === this.record.fileId;
     },
 
     init() {
-      this.contentDetails = JSON.parse(this.$root.dataset.contentDetails);
+      this.record = JSON.parse(this.$root.dataset.record);
     },
 
     togglePlay() {
@@ -31,9 +25,8 @@ Alpine.data('audioItem', (/** @type {number} */ fileId) => {
        * @type {PlayerToggleEventDetail}
        **/
       const detail = {
-        fileId: this.fileId,
+        record: this.record,
         shouldPlay: !this.isPlaying,
-        contentDetails: this.contentDetails,
       };
 
       window.dispatchEvent(new CustomEvent('archive:toggle-play', { detail }));

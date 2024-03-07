@@ -20,18 +20,16 @@ const player = () => ({
   /** @type {number} */
   previousVolume: null,
 
-  /** @type {number} */
-  fileId: null,
-  /** @type {ContentDetails} */
-  contentDetails: null,
+  /** @type {AudioRecord} */
+  record: null,
   audio: new Audio(),
 
   get downloadURL() {
-    return `${import.meta.env.STORAGE_BASE_URL}/${this.fileId}.mp3`;
+    return `${import.meta.env.STORAGE_BASE_URL}/${this.record?.fileId}.mp3`;
   },
 
   get feedbackURL() {
-    return import.meta.env.FEEDBACK_FORM_AUDIOS + this.fileId;
+    return import.meta.env.FEEDBACK_FORM_AUDIOS + this.record?.fileId;
   },
 
   get durationForHumans() {
@@ -48,7 +46,7 @@ const player = () => ({
     this.$watch('isPlaying', (value) => {
       // Storing the currently played file id in the global store for audio items
       // Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
-      Alpine.store('activeFileId', value ? this.fileId : NaN);
+      Alpine.store('activeFileId', value ? this.record.fileId : NaN);
     });
 
     // As WebKit browsers do not provide any pseudo-element for range progress,
@@ -103,9 +101,8 @@ const player = () => ({
 
     // These values can be pre-rendered in the HTML in case of static pages
     // Initializing the player with these values
-    const { fileId, contentDetails } = this.$root.dataset;
-    if (fileId && contentDetails)
-      this.loadFile(fileId, JSON.parse(contentDetails), false);
+    if (this.$root.dataset.record)
+      this.loadFile(JSON.parse(this.$root.dataset.record), false);
 
     window.addEventListener(
       'archive:toggle-play',
@@ -113,30 +110,27 @@ const player = () => ({
        * Handles `archive:toggle-play` event from audio items on the page
        * @param {CustomEvent<PlayerToggleEventDetail>} $event
        */
-      ({ detail: { fileId, contentDetails, shouldPlay } }) =>
-        this.loadFile(fileId, contentDetails, shouldPlay)
+      ({ detail: { record, shouldPlay } }) => this.loadFile(record, shouldPlay)
     );
   },
 
   /**
    * Loads a new file into the player
-   * @param {number} fileId ID of the audio file
-   * @param {ContentDetails} contentDetails All the content details to initialise the UI
+   * @param {AudioRecord} record Audio record details to initialise the UI
    * @param {boolean} [shouldPlay] Whether to start playback or not
    * @returns {void}
    */
-  loadFile(fileId, contentDetails, shouldPlay) {
-    if (fileId === this.fileId) {
+  loadFile(record, shouldPlay) {
+    if (record.fileId === this.record?.fileId) {
       this.togglePlay(shouldPlay);
       return;
     }
 
     // Turning off playback to send event to the previously played audio item
-    if (this.fileId && this.isPlaying) this.togglePlay(false);
+    if (this.record && this.isPlaying) this.togglePlay(false);
 
-    this.fileId = fileId;
-    this.contentDetails = contentDetails;
-    this.duration = contentDetails.duration;
+    this.record = record;
+    this.duration = record.duration;
     this.isOpen = true;
 
     this.audio.src = this.downloadURL;
@@ -149,7 +143,7 @@ const player = () => ({
    * @param {boolean} value Optional state: playing or not
    */
   togglePlay(value) {
-    if (!this.fileId) return;
+    if (!this.record) return;
 
     value = value ?? !this.isPlaying;
     if (value === this.isPlaying) return;

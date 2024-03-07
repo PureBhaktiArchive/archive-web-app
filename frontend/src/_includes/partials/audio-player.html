@@ -1,7 +1,6 @@
 <div
-  {% comment %} These data attributes are used to initialize the player {% endcomment %}
-  data-file-id="{{ fileId }}"
-  data-content-details="{{ contentDetails | json | escape }}"
+  {% comment %} This data attribute is used to initialize the player {% endcomment %}
+  data-record="{{ record | json | escape }}"
   x-cloak
   x-data="player"
   x-show="isOpen"
@@ -73,40 +72,40 @@
   </div>
   <!-- Main block -->
   <!-- template and x-if are needed to remove the block from DOM until the content details is assigned -->
-  <template x-if="contentDetails !== null">
+  <template x-if="record !== null">
     <div class="overflow-hidden md:grow">
       <!-- Title -->
-      <div x-text="contentDetails.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
+      <div x-text="record.title" class="no-scrollbar grow overflow-x-auto whitespace-nowrap font-semibold"></div>
       <!-- Second line with tags and actions -->
       <div class="mt-1 flex space-x-2 overflow-hidden">
         <!-- Tags -->
         <div class="no-scrollbar flex grow overflow-x-auto text-xs *:mr-1 *:mt-1 *:flex-none *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
           <!-- ID -->
-          <div title="Unique file identifier">#<span x-text="fileId"></span></div>
+          <div title="Unique file identifier">#<span x-text="record.fileId"></span></div>
           <!-- Date -->
-          <template x-if="contentDetails.dateForHumans">
+          <template x-if="record.dateForHumans">
             <div title="Date">
-              <span x-text="contentDetails.dateForHumans"></span>
-              <template x-if="contentDetails.dateUncertain">
+              <span x-text="record.dateForHumans"></span>
+              <template x-if="record.dateUncertain">
                 <span title="Date is uncertain">(?)</span>
               </template>
             </div>
           </template>
           <!-- Location -->
-          <template x-if="contentDetails.location">
+          <template x-if="record.location">
             <div title="Location">
-              <span x-text="contentDetails.location"></span>
-              <template x-if="contentDetails.locationUncertain">
+              <span x-text="record.location"></span>
+              <template x-if="record.locationUncertain">
                 <span title="Location is uncertain">(?)</span>
               </template>
             </div>
           </template>
           <!-- Category -->
-          <template x-if="contentDetails.category">
-            <div x-text="contentDetails.category" title="Category"></div>
+          <template x-if="record.category">
+            <div x-text="record.category" title="Category"></div>
           </template>
           <!-- Languages -->
-          <template x-for="language in contentDetails.languages" :key="language">
+          <template x-for="language in record.languages" :key="language">
             <div x-text="language" title="Language spoken in the recording"></div>
           </template>
         </div>
@@ -128,13 +127,13 @@
           </a>
           <!-- Share -->
           <a
-            :href="'/audios/' + fileId + '/'"
+            :href="'/audios/' + record.fileId + '/'"
             class="ml-1 inline-flex cursor-pointer items-start pl-1"
             x-data="webshare"
             x-on:click.prevent="share"
-            :data-webshare-title="contentDetails.title"
-            :data-webshare-url="'/audios/' + fileId + '/'"
-            data-tippy-content="Link coied to clipboard"
+            :data-webshare-title="record.title"
+            :data-webshare-url="'/audios/' + record.fileId + '/'"
+            data-tippy-content="Link copied to clipboard"
             data-tippy-trigger="manual"
             data-tippy-placement="auto"
             title="Share this audio"

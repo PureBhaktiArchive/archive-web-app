@@ -7,7 +7,8 @@
 export {};
 
 declare global {
-  type ContentDetails = {
+  type AudioRecord = {
+    fileId: number;
     title: string;
     dateForHumans: string;
     dateUncertain: boolean;
@@ -16,10 +17,6 @@ declare global {
     category: string;
     languages: string[];
     duration: number;
-  };
-
-  type AudioRecord = ContentDetails & {
-    fileId: number;
     topics: string;
     date?: string;
     year?: number;
@@ -32,8 +29,7 @@ declare global {
   };
 
   type PlayerToggleEventDetail = {
-    fileId: number;
+    record: AudioRecord;
     shouldPlay: boolean;
-    contentDetails: ContentDetails;
   };
 }
