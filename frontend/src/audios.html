@@ -71,7 +71,7 @@ jsFile: audios.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
-    <section id="series" title="Series" class="my-3">
+    <section title="Series" class="my-3" x-data x-show="$store.search.isEmpty">
       <h4 class="mb-2 text-sm font-semibold uppercase md:text-base">Lecture Series</h4>
       {% include 'series_list.html' %}
       <h4 class="text-sm font-semibold uppercase md:text-base">All Audios</h4>

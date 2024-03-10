@@ -177,15 +177,18 @@ search.addWidgets([
  */
 const isEmptySearch = (uiState) => !uiState.query && !uiState.refinementList;
 
-// Hiding the series section upon search
+// The type for the search store is decalared in the `types.d.ts`
+Alpine.store('search', {
+  // This property is used to hide elements on empty search
+  isEmpty: true,
+});
+
 search.on(
   'render',
   () =>
-    (document.getElementById('series').style.display = isEmptySearch(
+    void (Alpine.store('search').isEmpty = isEmptySearch(
       search.getUiState()[import.meta.env.ALGOLIA_INDEX_AUDIOS]
-    )
-      ? ''
-      : 'none')
+    ))
 );
 
 search.start();

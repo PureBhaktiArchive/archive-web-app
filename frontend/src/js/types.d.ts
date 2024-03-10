@@ -33,3 +33,12 @@ declare global {
     shouldPlay: boolean;
   };
 }
+
+declare module 'alpinejs' {
+  interface Stores {
+    activeFileId: number;
+    search: {
+      isEmpty: boolean;
+    };
+  }
+}
