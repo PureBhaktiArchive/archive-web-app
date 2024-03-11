@@ -44,9 +44,9 @@
   </a>
   <!-- Share -->
   <a
-    href="/audios/{{ audioObj.fileId }}/"
+    href="/audios/{{ audioFileId }}/"
     class="inline-flex cursor-pointer items-center space-x-1"
-    x-data="webshare('{{ audioObj.title | replace: "'", "\\'" | escape }}', '/audios/{{ audioObj.fileId }}/')"
+    x-data="webshare('{{ audioTitle | replace: "'", "\\'" | escape }}', '/audios/{{ audioObj.fileId }}/')"
     x-on:click.prevent="share"
     data-tippy-content="Link copied to clipboard"
     data-tippy-trigger="manual"
