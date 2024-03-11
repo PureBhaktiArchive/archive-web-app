@@ -39,6 +39,13 @@ declare global {
     duration: number;
   };
 
+  type Series = {
+    id: number;
+    status: string;
+    title: string;
+    audios: number;
+  };
+
   type AudioForSearch = Pick<
     Audio,
     | 'title'
@@ -66,6 +73,7 @@ declare global {
     home: Home;
     videos: Video[];
     audios: Audio[];
+    series: Serie[];
   };
 
   type DirectusClient = RestClient<DirectusSchema>;
@@ -73,6 +81,7 @@ declare global {
   type EleventyGlobalData = {
     home: Home;
     audios: Audio[];
+    series: Serie[];
     directus: DirectusClient;
   };
 }
