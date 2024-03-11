@@ -27,10 +27,10 @@ jsFile: common-player.js
         <div class="flex flex-grow flex-col">
           <div class="flex items-baseline justify-between">
             <!-- Title -->
-            <div class="text-sm font-medium">{{ audio.title }}</div>
+            <div class="text-sm font-medium">{{ audio.audios_id.title }}</div>
             <!-- Duration -->
             <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-              {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
+              {% render 'partials/audio-duration.html', audioDuration: audio.audios_id.duration -%}
             </div>
           </div>
           <!-- Second line -->
@@ -38,13 +38,13 @@ jsFile: common-player.js
             <div class="flex flex-grow flex-wrap items-start justify-between">
               <!-- Tags -->
               <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-                {% render 'partials/audio-tags.html', audioObj: audio -%}
+                {% render 'partials/audio-tags.html', audioObj: audio.audios_id -%}
               </div>
               <!-- Colored badges -->
-              {% render 'partials/colored-badges.html', audioObj: audio -%}
+              {% render 'partials/colored-badges.html', audioObj: audio.audios_id -%}
             </div>
             <!-- Actions -->
-            {% render 'partials/audio-actions.html', audioObj: audio, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+            {% render 'partials/audio-actions.html', audioObj: audio.audios_id, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
           </div>
         </div>
       </li>
