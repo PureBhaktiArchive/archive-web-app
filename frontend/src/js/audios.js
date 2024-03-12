@@ -15,7 +15,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
 import './audio-item';
-import { itemTemplate } from './audio-item-template';
+import { itemTemplate } from './audio-search-result-item';
 import './player';
 import { searchBar } from './search-bar';
 import { soundQualityRatingMapping } from './sound-quality-rating';
