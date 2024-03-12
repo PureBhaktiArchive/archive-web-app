@@ -22,7 +22,10 @@ jsFile: common-player.js
   </h1>
   <ul class="mt-2">
     {%- for audio in serie.audios %}
-      <li class="mb-2 flex rounded-md border border-neutral-500 pb-1">
+      <li
+        x-data="audioItem({{ audio | json | escape }})"
+        class="mb-2 flex rounded-md border border-neutral-500 pb-1"
+      >
         {% render 'partials/play-button.html' -%}
         <div class="flex flex-grow flex-col">
           <div class="flex items-baseline justify-between">

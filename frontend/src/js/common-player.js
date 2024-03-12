@@ -3,6 +3,7 @@
  */
 
 import Alpine from 'alpinejs';
+import './audio-item';
 import './player';
 import './webshare';
 
