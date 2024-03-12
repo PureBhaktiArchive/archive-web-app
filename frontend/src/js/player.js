@@ -9,53 +9,58 @@ import { formatDurationForHumans } from './duration';
  * Audio player component
  * It can be pre-populated with a file ID and content details using appropriate data attributes
  * Decalring this intermediate function to avoid type inference as Record<string, any>
- * @param {AudioRecord} record
+ * @param {AudioRecord | AudioRecord[]} records
  */
-const player = (record) => ({
-  isOpen: false,
-  isPlaying: false,
+const player = (records) => ({
   isSeeking: false,
-  duration: 0,
   currentTime: 0,
   volume: 0,
   /** @type {number} */
   previousVolume: null,
 
-  /** @type {AudioRecord} */
-  record: null,
   audio: new Audio(),
 
+  get store() {
+    return Alpine.store('player');
+  },
+
+  /**
+   * This getter is used in the template for convenience
+   */
+  get record() {
+    return this.store.current;
+  },
+
   get downloadURL() {
-    return `${import.meta.env.STORAGE_BASE_URL}/${this.record?.fileId}.mp3`;
+    return `${import.meta.env.STORAGE_BASE_URL}/${
+      this.store.current?.fileId
+    }.mp3`;
   },
 
   get feedbackURL() {
-    return import.meta.env.FEEDBACK_FORM_AUDIOS + this.record?.fileId;
+    return import.meta.env.FEEDBACK_FORM_AUDIOS + this.store.current?.fileId;
   },
 
   get durationForHumans() {
-    return this.duration !== undefined
-      ? formatDurationForHumans(this.duration)
+    return this.store.current?.duration !== undefined
+      ? formatDurationForHumans(this.store.current.duration)
       : '?';
   },
 
   get currentTimeForHumans() {
-    return formatDurationForHumans(this.currentTime, this.duration);
+    return formatDurationForHumans(
+      this.currentTime,
+      this.store.current.duration
+    );
   },
 
   init() {
-    this.$watch('isPlaying', (value) => {
-      // Storing the currently played file id in the global store for audio items
-      // Cannot use null for single-value stores: https://github.com/alpinejs/alpine/discussions/3204
-      Alpine.store('activeFileId', value ? this.record.fileId : NaN);
-    });
-
     // As WebKit browsers do not provide any pseudo-element for range progress,
     // we have to use the ::before pseudo-element to improvise the progress.
     this.$watch('currentTime', () => {
       this.$refs.seekSlider.style.setProperty(
         '--progress',
-        (this.currentTime / this.duration).toString()
+        (this.currentTime / this.store.current.duration).toString()
       );
     });
     this.$watch('volume', (/** @type {Number} */ value) => {
@@ -65,7 +70,7 @@ const player = (record) => ({
 
     this.audio.addEventListener('durationchange', () => {
       if (Number.isFinite(this.audio.duration))
-        this.duration = this.audio.duration;
+        this.store.current.duration = this.audio.duration;
     });
 
     this.audio.addEventListener('progress', () => {
@@ -94,63 +99,46 @@ const player = (record) => ({
     });
 
     this.audio.addEventListener('ended', () => {
-      this.isPlaying = false;
+      this.store.isPlaying = false;
     });
 
     // Triggering all updates for the volume slider
     this.$nextTick(() => (this.volume = 1));
 
-    // These values can be pre-rendered in the HTML in case of static pages
-    // Initializing the player with these values
-    if (record) this.loadFile(record, false);
+    if (records && typeof records === 'object')
+      // Coalescing a single value to an array
+      this.store.list = records instanceof Array ? records : [records];
 
-    window.addEventListener(
-      'archive:toggle-play',
-      /**
-       * Handles `archive:toggle-play` event from audio items on the page
-       * @param {CustomEvent<PlayerToggleEventDetail>} $event
-       */
-      ({ detail: { record, shouldPlay } }) => this.loadFile(record, shouldPlay)
-    );
+    if (this.store.list.length === 1)
+      this.$nextTick(() => void (this.store.current = this.store.list.at(0)));
+
+    // Loading a new audio on the record change
+    this.$watch('store.current?.fileId', () => {
+      if (!this.store.current) {
+        this.store.isPlaying = false;
+        // This is to prevent further events from the audio object
+        delete this.audio.src;
+        return;
+      }
+
+      this.audio.src = this.downloadURL;
+      // After changing `src`, the playback does not continue, so we need to trigger it explicitly
+      if (this.store.isPlaying) this.audio.play();
+    });
+
+    this.$watch('store.isPlaying', () => {
+      if (!this.store.current) return;
+      if (this.store.isPlaying) this.audio.play();
+      else this.audio.pause();
+    });
   },
 
   /**
-   * Loads a new file into the player
-   * @param {AudioRecord} record Audio record details to initialise the UI
-   * @param {boolean} [shouldPlay] Whether to start playback or not
-   * @returns {void}
+   * Toggles the playing state from the play button
    */
-  loadFile(record, shouldPlay) {
-    if (record.fileId === this.record?.fileId) {
-      this.togglePlay(shouldPlay);
-      return;
-    }
-
-    // Turning off playback to send event to the previously played audio item
-    if (this.record && this.isPlaying) this.togglePlay(false);
-
-    this.record = record;
-    this.duration = record.duration;
-    this.isOpen = true;
-
-    this.audio.src = this.downloadURL;
-    // After changing `src`, the playback does not continue, so we need to trigger it explicitly
-    this.togglePlay(shouldPlay);
-  },
-
-  /**
-   * Toggles the playing state, or sets it to the passed value
-   * @param {boolean} value Optional state: playing or not
-   */
-  togglePlay(value) {
-    if (!this.record) return;
-
-    value = value ?? !this.isPlaying;
-    if (value === this.isPlaying) return;
-
-    this.isPlaying = value;
-    if (this.isPlaying) this.audio.play();
-    else this.audio.pause();
+  togglePlay() {
+    if (!this.store.current) return;
+    this.store.isPlaying = !this.store.isPlaying;
   },
 
   /**
@@ -201,3 +189,8 @@ const player = (record) => ({
 });
 
 Alpine.data('player', player);
+Alpine.store('player', {
+  list: [],
+  current: null,
+  isPlaying: false,
+});

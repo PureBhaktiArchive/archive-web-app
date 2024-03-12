@@ -27,18 +27,17 @@ declare global {
     series: string[];
     soundQualityRating: string;
   };
-
-  type PlayerToggleEventDetail = {
-    record: AudioRecord;
-    shouldPlay: boolean;
-  };
 }
 
 declare module 'alpinejs' {
   interface Stores {
-    activeFileId: number;
     search: {
       isEmpty: boolean;
+    };
+    player: {
+      list: AudioRecord[];
+      current: AudioRecord;
+      isPlaying: boolean;
     };
   }
 }

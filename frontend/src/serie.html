@@ -62,4 +62,4 @@ jsFile: common-player.js
   </section>
 </article>
 <!-- Player UI -->
-{% render 'player.html' -%}
+{% render 'player.html' with serie.audios as records -%}

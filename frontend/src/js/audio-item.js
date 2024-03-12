@@ -14,23 +14,23 @@ Alpine.data(
     /** @type {AudioRecord} */
     record,
 
+    get player() {
+      return Alpine.store('player');
+    },
+
     // Detecting if the current file Id is being played at the moment
     get isPlaying() {
-      return Alpine.store('activeFileId') === this.record.fileId;
+      return (
+        this.player.current?.fileId === this.record.fileId &&
+        this.player.isPlaying
+      );
     },
 
     togglePlay() {
-      /**
-       * Declaring a variable in order to enforce stricter object literal assignment checks
-       * See {@link https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html#stricter-object-literal-assignment-checks}
-       * @type {PlayerToggleEventDetail}
-       **/
-      const detail = {
-        record: this.record,
-        shouldPlay: !this.isPlaying,
-      };
-
-      window.dispatchEvent(new CustomEvent('archive:toggle-play', { detail }));
+      // Saving the current state because it can change when we set the curent record
+      const currentValue = this.isPlaying;
+      this.player.current = this.record;
+      this.player.isPlaying = !currentValue;
     },
   })
 );

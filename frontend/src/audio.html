@@ -52,4 +52,4 @@ description: Audio recording with all the details, including topics discussed
   </div>
 </article>
 <!-- Player UI -->
-{% render 'player.html', record: record -%}
+{% render 'player.html' with record as records -%}
