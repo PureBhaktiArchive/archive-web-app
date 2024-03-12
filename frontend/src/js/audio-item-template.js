@@ -20,7 +20,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    data-record="${JSON.stringify(
+    x-data="audioItem(${JSON.stringify(
       /** @type {AudioRecord} */ ({
         fileId: hit.fileId,
         title: hit.title,
@@ -32,8 +32,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         location: hit.location,
         locationUncertain: hit.locationUncertain,
       })
-    )}"
-    x-data="audioItem"
+    )})"
   >
     <!-- Main section -->
     <div class="flex grow items-start">

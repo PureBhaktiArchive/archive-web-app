@@ -9,8 +9,9 @@ import { formatDurationForHumans } from './duration';
  * Audio player component
  * It can be pre-populated with a file ID and content details using appropriate data attributes
  * Decalring this intermediate function to avoid type inference as Record<string, any>
+ * @param {AudioRecord} record
  */
-const player = () => ({
+const player = (record) => ({
   isOpen: false,
   isPlaying: false,
   isSeeking: false,
@@ -101,8 +102,7 @@ const player = () => ({
 
     // These values can be pre-rendered in the HTML in case of static pages
     // Initializing the player with these values
-    if (this.$root.dataset.record)
-      this.loadFile(JSON.parse(this.$root.dataset.record), false);
+    if (record) this.loadFile(record, false);
 
     window.addEventListener(
       'archive:toggle-play',
