@@ -70,6 +70,18 @@ module.exports = function (eleventyConfig) {
     'format_reduced_precision',
     formatReducedPrecisionDate
   );
+  //console.log(`${process.env.STORAGE_BASE_URL}`);
+
+  //audio actions filter -Download
+  eleventyConfig.addFilter(
+    'audio_action_download',
+    (downloadFile) => `${process.env.STORAGE_BASE_URL}/` + downloadFile + `.mp3`
+  );
+
+  eleventyConfig.addFilter(
+    'audio_action_feedback',
+    (feedbackurl) => `${process.env.FEEDBACK_FORM_AUDIOS}` + feedbackurl
+  );
 
   // Return your Object options:
   return {
