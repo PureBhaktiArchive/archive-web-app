@@ -70,7 +70,6 @@ module.exports = function (eleventyConfig) {
     'format_reduced_precision',
     formatReducedPrecisionDate
   );
-  //console.log(`${process.env.STORAGE_BASE_URL}`);
 
   //audio actions filter -Download
   eleventyConfig.addFilter(
