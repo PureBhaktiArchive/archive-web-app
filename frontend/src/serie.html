@@ -30,20 +30,24 @@ jsFile: common-player.js
             <div class="text-sm font-medium">{{ audio.audios_id.title }}</div>
             <!-- Duration -->
             <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-              {% render 'partials/audio-duration.html', audioDuration: audio.audios_id.duration -%}
+              {% render 'partials/duration.html', durationParam: audio.audios_id.duration -%}
             </div>
           </div>
           <!-- Second line -->
           <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
             <div class="flex flex-grow flex-wrap items-start justify-between">
               <!-- Tags -->
-              {% render 'partials/audio-tags.html', audioTagParam: audio.audios_id -%}
-              <!-- Colored badges -->
-              {% render 'partials/audio-percentage.html', audioPercentage: audio.audios_id.percentage -%}
-              {% render 'partials/colored-badges.html', audioQualityColor: audio.audios_id.soundQualityRating -%}
+              <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+                {% render 'partials/audio-tags.html', audioTagsParam: audio.audios_id -%}
+              </div>
+              <div class="mb-1 flex items-center space-x-1">
+                <!-- Colored badges -->
+                {% render 'partials/percentage.html', percentageParam: audio.audios_id.percentage -%}
+                {% render 'partials/sound-quality.html', soundQualityRatingParam: audio.audios_id.soundQualityRating -%}
+              </div>
             </div>
             <!-- Actions -->
-            {% render 'partials/audio-actions.html', audioFileId: audio.audios_id.fileId, audioTitle: audio.audios_id.title, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+            {% render 'partials/actions.html', audioFileId: audio.audios_id.id, audioTitle: audio.audios_id.title, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
           </div>
         </div>
       </li>

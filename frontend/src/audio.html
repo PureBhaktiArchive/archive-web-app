@@ -10,20 +10,24 @@ description: Audio recording with all the details, including topics discussed
     <h1 class="text-xl font-bold">{{ audio.title }}</h1>
     <!-- Duration -->
     <div class="inline-flex content-end items-center">
-      {% render 'partials/audio-duration.html', audioDuration: audio.duration -%}
+      {% render 'partials/duration.html', durationParam: audio.duration -%}
     </div>
   </div>
   <!-- Second line -->
   <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
     <div class="flex flex-grow flex-wrap items-start justify-between">
       <!-- Tags -->
-      {% render 'partials/audio-tags.html', audioTagParam: audio -%}
-      <!-- Colored badges -->
-      {% render 'partials/audio-percentage.html', audioPercentage: audio.percentage -%}
-      {% render 'partials/colored-badges.html', audioQualityColor: audio.soundQualityRating -%}
+      <div class="mb-1 flex flex-wrap content-between items-baseline *:mb-1 *:mr-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
+        {% render 'partials/audio-tags.html', audioTagsParam: audio -%}
+      </div>
+      <div class="mb-1 flex items-center space-x-1">
+        <!-- Colored badges -->
+        {% render 'partials/percentage.html', percentageParam: audio.percentage -%}
+        {% render 'partials/sound-quality.html', soundQualityRatingParam: audio.soundQualityRating -%}
+      </div>
     </div>
     <!-- Actions -->
-    {% render 'partials/audio-actions.html', audioFileId: audio.fileId, audioTitle: audio.title, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
+    {% render 'partials/actions.html', audioFileId: audio.fileId, audioTitle: audio.title, fileUrl: fileUrl, feedbackUrl: feedbackUrl -%}
   </div>
   <div class="prose prose-sm mt-6 sm:prose dark:prose-invert">
     <!-- Other Speakers -->

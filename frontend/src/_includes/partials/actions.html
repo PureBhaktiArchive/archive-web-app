@@ -1,7 +1,7 @@
 <div class="mb-1 flex space-x-1">
   <!-- Download -->
   <a
-    href="{{ fileUrl }}"
+    href="{{ audioFileId | audio_action_download }}"
     class="inline-flex items-center space-x-1"
     title="Download file for listening offline"
   >
@@ -22,7 +22,7 @@
   </a>
   <!-- Feedback -->
   <a
-    href="{{ feedbackUrl }}"
+    href="{{ audioFileId | audio_action_feedback }}"
     target="_blank"
     class="inline-flex items-center space-x-1"
     title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"

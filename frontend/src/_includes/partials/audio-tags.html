@@ -1,25 +1,23 @@
-<div class="mb-1 flex flex-wrap content-between items-baseline *:mb-1 *:mr-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
-  <div title="Unique file identifier">#{{ audioObj.fileId }}</div>
-  {% if audioTagParam.dateForHumans -%}
-    <div>
-      {{ audioTagParam.dateForHumans }}
-      {% if audioTagParam.dateUncertain -%}
-        <span title="Date is uncertain">(?)</span>
-      {%- endif %}
-    </div>
-  {%- endif %}
-  {% if audioTagParam.location -%}
-    <div>
-      {{ audioTagParam.location }}
-      {% if audioTagParam.locationUncertain -%}
-        <span title="Location is uncertain">(?)</span>
-      {%- endif %}
-    </div>
-  {%- endif %}
-  {% if audioTagParam.category -%}
-    <div>{{ audioTagParam.category }}</div>
-  {%- endif %}
-  {% for language in audioTagParam.languages -%}
-    <div>{{ language }}</div>
-  {%- endfor %}
-</div>
+<div title="Unique file identifier">#{{ audioObj.fileId }}</div>
+{% if audioTagsParam.dateForHumans -%}
+  <div>
+    {{ audioTagsParam.dateForHumans }}
+    {% if audioTagsParam.dateUncertain -%}
+      <span title="Date is uncertain">(?)</span>
+    {%- endif %}
+  </div>
+{%- endif %}
+{% if audioTagsParam.location -%}
+  <div>
+    {{ audioTagsParam.location }}
+    {% if audioTagsParam.locationUncertain -%}
+      <span title="Location is uncertain">(?)</span>
+    {%- endif %}
+  </div>
+{%- endif %}
+{% if audioTagsParam.category -%}
+  <div>{{ audioTagsParam.category }}</div>
+{%- endif %}
+{% for language in audioTagsParam.languages -%}
+  <div>{{ language }}</div>
+{%- endfor %}
