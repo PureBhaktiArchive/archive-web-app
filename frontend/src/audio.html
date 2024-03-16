@@ -8,29 +8,19 @@ description: Audio recording with all the details, including topics discussed
   <div class="flex justify-between space-x-1 align-baseline">
     <!-- Title -->
     <h1 class="text-xl font-bold">{{ audio.title }}</h1>
-    <!-- Duration -->
     <div class="inline-flex content-end items-center">
-      {% assign audioDuration = audio.duration %}
-      {% render 'partials/duration.html' with audioDuration as duration -%}
+      {% render 'partials/duration.html' with audio.duration as duration -%}
     </div>
   </div>
   <!-- Second line -->
   <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
     <div class="flex flex-grow flex-wrap items-start justify-between">
-      <!-- Tags -->
-      <div class="mb-1 flex flex-wrap content-between items-baseline *:mb-1 *:mr-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
-        <div title="Unique file identifier">#{{ audio.fileId }}</div>
-        {% render 'partials/audio-tags.html', audio: audio -%}
-      </div>
+      {% render 'partials/audio-tags.html' with audio as audio -%}
       <div class="mb-1 flex items-center space-x-1">
-        <!-- Colored badges -->
-        {% assign audioPercentage = audio.percentage %}
-        {% render 'partials/percentage.html' with audioPercentage as percentage -%}
-        {% assign audiosoundQualityRating = audio.soundQualityRating %}
-        {% render 'partials/sound-quality.html' with audiosoundQualityRating as soundQualityRating -%}
+        {% render 'partials/percentage.html' with audio.percentage as percentage -%}
+        {% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}
       </div>
     </div>
-    <!-- Actions -->
     {% render 'partials/audio-actions.html', fileId: audio.fileId, title: audio.title -%}
   </div>
   <div class="prose prose-sm mt-6 sm:prose dark:prose-invert">
