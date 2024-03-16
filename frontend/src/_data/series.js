@@ -14,7 +14,6 @@ module.exports = ({ directus }) =>
       fields: ['*.*.*'],
       filter: { status: { _eq: 'published' } },
       // Also, we assume that the `QUERY_LIMIT_MAX` env variable is not set on the server.
-      // Fetching only few items in the development ymode to speed up rebuilding the pages
       limit: -1,
     })
   );
