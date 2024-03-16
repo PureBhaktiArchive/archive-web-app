@@ -42,7 +42,7 @@ module.exports = function (eleventyConfig) {
 
   //Filter for duration calculation
   eleventyConfig.addFilter(
-    'duration',
+    'formatDurationForHumans',
     (durationInSeconds) => `${formatDurationForHumans(durationInSeconds)}`
   );
 
