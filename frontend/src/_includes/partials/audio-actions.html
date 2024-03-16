@@ -1,7 +1,7 @@
 <div class="mb-1 flex space-x-1">
   <!-- Download -->
   <a
-    href="{{ audioFileId | audio_action_download }}"
+    href="{{ fileId | toFileURL }}"
     class="inline-flex items-center space-x-1"
     title="Download file for listening offline"
   >
@@ -22,7 +22,7 @@
   </a>
   <!-- Feedback -->
   <a
-    href="{{ audioFileId | audio_action_feedback }}"
+    href="{{ fileId | toFeedbackURL }}"
     target="_blank"
     class="inline-flex items-center space-x-1"
     title="Help us improve! Give feedback about the sound quality, title, contents, language, etc of this file"
@@ -44,9 +44,9 @@
   </a>
   <!-- Share -->
   <a
-    href="/audios/{{ audioFileId }}/"
+    href="/audios/{{ fileId }}/"
     class="inline-flex cursor-pointer items-center space-x-1"
-    x-data="webshare('{{ audioTitle | replace: "'", "\\'" | escape }}', '/audios/{{ audioFileId }}/')"
+    x-data="webshare('{{ title | replace: "'", "\\'" | escape }}', '/audios/{{ fileId }}/')"
     x-on:click.prevent="share"
     data-tippy-content="Link copied to clipboard"
     data-tippy-trigger="manual"

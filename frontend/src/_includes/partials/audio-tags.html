@@ -1,23 +1,22 @@
-<div title="Unique file identifier">#{{ audioObj.fileId }}</div>
-{% if audioTagsParam.dateForHumans -%}
+{% if audio.dateForHumans -%}
   <div>
-    {{ audioTagsParam.dateForHumans }}
-    {% if audioTagsParam.dateUncertain -%}
+    {{ audio.dateForHumans }}
+    {% if audio.dateUncertain -%}
       <span title="Date is uncertain">(?)</span>
     {%- endif %}
   </div>
 {%- endif %}
-{% if audioTagsParam.location -%}
+{% if audio.location -%}
   <div>
-    {{ audioTagsParam.location }}
-    {% if audioTagsParam.locationUncertain -%}
+    {{ audio.location }}
+    {% if audio.locationUncertain -%}
       <span title="Location is uncertain">(?)</span>
     {%- endif %}
   </div>
 {%- endif %}
-{% if audioTagsParam.category -%}
-  <div>{{ audioTagsParam.category }}</div>
+{% if audio.category -%}
+  <div>{{ audio.category }}</div>
 {%- endif %}
-{% for language in audioTagsParam.languages -%}
+{% for language in audio.languages -%}
   <div>{{ language }}</div>
 {%- endfor %}

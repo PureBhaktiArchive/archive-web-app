@@ -1,6 +1,6 @@
 <!-- Sound Quality -->
 <div
-  class="{{ soundQualityRatingParam | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 pb-[1px]"
+  class="{{ soundQualityRating | sound_quality_color }} flex flex-none space-x-1 rounded-lg border px-1.5 pb-[1px]"
   title="Sound quality of the recording"
 >
   <svg
@@ -24,5 +24,5 @@
       stroke-width="32"
     />
   </svg>
-  <span>{{ soundQualityRatingParam | sound_quality_label }}</span>
+  <span>{{ soundQualityRating | sound_quality_label }}</span>
 </div>

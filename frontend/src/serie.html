@@ -33,7 +33,8 @@ jsFile: common-player.js
             <div class="text-sm font-medium">{{ audio.audios_id.title }}</div>
             <!-- Duration -->
             <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-              {% render 'partials/duration.html', durationParam: audio.audios_id.duration -%}
+              {% assign audioDuration = audio.audios_id.duration %}
+              {% render 'partials/duration.html' with audioDuration as duration -%}
             </div>
           </div>
           <!-- Second line -->
@@ -41,16 +42,19 @@ jsFile: common-player.js
             <div class="flex flex-grow flex-wrap items-start justify-between">
               <!-- Tags -->
               <div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
-                {% render 'partials/audio-tags.html', audioTagsParam: audio.audios_id -%}
+                <div title="Unique file identifier">#{{ audio.audios_id.id }}</div>
+                {% render 'partials/audio-tags.html', audio: audio.audios_id -%}
               </div>
               <div class="mb-1 flex items-center space-x-1">
                 <!-- Colored badges -->
-                {% render 'partials/percentage.html', percentageParam: audio.audios_id.percentage -%}
-                {% render 'partials/sound-quality.html', soundQualityRatingParam: audio.audios_id.soundQualityRating -%}
+                {% assign audioPercentage = audio.audios_id.percentage %}
+                {% render 'partials/percentage.html' with audioPercentage as percentage -%}
+                {% assign audiosoundQualityRating = audio.audios_id.soundQualityRating %}
+                {% render 'partials/sound-quality.html' with audiosoundQualityRating as soundQualityRating -%}
               </div>
             </div>
             <!-- Actions -->
-            {% render 'partials/actions.html', audioFileId: audio.audios_id.id, audioTitle: audio.audios_id.title -%}
+            {% render 'partials/audio-actions.html', fileId: audio.audios_id.id, title: audio.audios_id.title -%}
           </div>
         </div>
       </li>
