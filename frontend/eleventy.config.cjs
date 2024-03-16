@@ -74,12 +74,12 @@ module.exports = function (eleventyConfig) {
   //audio actions filter -Download
   eleventyConfig.addFilter(
     'toFileURL',
-    (fileId) => `${process.env.STORAGE_BASE_URL}/` + fileId + `.mp3`
+    (fileId) => `${process.env.STORAGE_BASE_URL}/${fileId}.mp3`
   );
 
   eleventyConfig.addFilter(
     'toFeedbackURL',
-    (fileId) => `${process.env.FEEDBACK_FORM_AUDIOS}` + fileId
+    (fileId) => `${process.env.FEEDBACK_FORM_AUDIOS}${fileId}`
   );
 
   // Return your Object options:
