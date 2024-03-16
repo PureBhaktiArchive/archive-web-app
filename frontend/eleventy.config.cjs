@@ -48,7 +48,7 @@ module.exports = function (eleventyConfig) {
 
   //Filter for Gurudev percentage calculation
   eleventyConfig.addFilter(
-    'percentage',
+    'formatFractionAsPercentage',
     (audioPercentage) => `${Math.ceil(audioPercentage * 20) * 5}%`
   );
 

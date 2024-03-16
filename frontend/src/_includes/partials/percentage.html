@@ -11,11 +11,11 @@
 >
   <div
     class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
-    style="--percentage: {% if percentage > 0 -%}{{ percentage | percentage }}{%- else -%}100%{%- endif -%}"
+    style="--percentage: {% if percentage > 0 -%}{{ percentage | formatFractionAsPercentage }}{%- else -%}100%{%- endif -%}"
   ></div>
   <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
     {%- if percentage > 0 -%}
-      Srila Gurudeva {{ percentage | percentage }}
+      Srila Gurudeva {{ percentage | formatFractionAsPercentage }}
     {%- else -%}
       Other guru-varga
     {%- endif -%}
