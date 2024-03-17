@@ -21,13 +21,31 @@ import { searchBar } from './search-bar';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
 
-const searchClient = algoliasearch(
-  import.meta.env.ALGOLIA_APPLICATION_ID,
-  import.meta.env.ALGOLIA_API_KEY
-);
+// The type for the search store is decalared in the `types.ts` file.
+Alpine.store('search', {
+  // This property is used to hide elements on empty search
+  isEmpty: true,
+});
+
 const search = instantsearch({
+  searchClient: algoliasearch(
+    import.meta.env.ALGOLIA_APPLICATION_ID,
+    import.meta.env.ALGOLIA_API_KEY
+  ),
   indexName: import.meta.env.ALGOLIA_INDEX_AUDIOS,
-  searchClient,
+  onStateChange: ({ uiState, setUiState }) => {
+    /**
+     * Checks if the UI State is empty, i.e. without a query or any filtering
+     * @param {import('instantsearch.js/es').IndexUiState} uiState
+     */
+    const isEmptySearch = (uiState) =>
+      !uiState.query && !uiState.refinementList;
+
+    Alpine.store('search').isEmpty = isEmptySearch(
+      uiState[import.meta.env.ALGOLIA_INDEX_AUDIOS]
+    );
+    setUiState(uiState);
+  },
 });
 
 const languageCategories = {
@@ -170,26 +188,6 @@ search.addWidgets([
     container: '#pagination',
   }),
 ]);
-
-/**
- * Checks if the UI State is empty, i.e. without a query or any filtering
- * @param {import('instantsearch.js/es').IndexUiState} uiState
- */
-const isEmptySearch = (uiState) => !uiState.query && !uiState.refinementList;
-
-// The type for the search store is decalared in the `types.d.ts`
-Alpine.store('search', {
-  // This property is used to hide elements on empty search
-  isEmpty: true,
-});
-
-search.on(
-  'render',
-  () =>
-    void (Alpine.store('search').isEmpty = isEmptySearch(
-      search.getUiState()[import.meta.env.ALGOLIA_INDEX_AUDIOS]
-    ))
-);
 
 search.start();
 
