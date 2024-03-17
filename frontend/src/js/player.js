@@ -99,7 +99,12 @@ const player = (records) => ({
     });
 
     this.audio.addEventListener('ended', () => {
-      this.store.isPlaying = false;
+      const index = this.store.list.findIndex(
+        (x) => x.fileId === this.store.current.fileId
+      );
+      if (index >= 0 && index < this.store.list.length - 1)
+        this.store.current = this.store.list.at(index + 1);
+      else this.store.isPlaying = false;
     });
 
     // Triggering all updates for the volume slider
