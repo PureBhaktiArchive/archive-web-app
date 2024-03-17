@@ -14,6 +14,7 @@ import {
   stats,
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
+import { alpineSearchStoreMiddleware } from './alpine-search-store';
 import './audio-item';
 import { itemTemplate } from './audio-search-result-item';
 import './player';
@@ -21,31 +22,12 @@ import { searchBar } from './search-bar';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 import './webshare';
 
-// The type for the search store is decalared in the `types.ts` file.
-Alpine.store('search', {
-  // This property is used to hide elements on empty search
-  isEmpty: true,
-});
-
 const search = instantsearch({
   searchClient: algoliasearch(
     import.meta.env.ALGOLIA_APPLICATION_ID,
     import.meta.env.ALGOLIA_API_KEY
   ),
   indexName: import.meta.env.ALGOLIA_INDEX_AUDIOS,
-  onStateChange: ({ uiState, setUiState }) => {
-    /**
-     * Checks if the UI State is empty, i.e. without a query or any filtering
-     * @param {import('instantsearch.js/es').IndexUiState} uiState
-     */
-    const isEmptySearch = (uiState) =>
-      !uiState.query && !uiState.refinementList;
-
-    Alpine.store('search').isEmpty = isEmptySearch(
-      uiState[import.meta.env.ALGOLIA_INDEX_AUDIOS]
-    );
-    setUiState(uiState);
-  },
 });
 
 const languageCategories = {
@@ -189,6 +171,7 @@ search.addWidgets([
   }),
 ]);
 
+search.use(alpineSearchStoreMiddleware);
 search.start();
 
 Alpine.start();
