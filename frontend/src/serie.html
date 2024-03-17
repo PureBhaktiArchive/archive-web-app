@@ -30,21 +30,21 @@ jsFile: common-player.js
         <div class="flex flex-grow flex-col">
           <div class="flex items-baseline justify-between">
             <!-- Title -->
-            <div class="text-sm font-medium">{{ audio.audios_id.title }}</div>
+            <div class="text-sm font-medium">{{ audio.title }}</div>
             <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-              {% render 'partials/duration.html' with audio.audios_id.duration as duration -%}
+              {% render 'partials/duration.html' with audio.duration as duration -%}
             </div>
           </div>
           <!-- Second line -->
           <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
             <div class="flex flex-grow flex-wrap items-start justify-between">
-              {% render 'partials/audio-tags.html' with audio.audios_id as audio -%}
+              {% render 'partials/audio-tags.html' with audio as audio -%}
               <div class="mb-1 flex items-center space-x-1">
-                {% render 'partials/percentage.html' with audio.audios_id.percentage as percentage -%}
-                {% render 'partials/sound-quality.html' with audio.audios_id.soundQualityRating as soundQualityRating -%}
+                {% render 'partials/percentage.html' with audio.percentage as percentage -%}
+                {% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}
               </div>
             </div>
-            {% render 'partials/audio-actions.html', fileId: audio.audios_id.id, title: audio.audios_id.title -%}
+            {% render 'partials/audio-actions.html', fileId: audio.id, title: audio.title -%}
           </div>
         </div>
       </li>
