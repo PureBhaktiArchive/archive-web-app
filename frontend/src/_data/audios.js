@@ -14,8 +14,21 @@ module.exports = ({ directus }) =>
       filter: { status: { _eq: 'active' } },
       // Fetching all items. Later, when number of records grows, we may need to fetch in pages as described in https://docs.directus.io/reference/query.html#offset
       // Also, we assume that the `QUERY_LIMIT_MAX` env variable is not set on the server.
-      // Fetching only few items in the development mode to speed up rebuilding the pages
-      limit: process.env.ELEVENTY_RUN_MODE === 'build' ? -1 : 50,
+      limit: -1,
+      ...(process.env.ELEVENTY_RUN_MODE === 'build'
+        ? {}
+        : // Overriding some options in development
+          {
+            // Fetching only few items in the development mode to speed up rebuilding the pages
+            limit: 50,
+            /**
+             * Because of the limit above, not all search results will be clickable.
+             * Sorting by date to match the Algolia's default sorting and thus
+             * to make the first 50 search results clickable in development.
+             * See `customRanking` in `algolia/audios.json`.
+             */
+            sort: 'date',
+          }),
       // Historically, in the code we refer to the `id` as `fileId`. Therefore using aliases here.
       alias: { fileId: 'id' },
     })
