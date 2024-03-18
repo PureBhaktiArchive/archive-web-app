@@ -23,7 +23,7 @@ jsFile: common-player.js
   <ul class="mt-2">
     {%- for audio in serie.audios %}
       <li
-        x-data="audioItem({{ audio | json | escape }})"
+        x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
         class="mb-2 flex rounded-md border border-neutral-500 pb-1"
       >
         {% render 'partials/play-button.html' -%}

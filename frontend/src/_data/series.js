@@ -11,32 +11,7 @@ module.exports = ({ directus }) =>
   directus
     .request(
       readItems('series', {
-        fields: [
-          '*',
-          {
-            audios: [
-              {
-                audios_id: [
-                  'category',
-                  'date',
-                  'dateUncertain',
-                  'duration',
-                  'id',
-                  'fileId',
-                  'languages',
-                  'location',
-                  'locationUncertain',
-                  'otherSpeakers',
-                  'percentage',
-                  'soundQualityRating',
-                  'status',
-                  'timeOfDay',
-                  'title',
-                ],
-              },
-            ],
-          },
-        ],
+        fields: ['*', { audios: [{ audios_id: ['*'] }] }],
         filter: { status: { _eq: 'published' } },
         sort: 'sort',
         deep: {
@@ -61,7 +36,8 @@ module.exports = ({ directus }) =>
         audios: audios.map(
           /**
            * We need to specify the type explicitly because Directus' type is not recognized properly
-           * @param {{ audios_id: Omit<Audio, 'topics'>; }} serieAudio
+           * @param {{ audios_id: Audio; }} serieAudio
+           * @returns {Audio}
            */
           (serieAudio) => serieAudio.audios_id
         ),

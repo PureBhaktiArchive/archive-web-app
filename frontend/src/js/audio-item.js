@@ -8,10 +8,9 @@ Alpine.data(
   'audioItem',
   /**
    * An audio item component.
-   * @param {AudioRecord} record
+   * @param {PlayerItem} record
    */
   (record) => ({
-    /** @type {AudioRecord} */
     record,
 
     get player() {
@@ -34,3 +33,38 @@ Alpine.data(
     },
   })
 );
+
+/**
+ *
+ * @param {AudioRecord} record
+ * @returns {PlayerItem}
+ */
+export const toPlayerItem = ({
+  fileId,
+  title,
+  dateForHumans,
+  dateUncertain,
+  timeOfDay,
+  location,
+  locationUncertain,
+  category,
+  percentage,
+  soundQualityRating,
+  languages,
+  otherSpeakers,
+  duration,
+}) => ({
+  fileId,
+  title,
+  dateForHumans,
+  dateUncertain,
+  timeOfDay,
+  location,
+  locationUncertain,
+  category,
+  percentage,
+  soundQualityRating,
+  languages,
+  otherSpeakers,
+  duration,
+});

@@ -7,6 +7,9 @@
 export {};
 
 declare global {
+  /**
+   * The audio record as it is stored in the search index.
+   */
   type AudioRecord = {
     fileId: number;
     title: string;
@@ -27,6 +30,26 @@ declare global {
     series: string[];
     soundQualityRating: string;
   };
+
+  /**
+   * An object containing all information required for the audio player functionality.
+   */
+  type PlayerItem = Pick<
+    AudioRecord,
+    | 'fileId'
+    | 'title'
+    | 'dateForHumans'
+    | 'dateUncertain'
+    | 'timeOfDay'
+    | 'location'
+    | 'locationUncertain'
+    | 'category'
+    | 'percentage'
+    | 'soundQualityRating'
+    | 'languages'
+    | 'otherSpeakers'
+    | 'duration'
+  >;
 }
 
 declare module 'alpinejs' {
@@ -35,8 +58,8 @@ declare module 'alpinejs' {
       isEmpty: boolean;
     };
     player: {
-      list: AudioRecord[];
-      current: AudioRecord;
+      list: PlayerItem[];
+      current: PlayerItem;
       isPlaying: boolean;
     };
   }

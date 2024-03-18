@@ -10,6 +10,7 @@ const {
 } = require('./config/filters/sound-quality-rating');
 const { getDirectusClient } = require('./config/directus');
 const { formatReducedPrecisionDate } = require('./src/reduced-precision-date');
+const { toPlayerItem } = require('./src/player-item');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -81,6 +82,8 @@ module.exports = function (eleventyConfig) {
     'toFeedbackURL',
     (fileId) => `${process.env.FEEDBACK_FORM_AUDIOS}${fileId}`
   );
+
+  eleventyConfig.addFilter('toPlayerItem', toPlayerItem);
 
   // Return your Object options:
   return {

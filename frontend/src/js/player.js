@@ -9,7 +9,7 @@ import { formatDurationForHumans } from './duration';
  * Audio player component
  * It can be pre-populated with a file ID and content details using appropriate data attributes
  * Decalring this intermediate function to avoid type inference as Record<string, any>
- * @param {AudioRecord | AudioRecord[]} records
+ * @param {PlayerItem | PlayerItem[]} records
  */
 const player = (records) => ({
   isSeeking: false,

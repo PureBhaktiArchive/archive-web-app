@@ -15,7 +15,7 @@ import {
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
 import { alpineSearchStoreMiddleware } from './alpine-search-store';
-import './audio-item';
+import { toPlayerItem } from './audio-item';
 import { itemTemplate } from './audio-search-result-item';
 import './player';
 import { searchBar } from './search-bar';
@@ -172,6 +172,25 @@ search.addWidgets([
 ]);
 
 search.use(alpineSearchStoreMiddleware);
+
+/**
+ * @typedef {import("instantsearch.js").Hit<AudioRecord>} AudioHit
+ */
+
+// Intercepting results according to https://github.com/algolia/instantsearch/issues/953
+search.addWidgets([
+  {
+    $$type: 'Playlist manager',
+    render:
+      /**
+       *
+       * @param {{results: import("algoliasearch-helper").SearchResults<AudioHit>}} options
+       */
+      ({ results }) => {
+        Alpine.store('player').list = results.hits.map(toPlayerItem);
+      },
+  },
+]);
 search.start();
 
 Alpine.start();

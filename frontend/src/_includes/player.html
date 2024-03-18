@@ -1,6 +1,20 @@
+{% comment %}
+  Parameters:
+    - `record` for a single audio record.
+    - `records` for multiple audio records.
+
+  Audio records are converted to player items using a filter.
+  Therefore, only required data appears in the generated HTML.
+{% endcomment %}
 <div
   x-cloak
-  x-data="player({% if records %}{{ records | json | escape }}{% endif %})"
+  x-data="
+    player(
+      {%- if records or record -%}
+        {{ records | default: record | toPlayerItem | json | escape }}
+      {%- endif -%}
+    )
+  "
   x-show="record"
   class="fixed bottom-0 left-0 right-0 z-10 mx-auto flex w-full max-w-screen-xl flex-none flex-col-reverse overflow-hidden rounded-t-md border-t border-gray-300 bg-gray-100 px-3 py-2 shadow-xl-around md:flex-row md:space-x-6"
 >

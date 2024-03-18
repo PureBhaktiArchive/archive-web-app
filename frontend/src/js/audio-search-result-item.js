@@ -3,6 +3,7 @@
  */
 
 import { escape } from 'instantsearch.js/es/lib/utils';
+import { toPlayerItem } from './audio-item';
 import { formatDurationForHumans } from './duration';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 
@@ -20,19 +21,7 @@ import { soundQualityRatingMapping } from './sound-quality-rating';
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    x-data="audioItem(${JSON.stringify(
-      /** @type {AudioRecord} */ ({
-        fileId: hit.fileId,
-        title: hit.title,
-        category: hit.category,
-        dateForHumans: hit.dateForHumans,
-        dateUncertain: hit.dateUncertain,
-        duration: hit.duration,
-        languages: hit.languages,
-        location: hit.location,
-        locationUncertain: hit.locationUncertain,
-      })
-    )})"
+    x-data="audioItem(${JSON.stringify(toPlayerItem(hit))})"
   >
     <!-- Main section -->
     <div class="flex grow items-start">

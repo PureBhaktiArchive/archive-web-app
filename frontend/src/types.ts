@@ -66,6 +66,27 @@ declare global {
     languageCategory: string;
   };
 
+  /**
+   * An object containing all information required for the audio player functionality.
+   */
+  type PlayerItem = Pick<
+    Audio,
+    | 'fileId'
+    | 'title'
+    | 'dateUncertain'
+    | 'timeOfDay'
+    | 'location'
+    | 'locationUncertain'
+    | 'category'
+    | 'percentage'
+    | 'soundQualityRating'
+    | 'languages'
+    | 'otherSpeakers'
+    | 'duration'
+  > & {
+    dateForHumans: string;
+  };
+
   interface Serie {
     id: number;
     status: 'published' | 'draft' | 'archived';
