@@ -1,6 +1,14 @@
 ---
+pagination:
+    data: audios
+    size: 1
+    alias: audio
+    addAllPagesToCollections: true
 permalink: "/audios/{{ audio.fileId | slug }}/"
 layout: base
+tags: audios
+eleventyComputed:
+  title: "{{ audio.title }}"
 jsFile: common-player.js
 description: Audio recording with all the details, including topics discussed
 ---
