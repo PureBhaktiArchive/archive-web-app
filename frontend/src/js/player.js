@@ -107,6 +107,40 @@ const player = (records) => ({
       else this.store.isPlaying = false;
     });
 
+    /**
+     * This env variable is statically replaced during build.
+     * Thus this logging code block will not be included in the production build
+     * due to tree-shaking of unused branches.
+     * See {@link https://github.com/vitejs/vite/discussions/3110}
+     */
+    if (import.meta.env.DEV) {
+      /**
+       *
+       * @param {keyof HTMLMediaElementEventMap} event
+       * @param {string} message
+       */
+      const addAudioEventListener = (event, message) =>
+        this.audio.addEventListener(event, () =>
+          console.log('audio:', message)
+        );
+
+      addAudioEventListener('abort', 'loading aborted');
+      addAudioEventListener('canplay', 'can play');
+      addAudioEventListener('durationchange', 'duration changed');
+      addAudioEventListener('emptied', 'emptied');
+      addAudioEventListener('ended', 'ended');
+      addAudioEventListener('error', 'error');
+      addAudioEventListener('loadstart', 'loading started');
+      addAudioEventListener('pause', 'paused');
+      addAudioEventListener('play', 'played');
+      addAudioEventListener('playing', 'playing');
+      addAudioEventListener('seeking', 'seeking');
+      addAudioEventListener('seeked', 'seeked');
+      addAudioEventListener('stalled', 'loading stalled');
+      addAudioEventListener('suspend', 'loading suspended');
+      addAudioEventListener('waiting', 'waiting for data');
+    }
+
     // Triggering all updates for the volume slider
     this.$nextTick(() => (this.volume = 1));
 
