@@ -25,10 +25,10 @@ jsFile: common-player.js
     {%- for audio in serie.audios %}
       <li
         x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
-        class="mb-2 rounded-md border border-neutral-300 pb-1"
+        class="mb-2 rounded-md border-b border-neutral-300 pb-1"
       >
         <div class="flex flex-col sm:flex-row">
-          <div class="flex w-4/5">
+          <div class="flex w-5/6">
             <div class="flex items-start">
               <span class="mt-2 pl-2 text-sm font-medium">{% increment serialNo %}.</span>
               <span>{% render 'partials/play-button.html' -%}</span>
@@ -52,7 +52,7 @@ jsFile: common-player.js
               </div>
             </div>
           </div>
-          <div class="m-2 flex w-1/5 flex-row justify-center space-y-2 border-neutral-300 pl-3 text-xs sm:flex-col sm:border-l">
+          <div class="m-2 flex w-1/6 flex-row justify-center space-y-2 border-neutral-300 pl-5 text-xs sm:flex-col sm:border-l">
             <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
             <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
           </div>
