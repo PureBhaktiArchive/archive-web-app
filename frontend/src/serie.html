@@ -11,9 +11,10 @@ eleventyComputed:
   title: "{{ serie.title }} Lecture Series"
 jsFile: common-player.js
 ---
-<article class="mx-auto mt-10 max-w-screen-md px-2 sm:px-4">
+<article class="mx-auto mt-6 max-w-screen-lg  px-2 sm:px-4">
+  <p class="hidden">{% increment serialNo %}</p>
   <!-- Title -->
-  <h1 class="flex items-center space-x-1 rounded-lg bg-neutral-600 p-6 text-xl font-bold text-white">
+  <h1 class="flex items-center space-x-1 rounded-lg bg-neutral-400 p-6 text-xl font-bold text-white">
     <!-- https://icon-sets.iconify.design/cil/featured-playlist/ -->
     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
       <path fill="currentColor" d="M464 72H48a32.036 32.036 0 0 0-32 32v304a32.036 32.036 0 0 0 32 32h416a32.036 32.036 0 0 0 32-32V104a32.036 32.036 0 0 0-32-32m0 336H48V104h416l.02 304Z"/><path fill="currentColor" d="M232 184h184v32H232zm-56 72h240v32H176zm0 72h240v32H176zM88.923 144v128.923l99.172-69.42z"/>
@@ -24,27 +25,36 @@ jsFile: common-player.js
     {%- for audio in serie.audios %}
       <li
         x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
-        class="mb-2 flex rounded-md border border-neutral-500 pb-1"
+        class="mb-2 rounded-md border border-neutral-300 pb-1"
       >
-        {% render 'partials/play-button.html' -%}
-        <div class="flex flex-grow flex-col">
-          <div class="flex items-baseline justify-between">
-            <!-- Title -->
-            <div class="text-sm font-medium">{{ audio.title }}</div>
-            <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-              {% render 'partials/duration.html' with audio.duration as duration -%}
+        <div class="flex flex-col sm:flex-row">
+          <div class="flex w-4/5">
+            <div class="flex items-start">
+              <span class="mt-2 pl-2 text-sm font-medium">{% increment serialNo %}.</span>
+              <span>{% render 'partials/play-button.html' -%}</span>
             </div>
-          </div>
-          <!-- Second line -->
-          <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
-            <div class="flex flex-grow flex-wrap items-start justify-between">
-              {% render 'partials/audio-tags.html' with audio as audio -%}
-              <div class="mb-1 flex items-center space-x-1">
-                {% render 'partials/percentage.html' with audio.percentage as percentage -%}
-                {% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}
+            <div class="flex flex-grow flex-col">
+              <div class="flex items-baseline justify-between">
+                <!-- Title -->
+                <div class="font-semibold">
+                  <a href="/audios/{{ audio.id }}/">{{ audio.title }}</a>
+                </div>
+                <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
+                  {% render 'partials/duration.html' with audio.duration as duration -%}
+                </div>
+              </div>
+              <!-- Second line -->
+              <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
+                <div class="flex flex-grow flex-wrap items-start justify-between">
+                  {% render 'partials/audio-tags.html' with audio as audio -%}
+                </div>
+                {% render 'partials/audio-actions.html', fileId: audio.id, title: audio.title -%}
               </div>
             </div>
-            {% render 'partials/audio-actions.html', fileId: audio.id, title: audio.title -%}
+          </div>
+          <div class="m-2 flex w-1/5 flex-row justify-center space-y-2 border-neutral-300 pl-3 text-xs sm:flex-col sm:border-l">
+            <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
+            <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
           </div>
         </div>
       </li>
