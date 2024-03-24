@@ -21,39 +21,37 @@ jsFile: common-player.js
     </svg>
     <span>{{ serie.title }}</span>
   </h1>
-  <ul class="mt-2 [&>*:last-child]:border-0">
+  <ul class="mt-2 divide-y">
     {%- for audio in serie.audios %}
       <li
         x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
-        class="mt-2 border-b border-neutral-200  pb-2 "
+        class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
       >
-        <div class="flex flex-col sm:flex-row">
-          <div class="flex sm:w-5/6">
-            <div class="flex items-start">
-              <span class="mt-3 pl-2 text-sm font-semibold">{% increment serialNo %}.</span>
-              <span class="mt-1">{% render 'partials/play-button.html' -%}</span>
+        <div class="flex grow items-start">
+          <div class="flex items-start">
+            <span class="mt-2 text-sm font-semibold">{% increment serialNo %}.</span>
+            <span class="">{% render 'partials/play-button.html' -%}</span>
+          </div>
+          <div class="grow">
+            <div class="flex items-start justify-between space-x-1">
+              <!-- Title -->
+              <h3 class="grow break-words font-semibold">
+                <a href="/audios/{{ audio.id }}/">{{ audio.title }}</a>
+              </h3>
+              {% render 'partials/duration.html' with audio.duration as duration -%}
             </div>
-            <div class="flex flex-grow flex-col">
-              <div class="flex items-baseline justify-between">
-                <!-- Title -->
-                <h3 class="grow break-words font-semibold">
-                  <a href="/audios/{{ audio.id }}/">{{ audio.title }}</a>
-                </h3>
-                {% render 'partials/duration.html' with audio.duration as duration -%}
+            <!-- Second line -->
+            <div class="flex items-end justify-between">
+              <div class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
+                {% render 'partials/audio-tags.html' with audio as audio -%}
               </div>
-              <!-- Second line -->
-              <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
-                <div class="flex flex-grow flex-wrap items-start justify-between">
-                  {% render 'partials/audio-tags.html' with audio as audio -%}
-                </div>
-                {% render 'partials/audio-actions.html' with audio as audio -%}
-              </div>
+              {% render 'partials/audio-actions.html' with audio as audio -%}
             </div>
           </div>
-          <div class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 text-xs sm:ml-4 sm:mt-2 sm:w-1/6 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0">
-            <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
-            <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
-          </div>
+        </div>
+        <div class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 text-xs sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0">
+          <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
+          <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
         </div>
       </li>
     {% endfor -%}
