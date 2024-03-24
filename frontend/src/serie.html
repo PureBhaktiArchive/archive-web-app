@@ -21,22 +21,22 @@ jsFile: common-player.js
     </svg>
     <span>{{ serie.title }}</span>
   </h1>
-  <ul class="mt-2">
+  <ul class="mt-2 [&>*:last-child]:border-0">
     {%- for audio in serie.audios %}
       <li
         x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
-        class="mb-2 rounded-md border-b border-neutral-300 pb-1"
+        class="mt-2 border-b border-neutral-300  pb-2 "
       >
         <div class="flex flex-col sm:flex-row">
           <div class="flex w-5/6">
             <div class="flex items-start">
-              <span class="mt-2 pl-2 text-sm font-medium">{% increment serialNo %}.</span>
+              <span class="mt-2 pl-2 text-sm font-semibold">{% increment serialNo %}.</span>
               <span>{% render 'partials/play-button.html' -%}</span>
             </div>
             <div class="flex flex-grow flex-col">
               <div class="flex items-baseline justify-between">
                 <!-- Title -->
-                <div class="font-semibold">
+                <div class="text-sm font-semibold">
                   <a href="/audios/{{ audio.id }}/">{{ audio.title }}</a>
                 </div>
                 <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
@@ -52,7 +52,7 @@ jsFile: common-player.js
               </div>
             </div>
           </div>
-          <div class="m-2 flex w-1/6 flex-row justify-center space-y-2 border-neutral-300 pl-5 text-xs sm:flex-col sm:border-l">
+          <div class="flex w-1/6 flex-row justify-center space-y-2 border-neutral-300 pl-5 text-xs sm:flex-col sm:border-l">
             <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
             <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
           </div>
