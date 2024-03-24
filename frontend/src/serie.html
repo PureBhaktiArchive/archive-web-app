@@ -39,16 +39,14 @@ jsFile: common-player.js
                 <div class="text-sm font-semibold">
                   <a href="/audios/{{ audio.id }}/">{{ audio.title }}</a>
                 </div>
-                <div class="inline-flex content-end items-center pr-2 text-xs font-medium">
-                  {% render 'partials/duration.html' with audio.duration as duration -%}
-                </div>
+                {% render 'partials/duration.html' with audio.duration as duration -%}
               </div>
               <!-- Second line -->
               <div class="mt-1 flex items-start justify-between space-x-2 pr-2 text-xs">
                 <div class="flex flex-grow flex-wrap items-start justify-between">
                   {% render 'partials/audio-tags.html' with audio as audio -%}
                 </div>
-                {% render 'partials/audio-actions.html', fileId: audio.id, title: audio.title -%}
+                {% render 'partials/audio-actions.html', audio: audio -%}
               </div>
             </div>
           </div>

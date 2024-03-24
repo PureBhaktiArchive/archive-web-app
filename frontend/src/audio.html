@@ -16,9 +16,7 @@ description: Audio recording with all the details, including topics discussed
   <div class="flex justify-between space-x-1 align-baseline">
     <!-- Title -->
     <h1 class="text-xl font-bold">{{ audio.title }}</h1>
-    <div class="inline-flex content-end items-center">
-      {% render 'partials/duration.html' with audio.duration as duration -%}
-    </div>
+    {% render 'partials/duration.html' with audio.duration as duration -%}
   </div>
   <!-- Second line -->
   <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
@@ -29,7 +27,7 @@ description: Audio recording with all the details, including topics discussed
         {% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}
       </div>
     </div>
-    {% render 'partials/audio-actions.html', fileId: audio.fileId, title: audio.title -%}
+    {% render 'partials/audio-actions.html', audio: audio -%}
   </div>
   <div class="prose prose-sm mt-6 sm:prose dark:prose-invert">
     <!-- Other Speakers -->
