@@ -27,7 +27,7 @@ description: Audio recording with all the details, including topics discussed
         {% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}
       </div>
     </div>
-    {% render 'partials/audio-actions.html', audio: audio -%}
+    {% render 'partials/audio-actions.html' with audio as audio -%}
   </div>
   <div class="prose prose-sm mt-6 sm:prose dark:prose-invert">
     <!-- Other Speakers -->
