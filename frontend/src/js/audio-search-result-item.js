@@ -3,26 +3,25 @@
  */
 
 import { escape } from 'instantsearch.js/es/lib/utils';
+import { toPlayerItem } from './audio-item';
 import { formatDurationForHumans } from './duration';
 import { soundQualityRatingMapping } from './sound-quality-rating';
 
 // Importing types using this guide: https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#import-types
 /**
- * @typedef {import('./audio-record').AudioRecord} AudioRecord
  * @typedef {import("instantsearch.js").Hit<AudioRecord>} AudioHit
  * @typedef {import("instantsearch.js").TemplateParams} TemplateParams
  */
 
 /**
- *
+ * Warning for Alpine usage: use `x-on` instead of a shorthand `@` due to a Preact error “String contains an invalid character”
  * @param {AudioHit} hit
  * @param {TemplateParams} param
  */
 export const itemTemplate = (hit, { html, components }) => html`
   <article
     class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
-    x-data="searchResultItem(${hit.fileId})"
-    x-bind="root"
+    x-data="audioItem(${JSON.stringify(toPlayerItem(hit))})"
   >
     <!-- Main section -->
     <div class="flex grow items-start">
@@ -31,7 +30,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         class="mt-2 w-8 flex-none rounded-full bg-neutral-600 fill-current focus:outline-none"
         title="Play"
         type="button"
-        x-bind="playButton"
+        x-on:click="togglePlay"
       >
         <!-- Material Icons: Play Arrow -->
         <svg

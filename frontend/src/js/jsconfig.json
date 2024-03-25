@@ -18,6 +18,8 @@
     // Type Checking
 
     "noImplicitReturns": true,
+    // Added by recomendation from https://github.com/alpinejs/alpine/issues/2199#issuecomment-1711676733
+    "noImplicitThis": true,
     // TODO: "strict": true,
 
     // Emit

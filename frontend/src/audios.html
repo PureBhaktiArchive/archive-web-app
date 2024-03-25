@@ -71,6 +71,11 @@ jsFile: audios.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
+    <section title="Series" class="my-3" x-data x-show="$store.search.isEmpty">
+      <h4 class="mb-2 text-sm font-semibold uppercase md:text-base">Lecture Series</h4>
+      {% include 'series_list.html' %}
+      <h4 class="text-sm font-semibold uppercase md:text-base">All Audios</h4>
+    </section>
     <div class="my-3 flex items-center">
       <!-- Filter button -->
       <button
@@ -95,4 +100,4 @@ jsFile: audios.js
   </main>
 </div>
 <!-- Player UI -->
-{% render 'partials/audio-player.html' -%}
+{% render 'player.html' -%}

@@ -1,0 +1,25 @@
+<div class="mb-1 flex flex-wrap content-between items-baseline [&>*]:mb-1 [&>*]:mr-1 [&>*]:border-r [&>*]:border-gray-300 [&>*]:pr-1 last:[&>*]:border-0">
+  <div title="Unique file identifier">#{{ audio.fileId }}</div>
+  {% if audio.dateForHumans -%}
+    <div>
+      {{ audio.dateForHumans }}
+      {% if audio.dateUncertain -%}
+        <span title="Date is uncertain">(?)</span>
+      {%- endif %}
+    </div>
+  {%- endif %}
+  {% if audio.location -%}
+    <div>
+      {{ audio.location }}
+      {% if audio.locationUncertain -%}
+        <span title="Location is uncertain">(?)</span>
+      {%- endif %}
+    </div>
+  {%- endif %}
+  {% if audio.category -%}
+    <div>{{ audio.category }}</div>
+  {%- endif %}
+  {% for language in audio.languages -%}
+    <div>{{ language }}</div>
+  {%- endfor %}
+</div>
