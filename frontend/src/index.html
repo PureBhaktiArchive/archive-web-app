@@ -30,19 +30,17 @@ tags:
   </section>
   <!-- Daily Videos -->
   <ul class="flex gap-x-4 gap-y-2 empty:hidden max-md:mx-2 max-md:flex-wrap max-md:justify-center md:col-start-2 md:row-span-3 md:flex-col">
-    {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
+    {%- # It is important to use hyphens to s trip whitespaces so that `empty:hidden` would work properly -%}
     {%- for video in home.videos %}
       <li
+        x-data="{inVideoMode: false}"
+        :data-vertical="inVideoMode && ''"
         class="group min-w-[240px] data-[vertical]:max-w-[320px] max-md:flex-1"
-        {% if video.vertical %}
-          data-vertical
-        {% endif %}
       >
         <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-center text-sm font-semibold uppercase text-black md:text-sm">
           {{ video.title }}
         </h3>
         <div
-          x-data="{inVideoMode: false}"
           class="aspect-h-9 aspect-w-16 overflow-hidden rounded-md group-data-[vertical]:aspect-h-16 group-data-[vertical]:aspect-w-9"
         >
           <!-- Using `x-show` instead of `x-if` for the image because of an issue in Safari: element cloned from a template does not render properly with `object-cover` -->
