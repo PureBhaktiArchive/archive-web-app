@@ -27,11 +27,9 @@ jsFile: common-player.js
         x-data="audioItem({{ audio | toPlayerItem | json | escape }})"
         class="flex w-full flex-col py-1 hover:!bg-yellow-100 hover:!bg-opacity-50 sm:flex-row sm:py-2"
       >
-        <div class="flex grow items-start">
-          <div class="flex items-start">
-            <span class="mt-2 text-sm font-semibold">{% increment serialNo %}.</span>
-            <span class="">{% render 'partials/play-button.html' -%}</span>
-          </div>
+        <div class="flex grow items-baseline space-x-2">
+          <div class="mt-2 flex-none self-start">{% render 'partials/play-button.html' -%}</div>
+          <span class="text-sm font-semibold">{{ forloop.index }}.</span>
           <div class="grow">
             <div class="flex items-start justify-between space-x-1">
               <!-- Title -->
