@@ -56,15 +56,13 @@ module.exports = function (eleventyConfig) {
   //Filter for Sound Quality Rating color
   eleventyConfig.addFilter(
     'sound_quality_color',
-    (soundqualitycolor) =>
-      `${soundQualityRatingMapping[soundqualitycolor].color}`
+    (rating) => soundQualityRatingMapping[rating]?.color
   );
 
   //Filter for Sound Quality Rating label
   eleventyConfig.addFilter(
     'sound_quality_label',
-    (soundqualitylabel) =>
-      `${soundQualityRatingMapping[soundqualitylabel].label}`
+    (rating) => soundQualityRatingMapping[rating]?.label || rating
   );
 
   eleventyConfig.addFilter(
