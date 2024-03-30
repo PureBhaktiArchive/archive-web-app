@@ -17,6 +17,7 @@ module.exports = ({ directus }) =>
         deep: {
           audios: {
             _sort: 'sort',
+            _filter: { audios_id: { status: { _eq: 'active' } } },
             // At this time, alias has not been typed yet for use in other query parameters like deep. See https://docs.directus.io/guides/sdk/types.html#working-with-input-query-types
             _alias: {
               // Historically, in the code we refer to the `id` as `fileId`. Therefore using aliases here.
