@@ -40,7 +40,7 @@ const fetchHomePageVideos = async ({ directus }) =>
           vertical,
           videoId,
           thumbnail: {
-            srcset: getSrcSet(thumbnails, vertical),
+            srcset: getSrcSet(thumbnails),
             fallbackUrl: thumbnails.at(-1).url,
           },
         };
