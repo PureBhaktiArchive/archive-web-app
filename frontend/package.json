@@ -21,7 +21,7 @@
     "@directus/sdk": "14.0.0",
     "@shopify/prettier-plugin-liquid": "1.4.0",
     "@tailwindcss/aspect-ratio": "0.4.2",
-    "@tailwindcss/typography": "0.5.10",
+    "@tailwindcss/typography": "0.5.12",
     "@types/alpinejs": "3.13.5",
     "@types/html-minifier-terser": "7.0.2",
     "@types/jest": "29.5.11",
