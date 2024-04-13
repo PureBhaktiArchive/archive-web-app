@@ -10,8 +10,13 @@ const { readItems } = require('@directus/sdk');
 module.exports = ({ directus }) =>
   directus.request(
     readItems('audios', {
-      fields: ['*'],
+      fields: ['*', { series: [{ series_id: ['*'] }] }],
       filter: { status: { _eq: 'active' } },
+      deep: {
+        series: {
+          _filter: { series_id: { status: { _eq: 'published' } } },
+        },
+      },
       // Fetching all items. Later, when number of records grows, we may need to fetch in pages as described in https://docs.directus.io/reference/query.html#offset
       // Also, we assume that the `QUERY_LIMIT_MAX` env variable is not set on the server.
       limit: -1,
@@ -20,7 +25,7 @@ module.exports = ({ directus }) =>
         : // Overriding some options in development
           {
             // Fetching only few items in the development mode to speed up rebuilding the pages
-            limit: 50,
+            limit: 2,
             /**
              * Because of the limit above, not all search results will be clickable.
              * Sorting by date to match the Algolia's default sorting and thus
@@ -33,3 +38,8 @@ module.exports = ({ directus }) =>
       alias: { fileId: 'id' },
     })
   );
+/*
+    .then((response) => {
+      console.log(response);
+    });
+    */

@@ -41,6 +41,7 @@ declare global {
     languages: string[];
     otherSpeakers?: string[];
     duration: number;
+    series: SerieAudio[];
   }
 
   type AudioForSearch = Pick<
@@ -97,7 +98,7 @@ declare global {
 
   interface SerieAudio {
     id: number;
-    series_id: number;
+    series_id: Serie;
     audios_id: Audio;
     sort: number;
   }
