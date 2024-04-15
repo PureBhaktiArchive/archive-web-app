@@ -10,7 +10,7 @@ const { readItems } = require('@directus/sdk');
 module.exports = ({ directus }) =>
   directus.request(
     readItems('audios', {
-      fields: ['*', { series: [{ series_id: ['*'] }] }],
+      fields: ['*', { series: [{ series_id: ['title'] }] }],
       filter: { status: { _eq: 'active' } },
       deep: {
         series: {
@@ -25,12 +25,12 @@ module.exports = ({ directus }) =>
         : // Overriding some options in development
           {
             // Fetching only few items in the development mode to speed up rebuilding the pages
-            limit: 2,
+            limit: 50,
             /**
              * Because of the limit above, not all search results will be clickable.
              * Sorting by date to match the Algolia's default sorting and thus
              * to make the first 50 search results clickable in development.
-             * See `customRanking` in `algolia/audios.json`.
+             * See `custoking` in `algolia/audios.json`.
              */
             sort: 'date',
           }),
@@ -38,8 +38,3 @@ module.exports = ({ directus }) =>
       alias: { fileId: 'id' },
     })
   );
-/*
-    .then((response) => {
-      console.log(response);
-    });
-    */
