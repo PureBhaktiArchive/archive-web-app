@@ -30,7 +30,7 @@ description: Audio recording with all the details, including topics discussed
     {% render 'partials/audio-actions.html' with audio as audio -%}
   </div>
   <!-- Third line -->
-  <ul class="flex flex-wrap">
+  <ul class="mt-2 flex flex-wrap">
     {%- for series in audio.series %}
       <li class="rounded-md border border-neutral-300">
         <a href="/series/{{- series.series_id.title | replace: ' ', '-' | downcase -}}/" class="flex items-center space-x-1 p-2">
