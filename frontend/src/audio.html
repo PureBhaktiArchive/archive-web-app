@@ -33,7 +33,7 @@ description: Audio recording with all the details, including topics discussed
   <h4 class="mt-2 text-sm font-medium">This audio is a part of following lecture series:</h4>
   <ul class="flex flex-wrap">
     {%- for series in audio.series %}
-      <li class="m-1 ml-0 rounded-xl border border-neutral-300 bg-pink-100 px-1.5 py-0.5">
+      <li class="m-1 ml-0 rounded-xl border border-neutral-300 bg-pink-100 px-1.5">
         <a href="/series/{{- series.title | replace: ' ', '-' | downcase -}}/" class="flex items-center space-x-1">
           <!-- https://icon-sets.iconify.design/cil/featured-playlist/ -->
           <svg xmlns="http://www.w3.org/2000/svg" width="0.75em" height="0.75em" viewBox="0 0 512 512">
