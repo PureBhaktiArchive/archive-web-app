@@ -34,8 +34,10 @@ tags:
     {%- for video in home.videos %}
       <li
         x-data="{inVideoMode: false}"
-        :data-vertical="inVideoMode && ''"
         class="group min-w-[240px] data-[vertical]:max-w-[320px] max-md:flex-1"
+        {% if video.vertical %}
+          :data-vertical="inVideoMode"
+        {% endif %}
       >
         <h3 class="overflow-hidden overflow-ellipsis whitespace-nowrap pb-2 text-center text-sm font-semibold uppercase text-black md:text-sm">
           {{ video.title }}
