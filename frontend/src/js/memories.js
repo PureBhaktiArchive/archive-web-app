@@ -3,6 +3,7 @@
  */
 
 import algoliasearch from 'algoliasearch/lite';
+// eslint-disable-next-line import/no-named-as-default -- See https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/69404
 import Alpine from 'alpinejs';
 import instantsearch from 'instantsearch.js/es';
 import {
