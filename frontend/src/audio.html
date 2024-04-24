@@ -29,11 +29,13 @@ description: Audio recording with all the details, including topics discussed
     </div>
     {% render 'partials/audio-actions.html' with audio as audio -%}
   </div>
-  <!-- Third line -->
-  <h4 class="mt-2 text-sm font-medium">This audio is included in the following series of lectures:</h4>
-  <div class="text-xs">{% include 'series_audio_list.html' %}</div>
 
   <div class="prose prose-sm mt-4 sm:prose dark:prose-invert">
+    <!-- Third line -->
+    {% if audio.series != blank %}
+      <h4 class="mt-2">This audio is included in the following series of lectures:</h4>
+    {% endif %}
+    {% include 'series_audio_list.html' %}
     <!-- Other Speakers -->
     {% if audio.otherSpeakers -%}
       <h4>

@@ -6,9 +6,9 @@
   the latter is the liquidjs' feature and it does not have access to the 11ty's data cascade.
   Whereas the `include` is supported by 11ty itself and provides access to the data.
 {% endcomment %}
-<ul class="flex flex-wrap">
+<ul class="not-prose flex flex-wrap space-y-1 text-xs md:space-x-1 md:space-y-0">
   {%- for series in audio.series %}
-    <li class="m-1 ml-0 rounded-lg border border-neutral-300 px-1.5 pb-[1px]">
+    <li class="rounded-lg border border-neutral-300 px-1.5 pb-[1px]">
       <a href="/series/{{- series.title | replace: ' ', '-' | downcase -}}/" class="flex items-center space-x-1">
         <!-- https://icon-sets.iconify.design/cil/featured-playlist/ -->
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512">
