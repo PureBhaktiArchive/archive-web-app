@@ -71,11 +71,6 @@ jsFile: audios.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
-    <section title="Series" class="my-3" x-data x-show="$store.search.isEmpty">
-      <h4 class="mb-2 text-sm font-semibold uppercase md:text-base">Series of lectures</h4>
-      <div class="text-base">{% include 'series_list.html' %}</div>
-      <h4 class="text-sm font-semibold uppercase md:text-base">All Audios</h4>
-    </section>
     <div class="my-3 flex items-center">
       <!-- Filter button -->
       <button
@@ -97,6 +92,10 @@ jsFile: audios.js
     <p id="under-progress" class="hidden p-2 text-center text-sm text-gray-500">
       This Archive is under progress. Progressively, new recordings will be added regularly. If you don’t find the audio you are looking for, we request you to check again later.
     </p>
+    <section title="Series" class="my-3" x-data x-show="$store.search.isEmpty">
+      <h4 class="mb-2 text-sm font-semibold uppercase md:text-base">Series of lectures</h4>
+      <div class="text-base">{% include 'series_list.html' %}</div>
+    </section>
   </main>
 </div>
 <!-- Player UI -->
