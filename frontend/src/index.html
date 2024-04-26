@@ -29,7 +29,7 @@ tags:
     </div>
   </section>
   <!-- Daily Videos -->
-  <ul class="flex gap-x-4 gap-y-2 empty:hidden max-md:mx-2 max-md:flex-wrap max-md:justify-center md:col-start-2 md:flex-col">
+  <ul class="flex justify-between gap-x-4 gap-y-2 empty:hidden max-md:mx-2 max-md:flex-wrap max-md:justify-center md:col-start-2 md:flex-col">
     {%- # It is important to use hyphens to strip whitespaces so that `empty:hidden` would work properly -%}
     {%- for video in home.videos %}
       <li
