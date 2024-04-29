@@ -31,11 +31,12 @@ description: Audio recording with all the details, including topics discussed
   </div>
 
   <div class="prose prose-sm mt-4 sm:prose dark:prose-invert">
-    <!-- Series -->
+    <!-- Series titles -->
+    {% assign series_ids = audio.series | map: 'id' %}
     {% if audio.series != blank %}
       <h4>This audio is included in the following series of lectures:</h4>
+      <div class="not-prose text-xs">{% include 'series_list.html', audio_series_id: series_ids %}</div>
     {% endif %}
-    {% include 'series_audio_list.html' %}
     <!-- Other Speakers -->
     {% if audio.otherSpeakers -%}
       <h4>
