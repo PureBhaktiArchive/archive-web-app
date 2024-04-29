@@ -11,7 +11,7 @@ module.exports = ({ directus }) =>
   directus
     .request(
       readItems('audios', {
-        fields: ['*', { series: [{ series_id: ['title'] }] }],
+        fields: ['*', { series: [{ series_id: ['id', 'title'] }] }],
         filter: { status: { _eq: 'active' } },
         deep: {
           series: {
