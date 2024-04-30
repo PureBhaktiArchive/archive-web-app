@@ -10,12 +10,13 @@
   the latter is the liquidjs' feature and it does not have access to the 11ty's data cascade.
   Whereas the `include` is supported by 11ty itself and provides access to the data.
 {% endcomment %}
-<ul class="flex flex-wrap">
+<!-- Using the Alpine syntax here, though the `x-data` could be defined outside the partial. -->
+<ul :class="isCollapsed && 'line-clamp-2'">
   {%- for item in collections.series limit: limit -%}
     {% if ids == blank or ids contains item.data.serie.id %}
       <li
         class="
-          mb-2 mr-2 flex-none overflow-hidden rounded-xl border border-neutral-300
+          inline-block overflow-hidden rounded-xl border border-neutral-300
           {% if item.url == page.url %}
             bg-neutral-400 text-white
           {% endif %}
