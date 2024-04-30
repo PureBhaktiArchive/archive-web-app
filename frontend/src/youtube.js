@@ -48,13 +48,7 @@ const getThumbnails = (videoSnippet) =>
  */
 const getSrcSet = (thumbnails) =>
   thumbnails
-    .map(
-      (thumbnail) =>
-        `${thumbnail.url} ${
-          // If it's vertical, only middle portion will be taken from the thumbnail
-          Math.trunc(thumbnail.width)
-        }w`
-    )
+    .map((thumbnail) => `${thumbnail.url} ${thumbnail.width}w`)
     .join(', ');
 
 module.exports = {
