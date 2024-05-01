@@ -10,7 +10,7 @@
   the latter is the liquidjs' feature and it does not have access to the 11ty's data cascade.
   Whereas the `include` is supported by 11ty itself and provides access to the data.
 {% endcomment %}
-<ul>
+<ul class="flex flex-wrap gap-1">
   {%- for item in collections.series limit: limit -%}
     {% if ids == blank or ids contains item.data.serie.id %}
       <li
