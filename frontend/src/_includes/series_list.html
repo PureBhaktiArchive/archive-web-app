@@ -22,7 +22,8 @@
           {% endif %}
         "
       >
-        <a href="{{ item.url }}" class="flex items-baseline space-x-1 px-2 pb-0.5">
+        <!-- Using the bottom padding in `em` to center the text vertically in all font sizes. -->
+        <a href="{{ item.url }}" class="flex items-baseline space-x-1 px-2 pb-[0.125em]">
           <!--
             Adjusting the icon position with the top offset.
             Inside flexbox, the vertical-align does not work.
