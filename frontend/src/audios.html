@@ -85,8 +85,14 @@ jsFile: audios.js
           x-text="isCollapsed ? 'Show all' : 'Show less'"
         ></a>
       </h4>
-
-      <div class="overflow-hidden" :class="isCollapsed && 'max-h-[4em]'">
+      <!--
+        Making the “after” element fade out the contents.
+        Inspired by https://css-tricks.com/line-clampin/#aa-the-fade-out-way
+      -->
+      <div
+        class="relative overflow-hidden after:pointer-events-none after:absolute after:bottom-0 after:h-1/3 after:w-full after:bg-gradient-to-t after:from-white"
+        :class="isCollapsed ? 'max-h-[5em]' : 'after:invisible'"
+      >
         {% include 'series_list.html' %}
       </div>
       <h4 class="mt-3 font-semibold uppercase">All Audios</h4>
