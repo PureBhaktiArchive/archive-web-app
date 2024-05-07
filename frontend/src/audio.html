@@ -13,7 +13,7 @@ jsFile: common-player.js
 description: Audio recording with all the details, including topics discussed
 ---
 <article class="mx-auto mt-10 flex max-w-screen-md flex-col px-2 sm:px-4">
-  <div class="flex justify-between space-x-1 align-baseline">
+  <div class="flex items-start justify-between space-x-1">
     <!-- Title -->
     <h1 class="text-xl font-bold">{{ audio.title }}</h1>
     {% render 'partials/duration.html' with audio.duration as duration -%}
