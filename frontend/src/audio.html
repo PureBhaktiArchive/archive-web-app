@@ -16,7 +16,7 @@ description: Audio recording with all the details, including topics discussed
   <div class="flex items-start justify-between space-x-1">
     <!-- Title -->
     <h1 class="text-xl font-bold">{{ audio.title }}</h1>
-    {% render 'partials/duration.html' with audio.duration as duration -%}
+    <span class="mt-1">{% render 'partials/duration.html' with audio.duration as duration -%}</span>
   </div>
   <!-- Second line -->
   <div class="mt-1 flex items-start justify-between space-x-2 text-xs">
