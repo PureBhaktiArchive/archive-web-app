@@ -35,6 +35,7 @@ description: Audio recording with all the details, including topics discussed
     {% if audio.series != blank %}
       <h4>This audio is included in the following series of lectures:</h4>
       {% assign seriesIds = audio.series | map: 'id' %}
+      <!-- Turning off prose to avoid bullets in the list -->
       <div class="not-prose text-sm">
         {% include 'series_list.html', ids: seriesIds %}
       </div>
