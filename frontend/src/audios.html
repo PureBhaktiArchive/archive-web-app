@@ -71,6 +71,33 @@ jsFile: audios.js
         <span class="hidden sm:inline">Search</span>
       </button>
     </div>
+    <section
+      x-data="{ isCollapsed: true }"
+      x-show="$store.search.isEmpty"
+      x-cloak
+      class="text-sm md:text-base"
+    >
+      <h4 class="my-3 font-semibold uppercase">
+        Series of lectures
+        <a
+          class="cursor-pointer self-start text-xs font-light lowercase underline decoration-dotted decoration-from-font underline-offset-2 md:hidden"
+          x-on:click="isCollapsed = !isCollapsed"
+          x-text="isCollapsed ? 'Show all' : 'Show less'"
+        ></a>
+      </h4>
+      <!--
+        Making the “after” element fade out the contents.
+        Inspired by https://css-tricks.com/line-clampin/#aa-the-fade-out-way
+      -->
+      <div
+        class="relative overflow-hidden after:pointer-events-none after:absolute after:bottom-0 after:h-1/3 after:w-full after:bg-gradient-to-t after:from-white md:after:hidden"
+        :class="isCollapsed ? 'max-md:max-h-[5em]' : 'after:invisible'"
+      >
+        {% include 'series_list.html' %}
+      </div>
+      <hr class="mt-5">
+      <h4 class="mb-5 mt-5 font-semibold uppercase">All Audios</h4>
+    </section>
     <div class="my-3 flex items-center">
       <!-- Filter button -->
       <button
@@ -95,4 +122,4 @@ jsFile: audios.js
   </main>
 </div>
 <!-- Player UI -->
-{% render 'partials/audio-player.html' -%}
+{% render 'player.html' -%}

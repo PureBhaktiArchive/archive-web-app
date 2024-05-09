@@ -38,8 +38,9 @@
     // JavaScript Support
 
     "allowJs": true, // This is the default for jsconfig
-    "maxNodeModuleJsDepth": 1, // Overriding the default of 2 for jsconfig, otherwise tsc starts looking into node_modules and emit errors
+    // Setting this to 1 in order to allow type inference for the Eleventy config
+    "maxNodeModuleJsDepth": 1, // Overriding the default of 2 for jsconfig, otherwise tsc starts looking into node_modules and emitting errors
     "checkJs": true
   },
-  "exclude": ["node_modules", "**/node_modules/*", "dist", "src/js/**/*.js"]
+  "exclude": ["node_modules", "**/node_modules/*", "dist", "src/js/**"]
 }

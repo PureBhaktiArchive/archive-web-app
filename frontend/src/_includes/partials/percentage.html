@@ -1,0 +1,23 @@
+<!-- Percentage -->
+<div
+  class="relative overflow-hidden rounded-lg border border-gray-300"
+  title="
+    {%- if percentage > 0 -%}
+      How much Srila Gurudeva is speaking in the recording
+    {%- else -%}
+      Only other guru-varga is speaking in the recording
+    {%- endif -%}
+  "
+>
+  <div
+    class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+    style="--percentage: {% if percentage > 0 -%}{{ percentage | formatFractionAsPercentage }}{%- else -%}100%{%- endif -%}"
+  ></div>
+  <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
+    {%- if percentage > 0 -%}
+      Srila Gurudeva {{ percentage | formatFractionAsPercentage }}
+    {%- else -%}
+      Other guru-varga
+    {%- endif -%}
+  </div>
+</div>

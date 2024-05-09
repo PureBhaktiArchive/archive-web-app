@@ -10,6 +10,7 @@ const {
 } = require('./config/filters/sound-quality-rating');
 const { getDirectusClient } = require('./config/directus');
 const { formatReducedPrecisionDate } = require('./src/reduced-precision-date');
+const { toPlayerItem } = require('./src/player-item');
 
 require('dotenv').config({
   path: `${__dirname}/.env.local`,
@@ -42,34 +43,45 @@ module.exports = function (eleventyConfig) {
 
   //Filter for duration calculation
   eleventyConfig.addFilter(
-    'duration',
+    'formatDurationForHumans',
     (durationInSeconds) => `${formatDurationForHumans(durationInSeconds)}`
   );
 
   //Filter for Gurudev percentage calculation
   eleventyConfig.addFilter(
-    'percentage',
+    'formatFractionAsPercentage',
     (audioPercentage) => `${Math.ceil(audioPercentage * 20) * 5}%`
   );
 
   //Filter for Sound Quality Rating color
   eleventyConfig.addFilter(
     'sound_quality_color',
-    (soundqualitycolor) =>
-      `${soundQualityRatingMapping[soundqualitycolor].color}`
+    (rating) => soundQualityRatingMapping[rating]?.color
   );
 
   //Filter for Sound Quality Rating label
   eleventyConfig.addFilter(
     'sound_quality_label',
-    (soundqualitylabel) =>
-      `${soundQualityRatingMapping[soundqualitylabel].label}`
+    (rating) => soundQualityRatingMapping[rating]?.label || rating
   );
 
   eleventyConfig.addFilter(
     'format_reduced_precision',
     formatReducedPrecisionDate
   );
+
+  //audio actions filter -Download
+  eleventyConfig.addFilter(
+    'toFileURL',
+    (fileId) => `${process.env.STORAGE_BASE_URL}/${fileId}.mp3`
+  );
+
+  eleventyConfig.addFilter(
+    'toFeedbackURL',
+    (fileId) => `${process.env.FEEDBACK_FORM_AUDIOS}${fileId}`
+  );
+
+  eleventyConfig.addFilter('toPlayerItem', toPlayerItem);
 
   // Return your Object options:
   return {
