@@ -28,7 +28,6 @@ gtm-tag-id: GTM-PNC4S5J
 
   <body class="flex min-h-screen flex-col overflow-y-scroll data-[overlayed]:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
-
     <header class="border-b border-gray-200 py-4">
       <div
         x-data="{open: false}"
@@ -95,18 +94,10 @@ gtm-tag-id: GTM-PNC4S5J
         </nav>
       </div>
     </header>
-
-    <!-- Top section subscribe now -->
-    <section class="hidden flex-wrap items-center justify-center gap-2 border-gray-300 bg-neutral-100 px-4 py-2 sm:flex-nowrap">
-      {% render 'partials/subscribe.html' -%}
-    </section>
-    <!-- Top section transcribe now -->
-    <section class="flex flex-wrap items-center justify-center gap-2 border-b border-gray-300 bg-neutral-100 px-4 py-2 sm:flex-nowrap">
-      {% render 'partials/transcribe.html' -%}
-    </section>
-
+    <!-- Top section subscribe and transcribe banner -->
+    {% render 'partials/top-banners.html' -%}
     <!-- Page Content -->
-    <section class="flex-1 md:py-3">
+    <section class="flex-1">
       <div class="mx-auto max-w-screen-xl">{{ content }}</div>
     </section>
 
