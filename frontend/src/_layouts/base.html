@@ -28,7 +28,7 @@ gtm-tag-id: GTM-PNC4S5J
 
   <body class="flex min-h-screen flex-col overflow-y-scroll data-[overlayed]:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
-    <header class="border-b border-gray-200 py-4">
+    <header class="border-b border-gray-200 py-2">
       <div
         x-data="{open: false}"
         x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
@@ -94,7 +94,7 @@ gtm-tag-id: GTM-PNC4S5J
         </nav>
       </div>
     </header>
-    <!-- Top section transcribe banner -->
+    <!-- Transcribe banner -->
     {% render 'partials/transcribe-banner.html' -%}
     <!-- Page Content -->
     <section class="flex-1">
