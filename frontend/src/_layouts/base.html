@@ -28,13 +28,7 @@ gtm-tag-id: GTM-PNC4S5J
 
   <body class="flex min-h-screen flex-col overflow-y-scroll data-[overlayed]:overflow-hidden">
     {% render 'partials/gtm-noscript.html', tag-id: gtm-tag-id -%}
-
-    <!-- Top section Join us now -->
-    <section class="flex flex-wrap items-center justify-center gap-2 border-b border-t border-gray-300 bg-neutral-100 px-4 py-2 sm:flex-nowrap">
-      {% render 'partials/join-us.html' -%}
-    </section>
-
-    <header class="border-b border-gray-200 py-4">
+    <header class="border-b border-gray-200 py-2">
       <div
         x-data="{open: false}"
         x-init="$watch('open', (value) => $dispatch('toggle-backdrop', value))"
@@ -100,7 +94,7 @@ gtm-tag-id: GTM-PNC4S5J
         </nav>
       </div>
     </header>
-
+    {% include 'seva-banner.html' -%}
     <!-- Page Content -->
     <section class="flex-1 md:py-3">
       <div class="mx-auto max-w-screen-xl">{{ content }}</div>
