@@ -36,7 +36,7 @@ module.exports = {
           800: '#6d787a',
           900: '#596264',
         },
-        gray: colors.slate,
+        neutral: colors.slate,
       },
       fontFamily: {
         erasDemi: ['ITC Eras Demi'],
