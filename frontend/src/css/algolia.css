@@ -58,20 +58,20 @@
   }
 
   .rheostat-background {
-    @apply relative border-gray-400 bg-white;
+    @apply relative border-neutral-400 bg-white;
   }
 
   .rheostat-progress {
-    @apply absolute top-px h-1 bg-gray-800;
+    @apply absolute top-px h-1 bg-neutral-800;
   }
 }
 
 .rheostat-handle {
-  @apply relative z-10 h-3 w-3 cursor-grab rounded-3xl border-gray-800 bg-white;
+  @apply relative z-10 h-3 w-3 cursor-grab rounded-3xl border-neutral-800 bg-white;
 }
 
 .rheostat-marker {
-  @apply absolute -ml-px h-1 w-px bg-gray-400;
+  @apply absolute -ml-px h-1 w-px bg-neutral-400;
 }
 
 .rheostat-marker--large {
@@ -147,7 +147,7 @@ a[class^='ais-'] {
 }
 
 .ais-CurrentRefinements-item {
-  @apply mr-1 mt-1 flex rounded bg-peach px-2 py-1;
+  @apply mr-1 mt-1 flex rounded px-2 py-1;
 }
 
 .ais-CurrentRefinements-category {

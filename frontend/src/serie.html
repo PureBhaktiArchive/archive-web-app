@@ -42,14 +42,14 @@ jsFile: common-player.js
             </div>
             <!-- Second line -->
             <div class="flex items-start justify-between">
-              <div class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0">
+              <div class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-neutral-300 *:pr-1 last:*:border-0">
                 {% render 'partials/audio-tags.html' with audio as audio -%}
               </div>
               {% render 'partials/audio-actions.html' with audio as audio -%}
             </div>
           </div>
         </div>
-        <div class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-14 pt-2 text-xs sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0">
+        <div class="mt-2 flex flex-none items-end space-x-2 border-neutral-200 pb-2 pl-14 pt-2 text-xs sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0">
           <div class="flex grow-0">{% render 'partials/percentage.html' with audio.percentage as percentage -%}</div>
           <div class="flex grow-0">{% render 'partials/sound-quality.html' with audio.soundQualityRating as soundQualityRating -%}</div>
         </div>

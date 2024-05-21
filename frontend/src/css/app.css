@@ -89,8 +89,8 @@
     --buffered-position: calc(100% * var(--buffered));
     background: linear-gradient(
       to right,
-      theme('colors.gray.400') var(--buffered-position),
-      theme('colors.gray.300') var(--buffered-position)
+      theme('colors.neutral.400') var(--buffered-position),
+      theme('colors.neutral.300') var(--buffered-position)
     );
   }
 

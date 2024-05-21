@@ -87,7 +87,7 @@ export const itemTemplate = (hit, { html, components }) => html`
         <div class="flex items-end justify-between">
           <!-- Tags -->
           <div
-            class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-gray-300 *:pr-1 last:*:border-0"
+            class="flex flex-wrap content-between align-baseline text-xs *:mr-1 *:mt-1 *:border-r *:border-neutral-300 *:pr-1 last:*:border-0"
           >
             <!-- ID -->
             <div title="Unique file identifier">
@@ -218,17 +218,17 @@ export const itemTemplate = (hit, { html, components }) => html`
     </div>
     <!-- Complimentary section -->
     <div
-      class="mt-2 flex flex-none items-end space-x-2 border-gray-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0"
+      class="mt-2 flex flex-none items-end space-x-2 border-neutral-200 pb-2 pl-7 pt-2 sm:ml-4 sm:mt-0 sm:w-36 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-2 sm:border-l sm:pl-4 sm:pt-0"
     >
       <!-- Percentage -->
       <div
-        class="relative overflow-hidden rounded-lg border border-gray-300 text-xs"
+        class="relative overflow-hidden rounded-lg border border-neutral-300 text-xs"
         title="${hit.percentage > 0
           ? 'How much Srila Gurudeva is speaking in the recording'
           : 'Only other guru-varga is speaking in the recording'}"
       >
         <div
-          class="absolute z-auto h-full w-[var(--percentage)] bg-gray-300 shadow-none"
+          class="absolute z-auto h-full w-[var(--percentage)] bg-neutral-300 shadow-none"
           style="--percentage: ${hit.percentage > 0
             ? Math.ceil(hit.percentage * 20) * 5
             : // Default to 100% to make the “other guru-varga” shaded
