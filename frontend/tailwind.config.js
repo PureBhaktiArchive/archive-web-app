@@ -17,13 +17,6 @@ module.exports = {
       boxShadow: {
         'xl-around': '0px 0px 25px 0px rgba(0,0,0,0.3)',
       },
-      colors: {
-        peach: {
-          light: '#fed0b1',
-          DEFAULT: '#ffb07c',
-          dark: '#ff8b3f',
-        },
-      },
       fontFamily: {
         erasDemi: ['ITC Eras Demi'],
       },

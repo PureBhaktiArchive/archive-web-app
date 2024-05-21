@@ -147,7 +147,7 @@ a[class^='ais-'] {
 }
 
 .ais-CurrentRefinements-item {
-  @apply mr-1 mt-1 flex rounded bg-peach px-2 py-1;
+  @apply mr-1 mt-1 flex rounded px-2 py-1;
 }
 
 .ais-CurrentRefinements-category {
