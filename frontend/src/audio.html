@@ -60,7 +60,7 @@ description: Audio recording with all the details, including topics discussed
     {{- topics -}}
     {%- endrenderTemplate %}
     {% if audio.transcript != blank %}
-      <h4>Transcripts</h4>
+      <h4>Transcript</h4>
       {% renderTemplate "liquid,md", audio -%}
       {{- transcript -}}
       {%- endrenderTemplate %}
