@@ -105,6 +105,54 @@ collections:
       versioning: false
     schema:
       name: scheduled_videos
+  - collection: series
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
+      collapse: open
+      collection: series
+      color: null
+      display_template: '{{title}}'
+      group: null
+      hidden: false
+      icon: featured_play_list
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: draft
+      versioning: false
+    schema:
+      name: series
+  - collection: series_audios
+    meta:
+      accountability: all
+      archive_app_filter: false
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: series_audios
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      preview_url: null
+      singleton: false
+      sort: null
+      sort_field: sort
+      translations: null
+      unarchive_value: null
+      versioning: false
+    schema:
+      name: series_audios
   - collection: videos
     meta:
       accountability: all
@@ -1025,6 +1073,32 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: audios
+    field: series
+    type: alias
+    meta:
+      collection: audios
+      conditions: null
+      display: null
+      display_options: null
+      field: series
+      group: null
+      hidden: true
+      interface: list-m2m
+      note: null
+      options:
+        enableCreate: false
+        enableSelect: false
+      readonly: true
+      required: false
+      sort: 7
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: audios
   - collection: home
     field: divider-videos
     type: alias
@@ -1460,6 +1534,373 @@ fields:
       has_auto_increment: false
       foreign_key_table: null
       foreign_key_column: null
+  - collection: series
+    field: id
+    type: integer
+    meta:
+      collection: series
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: series
+      data_type: integer
+      default_value: nextval('series_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: series
+    field: status
+    type: string
+    meta:
+      collection: series
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: $t:published
+            value: published
+            color: '#2ECDA7'
+            foreground: '#2ECDA7'
+            background: var(--theme--primary-background)
+          - text: $t:draft
+            value: draft
+            color: var(--theme--foreground)
+            foreground: var(--theme--foreground)
+            background: var(--theme--background-normal)
+          - text: $t:archived
+            value: archived
+            color: var(--theme--warning)
+            foreground: var(--theme--warning)
+            background: var(--theme--warning-background)
+        showAsDot: true
+      field: status
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+            color: '#2ECDA7'
+          - text: $t:draft
+            value: draft
+            color: var(--theme--foreground)
+          - text: $t:archived
+            value: archived
+            color: var(--theme--warning)
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: status
+      table: series
+      data_type: character varying
+      default_value: draft
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: series
+    field: sort
+    type: integer
+    meta:
+      collection: series
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: series
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: series
+    field: title
+    type: string
+    meta:
+      collection: series
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: title
+      table: series
+      data_type: character varying
+      default_value: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: series
+    field: audios
+    type: alias
+    meta:
+      collection: series
+      conditions: null
+      display: related-values
+      display_options:
+        template: null
+      field: audios
+      group: null
+      hidden: false
+      interface: list-m2m
+      note: Choose audios that are part of this series
+      options:
+        enableCreate: false
+        enableLink: true
+        enableSearchFilter: true
+        fields:
+          - audios_id.id
+          - audios_id.title
+        filter:
+          _and:
+            - status:
+                _eq: active
+        limit: 50
+        template: null
+      readonly: false
+      required: true
+      sort: 5
+      special:
+        - m2m
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+  - collection: series_audios
+    field: id
+    type: integer
+    meta:
+      collection: series_audios
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: id
+      table: series_audios
+      data_type: integer
+      default_value: nextval('series_audios_id_seq'::regclass)
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: false
+      is_unique: true
+      is_primary_key: true
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: true
+      foreign_key_table: null
+      foreign_key_column: null
+  - collection: series_audios
+    field: series_id
+    type: integer
+    meta:
+      collection: series_audios
+      conditions: null
+      display: null
+      display_options: null
+      field: series_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: series_id
+      table: series_audios
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: series
+      foreign_key_column: id
+  - collection: series_audios
+    field: audios_id
+    type: integer
+    meta:
+      collection: series_audios
+      conditions: null
+      display: null
+      display_options: null
+      field: audios_id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: audios_id
+      table: series_audios
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: audios
+      foreign_key_column: id
+  - collection: series_audios
+    field: sort
+    type: integer
+    meta:
+      collection: series_audios
+      conditions: null
+      display: null
+      display_options: null
+      field: sort
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      name: sort
+      table: series_audios
+      data_type: integer
+      default_value: null
+      max_length: null
+      numeric_precision: 32
+      numeric_scale: 0
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      is_generated: false
+      generation_expression: null
+      has_auto_increment: false
+      foreign_key_table: null
+      foreign_key_column: null
   - collection: videos
     field: id
     type: integer
@@ -1811,3 +2252,45 @@ relations:
       constraint_name: scheduled_videos_video_foreign
       on_update: NO ACTION
       on_delete: NO ACTION
+  - collection: series_audios
+    field: audios_id
+    related_collection: audios
+    meta:
+      junction_field: series_id
+      many_collection: series_audios
+      many_field: audios_id
+      one_allowed_collections: null
+      one_collection: audios
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: series
+      sort_field: null
+    schema:
+      table: series_audios
+      column: audios_id
+      foreign_key_table: audios
+      foreign_key_column: id
+      constraint_name: series_audios_audios_id_foreign
+      on_update: NO ACTION
+      on_delete: NO ACTION
+  - collection: series_audios
+    field: series_id
+    related_collection: series
+    meta:
+      junction_field: audios_id
+      many_collection: series_audios
+      many_field: series_id
+      one_allowed_collections: null
+      one_collection: series
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: audios
+      sort_field: sort
+    schema:
+      table: series_audios
+      column: series_id
+      foreign_key_table: series
+      foreign_key_column: id
+      constraint_name: series_audios_series_id_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
