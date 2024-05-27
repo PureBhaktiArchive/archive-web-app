@@ -30,6 +30,7 @@ declare global {
     status: 'active' | 'inactive';
     title: string;
     topics: string;
+    transcript: string;
     date: string;
     dateUncertain: boolean;
     timeOfDay: string;
