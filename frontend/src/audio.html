@@ -59,6 +59,12 @@ description: Audio recording with all the details, including topics discussed
     {% renderTemplate "liquid,md", audio -%}
     {{- topics -}}
     {%- endrenderTemplate %}
+    {% if audio.transcript != blank %}
+      <h4>Transcript</h4>
+      {% renderTemplate "liquid,md", audio -%}
+      {{- transcript -}}
+      {%- endrenderTemplate %}
+    {%- endif %}
   </div>
 </article>
 <!-- Player UI -->
