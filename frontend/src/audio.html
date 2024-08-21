@@ -30,7 +30,7 @@ description: Audio recording with all the details, including topics discussed
     {% render 'partials/audio-actions.html' with audio as audio -%}
   </div>
 
-  <div class="prose prose-sm mt-4 sm:prose dark:prose-invert">
+  <div class="prose prose-sm mb-8 mt-4 sm:prose dark:prose-invert">
     <!-- Series titles -->
     {% if audio.series != blank %}
       <h4>This audio is included in the following series of lectures:</h4>
@@ -64,6 +64,19 @@ description: Audio recording with all the details, including topics discussed
       {% renderTemplate "liquid,md", audio -%}
       {{- transcript -}}
       {%- endrenderTemplate %}
+      <p class="prose-sm border-t pt-4">
+        We have endeavoured to do this transcript to our best capacity, but surely we can make mistakes. So we welcome any feedback for further improvement.
+        <br>
+        Please
+        <a
+          href="{{ audio.fileId | toFeedbackURL }}"
+          target="_blank"
+        >
+          provide a feedback on this transcript
+        </a>
+        or
+        <a href="{{ links.contactForm }}" target="_blank">reach us for general feedback</a>.
+      </p>
     {%- endif %}
   </div>
 </article>

@@ -40,8 +40,11 @@ Environment variables should be added to an `.env.local` file.
 | `DIRECTUS_URL`           | The URL of the Directus headless CMS.                                              |
 | `DIRECTUS_STATIC_TOKEN`  | Authentication token for Directus, used instead of username/password.              |
 | `YOUTUBE_API_KEY`        | API key for accessing YouTube                                                      |
+| `CONTACT_FORM`           | The URL of the external contact form                                               |
 
-For a new environment variable to be accessible from the frontend code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
+For a new environment variable to be accessible from the frontend JS code, use `define` to expose it according to https://vitejs.dev/config/shared-options.html#envprefix.
+
+To access a variable from the HTML template, add it to the `links.js` data file.
 
 ## Running locally
 
