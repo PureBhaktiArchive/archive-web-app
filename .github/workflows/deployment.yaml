@@ -51,6 +51,7 @@ jobs:
           DONATION_URL: ${{ vars.DONATION_URL}}
           FEEDBACK_FORM_AUDIOS: ${{ vars.FEEDBACK_FORM_AUDIOS}}
           FEEDBACK_FORM_MEMORIES: ${{ vars.FEEDBACK_FORM_MEMORIES }}
+          CONTACT_FORM: ${{ vars.CONTACT_FORM }}
           DIRECTUS_URL: ${{ vars.DIRECTUS_URL }}
           DIRECTUS_STATIC_TOKEN: ${{ secrets.DIRECTUS_STATIC_TOKEN }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
