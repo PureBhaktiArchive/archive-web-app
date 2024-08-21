@@ -28,7 +28,8 @@
       "percentage",
       "otherSpeakers",
       "soundQualityRating",
-      "year"
+      "year",
+      "transcriptPresent"
     ],
     "attributesToSnippet": ["topics:10"],
     "attributesToHighlight": null,
