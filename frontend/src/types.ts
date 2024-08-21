@@ -66,6 +66,7 @@ declare global {
     dateForHumans: string;
     year: number;
     languageCategory: string;
+    transcriptPresent: boolean;
   };
 
   /**

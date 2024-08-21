@@ -13,6 +13,7 @@ import {
   pagination,
   refinementList,
   stats,
+  toggleRefinement,
 } from 'instantsearch.js/es/widgets';
 import '../css/algolia.css';
 import { alpineSearchStoreMiddleware } from './alpine-search-store';
@@ -156,6 +157,17 @@ search.addWidgets([
     container: '#other-speakers-list div:empty',
     attribute: 'otherSpeakers',
     sortBy: ['name:asc'],
+  }),
+  toggleRefinement({
+    container: '#transcript-toggle div:empty',
+    attribute: 'transcriptPresent',
+    templates: {
+      labelText({ count }, { html }) {
+        return html`<span
+          >With a transcript only (${count?.toLocaleString()})</span
+        >`;
+      },
+    },
   }),
   hits({
     container: '#hits',

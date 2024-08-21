@@ -199,17 +199,20 @@ a[class^='ais-'] {
 }
 
 .ais-NumericMenu-label,
-.ais-RefinementList-label {
+.ais-RefinementList-label,
+.ais-ToggleRefinement-label {
   @apply flex break-inside-avoid items-center;
 }
 
 .ais-NumericMenu-radio,
-.ais-RefinementList-checkbox {
+.ais-RefinementList-checkbox,
+.ais-ToggleRefinement-checkbox {
   @apply flex-none;
 }
 
 .ais-NumericMenu-labelText,
-.ais-RefinementList-labelText {
+.ais-RefinementList-labelText,
+.ais-ToggleRefinement-labelText {
   @apply mx-2 overflow-x-hidden break-words text-sm;
 }
 
