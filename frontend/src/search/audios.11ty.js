@@ -47,6 +47,7 @@ class Renderer {
           languages,
           otherSpeakers,
           duration,
+          transcript,
         }) => ({
           objectID: id.toString(),
           fileId: id,
@@ -66,6 +67,7 @@ class Renderer {
           year: +date?.substring(0, 4),
           dateForHumans: formatReducedPrecisionDate(date),
           languageCategory: categorizeLanguages(languages),
+          transcriptPresent: transcript !== null,
         })
       )
     );
