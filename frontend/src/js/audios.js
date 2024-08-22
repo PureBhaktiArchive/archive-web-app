@@ -162,10 +162,8 @@ search.addWidgets([
     container: '#transcript-toggle div:empty',
     attribute: 'transcriptPresent',
     templates: {
-      labelText({ count }, { html }) {
-        return html`<span
-          >With a transcript only (${count?.toLocaleString()})</span
-        >`;
+      labelText({ onFacetValue: { count } }, { html }) {
+        return html`<span>Yes (${count?.toLocaleString()})</span>`;
       },
     },
   }),
