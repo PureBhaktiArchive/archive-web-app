@@ -67,7 +67,7 @@ class Renderer {
           year: +date?.substring(0, 4),
           dateForHumans: formatReducedPrecisionDate(date),
           languageCategory: categorizeLanguages(languages),
-          transcriptPresent: transcript !== null,
+          transcriptPresent: !!transcript?.trim(),
         })
       )
     );
