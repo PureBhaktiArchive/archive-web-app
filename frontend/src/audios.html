@@ -7,6 +7,22 @@ tags:
   - topnav
 jsFile: audios.js
 ---
+{% for englishWord in englishWords %}
+  {{ englishWord -}}
+{%- endfor %}
+<br>
+<br>
+<br>
+<br>
+
+{% for synonym in synonyms %}
+  {{ synonym.id -}}
+  --
+  {{ synonym.title -}}
+  --
+  {{ synonym.topics -}}
+  <br>
+{% endfor %}
 <div class="mt-4 flex">
   <div
     x-data="{open: false}"

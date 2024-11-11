@@ -4,6 +4,7 @@
 
 // @ts-expect-error due to https://github.com/11ty/eleventy/issues/2935, which is fixed in 3.0
 const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const fs = require('node:fs');
 const { formatDurationForHumans } = require('./config/filters/duration');
 const {
   soundQualityRatingMapping,
@@ -83,6 +84,18 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter('toPlayerItem', toPlayerItem);
 
+  var words = require('an-array-of-english-words');
+  const englishWords = words.filter((d) => /fun/.test(d));
+  const wordsStr = englishWords.toString();
+  const wordsList = wordsStr.replace(/,/g, '\n');
+  try {
+    fs.writeFileSync('./src/englishwords.txt', wordsList);
+    // file written successfully
+  } catch (err) {
+    console.error(err);
+  }
+
+  //eleventyConfig.addGlobalData('englishWords', englishwords);
   // Return your Object options:
   return {
     dir: {
