@@ -29,7 +29,7 @@ const englishWords = words.filter((d) => /fun/.test(d));
 const uniqueWords = cmsWords.filter((word) => !englishWords.includes(word));
 const uniqueWordsStr = uniqueWords.toString();
 const synonyms = uniqueWordsStr.match(/\b\w+\b/g).join("\n");
-console.log(synonyms);
+
 try {
   fs.writeFileSync("./cmswords.txt", synonyms);
   // file written successfully
