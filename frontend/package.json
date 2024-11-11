@@ -47,7 +47,6 @@
   "dependencies": {
     "algoliasearch": "4.22.0",
     "alpinejs": "3.13.7",
-    "an-array-of-english-words": "2.0.0",
     "instantsearch.js": "4.63.0",
     "tippy.js": "6.3.7"
   }
