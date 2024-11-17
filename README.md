@@ -12,22 +12,7 @@ The Archive website consists of the following components.
 
 The frontend part of the Archive is built as a statically generated website and hosted as as a static website on Firebase Hosting.
 
-```plantuml
-@startuml
-component "Directus CMS" as cms
-component "GitHub Actions" as github
-component "Firebase Hosting" as hosting
-
-cms -right-> github: trigger deployment\non content change
-github -left-> cms: query data on build
-github -right--> [Algolia]: update search index
-github -down-> hosting: deploy static website
-
-[Browser] -up-> hosting: get HTML, JS, CSS
-[Browser] -up--> [Algolia]: search
-
-@enduml
-```
+![](./docs/Architecture.svg)
 
 # Frontend
 
