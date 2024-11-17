@@ -10,7 +10,7 @@ The Archive website consists of the following components.
 - [Directus](https://directus.io/) as a headless CMS.
 - [Algolia](https://www.algolia.com/doc/) as an external search provider.
 
-The frontend part of the Archive is built as a statically generated website and hosted as as a static website on Firebase Hosting.
+The frontend part of the Archive is built as a statically generated website and hosted on Firebase Hosting.
 
 ![](./docs/Architecture.svg)
 
