@@ -22,7 +22,7 @@
     "@shopify/prettier-plugin-liquid": "1.5.2",
     "@tailwindcss/aspect-ratio": "0.4.2",
     "@tailwindcss/typography": "0.5.15",
-    "@types/alpinejs": "3.13.10",
+    "@types/alpinejs": "3.13.11",
     "@types/html-minifier-terser": "7.0.2",
     "@types/jest": "29.5.14",
     "@types/node": "18.19.69",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "algoliasearch": "4.24.0",
-    "alpinejs": "3.14.1",
+    "alpinejs": "3.14.8",
     "instantsearch.js": "4.74.2",
     "tippy.js": "6.3.7"
   }
