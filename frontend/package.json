@@ -27,7 +27,7 @@
     "@types/jest": "29.5.14",
     "@types/node": "18.19.69",
     "browserslist-to-esbuild": "1.2.0",
-    "dotenv": "16.4.5",
+    "dotenv": "16.4.7",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-header": "3.1.1",
