@@ -25,7 +25,7 @@
     "@types/alpinejs": "3.13.11",
     "@types/html-minifier-terser": "7.0.2",
     "@types/jest": "29.5.14",
-    "@types/node": "18.19.85",
+    "@types/node": "18.19.86",
     "browserslist-to-esbuild": "1.2.0",
     "dotenv": "16.4.7",
     "eslint": "8.57.1",
