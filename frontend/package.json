@@ -44,7 +44,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "algoliasearch": "4.24.0",
+    "algoliasearch": "4.25.2",
     "alpinejs": "3.14.9",
     "instantsearch.js": "4.78.1",
     "tippy.js": "6.3.7"
