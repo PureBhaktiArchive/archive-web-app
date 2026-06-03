@@ -29,8 +29,8 @@ jobs:
       url: ${{ steps.deploy-production.outputs.url || steps.deploy-preview.outputs.url }}
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version-file: frontend/package.json
           cache: npm
@@ -86,9 +86,7 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/service-account.json
 
-      - uses: algolia/setup-algolia-cli@v1.1.0
-        with:
-          version: 1.4.2 # latest at the moment. Need at least 1.3.0 to deal with the config
+      - run: npm i -g @algolia/cli
 
       - name: Update Algolia index
         # Mimicking the behaviour of replace-all-objects: https://www.algolia.com/doc/api-reference/api-methods/replace-all-objects/
