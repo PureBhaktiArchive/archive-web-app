@@ -78,7 +78,4 @@ jobs:
     needs: frontend
     if: contains( github.event.pull_request.labels.*.name, 'preview')
     uses: ./.github/workflows/deployment.yaml
-    with:
-      environment: preview
-      preview: true
     secrets: inherit
