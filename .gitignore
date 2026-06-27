@@ -64,6 +64,9 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+# direnv
+.envrc
 .DS_Store
 
 .tmp/
