@@ -103,8 +103,8 @@ jobs:
           algolia indices move $TEMP_INDEX $INDEX --confirm
         env:
           ALGOLIA_CLI_TELEMETRY: 0
-          # CLI uses these two env variable for authentication: https://github.com/algolia/setup-algolia-cli/issues/4#issuecomment-1465172597
+          # https://www.algolia.com/doc/tools/cli/authentication
           ALGOLIA_APPLICATION_ID: ${{ vars.ALGOLIA_APPLICATION_ID }}
-          ALGOLIA_ADMIN_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
           INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}
           TEMP_INDEX: ${{ vars.ALGOLIA_INDEX_AUDIOS }}_tmp
