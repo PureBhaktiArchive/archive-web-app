@@ -94,39 +94,55 @@ export const itemTemplate = (hit, { html, components }) => html`
               #${components.Highlight({ hit, attribute: 'fileId' })}
             </div>
             <!-- Date -->
-            ${hit.dateForHumans
-              ? html`<div title="Date">
-                  ${components.Highlight({ hit, attribute: 'dateForHumans' })}
-                  ${hit.dateUncertain &&
-                  // Adding explicit whitespaces to preserve them. See https://github.com/developit/htm/issues/206#issuecomment-870709380 and https://github.com/developit/htm/issues/202
-                  html`${' '}<span title="Date is uncertain">(?)</span>`}
-                  ${hit.timeOfDay &&
-                  html`${' '}<span title="Time of day">${hit.timeOfDay}</span>`}
-                </div>`
-              : html`<div>Date unknown</div>`}
+            ${
+              hit.dateForHumans
+                ? html`<div title="Date">
+                    ${components.Highlight({ hit, attribute: 'dateForHumans' })}
+                    ${
+                      hit.dateUncertain &&
+                      // Adding explicit whitespaces to preserve them. See https://github.com/developit/htm/issues/206#issuecomment-870709380 and https://github.com/developit/htm/issues/202
+                      html`${' '}<span title="Date is uncertain">(?)</span>`
+                    }
+                    ${
+                      hit.timeOfDay &&
+                      html`${' '}<span title="Time of day"
+                          >${hit.timeOfDay}</span
+                        >`
+                    }
+                  </div>`
+                : html`<div>Date unknown</div>`
+            }
 
             <!-- Location -->
-            ${hit.location
-              ? html`<div title="Location">
-                  ${components.Highlight({ hit, attribute: 'location' })}
-                  ${hit.locationUncertain &&
-                  html`${' '}<span title="Location is uncertain">(?)</span>`}
-                </div>`
-              : html`<div>Location unknown</div>`}
+            ${
+              hit.location
+                ? html`<div title="Location">
+                    ${components.Highlight({ hit, attribute: 'location' })}
+                    ${
+                      hit.locationUncertain &&
+                      html`${' '}<span title="Location is uncertain">(?)</span>`
+                    }
+                  </div>`
+                : html`<div>Location unknown</div>`
+            }
 
             <!-- Category -->
-            ${hit.category &&
-            html`<div title="Category">
-              ${components.Highlight({ hit, attribute: 'category' })}
-            </div>`}
+            ${
+              hit.category &&
+              html`<div title="Category">
+                ${components.Highlight({ hit, attribute: 'category' })}
+              </div>`
+            }
 
             <!-- Languages -->
-            ${hit.languages &&
-            html`
-              <div title="Language spoken in the recording">
-                ${components.Highlight({ hit, attribute: 'languages' })}
-              </div>
-            `}
+            ${
+              hit.languages &&
+              html`
+                <div title="Language spoken in the recording">
+                  ${components.Highlight({ hit, attribute: 'languages' })}
+                </div>
+              `
+            }
           </div>
 
           <!-- Actions -->
@@ -207,13 +223,17 @@ export const itemTemplate = (hit, { html, components }) => html`
           </div>
         </div>
         <!-- Other Speakers -->
-        ${hit.otherSpeakers &&
-        html`
-          <div class="text-xs">
-            <span>${hit.percentage > 0 ? 'Other speakers' : 'Speakers'}: </span>
-            ${components.Highlight({ hit, attribute: 'otherSpeakers' })}
-          </div>
-        `}
+        ${
+          hit.otherSpeakers &&
+          html`
+            <div class="text-xs">
+              <span
+                >${hit.percentage > 0 ? 'Other speakers' : 'Speakers'}:
+              </span>
+              ${components.Highlight({ hit, attribute: 'otherSpeakers' })}
+            </div>
+          `
+        }
       </div>
     </div>
     <!-- Complimentary section -->
@@ -223,58 +243,67 @@ export const itemTemplate = (hit, { html, components }) => html`
       <!-- Percentage -->
       <div
         class="relative overflow-hidden rounded-lg border border-neutral-300 text-xs"
-        title="${hit.percentage > 0
-          ? 'How much Srila Gurudeva is speaking in the recording'
-          : 'Only other guru-varga is speaking in the recording'}"
+        title="${
+          hit.percentage > 0
+            ? 'How much Srila Gurudeva is speaking in the recording'
+            : 'Only other guru-varga is speaking in the recording'
+        }"
       >
         <div
           class="absolute z-auto h-full w-[var(--percentage)] bg-neutral-300 shadow-none"
-          style="--percentage: ${hit.percentage > 0
-            ? Math.ceil(hit.percentage * 20) * 5
-            : // Default to 100% to make the “other guru-varga” shaded
-              100}%"
+          style="--percentage: ${
+            hit.percentage > 0
+              ? Math.ceil(hit.percentage * 20) * 5
+              : // Default to 100% to make the “other guru-varga” shaded
+                100
+          }%"
         ></div>
         <div class="w-full whitespace-nowrap px-1.5 pb-[1px] opacity-95">
-          ${hit.percentage > 0
-            ? `Srila Gurudeva ${Math.ceil(hit.percentage * 20) * 5}%`
-            : 'Other guru-varga'}
+          ${
+            hit.percentage > 0
+              ? `Srila Gurudeva ${Math.ceil(hit.percentage * 20) * 5}%`
+              : 'Other guru-varga'
+          }
         </div>
       </div>
 
       <!-- Sound Quality Rating -->
-      ${hit.soundQualityRating &&
-      html`
-        <div
-          class="${soundQualityRatingMapping[hit.soundQualityRating]
-            .color} flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
-          title="Sound quality of the recording"
-        >
-          <svg
-            class="h-4 w-4 flex-none stroke-current stroke-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
+      ${
+        hit.soundQualityRating &&
+        html`
+          <div
+            class="${
+              soundQualityRatingMapping[hit.soundQualityRating].color
+            } flex flex-none space-x-1 rounded-lg border px-1.5 text-xs"
+            title="Sound quality of the recording"
           >
-            <path
-              d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-            />
-            <path
-              d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
-              fill="none"
-              stroke="currentColor"
-              stroke-miterlimit="10"
-              stroke-width="32"
-            />
-          </svg>
-          <span
-            >${soundQualityRatingMapping[hit.soundQualityRating].label}</span
-          >
-        </div>
-      `}
+            <svg
+              class="h-4 w-4 flex-none stroke-current stroke-2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+            >
+              <path
+                d="M83 384c-13-33-35-93.37-35-128C48 141.12 149.33 48 256 48s208 93.12 208 208c0 34.63-23 97-35 128"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+              />
+              <path
+                d="M108.39 270.13l-13.69 8h0c-30.23 17.7-31.7 72.41-3.38 122.2s75.87 75.81 106.1 58.12h0l13.69-8a16.16 16.16 0 005.78-21.87L130 276a15.74 15.74 0 00-21.61-5.87zM403.61 270.13l13.69 8h0c30.23 17.69 31.74 72.4 3.38 122.19s-75.87 75.81-106.1 58.12h0l-13.69-8a16.16 16.16 0 01-5.78-21.87L382 276a15.74 15.74 0 0121.61-5.87z"
+                fill="none"
+                stroke="currentColor"
+                stroke-miterlimit="10"
+                stroke-width="32"
+              />
+            </svg>
+            <span
+              >${soundQualityRatingMapping[hit.soundQualityRating].label}</span
+            >
+          </div>
+        `
+      }
     </div>
   </article>
 `;
